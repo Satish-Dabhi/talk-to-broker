@@ -1,0 +1,41 @@
+{
+    "ui:order": [
+        "dateOfEntry",
+        "addPropertyType",
+        "sellProperty",
+        "rentalProperty",
+        "label",
+        "buildingType",
+        "propertyType",
+        "subPropertyType",
+        "facilities",
+        "propertyOwnership",
+        "otherProperty"
+    ],
+    "ui:layout": {
+        "dateOfEntry": {
+            "md": 6
+        },
+        "addPropertyType": {
+            "md": 7
+        },
+        "sellProperty": {
+            "md": 6
+        },
+        "rentalProperty": {
+            "md": 6
+        },
+        "label": {
+            "md": 6
+        },
+        "buildingType": {
+            "md": 6
+        },
+        "propertyType":{
+            "md":4
+        },
+        "subPropertyType":{
+            "md":8
+        }
+    }
+}

@@ -1,0 +1,397 @@
+{
+    "title": "Basic Information",
+    "type": "object",
+    "required": [
+        "dateOfEntry"
+    ],
+    "properties": {
+        "dateOfEntry": {
+            "title": "Date of Property Entry",
+            "type": "string",
+            "format": "date"
+        },
+        "addPropertyType": {
+            "title": "Type",
+            "enumNames": [
+                "Developer Property",
+                "Old Property"
+            ],
+            "enum": [
+                "developer-property",
+                "old-property"
+            ],
+            "default": "developer-property"
+        },
+        "sellProperty": {
+            "title": "Sells Property",
+            "type": "string"
+        },
+        "rentalProperty": {
+            "title": "Rental Property",
+            "type": "string"
+        },
+        "label": {
+            "title": "Label",
+            "enumNames": [
+                "Tower",
+                "Wing",
+                "Unit",
+                "Type"
+            ],
+            "enum": [
+                "tower",
+                "wing",
+                "unit",
+                "type"
+            ]
+        },
+        "buildingType": {
+            "title": "Building Type",
+            "enumNames": [
+                "Single Unit",
+                "Low Rise",
+                "Mid Rise",
+                "High Rise"
+            ],
+            "enum": [
+                "single-unit",
+                "low-rise",
+                "mid-rise",
+                "high-rise"
+            ]
+        },
+        "propertyType": {
+            "title": "Property Type",
+            "enumNames": [
+                "Residential",
+                "Commercial",
+                "Industrial",
+                "Agricultural"
+            ],
+            "enum": [
+                "residential",
+                "commercial",
+                "industrial",
+                "agricultural"
+            ],
+            "default": "residential"
+        },
+        "subPropertyType": {
+            "title": "Sub Property Type",
+            "type": "string"
+        },
+        "propertyOwnership": {
+            "title": "Property Occupied By",
+            "enumNames": [
+                "Sole Proprietorship",
+                "Corporation",
+                "Company CEO",
+                "Director",
+                "Power Of Attorney Holder(POA)",
+                "Partnership Firm",
+                "Third Party Agreement Owner",
+                "Property Owner"
+            ],
+            "enum": [
+                "sole-proprietorship",
+                "corporation",
+                "company-cEO",
+                "director",
+                "power-of-attorney",
+                "partnership-firm",
+                "third-party-agreement-owner",
+                "property-owner"
+            ]
+        }
+    },
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "addPropertyType": {
+                        "enum": [
+                            "developer-property"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "sellProperty": {
+                        "enumNames": [
+                            "Unit Sells",
+                            "Pre Lease Sell"
+                        ],
+                        "enum": [
+                            "unit-sells",
+                            "pre-lease-sells"
+                        ]
+                    },
+                    "rentalProperty": {
+                        "enumNames": [
+                            "Rent",
+                            "Pre Lease Rent",
+                            "Lease"
+                        ],
+                        "enum": [
+                            "rent",
+                            "pre-lease-rent",
+                            "lease"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "addPropertyType": {
+                        "enum": [
+                            "old-property"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "sellProperty": {
+                        "enumNames": [
+                            "Re Sells",
+                            "Pre Lease Re Sells"
+                        ],
+                        "enum": [
+                            "re-sells",
+                            "pre-lease-re-sells"
+                        ]
+                    },
+                    "rentalProperty": {
+                        "enumNames": [
+                            "Rent",
+                            "Pre Lease Rent",
+                            "Lease"
+                        ],
+                        "enum": [
+                            "rent",
+                            "pre-lease-rent",
+                            "lease"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "propertyType": {
+                        "enum": [
+                            "residential"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "facilities": {
+                        "type": "array",
+                        "title": "Residential Facilities",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "apartment",
+                                "penthouse",
+                                "terrace-flat",
+                                "bungalow",
+                                "villa",
+                                "condominium",
+                                "cottage",
+                                "row-house",
+                                "duplex-house",
+                                "triplex-house",
+                                "farm-house",
+                                "stilt-house",
+                                "tree-house",
+                                "hut",
+                                "eco-friendly-house"
+                            ],
+                            "enumNames": [
+                                "Apartment(Flat)",
+                                "Penthouse",
+                                "Terrace Flat",
+                                "Bungalow",
+                                "Villa",
+                                "Condominium",
+                                "Cottage",
+                                "Row House",
+                                "Duplex House",
+                                "Triplex House",
+                                "Farm House",
+                                "Stilt House",
+                                "Tree House",
+                                "Hut",
+                                "Eco-friendly House"
+                            ]
+                        },
+                        "uniqueItems": true
+                    },
+                    "subPropertyType": {
+                        "enum": [
+                            "2-BHK",
+                            "3-BHK",
+                            "3.5-BHK",
+                            "4-BHK",
+                            "4.5-BHK",
+                            "5-BHK",
+                            "6-BHK",
+                            "3B_2HK",
+                            "4B_2HK",
+                            "5B_4HK",
+                            "6B_2HK",
+                            "7B_2HK"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "propertyType": {
+                        "enum": [
+                            "commercial"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "subPropertyType": {
+                        "enumNames": [
+                            "Office",
+                            "Shops",
+                            "Showrooms",
+                            "Commercial Open Plots",
+                            "Commercial Land",
+                            "Multifamily Use Land",
+                            "Multifamily Use Plot",
+                            "Retails Shops",
+                            "Storage Warehouse",
+                            "Hospital",
+                            "Shopping Centre"
+                        ],
+                        "enum": [
+                            "office",
+                            "shops",
+                            "showrooms",
+                            "commercial-open-plots",
+                            "commercial-land",
+                            "multifamily-use-land",
+                            "multifamily-use-plot",
+                            "retails-shops",
+                            "storage-warehouse",
+                            "hospital",
+                            "shopping-centre"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "propertyType": {
+                        "enum": [
+                            "industrial"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "subPropertyType": {
+                        "enumNames": [
+                            "Ind. Office",
+                            "Industrial Open Plots",
+                            "Industrial Land",
+                            "Special Purpose Land(Economics)",
+                            "Mixed Used Land",
+                            "Mixed Use Plot",
+                            "Multifamily Land",
+                            "Warehouse",
+                            "Factories",
+                            "Industrial Shed"
+                        ],
+                        "enum": [
+                            "ind-office",
+                            "industrial-open-plots",
+                            "industrial-land",
+                            "special-purpose-land",
+                            "mixed-used-land",
+                            "mixed-use-plot",
+                            "multifamily-land",
+                            "warehouse",
+                            "factories",
+                            "industrial-shed"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "propertyType": {
+                        "enum": [
+                            "agricultural"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "subPropertyType": {
+                        "enumNames": [
+                            "Croped Land",
+                            "New Condition Land",
+                            "Old Conditions Land",
+                            "If Any Other"
+                        ],
+                        "enum": [
+                            "Croped-land",
+                            "new-condition-land",
+                            "old-conditions-land",
+                            "any-other"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "subPropertyType": {
+                        "enum": [
+                            "any-other"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "otherProperty": {
+                        "type": "string",
+                        "title": "Add Other Property"
+                    }
+                }
+            },
+            "else": {
+                "properties": {
+                    "otherProperty": {
+                        "type": "string",
+                        "title": "Add Other Property",
+                "ui:widget": "hidden"
+                    }
+                }
+              }
+        }
+    ]
+}

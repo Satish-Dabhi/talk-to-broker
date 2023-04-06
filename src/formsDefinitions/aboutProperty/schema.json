@@ -1,0 +1,79 @@
+{
+    "title": "About Property",
+    "type": "object",
+    "properties": {
+        "propertyType": {
+            "title": "Property Type",
+            "enumNames": [
+                "Residential",
+                "Commercial",
+                "Industrial",
+                "Agricultural"
+            ],
+            "enum": [
+                "residential",
+                "commercial",
+                "industrial",
+                "agricultural"
+            ]
+        },
+        "sellProperty": {
+            "title": "Sells Property",
+            "enumNames": [
+                "Unit Sells",
+                "Pre Lease Sell"
+            ],
+            "enum": [
+                "unit-sells",
+                "pre-lease-sells"
+            ],
+            "default": "unit-sells"
+        },
+        "rentalProperty": {
+            "title": "Rental Property",
+            "enumNames": [
+                "Rent",
+                "Pre Lease Rent",
+                "Lease"
+            ],
+            "enum": [
+                "rent",
+                "pre-lease-rent",
+                "lease"
+            ],
+            "default": "rent"
+        },
+        "label": {
+            "title": "Label",
+            "enumNames": [
+                "Tower",
+                "Wing",
+                "Unit",
+                "Type"
+            ],
+            "enum": [
+                "tower",
+                "wing",
+                "unit",
+                "type"
+            ],
+            "default": "tower"
+        },
+        "buildingType": {
+            "title": "Building Type",
+            "enumNames": [
+                "Single Unit",
+                "Low Rise",
+                "Mid Rise",
+                "High Rise"
+            ],
+            "enum": [
+                "single-unit",
+                "low-rise",
+                "mid-rise",
+                "high-rise"
+            ],
+            "default": "single-unit"
+        }
+    }
+}
