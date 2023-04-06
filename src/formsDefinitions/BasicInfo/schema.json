@@ -247,7 +247,8 @@
                             "5B_4HK",
                             "6B_2HK",
                             "7B_2HK"
-                        ]
+                        ],
+                        "default": "2-BHK"
                     }
                 }
             }
@@ -276,7 +277,8 @@
                             "Retails Shops",
                             "Storage Warehouse",
                             "Hospital",
-                            "Shopping Centre"
+                            "Shopping Centre",
+                            "Other If Any"
                         ],
                         "enum": [
                             "office",
@@ -289,8 +291,10 @@
                             "retails-shops",
                             "storage-warehouse",
                             "hospital",
-                            "shopping-centre"
-                        ]
+                            "shopping-centre",
+                            "any-other"
+                        ],
+                        "default": "office"
                     }
                 }
             }
@@ -318,7 +322,8 @@
                             "Multifamily Land",
                             "Warehouse",
                             "Factories",
-                            "Industrial Shed"
+                            "Industrial Shed",
+                            "Other If Any"
                         ],
                         "enum": [
                             "ind-office",
@@ -330,8 +335,10 @@
                             "multifamily-land",
                             "warehouse",
                             "factories",
-                            "industrial-shed"
-                        ]
+                            "industrial-shed",
+                            "any-other"
+                        ],
+                        "default": "ind-office"
                     }
                 }
             }
@@ -353,14 +360,15 @@
                             "Croped Land",
                             "New Condition Land",
                             "Old Conditions Land",
-                            "If Any Other"
+                            "Other If Any"
                         ],
                         "enum": [
                             "Croped-land",
                             "new-condition-land",
                             "old-conditions-land",
                             "any-other"
-                        ]
+                        ],
+                        "default": "Croped-land"
                     }
                 }
             }
@@ -382,16 +390,7 @@
                         "title": "Add Other Property"
                     }
                 }
-            },
-            "else": {
-                "properties": {
-                    "otherProperty": {
-                        "type": "string",
-                        "title": "Add Other Property",
-                "ui:widget": "hidden"
-                    }
-                }
-              }
+            }
         }
     ]
 }

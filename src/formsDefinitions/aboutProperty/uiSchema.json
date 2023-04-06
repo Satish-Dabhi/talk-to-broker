@@ -1,0 +1,17 @@
+{
+    "ui:order": [
+        "propertyType",
+        "subPropertyType",
+        "facilities",
+        "propertyOwnership",
+        "otherProperty"
+    ],
+    "ui:layout": {
+        "propertyType":{
+            "md":4
+        },
+        "subPropertyType":{
+            "md":8
+        }
+    }
+}

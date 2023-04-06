@@ -24,7 +24,6 @@ const ObjectFieldTemplate = ({
     onAddClick,
   }) => {
     const layout = uiSchema['ui:layout'];
-    console.log("layout",layout);
     const { $id } = idSchema;
     if ($id === 'root_computed') {
       return null;

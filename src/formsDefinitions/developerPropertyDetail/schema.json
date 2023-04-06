@@ -1,0 +1,69 @@
+{
+    "title": "Developer Property Details",
+    "type": "object",
+    "required": [
+        ""
+    ],
+    "properties": {
+        "developerPropertyGroupName":{
+            "title": "Group Name",
+            "type": "string"
+        },
+        "developerPropertyProjectName":{
+            "title": "Project Name",
+            "type": "string"
+        },
+        "developerPropertySiteAddress":{
+            "title": "Site Address",
+            "type": "string"
+        },
+        "developerPropertyRevenueSurveyNo":{
+            "title": "Revenue SurveyNo",
+            "type": "number"
+        },
+        "developerPropertyBlockNumber":{
+            "title": "Block Number",
+            "type": "number"
+        },
+        "developerPropertyFPNumber":{
+            "title":"FP Number",
+            "type": "number"
+        },
+        "developerPropertyPinCode":{
+            "title": "Pin Code",
+            "type": "number"
+        },
+        "developerPropertyCity":{
+            "title":"City",
+            "type": "string"
+        },
+        "developerPropertyState":{
+            "title": "State",
+            "type": "string"
+        },
+        "developerPropertyStateCode":{
+            "title":"State code",
+            "type": "number"
+        },
+        "developerPropertyContactNumber":{
+            "title": "Contact Number",
+            "type": "number"
+        },
+        "developerPropertyGSTIN":{
+            "title":"GSTIN Number",
+            "type": "string"
+        },
+        "developerPropertyCGSTIN":{
+            "title": "CGSTIN Number",
+            "type": "string"
+        },
+        "developerPropertyRERA":{
+            "title":"RERA Number",
+            "type": "string"
+        },
+        "developerPropertyTDS":{
+            "title":"TDS Number",
+            "type": "string"
+        }        
+    }
+}

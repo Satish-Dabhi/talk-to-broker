@@ -1,0 +1,49 @@
+{
+    "ui:layout": {
+        "developerPropertyGroupName": {
+            "md": 6
+        },
+        "developerPropertyProjectName": {
+            "md": 6
+        },
+        "developerPropertySiteAddress": {
+            "md": 12
+        },
+        "developerPropertyRevenueSurveyNo": {
+            "md": 6
+        },
+        "developerPropertyBlockNumber": {
+            "md": 6
+        },
+        "developerPropertyFPNumber": {
+            "md": 8
+        },
+        "developerPropertyPinCode": {
+            "md": 4
+        },
+        "developerPropertyCity": {
+            "md": 6
+        },
+        "developerPropertyState": {
+            "md": 6
+        },
+        "developerPropertyStateCode": {
+            "md": 6
+        },
+        "developerPropertyContactNumber": {
+            "md": 8
+        },
+        "developerPropertyGSTIN": {
+            "md": 6
+        },
+        "developerPropertyCGSTIN": {
+            "md": 6
+        },
+        "developerPropertyRERA": {
+            "md": 6
+        },
+        "developerPropertyTDS": {
+            "md": 6
+        }
+    }
+}

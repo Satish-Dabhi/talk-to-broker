@@ -9,8 +9,8 @@
         "propertyType",
         "subPropertyType",
         "facilities",
-        "propertyOwnership",
-        "otherProperty"
+        "otherProperty",
+        "propertyOwnership"
     ],
     "ui:layout": {
         "dateOfEntry": {
