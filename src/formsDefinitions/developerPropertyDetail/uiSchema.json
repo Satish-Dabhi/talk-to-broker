@@ -7,31 +7,31 @@
             "md": 6
         },
         "developerPropertySiteAddress": {
-            "md": 12
+            "md": 6
         },
         "developerPropertyRevenueSurveyNo": {
-            "md": 6
+            "md": 3
         },
         "developerPropertyBlockNumber": {
-            "md": 6
+            "md": 3
         },
         "developerPropertyFPNumber": {
-            "md": 8
+            "md": 4
         },
         "developerPropertyPinCode": {
             "md": 4
         },
         "developerPropertyCity": {
-            "md": 6
+            "md": 4
         },
         "developerPropertyState": {
-            "md": 6
+            "md": 4
         },
         "developerPropertyStateCode": {
-            "md": 6
+            "md": 3
         },
         "developerPropertyContactNumber": {
-            "md": 8
+            "md": 5
         },
         "developerPropertyGSTIN": {
             "md": 6

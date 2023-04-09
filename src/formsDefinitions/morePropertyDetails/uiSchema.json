@@ -1,0 +1,22 @@
+{
+    "ui:layout": {
+        "propertyStatus": {
+            "md": 8
+        },
+        "aboutFurnishing": {
+            "md": 6
+        },
+        "doorEntryFacing": {
+            "md": 6
+        },
+        "propertyAge": {
+            "md": 4
+        },
+        "propertyFlooring": {
+            "md": 8
+        },
+        "bankName": {
+            "md": 7
+        }
+    }
+}

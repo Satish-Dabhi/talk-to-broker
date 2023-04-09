@@ -2,7 +2,7 @@
     "title": "Old Property Details",
     "type": "object",
     "required": [
-        ""
+        "oldPropertyName"
     ],
     "properties": {
         "oldPropertyName": {

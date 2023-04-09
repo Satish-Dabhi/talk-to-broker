@@ -7,17 +7,20 @@
         "label",
         "buildingType",
         "propertyType",
-        "subPropertyType",
-        "facilities",
+        "subPropertyType",        
         "otherProperty",
+        "facilities",
         "propertyOwnership"
     ],
+    "addPropertyType":{
+        "ui:widget": "radio"
+    },
     "ui:layout": {
         "dateOfEntry": {
             "md": 6
         },
         "addPropertyType": {
-            "md": 7
+            "md": 12
         },
         "sellProperty": {
             "md": 6

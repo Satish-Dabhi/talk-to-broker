@@ -1,0 +1,34 @@
+{
+    "ui:layout": {
+        "oldPropertyName": {
+            "md": 6
+        },
+        "oldPropertyOwnerName:": {
+            "md": 6
+        },
+        "oldPropertySocietyAddress:": {
+            "md": 12
+        },
+        "oldPropertyRoomNo": {
+            "md": 4
+        },
+        "oldPropertyAreaName": {
+            "md": 8
+        },
+        "oldPropertyLandmark": {
+            "md": 12
+        },
+        "oldPropertyVillage": {
+            "md": 6
+        },
+        "oldPropertyPinCode": {
+            "md": 6
+        },
+        "oldPropertyCity": {
+            "md": 6
+        },
+        "oldPropertyState": {
+            "md": 6
+        }
+    }
+}

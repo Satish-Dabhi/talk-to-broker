@@ -1,25 +1,13 @@
-import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
 import StepContent from "@mui/material/StepContent";
-import Button from "@mui/material/Button";
-import Paper from "@mui/material/Paper";
+import StepLabel from "@mui/material/StepLabel";
+import Stepper from "@mui/material/Stepper";
 import Typography from "@mui/material/Typography";
+import React, { useEffect, useState } from "react";
+import { stepperSteps } from "../services/utils/index";
 
-const steps = [
-    {
-        label: "Basic Information",
-    },
-    {
-        label: "About Property",
-    },
-    {
-        label: "Form 3",
-        description: `desc 3`,
-    },
-];
+const steps = stepperSteps;
 
 const VerticalLinearStepper = (props) => {
     const [activeStep, setActiveStep] = useState(0);
@@ -44,6 +32,7 @@ const VerticalLinearStepper = (props) => {
                     <Step key={step.label}>
                         <StepLabel
                             onClick={() => onStepClick(index)}
+                            className="steps"
                             optional={
                                 index === 2 ? (
                                     <Typography variant="caption">Last step</Typography>

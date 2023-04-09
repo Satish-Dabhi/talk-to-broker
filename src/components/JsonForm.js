@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { withTheme } from "@rjsf/core";
-import { ThemeProvider } from "@mui/system";
-import { createTheme } from "@mui/material/styles";
-import ObjectFieldTemplate from "../components/ObjectFieldTemplate";
 import { Button } from "@material-ui/core";
+import { createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/system";
+import { withTheme } from "@rjsf/core";
 import { Theme5 as Mui5Theme } from "@rjsf/material-ui";
+import React, { useEffect, useState } from "react";
+import ObjectFieldTemplate from "./ObjectFieldTemplate";
+import { getSessionStorageObject, setSessionStorageObject } from "../services/utils";
+import RadioWidget from "./customWidgets/RadioWidget";
+import * as constant from "../services/utils/constant";
 
 const theme = createTheme({
     components: {
         MuiTextField: {
             defaultProps: {
-                variant: "outlined",
+                variant: constant.FORM_VARIANT,
             },
         },
     },
@@ -19,17 +22,22 @@ const theme = createTheme({
 const Form = withTheme(Mui5Theme);
 
 const JsonForm = (props) => {
-    const { schema, uiSchema, activeForm, setActiveForm } = props;
+    const { schema, uiSchema, activeForm, setActiveForm, setPropertyType } = props;
     const [sessionFormData, setSessionFormData] = useState({});
 
     useEffect(() => {
-        var sessionData = JSON.parse(sessionStorage.formData);
-        sessionData && setSessionFormData(sessionData);
+        var session_data = getSessionStorageObject(constant.SESSION_KEY);
+        session_data && setSessionFormData(JSON.parse(session_data));
     }, [activeForm]);
 
     const handleSubmit = ({ formData }) => {
         setActiveForm(activeForm + 1);
-        sessionStorage.setItem("formData", JSON.stringify(formData));
+        formData.addPropertyType && setPropertyType(formData.addPropertyType);
+        setSessionStorageObject(constant.SESSION_KEY, JSON.stringify(formData));
+    };
+
+    const widgets = {
+        radio: RadioWidget,
     };
 
     return (
@@ -40,6 +48,7 @@ const JsonForm = (props) => {
                 uiSchema={uiSchema}
                 ObjectFieldTemplate={ObjectFieldTemplate}
                 onSubmit={handleSubmit}
+                widgets={widgets}
             >
                 <div className="text-center mt-5">
                     <Button variant="contained" type="submit">
