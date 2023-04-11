@@ -8,6 +8,8 @@ import morePropertyDetailsSchema from "../../formsDefinitions/morePropertyDetail
 import morePropertyDetailsUiSchema from "../../formsDefinitions/morePropertyDetails/uiSchema.json";
 import oldPropertyDetailSchema from "../../formsDefinitions/oldPropertyDetail/schema.json";
 import oldPropertyDetailUiSchema from "../../formsDefinitions/oldPropertyDetail/uiSchema.json";
+import constructionSizeDetailSchema from "../../formsDefinitions/constructionSizeDetail/schema.json";
+import constructionSizeDetailUiSchema from "../../formsDefinitions/constructionSizeDetail/uiSchema.json";
 import * as constant from "./constant";
 
 export function getActiveForm(activeForm, propertyType) {
@@ -31,8 +33,8 @@ export function getActiveForm(activeForm, propertyType) {
             }
         case 2:
             return {
-                schema: aboutPropertySchema,
-                uiSchema: aboutPropertyUiSchema,
+                schema: constructionSizeDetailSchema,
+                uiSchema: constructionSizeDetailUiSchema,
             };
         case 3:
             return {

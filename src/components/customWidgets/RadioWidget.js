@@ -17,7 +17,7 @@ console.log("schema",schema);
                                 key={index}
                                 value={option}
                                 control={<Radio color="primary" />}
-                                label={schema.enum[index]}
+                                label={schema.enumNames[index]}
                                 checked={value === option}
                                 onChange={(event) => onChange(event.target.value)}
                             />

@@ -12,11 +12,11 @@
         },
         "addPropertyType": {
             "title": "Property Type",
-            "enumNames": [
+            "enum": [
                 "developer-property",
                 "old-property"
             ],
-            "enum": [
+            "enumNames": [
                 "Developer Property",
                 "Old Property"
             ],
@@ -210,7 +210,8 @@
                                 "stilt-house",
                                 "tree-house",
                                 "hut",
-                                "eco-friendly-house"
+                                "eco-friendly-house",
+                                "residential-plot"
                             ],
                             "enumNames": [
                                 "Apartment(Flat)",
@@ -227,7 +228,8 @@
                                 "Stilt House",
                                 "Tree House",
                                 "Hut",
-                                "Eco-friendly House"
+                                "Eco Friendly House",
+                                "Residential Plot"
                             ]
                         },
                         "uniqueItems": true
@@ -372,18 +374,18 @@
                 "properties": {
                     "subPropertyType": {
                         "enumNames": [
-                            "Croped Land",
+                            "Cropped Land",
                             "New Condition Land",
                             "Old Conditions Land",
                             "Other If Any"
                         ],
                         "enum": [
-                            "Croped-land",
+                            "cropped-land",
                             "new-condition-land",
                             "old-conditions-land",
                             "any-other"
                         ],
-                        "default": "Croped-land"
+                        "default": "cropped-land"
                     }
                 }
             }

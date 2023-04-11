@@ -1,0 +1,10 @@
+{
+    "bifurcationOfArea":{
+    "balcony": {
+        "ui:widget": "DynamicFields"
+    },
+    "terrace":{
+        "ui:widget": "DynamicFields"
+    }
+}
+}

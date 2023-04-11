@@ -8,6 +8,12 @@ export function getSessionStorageObject(key){
     return sessionStorage.getItem(key);
 }
 
+export function findSum(...numbers) {
+    console.log("numbersnumbers",numbers);
+
+    return numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+  }
+
 export const stepperSteps = [
     {
         label: constant.STEP1_FORM_NAME,

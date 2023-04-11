@@ -1,2 +1,5 @@
 {
+    "number_of_fields": {
+        "ui:widget": "dynamicFields"
+    }
 }

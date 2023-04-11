@@ -1,45 +1,9 @@
 {
     "type": "object",
     "properties": {
-      "firstName": {
-        "type": "string"
-      },
-      "lastName": {
-        "type": "string"
-      },
-      "fullName": {
-        "type": "string"
-      }
-    },
-    "dependencies": {
-      "fullName": {
-        "properties": {
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          }
-        },
-        "required": ["firstName", "lastName"],
-        "type": "object",
-        "description": "This field is auto-generated from firstName and lastName fields.",
-        "pattern": "^\\s*(.*)\\s+(.*)\\s*$",
-        "properties": {
-          "$1": {
-            "title": "First Name",
-            "type": "string",
-            "description": "The first name of the person.",
-            "default": "{{firstName}}"
-          },
-          "$2": {
-            "title": "Last Name",
-            "type": "string",
-            "description": "The last name of the person.",
-            "default": "{{lastName}}"
-          }
+        "number_of_fields": {
+            "type":"string",
+            "title": "Date of Property Entry"
         }
-      }
     }
-  }
-  
+}
