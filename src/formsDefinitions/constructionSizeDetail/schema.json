@@ -37,7 +37,7 @@
                 "developer-property",
                 "old-property"
             ],
-            "hidden":true
+            "hidden": true
         },
         "constructionPropertySize": {
             "title": "Measuring Size",
@@ -141,27 +141,32 @@
                             "reraCarpet": {
                                 "title": "RERA Carpet",
                                 "type": "number",
-                                "default": 0
+                                "default": 0,
+                                "md": 6
                             },
                             "balcony": {
                                 "title": "Balcony",
                                 "type": "string",
-                                "subFieldTitle":"Size Of Balcony"
+                                "subFieldTitle": "Size Of Balcony",
+                                "md": 12
                             },
                             "terrace": {
                                 "title": "Deck / Terrace",
                                 "type": "string",
-                                "subFieldTitle":"Size Of Terrace"
+                                "subFieldTitle": "Size Of Terrace",
+                                "md": 12
                             },
                             "washArea": {
                                 "title": "Wash Area",
                                 "type": "number",
-                                "default": 0
+                                "default": 0,
+                                "md": 6
                             },
                             "totalArea": {
                                 "title": "Total Area",
                                 "type": "number",
-                                "default": 0
+                                "default": 0,
+                                "md": 6
                             }
                         }
                     }

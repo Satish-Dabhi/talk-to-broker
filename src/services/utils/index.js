@@ -9,8 +9,6 @@ export function getSessionStorageObject(key){
 }
 
 export function findSum(...numbers) {
-    console.log("numbersnumbers",numbers);
-
     return numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
   }
 

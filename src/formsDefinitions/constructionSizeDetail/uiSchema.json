@@ -1,10 +1,53 @@
 {
-    "bifurcationOfArea":{
-    "balcony": {
-        "ui:widget": "DynamicFields"
+    "ui:order": [
+        "facilities",
+        "addPropertyType",
+        "constructionPropertySize",
+        "constructionPropertyType",
+        "constructionPropertyArea",
+        "constructionPropertyLowerFloorCarpet",
+        "constructionPropertyUpperFloorCarpet",
+        "constructionPropertyTerraceArea",
+        "constructionPropertyTotalCarpet",
+        "constructionPropertyBuiltUp",
+        "constructionPropertySuperBuiltUp",
+        "bifurcationOfArea"
+    ],
+    "bifurcationOfArea": {
+        "balcony": {
+            "ui:widget": "DynamicFields"
+        },
+        "terrace": {
+            "ui:widget": "DynamicFields"
+        }
     },
-    "terrace":{
-        "ui:widget": "DynamicFields"
+    "ui:layout": {
+        "constructionPropertySize": {
+            "md": 8
+        },
+        "constructionPropertyType": {
+            "md": 4
+        },
+        "constructionPropertyArea": {
+            "md": 3
+        },
+        "constructionPropertyLowerFloorCarpet":{
+            "md": 3
+        },
+        "constructionPropertyUpperFloorCarpet":{
+            "md": 3
+        },
+        "constructionPropertyTerraceArea":{
+            "md": 3
+        },
+        "constructionPropertyTotalCarpet":{
+            "md": 6
+        },
+        "constructionPropertyBuiltUp":{
+            "md": 6
+        },
+        "constructionPropertySuperBuiltUp":{
+            "md": 6
+        }
     }
-}
 }

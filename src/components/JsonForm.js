@@ -31,43 +31,28 @@ const JsonForm = (props) => {
         session_data && setSessionFormData(JSON.parse(session_data));
     }, [activeForm]);
 
-    useEffect(() => {
-        console.log("sessionFormData",sessionFormData);
-        const sum = findSum(
-            sessionFormData.constructionPropertyArea,
-            sessionFormData.constructionPropertyTerraceArea
-        );
-        setSessionFormData({
-          ...sessionFormData,
-          constructionPropertyTotalCarpet: sum
-        });
-      }, [sessionFormData.constructionPropertyArea, sessionFormData.constructionPropertyTerraceArea]);
-
     const handleSubmit = ({ formData }) => {
         setActiveForm(activeForm + 1);
         formData.addPropertyType && setPropertyType(formData.addPropertyType);
         setSessionStorageObject(constant.SESSION_KEY, JSON.stringify(formData));
     };
 
-    const handleChange = ({ formData }) => {
-        console.log("formDAta", formData);
-        // formData.constructionPropertyTotalCarpet = findSum(
-        //     formData.constructionPropertyArea,
-        //     formData.constructionPropertyTerraceArea
-        // );
-        // console.log("sumsum", sum);
-        // return { ...formData, constructionPropertyTotalCarpet: sum };
-        // formData.constructionPropertyTotalCarpet =
-        //     formData.constructionPropertyArea + formData.constructionPropertyTerraceArea;
-        // +
-        //     formData.constructionPropertyLowerFloorCarpet &&
-        // formData.constructionPropertyLowerFloorCarpet +
-        //     formData.constructionPropertyUpperFloorCarpet &&
-        // formData.constructionPropertyUpperFloorCarpet;
-        console.log(
-            "formData.constructionPropertyTotalCarpet",
-            formData.constructionPropertyTotalCarpet
-        );
+    const handleChange = ({ formData: newFormData }) => {
+        if (
+            newFormData.constructionPropertyArea != undefined && 
+            newFormData.constructionPropertyTerraceArea != undefined &&
+            newFormData.constructionPropertyLowerFloorCarpet != undefined &&
+            newFormData.constructionPropertyUpperFloorCarpet != undefined
+        ) {
+            console.log("inside if");
+            const sumOfFields = findSum(
+                newFormData.constructionPropertyArea,
+                newFormData.constructionPropertyTerraceArea,
+                newFormData.constructionPropertyLowerFloorCarpet,
+                newFormData.constructionPropertyUpperFloorCarpet
+            );
+            setSessionFormData({ ...newFormData, constructionPropertyTotalCarpet: sumOfFields });
+        }
     };
 
     const widgets = {
