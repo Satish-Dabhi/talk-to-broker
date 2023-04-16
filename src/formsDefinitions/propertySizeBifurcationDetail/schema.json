@@ -1,0 +1,17 @@
+{
+    "properties": {
+        "propertySizeBifurcationDetail":{
+            "title": "Property Size Bifurcation Details",
+            "type": "object",
+            "properties": {
+                "kitchen": {
+                    "title": "Number Of Kitchen",
+                    "type": "string",
+                    "subFieldTitle": "Size Of Kitchen",
+                    "md": 6
+                }
+            }
+        }
+        
+    }
+}

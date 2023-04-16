@@ -10,6 +10,8 @@ import oldPropertyDetailSchema from "../../formsDefinitions/oldPropertyDetail/sc
 import oldPropertyDetailUiSchema from "../../formsDefinitions/oldPropertyDetail/uiSchema.json";
 import constructionSizeDetailSchema from "../../formsDefinitions/constructionSizeDetail/schema.json";
 import constructionSizeDetailUiSchema from "../../formsDefinitions/constructionSizeDetail/uiSchema.json";
+import propertySizeBifurcationDetailSchema from "../../formsDefinitions/propertySizeBifurcationDetail/schema.json";
+import propertySizeBifurcationDetailUiSchema from "../../formsDefinitions/propertySizeBifurcationDetail/uiSchema.json";
 import * as constant from "./constant";
 
 export function getActiveForm(activeForm, propertyType) {
@@ -37,6 +39,11 @@ export function getActiveForm(activeForm, propertyType) {
                 uiSchema: constructionSizeDetailUiSchema,
             };
         case 3:
+            return {
+                schema: propertySizeBifurcationDetailSchema,
+                uiSchema: propertySizeBifurcationDetailUiSchema,
+            };
+        case 4:
             return {
                 schema: morePropertyDetailsSchema,
                 uiSchema: morePropertyDetailsUiSchema,

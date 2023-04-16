@@ -1,0 +1,8 @@
+{
+    "propertySizeBifurcationDetail": {
+        "kitchen": {
+            "ui:widget": "WidthLengthField",
+            "options": 2
+        }
+    }
+}

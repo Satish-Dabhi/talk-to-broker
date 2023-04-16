@@ -9,7 +9,7 @@
         "propertyType",
         "subPropertyType",        
         "otherProperty",
-        "facilities",
+        "roomTypes",
         "propertyOwnership"
     ],
     "addPropertyType":{

@@ -5,31 +5,26 @@
         "constructionPropertySize"
     ],
     "properties": {
-        "facilities": {
-            "type": "array",
-            "title": "Residential Facilities",
-            "items": {
-                "type": "string",
-                "enum": [
-                    "apartment",
-                    "penthouse",
-                    "terrace-flat",
-                    "bungalow",
-                    "villa",
-                    "condominium",
-                    "cottage",
-                    "row-house",
-                    "duplex-house",
-                    "triplex-house",
-                    "farm-house",
-                    "stilt-house",
-                    "tree-house",
-                    "hut",
-                    "eco-friendly-house",
-                    "residential-plot"
-                ]
-            },
-            "uniqueItems": true,
+        "subPropertyType": {
+            "enum": [
+                "apartment",
+                "penthouse",
+                "terrace-flat",
+                "bungalow",
+                "villa",
+                "condominium",
+                "cottage",
+                "row-house",
+                "duplex-house",
+                "triplex-house",
+                "farm-house",
+                "stilt-house",
+                "tree-house",
+                "hut",
+                "eco-friendly-house",
+                "residential-plot",
+                "any-other"
+            ],
             "hidden": true
         },
         "addPropertyType": {
@@ -70,8 +65,8 @@
                 "Plot"
             ]
         },
-        "constructionPropertyArea": {
-            "title": "Area",
+        "constructionPropertyBalconyArea": {
+            "title": "Balcony Area If Any",
             "type": "number",
             "default": 0
         },
@@ -100,10 +95,10 @@
         {
             "if": {
                 "properties": {
-                    "facilities": {
-                        "contains": {
-                            "const": "penthouse"
-                        }
+                    "subPropertyType": {
+                        "enum": [
+                            "penthouse"
+                        ]
                     }
                 }
             },
@@ -142,25 +137,25 @@
                                 "title": "RERA Carpet",
                                 "type": "number",
                                 "default": 0,
-                                "md": 6
+                                "md": 9
                             },
                             "balcony": {
-                                "title": "Balcony",
+                                "title": "Number Of Balcony",
                                 "type": "string",
                                 "subFieldTitle": "Size Of Balcony",
-                                "md": 12
+                                "md": 4
                             },
                             "terrace": {
-                                "title": "Deck / Terrace",
+                                "title": "Number Of Deck / Terrace",
                                 "type": "string",
                                 "subFieldTitle": "Size Of Terrace",
-                                "md": 12
+                                "md": 4
                             },
                             "washArea": {
-                                "title": "Wash Area",
-                                "type": "number",
-                                "default": 0,
-                                "md": 6
+                                "title": "Number Of Wash Area",
+                                "type": "string",
+                                "subFieldTitle": "Size Of Wash Area",
+                                "md": 4
                             },
                             "totalArea": {
                                 "title": "Total Area",
@@ -168,7 +163,11 @@
                                 "default": 0,
                                 "md": 6
                             }
-                        }
+                        },
+                        "required": [
+                            "terrace",
+                            "totalArea"
+                        ]
                     }
                 }
             }

@@ -23,8 +23,11 @@ export const stepperSteps = [
         label: constant.STEP3_FORM_NAME,
     },
     {
-        label: constant.STEP3_FORM_NAME,
-        description: constant.STEP3_FORM_DESCRIPTION,
+        label: constant.STEP4_FORM_NAME,
+    },
+    {
+        label: constant.STEP5_FORM_NAME,
+        description: constant.STEP5_FORM_DESCRIPTION,
     },
 ];
 

@@ -9,12 +9,13 @@ import { findSum, getSessionStorageObject, setSessionStorageObject } from "../se
 import RadioWidget from "./customWidgets/RadioWidget";
 import * as constant from "../services/utils/constant";
 import DynamicFieldsWidget from "./customWidgets/DynamicFields";
+import WidthLengthFieldWidget from "./customWidgets/WidthLengthField";
 
 const theme = createTheme({
     components: {
         MuiTextField: {
             defaultProps: {
-                variant: constant.FORM_VARIANT,
+                variant: constant.OUTLINED_FORM_VARIANT,
             },
         },
     },
@@ -39,15 +40,18 @@ const JsonForm = (props) => {
 
     const handleChange = ({ formData: newFormData }) => {
         if (
-            newFormData.constructionPropertyArea != undefined && 
             newFormData.constructionPropertyTerraceArea != undefined &&
+            newFormData.constructionPropertyBalconyArea != undefined &&
             newFormData.constructionPropertyLowerFloorCarpet != undefined &&
             newFormData.constructionPropertyUpperFloorCarpet != undefined
         ) {
-            console.log("inside if");
+            if (newFormData.subPropertyType != "penthouse") {
+                newFormData.constructionPropertyLowerFloorCarpet = 0;
+                newFormData.constructionPropertyUpperFloorCarpet = 0;
+            }
             const sumOfFields = findSum(
-                newFormData.constructionPropertyArea,
                 newFormData.constructionPropertyTerraceArea,
+                newFormData.constructionPropertyBalconyArea,
                 newFormData.constructionPropertyLowerFloorCarpet,
                 newFormData.constructionPropertyUpperFloorCarpet
             );
@@ -58,6 +62,11 @@ const JsonForm = (props) => {
     const widgets = {
         radio: RadioWidget,
         DynamicFields: DynamicFieldsWidget,
+        WidthLengthField : WidthLengthFieldWidget
+    };
+
+    const onError = (errors) => {
+        // console.log("Validation errors:", errors);
     };
 
     return (
@@ -70,6 +79,8 @@ const JsonForm = (props) => {
                 onSubmit={handleSubmit}
                 onChange={handleChange}
                 widgets={widgets}
+                onError={onError}
+                noHtml5Validate
             >
                 <div className="text-center mt-5">
                     <Button variant="contained" type="submit">

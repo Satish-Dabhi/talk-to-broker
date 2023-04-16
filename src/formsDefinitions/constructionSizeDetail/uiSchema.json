@@ -1,12 +1,13 @@
 {
     "ui:order": [
-        "facilities",
+        "subPropertyType",
         "addPropertyType",
         "constructionPropertySize",
         "constructionPropertyType",
         "constructionPropertyArea",
         "constructionPropertyLowerFloorCarpet",
         "constructionPropertyUpperFloorCarpet",
+        "constructionPropertyBalconyArea",
         "constructionPropertyTerraceArea",
         "constructionPropertyTotalCarpet",
         "constructionPropertyBuiltUp",
@@ -15,10 +16,16 @@
     ],
     "bifurcationOfArea": {
         "balcony": {
-            "ui:widget": "DynamicFields"
+            "ui:widget": "DynamicFields",
+            "options": 5
         },
         "terrace": {
-            "ui:widget": "DynamicFields"
+            "ui:widget": "DynamicFields",
+            "options": 5
+        },
+        "washArea": {
+            "ui:widget": "DynamicFields",
+            "options": 2
         }
     },
     "ui:layout": {
@@ -31,22 +38,25 @@
         "constructionPropertyArea": {
             "md": 3
         },
-        "constructionPropertyLowerFloorCarpet":{
+        "constructionPropertyLowerFloorCarpet": {
             "md": 3
         },
-        "constructionPropertyUpperFloorCarpet":{
+        "constructionPropertyUpperFloorCarpet": {
             "md": 3
         },
-        "constructionPropertyTerraceArea":{
+        "constructionPropertyBalconyArea":{
+            "md":3
+        },
+        "constructionPropertyTerraceArea": {
             "md": 3
         },
-        "constructionPropertyTotalCarpet":{
+        "constructionPropertyTotalCarpet": {
+            "md": 7
+        },
+        "constructionPropertyBuiltUp": {
             "md": 6
         },
-        "constructionPropertyBuiltUp":{
-            "md": 6
-        },
-        "constructionPropertySuperBuiltUp":{
+        "constructionPropertySuperBuiltUp": {
             "md": 6
         }
     }

@@ -2,7 +2,8 @@
     "title": "Basic Information",
     "type": "object",
     "required": [
-        "dateOfEntry","sellProperty"
+        "dateOfEntry",
+        "sellProperty"
     ],
     "properties": {
         "dateOfEntry": {
@@ -74,7 +75,7 @@
                 "industrial",
                 "agricultural"
             ],
-            "default":"residential"
+            "default": "residential"
         },
         "subPropertyType": {
             "title": "Sub Property Type",
@@ -191,51 +192,49 @@
             },
             "then": {
                 "properties": {
-                    "facilities": {
-                        "type": "array",
-                        "title": "Residential Facilities",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "apartment",
-                                "penthouse",
-                                "terrace-flat",
-                                "bungalow",
-                                "villa",
-                                "condominium",
-                                "cottage",
-                                "row-house",
-                                "duplex-house",
-                                "triplex-house",
-                                "farm-house",
-                                "stilt-house",
-                                "tree-house",
-                                "hut",
-                                "eco-friendly-house",
-                                "residential-plot"
-                            ],
-                            "enumNames": [
-                                "Apartment(Flat)",
-                                "Penthouse",
-                                "Terrace Flat",
-                                "Bungalow",
-                                "Villa",
-                                "Condominium",
-                                "Cottage",
-                                "Row House",
-                                "Duplex House",
-                                "Triplex House",
-                                "Farm House",
-                                "Stilt House",
-                                "Tree House",
-                                "Hut",
-                                "Eco Friendly House",
-                                "Residential Plot"
-                            ]
-                        },
-                        "uniqueItems": true
-                    },
                     "subPropertyType": {
+                        "enum": [
+                            "apartment",
+                            "penthouse",
+                            "terrace-flat",
+                            "bungalow",
+                            "villa",
+                            "condominium",
+                            "cottage",
+                            "row-house",
+                            "duplex-house",
+                            "triplex-house",
+                            "farm-house",
+                            "stilt-house",
+                            "tree-house",
+                            "hut",
+                            "eco-friendly-house",
+                            "residential-plot",
+                            "any-other"
+                        ],
+                        "enumNames": [
+                            "Apartment(Flat)",
+                            "Penthouse",
+                            "Terrace Flat",
+                            "Bungalow",
+                            "Villa",
+                            "Condominium",
+                            "Cottage",
+                            "Row House",
+                            "Duplex House",
+                            "Triplex House",
+                            "Farm House",
+                            "Stilt House",
+                            "Tree House",
+                            "Hut",
+                            "Eco Friendly House",
+                            "Residential Plot",
+                            "Other If Any"
+                        ],
+                        "default": "apartment"
+                    },
+                    "roomTypes": {
+                        "title": "Rooms Type",
                         "enumNames": [
                             "2-BHK",
                             "3-BHK",
@@ -248,8 +247,7 @@
                             "4B_2HK",
                             "5B_4HK",
                             "6B_2HK",
-                            "7B_2HK",
-                            "Other If Any"
+                            "7B_2HK"
                         ],
                         "enum": [
                             "2bhk",
@@ -263,10 +261,8 @@
                             "4B_2HK",
                             "5B_4HK",
                             "6B_2HK",
-                            "7B_2HK",
-                            "any-other"
-                        ],
-                        "default": "2bhk"
+                            "7B_2HK"
+                        ]
                     }
                 }
             }

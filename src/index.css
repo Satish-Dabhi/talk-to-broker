@@ -33,3 +33,7 @@ padding: 50px;
 .steps{
   cursor: pointer;
 }
+
+.MuiInputLabel-outlined.MuiInputLabel-shrink {
+  background-color: white;
+}

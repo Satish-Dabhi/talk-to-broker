@@ -76,7 +76,7 @@ const ObjectFieldTemplate = ({
                             xs={elementLayout?.xs || schemaObject?.xs || 12}
                             key={index}
                             className={elementLayout?.className || schemaObject?.className || ""}
-                            variant={constant.FORM_VARIANT}
+                            variant={constant.OUTLINED_FORM_VARIANT}
                             style={{ marginBottom: "10px" }}
                         >
                             {element.content}
