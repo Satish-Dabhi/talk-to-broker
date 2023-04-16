@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/talk-to-broker/static/css/main.e03016da.css",
-    "main.js": "/talk-to-broker/static/js/main.a5f9a520.js",
+    "main.js": "/talk-to-broker/static/js/main.ce73e5de.js",
     "static/media/ttb-logo.jpg": "/talk-to-broker/static/media/ttb-logo.25d3fc8680bbc2ca76da.jpg",
     "index.html": "/talk-to-broker/index.html",
     "main.e03016da.css.map": "/talk-to-broker/static/css/main.e03016da.css.map",
-    "main.a5f9a520.js.map": "/talk-to-broker/static/js/main.a5f9a520.js.map"
+    "main.ce73e5de.js.map": "/talk-to-broker/static/js/main.ce73e5de.js.map"
   },
   "entrypoints": [
     "static/css/main.e03016da.css",
-    "static/js/main.a5f9a520.js"
+    "static/js/main.ce73e5de.js"
   ]
 }
