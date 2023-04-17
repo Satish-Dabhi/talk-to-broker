@@ -1,0 +1,11 @@
+{
+    "title": "Property Sell Details",
+    "type": "object",
+    "properties": {
+        "dateOfEntry": {
+            "title": "Date of Property Entry",
+            "type": "string",
+            "format": "date"
+        }
+    }
+}

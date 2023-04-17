@@ -2,7 +2,7 @@
     "title": "Construction Property Size Details",
     "type": "object",
     "required": [
-        "constructionPropertySize"
+        "measurementUnits"
     ],
     "properties": {
         "subPropertyType": {
@@ -34,8 +34,8 @@
             ],
             "hidden": true
         },
-        "constructionPropertySize": {
-            "title": "Measuring Size",
+        "measurementUnits": {
+            "title": "Measurement Unit",
             "enum": [
                 "sq-ft",
                 "sq-mtr",

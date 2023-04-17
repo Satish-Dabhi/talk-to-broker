@@ -104,8 +104,8 @@
         "landStructure":{
             "title":"Project Land Structure",
             "properties": {
-                "measuringSize":{
-                    "title": "Measuring Size",
+                "measurementUnits":{
+                    "title": "Measurement Units",
                     "enum": [
                         "sq-ft",
                         "sq-mtr",

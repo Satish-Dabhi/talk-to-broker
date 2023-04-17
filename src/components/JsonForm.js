@@ -38,6 +38,7 @@ const JsonForm = (props) => {
         setSessionStorageObject(constant.SESSION_KEY, JSON.stringify(formData));
     };
 
+
     const handleChange = ({ formData: newFormData }) => {
         if (
             newFormData.constructionPropertyTerraceArea != undefined &&

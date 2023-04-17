@@ -10,22 +10,23 @@ const WidthLengthField = (props) => {
     const [numFields, setNumFields] = useState(0);
     const [val, setVal] = useState([]);
     const [fieldIds, setFieldIds] = useState([]);
-    // const fieldIds = numFields >= 0 && [...Array(numFields).keys()].map((i) => `${id}_${i}`);
     const maxOptions = uiSchema.options ?? constant.DYNAMIC_FIELD_MAX_OPTIONS;
 
     useEffect(() => {
         if (value !== undefined) {
-            setNumFields(value.split(",").length);
-            setVal(value.split(","));
+            // setNumFields(JSON.parse(value).length);
+            setVal(JSON.parse(value));
+            const options = JSON.parse(value).length >= 0 && [...Array(JSON.parse(value).length).keys()].map((i) => `${id}_${i}`);
+            setFieldIds(options);
         }
     }, [value]);
 
     useEffect(() => {
-        const options = numFields >= 0 && [...Array(numFields).keys()].map((i) => `${id}_${i}`);
-        setFieldIds(options);
-        if (value !== undefined && value.split(",").length > 0) {
-            setVal(value.split(","));
+        if (value !== undefined && JSON.parse(value).length > 0) {
+            // setVal(JSON.parse(value));
         } else {
+            const options = numFields >= 0 && [...Array(numFields).keys()].map((i) => `${id}_${i}`);
+            setFieldIds(options);
             const fieldsValue =
                 numFields >= 0 &&
                 [...Array(numFields).keys()].map((i) => ({
@@ -33,55 +34,45 @@ const WidthLengthField = (props) => {
                     width: 0,
                     total: 0,
                 }));
-            console.log("fieldsValue", fieldsValue);
             setVal(fieldsValue);
         }
     }, [numFields]);
 
     const widthHandleChange = (e, index) => {
-        console.log("e.target.value.width",e.target.value);
-        // if (e.target.value != undefined && parseInt(e.target.value) > 0) {
-            const widthValue = e.target.value && e.target.value != undefined ? parseInt(e.target.value) : 0;
-            const newValues = [...val];
-            newValues[index] = {
-                length: newValues[index].length,
-                width: widthValue,
-                total: widthValue * newValues[index].length,
-            };
-            onChange(newValues.toString());
-            console.log("newValues", newValues);
-            setVal(newValues);
-        // }
+        const widthValue =
+            e.target.value && e.target.value != undefined ? parseInt(e.target.value) : 0;
+        const newValues = [...val];
+        newValues[index] = {
+            length: newValues[index].length,
+            width: widthValue,
+            total: widthValue * newValues[index].length,
+        };
+        onChange(JSON.stringify(newValues));
+        setVal(newValues);
     };
 
     const lengthHandleChange = (e, index) => {
-        console.log("e.target.value.length",e.target.value);
-        // if (e.target.value != undefined && parseInt(e.target.value) > 0) {
-            const lengthValue = e.target.value && e.target.value != undefined ? parseInt(e.target.value) : 0;
-            const newValues = [...val];
-            newValues[index] = {
-                length: lengthValue,
-                width: newValues[index].width,
-                total: lengthValue * newValues[index].width,
-            };
-            onChange(newValues.toString());
-            console.log("newValues-h", newValues);
-            setVal(newValues);
-        // }
+        const lengthValue =
+            e.target.value && e.target.value != undefined ? parseInt(e.target.value) : 0;
+        const newValues = [...val];
+        newValues[index] = {
+            length: lengthValue,
+            width: newValues[index].width,
+            total: lengthValue * newValues[index].width,
+        };
+        onChange(JSON.stringify(newValues));
+        setVal(newValues);
     };
 
     return (
         <div className="dynamic-fields">
             <Box sx={{ minWidth: 120 }}>
                 <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                        {required ? `${label}*` : label}
-                    </InputLabel>
+                    <InputLabel id={`label-${id}`}>{required ? `${label}*` : label}</InputLabel>
                     <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
+                        labelId={`select-label-${id}`}
+                        id={`select-${id}`}
                         value={numFields}
-                        label="Age"
                         onChange={(e) => setNumFields(parseInt(e.target.value))}
                     >
                         {[...Array(maxOptions).keys()].map((i) => {
@@ -92,8 +83,6 @@ const WidthLengthField = (props) => {
             </Box>
             {fieldIds.length > 0 &&
                 fieldIds.map((fieldId, index) => {
-                    console.log("val[index].width",val[index].width);
-                    console.log("val[index].length",val[index].length);
                     return (
                         <>
                             <Typography mt={2}>
@@ -104,9 +93,9 @@ const WidthLengthField = (props) => {
                             <Grid container spacing={1}>
                                 <Grid item xs={3} md={3}>
                                     <TextField
-                                        key={fieldId}
+                                        key={`width-${fieldId}`}
                                         className="m-3"
-                                        id={fieldId}
+                                        id={`width-${fieldId}`}
                                         label={"Width"}
                                         variant={constant.STANDARD_FORM_VARIANT}
                                         value={val[index].width ?? ""}
@@ -116,9 +105,9 @@ const WidthLengthField = (props) => {
                                 <div className="pt-5">X</div>
                                 <Grid item xs={3} md={3}>
                                     <TextField
-                                        key={fieldId}
+                                        key={`length-${fieldId}`}
                                         className="m-3"
-                                        id={fieldId}
+                                        id={`length-${fieldId}`}
                                         label={"Length"}
                                         variant={constant.STANDARD_FORM_VARIANT}
                                         value={val[index].length ?? ""}
@@ -128,9 +117,9 @@ const WidthLengthField = (props) => {
                                 <div className="pt-5">=</div>
                                 <Grid item xs={3} md={3}>
                                     <TextField
-                                        key={fieldId}
+                                        key={`total-${fieldId}`}
                                         className="m-3"
-                                        id={fieldId}
+                                        id={`total-${fieldId}`}
                                         label={"Total"}
                                         variant={constant.STANDARD_FORM_VARIANT}
                                         value={val[index].total ?? ""}

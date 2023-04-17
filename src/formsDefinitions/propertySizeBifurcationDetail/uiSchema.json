@@ -2,7 +2,31 @@
     "propertySizeBifurcationDetail": {
         "kitchen": {
             "ui:widget": "WidthLengthField",
-            "options": 2
+            "options": 1
+        },
+        "halls": {
+            "ui:widget": "WidthLengthField",
+            "options": 5
+        },
+        "bedRooms": {
+            "ui:widget": "WidthLengthField",
+            "options": 10
+        },
+        "bathRooms": {
+            "ui:widget": "WidthLengthField",
+            "options": 10
+        },
+        "balconies": {
+            "ui:widget": "WidthLengthField",
+            "options": 10
+        },
+        "plot": {
+            "ui:widget": "WidthLengthField",
+            "options": 1
+        },
+        "land": {
+            "ui:widget": "WidthLengthField",
+            "options": 1
         }
     }
 }

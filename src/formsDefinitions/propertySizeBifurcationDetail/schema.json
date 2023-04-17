@@ -1,17 +1,133 @@
 {
     "properties": {
-        "propertySizeBifurcationDetail":{
-            "title": "Property Size Bifurcation Details",
-            "type": "object",
-            "properties": {
-                "kitchen": {
-                    "title": "Number Of Kitchen",
-                    "type": "string",
-                    "subFieldTitle": "Size Of Kitchen",
-                    "md": 6
+        "propertyType": {
+            "enum": [
+                "residential",
+                "commercial",
+                "industrial",
+                "agricultural"
+            ],
+            "hidden": true
+        }
+    },
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "propertyType": {
+                        "enum": [
+                            "residential",
+                            "commercial",
+                            "industrial"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "propertySizeBifurcationDetail": {
+                        "title": "Property Size Bifurcation Details",
+                        "type": "object",
+                        "properties": {
+                            "measurementUnits": {
+                                "title": "Measurement Units",
+                                "enum": [
+                                    "sq-ft",
+                                    "sq-mtr"
+                                ],
+                                "enumNames": [
+                                    "Sq. ft.",
+                                    "Sq. mtr."
+                                ],
+                                "md": 12
+                            },
+                            "kitchen": {
+                                "title": "Number Of Kitchen",
+                                "type": "string",
+                                "subFieldTitle": "Size Of Kitchen",
+                                "md": 6
+                            },
+                            "halls": {
+                                "title": "Number Of Halls",
+                                "type": "string",
+                                "subFieldTitle": "Size Of Hall",
+                                "md": 6
+                            },
+                            "bedRooms": {
+                                "title": "Number Of Bed Rooms",
+                                "type": "string",
+                                "subFieldTitle": "Size Of Bed Room",
+                                "md": 6
+                            },
+                            "bathRooms": {
+                                "title": "Number Of Bath Rooms",
+                                "type": "string",
+                                "subFieldTitle": "Size Of Bath Room",
+                                "md": 6
+                            },
+                            "balconies": {
+                                "title": "Number Of Balconies",
+                                "type": "string",
+                                "subFieldTitle": "Size Of Balcony",
+                                "md": 6
+                            },
+                            "plot": {
+                                "title": "Plot Size",
+                                "type": "string",
+                                "subFieldTitle": "Size Of plot",
+                                "md": 6
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "propertyType": {
+                        "enum": [
+                            "agricultural"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "propertySizeBifurcationDetail": {
+                        "title": "Property Size Bifurcation Details",
+                        "type": "object",
+                        "properties": {
+                            "measurementUnits": {
+                                "title": "Measurement Units",
+                                "enum": [
+                                    "sq-ft",
+                                    "sq-mtr",
+                                    "acres",
+                                    "hector",
+                                    "gutha",
+                                    "bigha"
+                                ],
+                                "enumNames": [
+                                    "Sq. ft.",
+                                    "Sq. mtr.",
+                                    "Acres",
+                                    "Hector",
+                                    "Gutha",
+                                    "Bigha"
+                                ],
+                                "md": 6
+                            },
+                            "land": {
+                                "title": "Land Size",
+                                "type": "string",
+                                "subFieldTitle": "Size Of Land",
+                                "md": 6
+                            }
+                        }
+                    }
                 }
             }
         }
-        
-    }
+    ]
 }

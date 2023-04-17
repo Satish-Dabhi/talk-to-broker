@@ -2,7 +2,7 @@
     "ui:order": [
         "subPropertyType",
         "addPropertyType",
-        "constructionPropertySize",
+        "measurementUnits",
         "constructionPropertyType",
         "constructionPropertyArea",
         "constructionPropertyLowerFloorCarpet",
@@ -29,7 +29,7 @@
         }
     },
     "ui:layout": {
-        "constructionPropertySize": {
+        "measurementUnits": {
             "md": 8
         },
         "constructionPropertyType": {
