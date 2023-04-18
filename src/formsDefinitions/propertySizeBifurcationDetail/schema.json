@@ -30,7 +30,7 @@
                         "type": "object",
                         "properties": {
                             "measurementUnits": {
-                                "title": "Measurement Units",
+                                "title": "Measurement Unit",
                                 "enum": [
                                     "sq-ft",
                                     "sq-mtr"
@@ -99,7 +99,7 @@
                         "type": "object",
                         "properties": {
                             "measurementUnits": {
-                                "title": "Measurement Units",
+                                "title": "Measurement Unit",
                                 "enum": [
                                     "sq-ft",
                                     "sq-mtr",

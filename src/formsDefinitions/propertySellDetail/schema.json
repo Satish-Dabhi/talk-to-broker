@@ -2,10 +2,151 @@
     "title": "Property Sell Details",
     "type": "object",
     "properties": {
-        "dateOfEntry": {
-            "title": "Date of Property Entry",
-            "type": "string",
-            "format": "date"
+        "addPropertyType": {
+            "enum": [
+                "developer-property",
+                "old-property"
+            ]
         }
-    }
+    },
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "addPropertyType": {
+                        "enum": [
+                            "developer-property"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "measurementUnits": {
+                        "title": "Measurement Unit",
+                        "enum": [
+                            "sq-ft",
+                            "sq-mtr",
+                            "acres",
+                            "hector",
+                            "gutha",
+                            "bigha"
+                        ],
+                        "enumNames": [
+                            "Sq. ft.",
+                            "Sq. mtr.",
+                            "Acres",
+                            "Hector",
+                            "Gutha",
+                            "Bigha"
+                        ]
+                    },
+                    "developerPropertySellUnit": {
+                        "title": "Property Sell Unit",
+                        "enum": [
+                            "per-sq-ft",
+                            "fix"
+                        ],
+                        "enumNames": [
+                            "Per Sq Feet",
+                            "Fix"
+                        ],
+                        "default": "per-sq-ft"
+                    },
+                    "developerPropertyExtraArea": {
+                        "title": "Developer Property Extra Area",
+                        "type": "object",
+                        "properties": {
+                            "priceRate": {
+                                "title": "Price Rate",
+                                "type": "number",
+                                "minimum": 0,
+                                "default": 0
+                            },
+                            "extraArea": {
+                                "title": "Extra Area",
+                                "type": "number",
+                                "minimum": 0,
+                                "default": 0
+                            },
+                            "totalExtraArea": {
+                                "title": "Total Extra Area",
+                                "type": "number"
+                            }
+                        }
+                    },
+                    "totalValue": {
+                        "title": "Total Value",
+                        "type": "number"
+                    }
+                },
+                "allOf": [
+                    {
+                        "if": {
+                            "properties": {
+                                "developerPropertySellUnit": {
+                                    "enum": [
+                                        "per-sq-ft"
+                                    ]
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "developerPropertyPerSqFeetPrice": {
+                                    "title": "Per Sq Feet Price",
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "default": 0
+                                },
+                                "developerPropertyAreaType": {
+                                    "title": "Area Type",
+                                    "enum": [
+                                        "carpet",
+                                        "super-built-up-area"
+                                    ],
+                                    "enumNames": [
+                                        "Carpet",
+                                        "Super Built-up Area"
+                                    ]
+                                },
+                                "developerPropertyArea": {
+                                    "title": "Area",
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "default": 0
+                                },
+                                "developerPropertyBasicPrice": {
+                                    "title": "Basic Price",
+                                    "type": "number",
+                                    "readOnly": true
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "if": {
+                            "properties": {
+                                "developerPropertySellUnit": {
+                                    "enum": [
+                                        "fix"
+                                    ]
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "developerPropertyFixBasicPrice": {
+                                    "title": "Fix Basic Price",
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "default": 0
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
 }

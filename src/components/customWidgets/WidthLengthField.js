@@ -14,16 +14,20 @@ const WidthLengthField = (props) => {
 
     useEffect(() => {
         if (value !== undefined) {
-            // setNumFields(JSON.parse(value).length);
-            setVal(JSON.parse(value));
-            const options = JSON.parse(value).length >= 0 && [...Array(JSON.parse(value).length).keys()].map((i) => `${id}_${i}`);
-            setFieldIds(options);
+            updateFieldValues();
         }
     }, [value]);
 
+    const updateFieldValues = () => {
+        setNumFields(JSON.parse(value).length);
+            setVal(JSON.parse(value));
+            const options = JSON.parse(value).length >= 0 && [...Array(JSON.parse(value).length).keys()].map((i) => `${id}_${i}`);
+            setFieldIds(options);
+    }
+
     useEffect(() => {
-        if (value !== undefined && JSON.parse(value).length > 0) {
-            // setVal(JSON.parse(value));
+        if (value !== undefined && JSON.parse(value).length == numFields) {
+            updateFieldValues();
         } else {
             const options = numFields >= 0 && [...Array(numFields).keys()].map((i) => `${id}_${i}`);
             setFieldIds(options);
@@ -66,7 +70,7 @@ const WidthLengthField = (props) => {
 
     return (
         <div className="dynamic-fields">
-            <Box sx={{ minWidth: 120 }}>
+            <Box>
                 <FormControl fullWidth>
                     <InputLabel id={`label-${id}`}>{required ? `${label}*` : label}</InputLabel>
                     <Select
@@ -81,6 +85,7 @@ const WidthLengthField = (props) => {
                     </Select>
                 </FormControl>
             </Box>
+            {console.log("fieldIds",fieldIds)}
             {fieldIds.length > 0 &&
                 fieldIds.map((fieldId, index) => {
                     return (

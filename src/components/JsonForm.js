@@ -38,15 +38,15 @@ const JsonForm = (props) => {
         setSessionStorageObject(constant.SESSION_KEY, JSON.stringify(formData));
     };
 
-
     const handleChange = ({ formData: newFormData }) => {
+        //update construction property value
         if (
             newFormData.constructionPropertyTerraceArea != undefined &&
             newFormData.constructionPropertyBalconyArea != undefined &&
             newFormData.constructionPropertyLowerFloorCarpet != undefined &&
             newFormData.constructionPropertyUpperFloorCarpet != undefined
         ) {
-            if (newFormData.subPropertyType != "penthouse") {
+            if (newFormData.subPropertyType != constant.PENTHOUSE) {
                 newFormData.constructionPropertyLowerFloorCarpet = 0;
                 newFormData.constructionPropertyUpperFloorCarpet = 0;
             }
@@ -58,12 +58,43 @@ const JsonForm = (props) => {
             );
             setSessionFormData({ ...newFormData, constructionPropertyTotalCarpet: sumOfFields });
         }
+
+        //update sell property price
+        if (
+            newFormData.developerPropertyPerSqFeetPrice != undefined &&
+            newFormData.developerPropertyArea != undefined
+        ) {
+            const developerPropertyBasicPrice =
+                newFormData.developerPropertyPerSqFeetPrice * newFormData.developerPropertyArea;
+            setSessionFormData({
+                ...newFormData,
+                developerPropertyBasicPrice: developerPropertyBasicPrice,
+            });
+        }
+
+        //update developer extra property value
+        if (
+            newFormData.developerPropertyExtraArea &&
+            newFormData.developerPropertyExtraArea.extraArea != undefined &&
+            newFormData.developerPropertyExtraArea.priceRate != undefined
+        ) {
+            const totalExtraArea =
+                newFormData.developerPropertyExtraArea.extraArea *
+                newFormData.developerPropertyExtraArea.priceRate;
+            setSessionFormData({
+                ...newFormData,
+                developerPropertyExtraArea: {
+                    ...newFormData.developerPropertyExtraArea,
+                    totalExtraArea: totalExtraArea,
+                },
+            });
+        }
     };
 
     const widgets = {
         radio: RadioWidget,
         DynamicFields: DynamicFieldsWidget,
-        WidthLengthField : WidthLengthFieldWidget
+        WidthLengthField: WidthLengthFieldWidget,
     };
 
     const onError = (errors) => {

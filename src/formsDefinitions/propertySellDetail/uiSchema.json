@@ -1,0 +1,25 @@
+{
+    "ui:layout": {
+        "measurementUnits": {
+            "md": 6
+        },
+        "developerPropertySellUnit": {
+            "md": 6
+        },
+        "developerPropertyPerSqFeetPrice": {
+            "md": 8
+        },
+        "developerPropertyAreaType": {
+            "md": 6
+        },
+        "developerPropertyArea": {
+            "md": 6
+        },
+        "developerPropertyBasicPrice": {
+            "md": 8
+        },
+        "developerPropertyFixBasicPrice": {
+            "md": 8
+        }
+    }
+}
