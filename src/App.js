@@ -5,13 +5,13 @@ import AddProperty from "./pages/AddProperty";
 
 const App = () => {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <TopNavbar />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/add-property" element={<AddProperty />} />
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     );
 };
 

@@ -8,7 +8,7 @@ const TopNavbar = () => {
     return (
         <Navbar fixed="top" className="top-navbar" variant="dark" expand="lg">
             <Container>
-                <Navbar.Brand href="/home">
+                <Navbar.Brand href="/#/">
                     <img
                         src={logo}
                         width="90"
@@ -24,7 +24,7 @@ const TopNavbar = () => {
                         {/* <Nav.Link href="#link">Link</Nav.Link>  */}
                     </Nav>
                     <Nav>
-                        <Nav.Link className="text-white" href="/add-property">Add Property</Nav.Link>
+                        <Nav.Link className="text-white" href="/#/add-property">Add Property</Nav.Link>
                         {/* <NavDropdown
                             className="text-white"
                             title="Add Property"
