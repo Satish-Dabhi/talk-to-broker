@@ -5,7 +5,7 @@ import AddProperty from "./pages/AddProperty";
 
 const App = () => {
     return (
-        <HashRouter basename="/talk-to-broker">
+        <HashRouter>
             <TopNavbar />
             <Routes>
                 <Route path="/" element={<Home />} />
