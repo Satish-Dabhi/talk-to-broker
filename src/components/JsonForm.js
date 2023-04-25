@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import ObjectFieldTemplate from "./ObjectFieldTemplate";
 import {
     allDefined,
+    findPercentageValue,
     findSum,
     getSessionStorageObject,
     setSessionStorageObject,
@@ -57,6 +58,9 @@ const JsonForm = (props) => {
             developerPropertyArea,
             developerPropertyExtraArea,
             agriculturalSellPropertyDetails,
+            desidedSalesValueOfProperty,
+            regestrationFeePercentage,
+            stampsDutyFeePercentage
         } = newFormData;
 
         let sumOfFields = 0;
@@ -64,6 +68,8 @@ const JsonForm = (props) => {
         let newTotalExtraAreaValue = 0;
         let totalValue = 0;
         let totalSellPropertyValue = 0;
+        let regestrationFees = 0;
+        let stampsDutyFees = 0;
 
         if (
             allDefined(
@@ -102,7 +108,7 @@ const JsonForm = (props) => {
             developerPropertyBasicPrice = developerPropertyPerSqFeetPrice * developerPropertyArea;
         }
 
-            //update agricultural sell property value
+        //update agricultural sell property value
         if (
             agriculturalSellPropertyDetails &&
             allDefined(
@@ -116,15 +122,26 @@ const JsonForm = (props) => {
             }
         }
 
+        if (
+            allDefined(
+                desidedSalesValueOfProperty,
+                regestrationFeePercentage
+            )
+        ) {
+            regestrationFees = findPercentageValue(
+                desidedSalesValueOfProperty,
+                regestrationFeePercentage
+            );
+        }
+
         //update total sell property value
         if (
             developerPropertyExtraArea &&
             allDefined(developerPropertyExtraArea.totalExtraAreaValue, developerPropertyBasicPrice)
         ) {
-            const { totalExtraAreaValue } = developerPropertyExtraArea;
-            totalSellPropertyValue = developerPropertyBasicPrice + totalExtraAreaValue;
+            totalSellPropertyValue = developerPropertyBasicPrice + newTotalExtraAreaValue;
         }
-        const obj = {
+        const updatedFormData = {
             ...newFormData,
             constructionPropertyTotalCarpet: sumOfFields,
             developerPropertyBasicPrice: developerPropertyBasicPrice,
@@ -137,17 +154,19 @@ const JsonForm = (props) => {
                 totalValue: totalValue,
             },
             totalSellPropertyValue: totalSellPropertyValue,
+            regestrationFees:regestrationFees
         };
 
-        setSessionFormData(obj);
+        setSessionFormData(updatedFormData);
     };
+
 
     const widgets = {
         radio: RadioWidget,
-        DynamicFields: DynamicFieldsWidget,
+        dynamicFields: DynamicFieldsWidget,
         WidthLengthField: WidthLengthFieldWidget,
         sliderField: SliderFieldsWidget,
-        InputIconField: InputAdornmentFieldWidget
+        iconField: InputAdornmentFieldWidget
     };
 
     const onError = (errors) => {

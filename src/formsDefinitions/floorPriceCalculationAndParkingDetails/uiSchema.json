@@ -1,0 +1,19 @@
+{
+    "floorsPriceCalculation":{
+        "floors": {
+            "ui:widget": "sliderField",
+            "minimum":0,
+            "maximum":100,
+            "defaultMinimum":0,
+            "defaultMaximum":10
+        },
+        "otherFloors": {
+            "ui:widget": "sliderField",
+            "minimum":0,
+            "maximum":100,
+            "defaultMinimum":0,
+            "defaultMaximum":10
+        }
+    }
+    
+}

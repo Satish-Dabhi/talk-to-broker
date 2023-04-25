@@ -1,20 +1,24 @@
 import * as constant from "./constant";
 
-export function setSessionStorageObject(key,value){
+export function setSessionStorageObject(key, value) {
     sessionStorage.setItem(key, value);
 }
 
-export function getSessionStorageObject(key){
+export function getSessionStorageObject(key) {
     return sessionStorage.getItem(key);
 }
 
 export function findSum(...numbers) {
     return numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-  }
+}
 
-export  function allDefined(...args) {
+export function findPercentageValue(value, percentage) {
+    return (value * percentage) / 100;
+}
+
+export function allDefined(...args) {
     return args.every(arg => arg !== undefined);
-  }
+}
 
 export const stepperSteps = [
     {
@@ -34,6 +38,12 @@ export const stepperSteps = [
     },
     {
         label: constant.STEP6_FORM_NAME,
+    },
+    {
+        label: constant.STEP7_FORM_NAME,
+    },
+    {
+        label: constant.STEP8_FORM_NAME,
     },
     {
         label: constant.STEP9_FORM_NAME,

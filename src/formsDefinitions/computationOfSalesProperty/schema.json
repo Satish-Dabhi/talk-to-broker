@@ -1,50 +1,59 @@
 {
-  "title": "Computation Of Sales Property",
-  "type": "object",
-  "properties": {
-      "desidedSalesValueOfProperty": {
-          "title": "Decided Sales Value of the Property",
-          "type": "number",
-          "minimum": 0,
-          "default": 0
-      },
-      "gender": {
-          "enum": [
-              "male",
-              "female"
-          ],
-          "enumNames": [
-              "Male",
-              "Female"
-          ]
-      },
-      "regestrationFeePercentage":{
-          "type": "number",
-          "minimum": 0,
-          "maximum": 100,
-          "default": 0
-      },
-      "regestrationFees":{
-          "type": "number",
-          "minimum": 0,
-          "default": 0
-          // (desidedSalesValueOfProperty * regestrationFeePercentage) / 100
-      },
-      "stampsDutyFeePercentage":{
-          "type": "number",
-          "minimum": 0,
-          "maximum": 100,
-          "default": 0
-      },
-      "stampsDutyFees":{
-          "type": "number",
-          "minimum": 0,
-          "default": 0
-      },
-      "grossAmount":{
-          "type": "number",
-          "default": 0
-      }
-  }
+    "title": "Computation Of Sales Property",
+    "type": "object",
+    "properties": {
+        "desidedSalesValueOfProperty": {
+            "title": "Decided Sales Value of the Property",
+            "type": "number",
+            "minimum": 0,
+            "default": 0,
+            "md": 4
+        },
+        "gender": {
+            "enum": [
+                "male",
+                "female"
+            ],
+            "enumNames": [
+                "Male",
+                "Female"
+            ],
+            "md": 8
+        },
+        "regestrationFeePercentage": {
+            "title": "Regestration Fee Percentage",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 0,
+            "md": 3
+        },
+        "regestrationFees": {
+            "title": "Regestration Fees",
+            "type": "number",
+            "minimum": 0,
+            "default": 0,
+            "md": 7
+        },
+        "stampsDutyFeePercentage": {
+            "title": "Stamps Duty Percentage",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 0,
+            "md": 3
+        },
+        "stampsDutyFees": {
+            "title": "Stamps Duty Fees",
+            "type": "number",
+            "minimum": 0,
+            "default": 0,
+            "md": 7
+        },
+        "grossAmount": {
+            "title": "Gross Amount",
+            "type": "number",
+            "default": 0
+        }
+    }
 }
-

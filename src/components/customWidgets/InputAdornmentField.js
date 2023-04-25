@@ -1,5 +1,6 @@
 import { InputAdornment, OutlinedInput, TextField } from '@material-ui/core';
 import React from 'react';
+import * as constant from '../../services/utils/constant';
 
 const InputAdornmentField = ({
   id,
@@ -23,6 +24,7 @@ const InputAdornmentField = ({
           //startAdornment
           value={value || ''}
           onChange={(e) => onChange(e.target.value)}
+          variant={constant.OUTLINED_FORM_VARIANT}
         />
     </>
   );

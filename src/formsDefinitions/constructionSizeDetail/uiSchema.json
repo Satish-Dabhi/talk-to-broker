@@ -16,15 +16,15 @@
     ],
     "bifurcationOfArea": {
         "balcony": {
-            "ui:widget": "DynamicFields",
+            "ui:widget": "dynamicFields",
             "options": 5
         },
         "terrace": {
-            "ui:widget": "DynamicFields",
+            "ui:widget": "dynamicFields",
             "options": 5
         },
         "washArea": {
-            "ui:widget": "DynamicFields",
+            "ui:widget": "dynamicFields",
             "options": 2
         }
     },

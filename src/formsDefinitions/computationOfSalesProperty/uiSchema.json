@@ -1,0 +1,32 @@
+{
+    "desidedSalesValueOfProperty": {
+        "ui:widget": "iconField",
+        "icon":"₹",
+        "position":"end"
+    },
+    "regestrationFeePercentage": {
+        "ui:widget": "iconField",
+        "icon":"%",
+        "position":"end"
+    },
+    "regestrationFees": {
+        "ui:widget": "iconField",
+        "icon":"₹",
+        "position":"end"
+    },
+    "stampsDutyFeePercentage": {
+        "ui:widget": "iconField",
+        "icon":"%",
+        "position":"end"
+    },
+    "stampsDutyFees": {
+        "ui:widget": "iconField",
+        "icon":"₹",
+        "position":"end"
+    },
+    "grossAmount": {
+        "ui:widget": "iconField",
+        "icon":"₹",
+        "position":"end"
+    }
+}

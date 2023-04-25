@@ -1,0 +1,129 @@
+{
+    "title": "",
+    "type": "object",
+    "properties": {
+        "addPropertyType": {
+            "enum": [
+                "developer-property",
+                "old-property"
+            ],
+            "hidden": true
+        },
+        "allotedParkingDetails": {
+            "title": "Alloted Parking Details",
+            "type": "object",
+            "properties": {
+                "parkingType": {
+                    "title": "Parking Details",
+                    "enum": [
+                        "free-parking",
+                        "paid-parking"
+                    ],
+                    "enumNames": [
+                        "Free Parking",
+                        "Paid Parking"
+                    ],
+                    "md": 4
+                },
+                "parking": {
+                    "title": "Parking",
+                    "enum": [
+                        "ground-floor-open",
+                        "ground-floor-covered",
+                        "basement-with-hydrolic",
+                        "basement-without-hydrolic"
+                    ],
+                    "enumNames": [
+                        "Ground Floor-Open",
+                        "Ground Floor-Covered",
+                        "Basement-with hydrolic",
+                        "Basement-without Hydrolic"
+                    ],
+                    "md": 8
+                },
+                "allotedVehicle": {
+                    "title": "Alloted Vehicle",
+                    "enum": [
+                        "1-car",
+                        "2-cars",
+                        "3-cars",
+                        "4-cars",
+                        "scooter",
+                        "commercial-vehicle-1",
+                        "commercial-vehicle-2",
+                        "heavy-vehicle-1",
+                        "heavy-vehicle-2"
+                    ],
+                    "enumNames": [
+                        "1 Car",
+                        "2 Cars",
+                        "3 Cars",
+                        "4 Cars",
+                        "Scooter",
+                        "Commercial Vehicle 1",
+                        "Commercial Vehicle 2",
+                        "Heavy Vehicle 1",
+                        "Heavy Vehicle 2"
+                    ],
+                    "md": 8
+                }
+            }
+        }
+    },
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "addPropertyType": {
+                        "enum": [
+                            "developer-property"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "floorsPriceCalculation": {
+                        "title": "Floor Price Calculation",
+                        "type": "object",
+                        "properties": {
+                            "floors": {
+                                "type": "string",
+                                "title": "Floors Calculation",
+                                "subTitle": "Floor"
+                            },
+                            "otherFloorSelection": {
+                                "title": "Other Type Of Floor Selection",
+                                "enum": [
+                                    "price-addition-on-percentage",
+                                    "carpet-super-built-up-area",
+                                    "lumpsum-amount",
+                                    "other"
+                                ],
+                                "enumNames": [
+                                    "Price addition on % of basic price",
+                                    "Carpet/Super Built-up Area",
+                                    "Lumpsum amount",
+                                    "Other"
+                                ],
+                                "md": 7
+                            },
+                            "value": {
+                                "title": "Value",
+                                "type": "number",
+                                "minimum": 0,
+                                "default": 0,
+                                "md": 5
+                            },
+                            "otherFloors": {
+                                "type": "string",
+                                "title": "Other Floors Calculation",
+                                "subTitle": "Floor"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

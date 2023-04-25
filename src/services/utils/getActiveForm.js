@@ -14,8 +14,11 @@ import propertySizeBifurcationDetailSchema from "../../formsDefinitions/property
 import propertySizeBifurcationDetailUiSchema from "../../formsDefinitions/propertySizeBifurcationDetail/uiSchema.json";
 import propertySellDetailSchema from "../../formsDefinitions/propertySellDetail/schema.json";
 import propertySellDetailUiSchema from "../../formsDefinitions/propertySellDetail/uiSchema.json";
-import floorPriceCalculationSchema from "../../formsDefinitions/floorPriceCalculation/schema.json";
-import floorPriceCalculationUiSchema from "../../formsDefinitions/floorPriceCalculation/uiSchema.json";
+import floorPriceCalculationAndParkingDetailsSchema from "../../formsDefinitions/floorPriceCalculationAndParkingDetails/schema.json";
+import floorPriceCalculationAndParkingDetailsUiSchema from "../../formsDefinitions/floorPriceCalculationAndParkingDetails/uiSchema.json";
+import computationOfSalesPropertySchema from "../../formsDefinitions/computationOfSalesProperty/schema.json";
+import computationOfSalesPropertyUiSchema from "../../formsDefinitions/computationOfSalesProperty/uiSchema.json";
+
 
 import * as constant from "./constant";
 
@@ -55,13 +58,18 @@ export function getActiveForm(activeForm, propertyType) {
             };
         case 5:
             return {
-                schema: floorPriceCalculationSchema,
-                uiSchema: floorPriceCalculationUiSchema,
+                schema: floorPriceCalculationAndParkingDetailsSchema,
+                uiSchema: floorPriceCalculationAndParkingDetailsUiSchema,
             };
         case 6:
             return {
                 schema: morePropertyDetailsSchema,
                 uiSchema: morePropertyDetailsUiSchema,
+            };
+        case 7:
+            return {
+                schema: computationOfSalesPropertySchema,
+                uiSchema: computationOfSalesPropertyUiSchema,
             };
         default:
             return {
