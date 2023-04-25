@@ -5,11 +5,17 @@ import { withTheme } from "@rjsf/core";
 import { Theme5 as Mui5Theme } from "@rjsf/material-ui";
 import React, { useEffect, useState } from "react";
 import ObjectFieldTemplate from "./ObjectFieldTemplate";
-import { findSum, getSessionStorageObject, setSessionStorageObject } from "../services/utils";
+import {
+    allDefined,
+    findSum,
+    getSessionStorageObject,
+    setSessionStorageObject,
+} from "../services/utils";
 import RadioWidget from "./customWidgets/RadioWidget";
 import * as constant from "../services/utils/constant";
 import DynamicFieldsWidget from "./customWidgets/DynamicFields";
 import WidthLengthFieldWidget from "./customWidgets/WidthLengthField";
+import SliderFieldsWidget from "./customWidgets/SliderRange";
 
 const theme = createTheme({
     components: {
@@ -35,66 +41,111 @@ const JsonForm = (props) => {
     const handleSubmit = ({ formData }) => {
         setActiveForm(activeForm + 1);
         formData.addPropertyType && setPropertyType(formData.addPropertyType);
+        console.log("formData", formData);
         setSessionStorageObject(constant.SESSION_KEY, JSON.stringify(formData));
     };
 
     const handleChange = ({ formData: newFormData }) => {
-        //update construction property value
-        if (
-            newFormData.constructionPropertyTerraceArea != undefined &&
-            newFormData.constructionPropertyBalconyArea != undefined &&
-            newFormData.constructionPropertyLowerFloorCarpet != undefined &&
-            newFormData.constructionPropertyUpperFloorCarpet != undefined
-        ) {
-            if (newFormData.subPropertyType != constant.PENTHOUSE) {
-                newFormData.constructionPropertyLowerFloorCarpet = 0;
-                newFormData.constructionPropertyUpperFloorCarpet = 0;
-            }
-            const sumOfFields = findSum(
-                newFormData.constructionPropertyTerraceArea,
-                newFormData.constructionPropertyBalconyArea,
-                newFormData.constructionPropertyLowerFloorCarpet,
-                newFormData.constructionPropertyUpperFloorCarpet
-            );
-            setSessionFormData({ ...newFormData, constructionPropertyTotalCarpet: sumOfFields });
-        }
+        const {
+            constructionPropertyTerraceArea,
+            constructionPropertyBalconyArea,
+            constructionPropertyLowerFloorCarpet,
+            constructionPropertyUpperFloorCarpet,
+            subPropertyType,
+            developerPropertyPerSqFeetPrice,
+            developerPropertyArea,
+            developerPropertyExtraArea,
+            agriculturalSellPropertyDetails,
+        } = newFormData;
 
-        //update sell property price
+        let sumOfFields = 0;
+        let developerPropertyBasicPrice = 0;
+        let newTotalExtraAreaValue = 0;
+        let totalValue = 0;
+        let totalSellPropertyValue = 0;
+
         if (
-            newFormData.developerPropertyPerSqFeetPrice != undefined &&
-            newFormData.developerPropertyArea != undefined
+            allDefined(
+                constructionPropertyTerraceArea,
+                constructionPropertyBalconyArea,
+                constructionPropertyLowerFloorCarpet ?? 0,
+                constructionPropertyUpperFloorCarpet ?? 0
+            )
         ) {
-            const developerPropertyBasicPrice =
-                newFormData.developerPropertyPerSqFeetPrice * newFormData.developerPropertyArea;
-            setSessionFormData({
-                ...newFormData,
-                developerPropertyBasicPrice: developerPropertyBasicPrice,
-            });
+            //update property sum value
+            sumOfFields = findSum(
+                constructionPropertyTerraceArea,
+                constructionPropertyBalconyArea,
+                constructionPropertyLowerFloorCarpet ?? 0,
+                constructionPropertyUpperFloorCarpet ?? 0
+            );
         }
 
         //update developer extra property value
         if (
-            newFormData.developerPropertyExtraArea &&
-            newFormData.developerPropertyExtraArea.extraArea != undefined &&
-            newFormData.developerPropertyExtraArea.priceRate != undefined
+            developerPropertyExtraArea &&
+            allDefined(
+                developerPropertyExtraArea.extraArea,
+                developerPropertyExtraArea.priceRate,
+                developerPropertyPerSqFeetPrice,
+                developerPropertyArea
+            )
         ) {
-            const totalExtraArea =
-                newFormData.developerPropertyExtraArea.extraArea *
-                newFormData.developerPropertyExtraArea.priceRate;
-            setSessionFormData({
-                ...newFormData,
-                developerPropertyExtraArea: {
-                    ...newFormData.developerPropertyExtraArea,
-                    totalExtraArea: totalExtraArea,
-                },
-            });
+            // update total extra property price
+            if (developerPropertyExtraArea) {
+                newTotalExtraAreaValue =
+                    developerPropertyExtraArea.extraArea * developerPropertyExtraArea.priceRate;
+            }
+
+            //update developer basic price
+            developerPropertyBasicPrice = developerPropertyPerSqFeetPrice * developerPropertyArea;
         }
+
+            //update agricultural sell property value
+        if (
+            agriculturalSellPropertyDetails &&
+            allDefined(
+                agriculturalSellPropertyDetails.totalArea,
+                agriculturalSellPropertyDetails.unitPrice
+            )
+        ) {
+            if (agriculturalSellPropertyDetails) {
+                const { totalArea, unitPrice } = agriculturalSellPropertyDetails;
+                totalValue = totalArea * unitPrice;
+            }
+        }
+
+        //update total sell property value
+        if (
+            developerPropertyExtraArea &&
+            allDefined(developerPropertyExtraArea.totalExtraAreaValue, developerPropertyBasicPrice)
+        ) {
+            const { totalExtraAreaValue } = developerPropertyExtraArea;
+            totalSellPropertyValue = developerPropertyBasicPrice + totalExtraAreaValue;
+        }
+        const obj = {
+            ...newFormData,
+            constructionPropertyTotalCarpet: sumOfFields,
+            developerPropertyBasicPrice: developerPropertyBasicPrice,
+            developerPropertyExtraArea: {
+                ...developerPropertyExtraArea,
+                totalExtraAreaValue: newTotalExtraAreaValue,
+            },
+            agriculturalSellPropertyDetails: {
+                ...agriculturalSellPropertyDetails,
+                totalValue: totalValue,
+            },
+            totalSellPropertyValue: totalSellPropertyValue,
+        };
+
+        setSessionFormData(obj);
     };
 
     const widgets = {
         radio: RadioWidget,
         DynamicFields: DynamicFieldsWidget,
         WidthLengthField: WidthLengthFieldWidget,
+        sliderFields: SliderFieldsWidget,
     };
 
     const onError = (errors) => {

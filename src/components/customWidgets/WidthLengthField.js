@@ -96,10 +96,10 @@ const WidthLengthField = (props) => {
                                     : `Field ${index + 1}`}
                             </Typography>
                             <Grid container spacing={1}>
-                                <Grid item xs={3} md={3}>
+                                <Grid item xs={3} md={3} className="width-length-field">
                                     <TextField
                                         key={`width-${fieldId}`}
-                                        className="m-3"
+                                        className="m-3 m-xs-0"
                                         id={`width-${fieldId}`}
                                         label={"Width"}
                                         variant={constant.STANDARD_FORM_VARIANT}
@@ -108,10 +108,10 @@ const WidthLengthField = (props) => {
                                     />
                                 </Grid>
                                 <div className="pt-5">X</div>
-                                <Grid item xs={3} md={3}>
+                                <Grid item xs={3} md={3} className="width-length-field">
                                     <TextField
                                         key={`length-${fieldId}`}
-                                        className="m-3"
+                                        className="m-3 m-xs-0"
                                         id={`length-${fieldId}`}
                                         label={"Length"}
                                         variant={constant.STANDARD_FORM_VARIANT}
@@ -120,10 +120,10 @@ const WidthLengthField = (props) => {
                                     />
                                 </Grid>
                                 <div className="pt-5">=</div>
-                                <Grid item xs={3} md={3}>
+                                <Grid item xs={4} md={3} className="width-length-field">
                                     <TextField
                                         key={`total-${fieldId}`}
-                                        className="m-3"
+                                        className="m-3 m-xs-0"
                                         id={`total-${fieldId}`}
                                         label={"Total"}
                                         variant={constant.STANDARD_FORM_VARIANT}

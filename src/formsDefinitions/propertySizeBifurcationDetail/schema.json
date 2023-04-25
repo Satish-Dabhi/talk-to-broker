@@ -72,7 +72,7 @@
                                 "md": 6
                             },
                             "plot": {
-                                "title": "Plot Size",
+                                "title": "Number Of Plots",
                                 "type": "string",
                                 "subFieldTitle": "Size Of plot",
                                 "md": 6
@@ -119,10 +119,35 @@
                                 "md": 6
                             },
                             "land": {
-                                "title": "Land Size",
+                                "title": "Number of Land",
                                 "type": "string",
                                 "subFieldTitle": "Size Of Land",
                                 "md": 6
+                            }
+                        }
+                    },
+                    "agriculturalSellPropertyDetails": {
+                        "title": "Agricultural Sell Property Details",
+                        "type": "object",
+                        "properties": {
+                            "totalArea": {
+                                "type": "number",
+                                "minimum": 0,
+                                "default": 0,
+                                "md": 6
+                            },
+                            "unitPrice": {
+                                "type": "number",
+                                "minimum": 0,
+                                "default": 0,
+                                "md": 6
+                            },
+                            "totalValue": {
+                                "type": "number",
+                                "minimum": 0,
+                                "default": 0,
+                                "md": 8,
+                                "readOnly":true
                             }
                         }
                     }

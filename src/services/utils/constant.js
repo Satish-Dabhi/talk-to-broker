@@ -10,8 +10,9 @@ export const STEP2_FORM_NAME = "About Property"
 export const STEP3_FORM_NAME = "More About Property"
 export const STEP4_FORM_NAME = "Property Bifurcation"
 export const STEP5_FORM_NAME = "Property Sell"
-export const STEP6_FORM_NAME = "From 5"
-export const STEP6_FORM_DESCRIPTION = "DESC 5"
+export const STEP6_FORM_NAME = "Floor Price Calculation"
+export const STEP9_FORM_NAME = "From 9"
+export const STEP9_FORM_DESCRIPTION = "DESC 9"
 export const DYNAMIC_FIELD_MAX_OPTIONS = 10
 
 

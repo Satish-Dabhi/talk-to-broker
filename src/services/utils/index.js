@@ -12,6 +12,10 @@ export function findSum(...numbers) {
     return numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
   }
 
+export  function allDefined(...args) {
+    return args.every(arg => arg !== undefined);
+  }
+
 export const stepperSteps = [
     {
         label: constant.STEP1_FORM_NAME,
@@ -30,7 +34,10 @@ export const stepperSteps = [
     },
     {
         label: constant.STEP6_FORM_NAME,
-        description: constant.STEP6_FORM_DESCRIPTION,
+    },
+    {
+        label: constant.STEP9_FORM_NAME,
+        description: constant.STEP9_FORM_DESCRIPTION,
     },
 ];
 

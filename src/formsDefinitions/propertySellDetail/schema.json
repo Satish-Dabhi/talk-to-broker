@@ -6,7 +6,26 @@
             "enum": [
                 "developer-property",
                 "old-property"
-            ]
+            ],
+            "hidden": true
+        },
+        "pricePriceValue": {
+            "title": "Property Price Structures",
+            "type": "object",
+            "properties": {
+                "projectedSellsPrice": {
+                    "type": "number",
+                    "minimum": 0,
+                    "default": 0,
+                    "md": 6
+                },
+                "finalizedSellsValue": {
+                    "type": "number",
+                    "minimum": 0,
+                    "default": 0,
+                    "md": 6
+                }
+            }
         }
     },
     "allOf": [
@@ -61,23 +80,27 @@
                                 "title": "Price Rate",
                                 "type": "number",
                                 "minimum": 0,
-                                "default": 0
+                                "default": 0,
+                                "md": 6
                             },
                             "extraArea": {
                                 "title": "Extra Area",
                                 "type": "number",
                                 "minimum": 0,
-                                "default": 0
+                                "default": 0,
+                                "md": 6
                             },
-                            "totalExtraArea": {
-                                "title": "Total Extra Area",
-                                "type": "number"
+                            "totalExtraAreaValue": {
+                                "title": "Total Extra Area Value",
+                                "type": "number",
+                                "readOnly": true
                             }
                         }
                     },
-                    "totalValue": {
-                        "title": "Total Value",
-                        "type": "number"
+                    "totalSellPropertyValue": {
+                        "title": "Total Property Value",
+                        "type": "number",
+                        "readOnly": true
                     }
                 },
                 "allOf": [
@@ -103,11 +126,11 @@
                                     "title": "Area Type",
                                     "enum": [
                                         "carpet",
-                                        "super-built-up-area"
+                                        "super-built-up"
                                     ],
                                     "enumNames": [
                                         "Carpet",
-                                        "Super Built-up Area"
+                                        "Super Built Up"
                                     ]
                                 },
                                 "developerPropertyArea": {
@@ -119,6 +142,8 @@
                                 "developerPropertyBasicPrice": {
                                     "title": "Basic Price",
                                     "type": "number",
+                                    "minimum": 0,
+                                    "default": 0,
                                     "readOnly": true
                                 }
                             }

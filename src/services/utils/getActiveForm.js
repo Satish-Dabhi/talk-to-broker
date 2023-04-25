@@ -14,6 +14,9 @@ import propertySizeBifurcationDetailSchema from "../../formsDefinitions/property
 import propertySizeBifurcationDetailUiSchema from "../../formsDefinitions/propertySizeBifurcationDetail/uiSchema.json";
 import propertySellDetailSchema from "../../formsDefinitions/propertySellDetail/schema.json";
 import propertySellDetailUiSchema from "../../formsDefinitions/propertySellDetail/uiSchema.json";
+import floorPriceCalculationSchema from "../../formsDefinitions/floorPriceCalculation/schema.json";
+import floorPriceCalculationUiSchema from "../../formsDefinitions/floorPriceCalculation/uiSchema.json";
+
 import * as constant from "./constant";
 
 export function getActiveForm(activeForm, propertyType) {
@@ -51,6 +54,11 @@ export function getActiveForm(activeForm, propertyType) {
                 uiSchema: propertySellDetailUiSchema,
             };
         case 5:
+            return {
+                schema: floorPriceCalculationSchema,
+                uiSchema: floorPriceCalculationUiSchema,
+            };
+        case 6:
             return {
                 schema: morePropertyDetailsSchema,
                 uiSchema: morePropertyDetailsUiSchema,

@@ -1,0 +1,9 @@
+{
+    "floors": {
+        "ui:widget": "sliderFields",
+        "minimum":0,
+        "maximum":100,
+        "defaultMinimum":0,
+        "defaultMaximum":10
+    }
+}
