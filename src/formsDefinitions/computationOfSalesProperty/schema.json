@@ -1,0 +1,50 @@
+{
+  "title": "Computation Of Sales Property",
+  "type": "object",
+  "properties": {
+      "desidedSalesValueOfProperty": {
+          "title": "Decided Sales Value of the Property",
+          "type": "number",
+          "minimum": 0,
+          "default": 0
+      },
+      "gender": {
+          "enum": [
+              "male",
+              "female"
+          ],
+          "enumNames": [
+              "Male",
+              "Female"
+          ]
+      },
+      "regestrationFeePercentage":{
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 0
+      },
+      "regestrationFees":{
+          "type": "number",
+          "minimum": 0,
+          "default": 0
+          // (desidedSalesValueOfProperty * regestrationFeePercentage) / 100
+      },
+      "stampsDutyFeePercentage":{
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 0
+      },
+      "stampsDutyFees":{
+          "type": "number",
+          "minimum": 0,
+          "default": 0
+      },
+      "grossAmount":{
+          "type": "number",
+          "default": 0
+      }
+  }
+}
+

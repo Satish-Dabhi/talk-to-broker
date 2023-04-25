@@ -16,6 +16,7 @@ import * as constant from "../services/utils/constant";
 import DynamicFieldsWidget from "./customWidgets/DynamicFields";
 import WidthLengthFieldWidget from "./customWidgets/WidthLengthField";
 import SliderFieldsWidget from "./customWidgets/SliderRange";
+import InputAdornmentFieldWidget from "./customWidgets/InputAdornmentField";
 
 const theme = createTheme({
     components: {
@@ -145,7 +146,8 @@ const JsonForm = (props) => {
         radio: RadioWidget,
         DynamicFields: DynamicFieldsWidget,
         WidthLengthField: WidthLengthFieldWidget,
-        sliderFields: SliderFieldsWidget,
+        sliderField: SliderFieldsWidget,
+        InputIconField: InputAdornmentFieldWidget
     };
 
     const onError = (errors) => {

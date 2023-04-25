@@ -1,6 +1,6 @@
 {
     "floors": {
-        "ui:widget": "sliderFields",
+        "ui:widget": "sliderField",
         "minimum":0,
         "maximum":100,
         "defaultMinimum":0,
