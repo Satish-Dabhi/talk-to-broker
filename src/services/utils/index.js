@@ -8,7 +8,7 @@ export function getSessionStorageObject(key) {
     return sessionStorage.getItem(key);
 }
 
-export function findSum(...numbers) {
+export function getSum(...numbers) {
     return numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 }
 

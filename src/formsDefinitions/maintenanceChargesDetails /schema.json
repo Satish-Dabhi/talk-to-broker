@@ -1,0 +1,57 @@
+{
+    "title": "Maintenance Charges Details ",
+    "type": "object",
+    "properties": {
+        "addPropertyType": {
+            "enum": [
+                "developer-property",
+                "old-property"
+            ],
+            "hidden": true
+        }
+    },
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "addPropertyType": {
+                        "enum": [
+                            "old-property"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "maintenancePeriod": {
+                        "title": "Maintenance Period",
+                        "enum": [
+                            "monthly",
+                            "half-yearly",
+                            "yearly",
+                            "others"
+                        ],
+                        "enumNames": [
+                            "Monthly",
+                            "Half Yearly",
+                            "Yearly",
+                            "Others"
+                        ]
+                    },
+                    "maintenanceCharges": {
+                        "title": "Maintenance Charges",
+                        "type": "number",
+                        "minimum": 0,
+                        "default": 0
+                    },
+                    "transferFees": {
+                        "title": "Transfer Fees If Any",
+                        "type": "number",
+                        "minimum": 0,
+                        "default": 0
+                    }
+                }
+            }
+        }
+    ]
+}

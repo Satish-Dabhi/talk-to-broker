@@ -8,7 +8,7 @@ import ObjectFieldTemplate from "./ObjectFieldTemplate";
 import {
     allDefined,
     findPercentageValue,
-    findSum,
+    getSum,
     getSessionStorageObject,
     setSessionStorageObject,
 } from "../services/utils";
@@ -60,7 +60,8 @@ const JsonForm = (props) => {
             agriculturalSellPropertyDetails,
             desidedSalesValueOfProperty,
             regestrationFeePercentage,
-            stampsDutyFeePercentage
+            stampsDutyFeePercentage,
+            GSTDetails
         } = newFormData;
 
         let sumOfFields = 0;
@@ -70,7 +71,10 @@ const JsonForm = (props) => {
         let totalSellPropertyValue = 0;
         let regestrationFees = 0;
         let stampsDutyFees = 0;
+        let grossAmount = 0;
+        let GSTTax = 0;
 
+        //update property sum value
         if (
             allDefined(
                 constructionPropertyTerraceArea,
@@ -79,8 +83,7 @@ const JsonForm = (props) => {
                 constructionPropertyUpperFloorCarpet ?? 0
             )
         ) {
-            //update property sum value
-            sumOfFields = findSum(
+            sumOfFields = getSum(
                 constructionPropertyTerraceArea,
                 constructionPropertyBalconyArea,
                 constructionPropertyLowerFloorCarpet ?? 0,
@@ -122,6 +125,7 @@ const JsonForm = (props) => {
             }
         }
 
+        //regestration fee calculation
         if (
             allDefined(
                 desidedSalesValueOfProperty,
@@ -133,6 +137,40 @@ const JsonForm = (props) => {
                 regestrationFeePercentage
             );
         }
+
+        //stamp duty calculation
+        if (allDefined(
+            desidedSalesValueOfProperty,
+            stampsDutyFeePercentage)) {
+            stampsDutyFees = findPercentageValue(
+                desidedSalesValueOfProperty,
+                stampsDutyFeePercentage
+            );
+        }
+
+        // GST calculation
+        if (GSTDetails && allDefined(
+            GSTDetails.desidedGSTSalesValue,
+            GSTDetails.GSTPercentage)) {
+            GSTTax = findPercentageValue(
+                GSTDetails.desidedGSTSalesValue,
+                GSTDetails.GSTPercentage
+            );
+        }
+
+        //Gross amount calculation
+        if (
+            allDefined(
+                regestrationFees,
+                stampsDutyFees
+            )
+        ) {
+            grossAmount = getSum(
+                regestrationFees,
+                stampsDutyFees
+            );
+        }
+
 
         //update total sell property value
         if (
@@ -154,7 +192,13 @@ const JsonForm = (props) => {
                 totalValue: totalValue,
             },
             totalSellPropertyValue: totalSellPropertyValue,
-            regestrationFees:regestrationFees
+            regestrationFees: regestrationFees,
+            stampsDutyFees: stampsDutyFees,
+            grossAmount: grossAmount,
+            GSTDetails: {
+                ...GSTDetails,
+                GSTTax: GSTTax
+            }
         };
 
         setSessionFormData(updatedFormData);

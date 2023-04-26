@@ -33,7 +33,8 @@
             "type": "number",
             "minimum": 0,
             "default": 0,
-            "md": 7
+            "md": 7,
+            "readOnly": true
         },
         "stampsDutyFeePercentage": {
             "title": "Stamps Duty Percentage",
@@ -48,12 +49,67 @@
             "type": "number",
             "minimum": 0,
             "default": 0,
-            "md": 7
+            "md": 7,
+            "readOnly": true
         },
         "grossAmount": {
             "title": "Gross Amount",
             "type": "number",
-            "default": 0
+            "default": 0,
+            "readOnly": true
+        },
+        "GSTDetails": {
+            "title": "Goods And Service Tax Details",
+            "type": "object",
+            "properties": {
+                "desidedGSTSalesValue": {
+                    "title": "Decided Sales Value",
+                    "type": "number",
+                    "minimum": 0,
+                    "default": 0,
+                    "md": 8
+                },
+                "GSTPercentage": {
+                    "title": "Goods And Service Tax Percentage",
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "default": 0,
+                    "md": 5
+                },
+                "GSTTax": {
+                    "title": "GST Tax",
+                    "type": "number",
+                    "minimum": 0,
+                    "default": 0,
+                    "md": 7,
+                    "readOnly": true
+                },
+                "MGVCL": {
+                    "title": "MGVCL (Lumpsum/Fix)",
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "default": 0,
+                    "md": 4
+                },
+                "advocateFees": {
+                    "title": "Advocate fees",
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "default": 0,
+                    "md": 4
+                },
+                "othersFees": {
+                    "title": "Others fees if any",
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "default": 0,
+                    "md": 4
+                }
+            }
         }
     }
 }

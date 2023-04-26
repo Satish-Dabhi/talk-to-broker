@@ -1,32 +1,49 @@
 {
     "desidedSalesValueOfProperty": {
         "ui:widget": "iconField",
-        "icon":"₹",
-        "position":"end"
+        "icon": "₹",
+        "position": "end"
     },
     "regestrationFeePercentage": {
         "ui:widget": "iconField",
-        "icon":"%",
-        "position":"end"
+        "icon": "%",
+        "position": "end"
     },
     "regestrationFees": {
         "ui:widget": "iconField",
-        "icon":"₹",
-        "position":"end"
+        "icon": "₹",
+        "position": "end"
     },
     "stampsDutyFeePercentage": {
         "ui:widget": "iconField",
-        "icon":"%",
-        "position":"end"
+        "icon": "%",
+        "position": "end"
     },
     "stampsDutyFees": {
         "ui:widget": "iconField",
-        "icon":"₹",
-        "position":"end"
+        "icon": "₹",
+        "position": "end"
     },
     "grossAmount": {
         "ui:widget": "iconField",
-        "icon":"₹",
-        "position":"end"
+        "icon": "₹",
+        "position": "end"
+    },
+    "GSTDetails": {
+        "GSTPercentage": {
+            "ui:widget": "iconField",
+            "icon": "%",
+            "position": "end"
+        },
+        "desidedGSTSalesValue": {
+            "ui:widget": "iconField",
+            "icon": "₹",
+            "position": "end"
+        },
+        "GSTTax":{
+            "ui:widget": "iconField",
+            "icon": "₹",
+            "position": "end"   
+        }
     }
 }
