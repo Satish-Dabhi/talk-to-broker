@@ -1,0 +1,215 @@
+{
+    "title": "More About Property Details",
+    "type": "object",
+    "required": [
+        "propertyStatus"
+    ],
+    "properties": {
+        "propertyStatus": {
+            "title": "Property Status",
+            "enumNames": [
+                "Ready To Move",
+                "Vacant",
+                "New Property",
+                "With Rental",
+                "Without Rental"
+            ],
+            "enum": [
+                "ready-to-move",
+                "vacant",
+                "new-property",
+                "with-rental",
+                "without-rental"
+            ]
+        },
+        "aboutFurnishing": {
+            "title": "About Furnishing",
+            "enumNames": [
+                "Furnished",
+                "Un-furnished",
+                "Semi-furnished",
+                "New Un-Furnished",
+                "New Furnished"
+            ],
+            "enum": [
+                "furnished",
+                "un-furnished",
+                "semi-furnished",
+                "new-un-furnished",
+                "new-furnished"
+            ]
+        },
+        "doorEntryFacing": {
+            "title": "Door Entry Facing",
+            "enumNames": [
+                "East Facing",
+                "West Facing",
+                "North Facing",
+                "South Facing"
+            ],
+            "enum": [
+                "east-facing",
+                "west-facing",
+                "north-facing",
+                "south-facing"
+            ]
+        },
+        "propertyAge": {
+            "title": "Property Age",
+            "enumNames": [
+                "Up to 3 Years",
+                "Up to 5 Years",
+                "Up to 10 Years",
+                "Above 10 Years",
+                "New Property"
+            ],
+            "enum": [
+                "up-to-3-ears",
+                "up-to-5-years",
+                "up-to-10-years",
+                "above-10-years",
+                "new-property"
+            ]
+        },
+        "propertyFlooring": {
+            "title": "Property Flooring",
+            "enumNames": [
+                "Vitrified Tiles",
+                "Mosaic Tiles",
+                "Marble Flooring",
+                "Italian Marble Flooring",
+                "Ceramic Tiles",
+                "Others"
+            ],
+            "enum": [
+                "vitrified-tiles",
+                "mosaic-tiles",
+                "marble-flooring",
+                "italian-marble-flooring",
+                "ceramic-tiles",
+                "others"
+            ]
+        },
+        "mortgageDetails": {
+            "title": "Mortgage Details",
+            "properties": {
+                "bankName": {
+                    "title": "Bank Name",
+                    "type": "string",
+                    "md": 7
+                },
+                "branchName": {
+                    "title": "Branch Name",
+                    "type": "string",
+                    "md": 5
+                },
+                "address": {
+                    "title": "Address",
+                    "type": "string",
+                    "md": 8
+                },
+                "pinCode": {
+                    "title": "Pin Code",
+                    "type": "number",
+                    "md": 4
+                },
+                "city": {
+                    "title": "City",
+                    "type": "string",
+                    "md": 6
+                },
+                "state": {
+                    "title": "State With GST State Code",
+                    "type": "string",
+                    "enum": [
+                        "jammu-and-kashmir",
+                        "himachal-pradesh",
+                        "punjab",
+                        "uttarakhand",
+                        "haryana",
+                        "delhi",
+                        "rajasthan",
+                        "uttar-pradesh",
+                        "bihar",
+                        "sikkim",
+                        "arunachal-pradesh",
+                        "nagaland",
+                        "manipur",
+                        "mizoram",
+                        "tripura",
+                        "meghlaya",
+                        "assam",
+                        "west-bengal",
+                        "jharkhand",
+                        "odisha",
+                        "chattisgarh",
+                        "madhya-pradesh",
+                        "gujarat",
+                        "maharashtra",
+                        "andhra-pradesh",
+                        "karnataka",
+                        "goa",
+                        "lakshwadeep",
+                        "kerala",
+                        "tamil-nadu",
+                        "puducherry",
+                        "telangana",
+                        "andhra-pradesh",
+                        "ladakh",
+                        "andman-and-nicobar-island",
+                        "chandigarh",
+                        "dadra-and-nagar-haveli-and-daman-and-diu",
+                        "ladakh",
+                        "other-territory"
+                    ],
+                    "enumNames": [
+                        "JAMMU AND KASHMIR (1)",
+                        "HIMACHAL PRADESH (2)",
+                        "PUNJAB (3)",
+                        "UTTARAKHAND (5)",
+                        "HARYANA (6)",
+                        "DELHI (7)",
+                        "RAJASTHAN (8)",
+                        "UTTAR PRADESH (9)",
+                        "BIHAR (10)",
+                        "SIKKIM (11)",
+                        "ARUNACHAL PRADESH (12)",
+                        "NAGALAND (13)",
+                        "MANIPUR (14)",
+                        "MIZORAM (15)",
+                        "TRIPURA (16)",
+                        "MEGHLAYA (17)",
+                        "ASSAM (18)",
+                        "WEST BENGAL (19)",
+                        "JHARKHAND (20)",
+                        "ODISHA (21)",
+                        "CHATTISGARH (22)",
+                        "MADHYA PRADESH (23)",
+                        "GUJARAT (24)",
+                        "MAHARASHTRA (27)",
+                        "ANDHRA PRADESH (28)",
+                        "KARNATAKA (29)",
+                        "GOA (30)",
+                        "LAKSHWADEEP (31)",
+                        "KERALA (32)",
+                        "TAMIL NADU (33)",
+                        "PUDUCHERRY (34)",
+                        "TELANGANA (36)",
+                        "ANDHRA PRADESH (37)",
+                        "LADAKH (38)",
+                        "ANDMAN AND NICOBAR ISLAND (35)",
+                        "CHANDIGARH (4)",
+                        "DADRA AND NAGAR HAVELI AND DAMAN AND DIU (26)",
+                        "LADAKH (38)",
+                        "OTHER TERRITORY (97)"
+                    ],
+                    "md": 6
+                },
+                "loanAmount": {
+                    "title": "Out Standing Loan Amount",
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

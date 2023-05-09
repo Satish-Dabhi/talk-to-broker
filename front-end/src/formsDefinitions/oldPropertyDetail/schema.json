@@ -1,0 +1,131 @@
+{
+    "title": "Old Property Details",
+    "type": "object",
+    "required": [
+        "oldPropertyName"
+    ],
+    "properties": {
+        "oldPropertyName": {
+            "title": "Property/Society Name",
+            "type": "string"
+        },
+        "oldPropertyOwnerName:": {
+            "title": "Owner Name",
+            "type": "string"
+        },
+        "oldPropertySocietyAddress:": {
+            "title": "societyAddress",
+            "type": "string"
+        },
+        "oldPropertyRoomNo": {
+            "title": "Room No./Block No./House No./Flat No.",
+            "type": "number"
+        },
+        "oldPropertyAreaName": {
+            "title": "Road Name/Area Name",
+            "type": "number"
+        },
+        "oldPropertyLandmark": {
+            "title": "Landmark",
+            "type": "number"
+        },
+        "oldPropertyVillage": {
+            "title": "Village",
+            "type": "number"
+        },
+        "oldPropertyPinCode": {
+            "title": "Pin code",
+            "type": "string"
+        },
+        "oldPropertyCity": {
+            "title": "City",
+            "type": "string"
+        },
+        "oldPropertyState":{
+            "title": "State With GST State Code",
+            "type": "string",
+            "enum":[
+                "jammu-and-kashmir",
+                "himachal-pradesh",
+                "punjab",
+                "uttarakhand",
+                "haryana",
+                "delhi",
+                "rajasthan",
+                "uttar-pradesh",
+                "bihar",
+                "sikkim",
+                "arunachal-pradesh",
+                "nagaland",
+                "manipur",
+                "mizoram",
+                "tripura",
+                "meghlaya",
+                "assam",
+                "west-bengal",
+                "jharkhand",
+                "odisha",
+                "chattisgarh",
+                "madhya-pradesh",
+                "gujarat",
+                "maharashtra",
+                "andhra-pradesh",
+                "karnataka",
+                "goa",
+                "lakshwadeep",
+                "kerala",
+                "tamil-nadu",
+                "puducherry",
+                "telangana",
+                "andhra-pradesh",
+                "ladakh",
+                "andman-and-nicobar-island",
+                "chandigarh",
+                "dadra-and-nagar-haveli-and-daman-and-diu",
+                "ladakh",
+                "other-territory"
+            ],
+            "enumNames": [
+                "JAMMU AND KASHMIR (1)",
+                "HIMACHAL PRADESH (2)",
+                "PUNJAB (3)",
+                "UTTARAKHAND (5)",
+                "HARYANA (6)",
+                "DELHI (7)",
+                "RAJASTHAN (8)",
+                "UTTAR PRADESH (9)",
+                "BIHAR (10)",
+                "SIKKIM (11)",
+                "ARUNACHAL PRADESH (12)",
+                "NAGALAND (13)",
+                "MANIPUR (14)",
+                "MIZORAM (15)",
+                "TRIPURA (16)",
+                "MEGHLAYA (17)",
+                "ASSAM (18)",
+                "WEST BENGAL (19)",
+                "JHARKHAND (20)",
+                "ODISHA (21)",
+                "CHATTISGARH (22)",
+                "MADHYA PRADESH (23)",
+                "GUJARAT (24)",
+                "MAHARASHTRA (27)",
+                "ANDHRA PRADESH (28)",
+                "KARNATAKA (29)",
+                "GOA (30)",
+                "LAKSHWADEEP (31)",
+                "KERALA (32)",
+                "TAMIL NADU (33)",
+                "PUDUCHERRY (34)",
+                "TELANGANA (36)",
+                "ANDHRA PRADESH (37)",
+                "LADAKH (38)",
+                "ANDMAN AND NICOBAR ISLAND (35)",
+                "CHANDIGARH (4)",
+                "DADRA AND NAGAR HAVELI AND DAMAN AND DIU (26)",
+                "LADAKH (38)",
+                "OTHER TERRITORY (97)"
+            ]
+        }
+    }
+}

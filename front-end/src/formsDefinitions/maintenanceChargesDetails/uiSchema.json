@@ -1,0 +1,19 @@
+{
+        "ui:order": [
+            "addPropertyType",
+            "maintenancePeriod",
+            "maintenanceCharges",
+            "transferFees",
+            "developerPropertyChargesType",
+            "maintenanceChargesType",
+            "fixMaintenanceCharges",
+            "maintenanceLumpsumAmount",        
+            "maintenanceCarpetSqFt",
+            "lumpsumMaintenanceCharges",
+            "fixAmountMaintenanceDevelopmentCharges",
+            "recurringMaintenance",
+            "basicLeasureAmenities",
+            "leasureAmenities",
+            "anyOtherLeasureAmenity"
+        ]
+}

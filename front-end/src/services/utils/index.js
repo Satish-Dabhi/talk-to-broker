@@ -47,7 +47,10 @@ export const stepperSteps = [
     },
     {
         label: constant.STEP9_FORM_NAME,
-        description: constant.STEP9_FORM_DESCRIPTION,
+    },
+    {
+        label: constant.STEP11_FORM_NAME,
+        description: constant.STEP11_FORM_DESCRIPTION,
     },
 ];
 

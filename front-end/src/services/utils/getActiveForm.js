@@ -18,8 +18,8 @@ import floorPriceCalculationAndParkingDetailsSchema from "../../formsDefinitions
 import floorPriceCalculationAndParkingDetailsUiSchema from "../../formsDefinitions/floorPriceCalculationAndParkingDetails/uiSchema.json";
 import computationOfSalesPropertySchema from "../../formsDefinitions/computationOfSalesProperty/schema.json";
 import computationOfSalesPropertyUiSchema from "../../formsDefinitions/computationOfSalesProperty/uiSchema.json";
-
-
+import maintenanceChargesDetailsSchema from "../../formsDefinitions/maintenanceChargesDetails/schema.json";
+import maintenanceChargesDetailsUiSchema from "../../formsDefinitions/maintenanceChargesDetails/uiSchema.json";
 import * as constant from "./constant";
 
 export function getActiveForm(activeForm, propertyType) {
@@ -70,6 +70,11 @@ export function getActiveForm(activeForm, propertyType) {
             return {
                 schema: computationOfSalesPropertySchema,
                 uiSchema: computationOfSalesPropertyUiSchema,
+            };
+        case 8:
+            return {
+                schema: maintenanceChargesDetailsSchema,
+                uiSchema: maintenanceChargesDetailsUiSchema,
             };
         default:
             return {

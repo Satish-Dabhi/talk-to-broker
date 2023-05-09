@@ -1,0 +1,309 @@
+{
+    "title": "Maintenance Charges Details ",
+    "type": "object",
+    "properties": {
+        "addPropertyType": {
+            "enum": [
+                "developer-property",
+                "old-property"
+            ],
+            "hidden": true
+        },
+        "basicLeasureAmenities": {
+            "title": "Basic Leasure Amenities",
+            "enumNames": [
+                "Available",
+                "Not Available"
+            ],
+            "enum": [
+                "available",
+                "not-available"
+            ],
+            "default":"available"
+        }
+    },
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "addPropertyType": {
+                        "enum": [
+                            "old-property"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "maintenancePeriod": {
+                        "title": "Maintenance Period",
+                        "enum": [
+                            "monthly",
+                            "half-yearly",
+                            "yearly",
+                            "others"
+                        ],
+                        "enumNames": [
+                            "Monthly",
+                            "Half Yearly",
+                            "Yearly",
+                            "Others"
+                        ]
+                    },
+                    "maintenanceCharges": {
+                        "title": "Maintenance Charges",
+                        "type": "number",
+                        "minimum": 0,
+                        "default": 0
+                    },
+                    "transferFees": {
+                        "title": "Transfer Fees If Any",
+                        "type": "number",
+                        "minimum": 0,
+                        "default": 0
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "addPropertyType": {
+                        "enum": [
+                            "developer-property"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "developerPropertyChargesType": {
+                        "title": "Developer Property Charges Type",
+                        "enum": [
+                            "maintenance-charges",
+                            "development-charges"
+                        ],
+                        "enumNames": [
+                            "Maintenance Charges",
+                            "Development Charges"
+                        ],
+                        "md": 6
+                    },
+                    "maintenanceChargesType": {
+                        "title": "Maintenance Charges Type",
+                        "enum": [
+                            "fix-charges",
+                            "lumpsum"
+                        ],
+                        "enumNames": [
+                            "Fix Charges",
+                            "Lumpsum"
+                        ],
+                        "md": 6
+                    },
+                    "fixAmountMaintenanceDevelopmentCharges": {
+                        "title": "Fix amount of Maintenance & Development charges",
+                        "type": "number",
+                        "minimum": 0,
+                        "default": 0,
+                        "md": 8
+                    },
+                    "recurringMaintenance": {
+                        "title": "Recurring Maintenance Post Possession.",
+                        "type": "object",
+                        "properties": {
+                            "lumpsumAmount": {
+                                "title": "Lumpsum Amount",
+                                "type": "number",
+                                "minimum": 0,
+                                "default": 0,
+                                "md": 6
+                            },
+                            "carpetSqFt": {
+                                "title": "Carpet / SBA Sq.ft.",
+                                "type": "number",
+                                "minimum": 0,
+                                "default": 0,
+                                "md": 6
+                            },
+                            "totalValue": {
+                                "title": "Total Value",
+                                "type": "number",
+                                "minimum": 0,
+                                "default": 0,
+                                "md": 8
+                            }
+                        }
+                    }
+                },
+                "allOf": [
+                    {
+                        "if": {
+                            "properties": {
+                                "maintenanceChargesType": {
+                                    "enum": [
+                                        "fix-charges"
+                                    ]
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "fixMaintenanceCharges": {
+                                    "title": "Fix Maintenance Charges",
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "default": 0,
+                                    "md": 6
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "if": {
+                            "properties": {
+                                "maintenanceChargesType": {
+                                    "enum": [
+                                        "lumpsum"
+                                    ]
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "maintenanceLumpsumAmount": {
+                                    "title": "Lumpsum Amount",
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "default": 0,
+                                    "md": 6
+                                },
+                                "maintenanceCarpetSqFt": {
+                                    "title": "Carpet / SBA Sq.ft.",
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "default": 0,
+                                    "md": 6
+                                },
+                                "lumpsumMaintenanceCharges": {
+                                    "title": "Maintenance Charges",
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "default": 0,
+                                    "md": 8
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "basicLeasureAmenities": {
+                        "enum": [
+                            "available"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "leasureAmenities": {
+                        "type": "array",
+                        "title": "Residential Facilities",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "alloted-car-parking",
+                                "badmintion-court",
+                                "banquet-hall",
+                                "basketball-court",
+                                "box-cricket",
+                                "business-room",
+                                "changing-room",
+                                "children-sandpit-play-area",
+                                "conference-room",
+                                "cycling-track",
+                                "daycare-Toddler",
+                                "deck",
+                                "gazebo-sitting",
+                                "guest-room",
+                                "gymnasium",
+                                "hockey-area",
+                                "indoor-sports-lounge",
+                                "jogging-track",
+                                "landscaped-garden",
+                                "leasure-amenities",
+                                "library-and-tution-room",
+                                "medical-room",
+                                "mini-theater",
+                                "pantry",
+                                "pick-up-drop-Point",
+                                "ramp",
+                                "senior-citizen-seat-outs",
+                                "skating-ring",
+                                "social-cafeteria",
+                                "society-maintenance-office",
+                                "stage",
+                                "steam-bath",
+                                "store-room",
+                                "swimming-pool",
+                                "table-tennis-and-snooker",
+                                "temple",
+                                "visitor-parking",
+                                "yoga-room"
+                            ],
+                            "enumNames": [
+                                "Alloted Car Parking",
+                                "Badmintion Court",
+                                "Banquet Hall",
+                                "Basketball Court",
+                                "Box Cricket",
+                                "Business Room",
+                                "Changing Room",
+                                "Children's Sandpit Play Area",
+                                "Conference Room",
+                                "Cycling Track",
+                                "Daycare/Toddler",
+                                "Deck",
+                                "Gazebo/Sitting",
+                                "Guest Room",
+                                "Gymnasium",
+                                "Hockey Area",
+                                "Indoor Sports Lounge",
+                                "Jogging Track",
+                                "Landscaped Garden",
+                                "Leasure Amenities",
+                                "Library And Tution Room",
+                                "Medical Room",
+                                "Mini Theater",
+                                "Pantry",
+                                "Pick Up/Drop Point",
+                                "Ramp",
+                                "Senior Citizen Seat Outs",
+                                "Skating Ring",
+                                "social  Cafeteria",
+                                "Society Maintenance Office",
+                                "Stage",
+                                "Steam Bath",
+                                "store Room",
+                                "Swimming Pool",
+                                "Table Tennis And Snooker",
+                                "Temple",
+                                "Visitor Parking",
+                                "Yoga Room"
+                            ],
+                            "uniqueItems": true
+                        }
+                    },
+                    "anyOtherLeasureAmenity": {
+                        "title": "Enter If Any Other",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    ]
+}
