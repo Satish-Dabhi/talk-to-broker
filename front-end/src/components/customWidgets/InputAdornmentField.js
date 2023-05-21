@@ -9,23 +9,23 @@ const InputAdornmentField = ({
   onChange,
   schema,
   uiSchema,
+  required
 }) => {
-  const {icon, position} = uiSchema;
-
+  const { icon, position } = uiSchema;
   return (
     <>
       <TextField
-          label={label}
-          id={id}
-          sx={{ m: 1, width: '25ch' }}
-          InputProps={{
-            endAdornment: <InputAdornment position={position}>{icon}</InputAdornment>,
-          }}
-          //startAdornment
-          value={value || ''}
-          onChange={(e) => onChange(e.target.value)}
-          variant={constant.OUTLINED_FORM_VARIANT}
-        />
+        label={required ? `${label}*` : label}
+        id={id}
+        sx={{ m: 1, width: '25ch' }}
+        InputProps={{
+          endAdornment: <InputAdornment position={position}>{icon}</InputAdornment>,
+        }}
+        //startAdornment
+        value={value || ''}
+        onChange={(e) => e.target.value && onChange(e.target.value)}
+        variant={constant.OUTLINED_FORM_VARIANT}
+      />
     </>
   );
 }

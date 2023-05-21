@@ -34,6 +34,7 @@ const Form = withTheme(Mui5Theme);
 const JsonForm = (props) => {
     const { schema, uiSchema, activeForm, setActiveForm, setPropertyType } = props;
     const [sessionFormData, setSessionFormData] = useState({});
+    const [validateForm, setValidateForm] = useState(false);
 
     useEffect(() => {
         var session_data = getSessionStorageObject(constant.SESSION_KEY);
@@ -41,10 +42,11 @@ const JsonForm = (props) => {
     }, [activeForm]);
 
     const handleSubmit = ({ formData }) => {
-        setActiveForm(activeForm + 1);
         formData.addPropertyType && setPropertyType(formData.addPropertyType);
         console.log("formData", formData);
         setSessionStorageObject(constant.SESSION_KEY, JSON.stringify(formData));
+        setValidateForm(false);
+        constant.ADD_PROPERTY_FORMS - 1 > activeForm && setActiveForm(activeForm + 1);
     };
 
     const handleChange = ({ formData: newFormData }) => {
@@ -53,13 +55,12 @@ const JsonForm = (props) => {
             constructionPropertyBalconyArea,
             constructionPropertyLowerFloorCarpet,
             constructionPropertyUpperFloorCarpet,
-            subPropertyType,
             developerPropertyPerSqFeetPrice,
             developerPropertyArea,
             developerPropertyExtraArea,
             agriculturalSellPropertyDetails,
-            desidedSalesValueOfProperty,
-            regestrationFeePercentage,
+            decidedSalesValueOfProperty,
+            registrationFeePercentage,
             stampsDutyFeePercentage,
             GSTDetails
         } = newFormData;
@@ -69,7 +70,7 @@ const JsonForm = (props) => {
         let newTotalExtraAreaValue = 0;
         let totalValue = 0;
         let totalSellPropertyValue = 0;
-        let regestrationFees = 0;
+        let registrationFees = 0;
         let stampsDutyFees = 0;
         let grossAmount = 0;
         let GSTTax = 0;
@@ -128,32 +129,32 @@ const JsonForm = (props) => {
         //regestration fee calculation
         if (
             allDefined(
-                desidedSalesValueOfProperty,
-                regestrationFeePercentage
+                decidedSalesValueOfProperty,
+                registrationFeePercentage
             )
         ) {
-            regestrationFees = findPercentageValue(
-                desidedSalesValueOfProperty,
-                regestrationFeePercentage
+            registrationFees = findPercentageValue(
+                decidedSalesValueOfProperty,
+                registrationFeePercentage
             );
         }
 
         //stamp duty calculation
         if (allDefined(
-            desidedSalesValueOfProperty,
+            decidedSalesValueOfProperty,
             stampsDutyFeePercentage)) {
             stampsDutyFees = findPercentageValue(
-                desidedSalesValueOfProperty,
+                decidedSalesValueOfProperty,
                 stampsDutyFeePercentage
             );
         }
 
         // GST calculation
         if (GSTDetails && allDefined(
-            GSTDetails.desidedGSTSalesValue,
+            GSTDetails.decidedGSTSalesValue,
             GSTDetails.GSTPercentage)) {
             GSTTax = findPercentageValue(
-                GSTDetails.desidedGSTSalesValue,
+                GSTDetails.decidedGSTSalesValue,
                 GSTDetails.GSTPercentage
             );
         }
@@ -161,12 +162,12 @@ const JsonForm = (props) => {
         //Gross amount calculation
         if (
             allDefined(
-                regestrationFees,
+                registrationFees,
                 stampsDutyFees
             )
         ) {
             grossAmount = getSum(
-                regestrationFees,
+                registrationFees,
                 stampsDutyFees
             );
         }
@@ -192,7 +193,7 @@ const JsonForm = (props) => {
                 totalValue: totalValue,
             },
             totalSellPropertyValue: totalSellPropertyValue,
-            regestrationFees: regestrationFees,
+            registrationFees: registrationFees,
             stampsDutyFees: stampsDutyFees,
             grossAmount: grossAmount,
             GSTDetails: {
@@ -217,6 +218,35 @@ const JsonForm = (props) => {
         // console.log("Validation errors:", errors);
     };
 
+    const handleBackButtonClick = () => {
+        setActiveForm(activeForm - 1);
+    }
+
+    const getSchemaFieldTitle = (propertyName) => {
+        const newPropertyName = propertyName.replace(/\./g, "");
+        const wordsArray = newPropertyName.split(/(?=[A-Z])/);
+        const updatedString = wordsArray.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+        return updatedString;
+    };
+
+    const transformErrors = (errors) => {
+        return errors.map((error) => {
+            if (error.name === 'required') {
+                const fieldTitle = getSchemaFieldTitle(error.property);
+                return {
+                    ...error,
+                    message: `${fieldTitle} is required`,
+                };
+            }
+            return error;
+        });
+    };
+
+    const handleNextButtonClick = () => {
+        setValidateForm(true);
+    };
+
+    console.log("validateForm", validateForm);
     return (
         <ThemeProvider theme={theme}>
             <Form
@@ -229,11 +259,21 @@ const JsonForm = (props) => {
                 widgets={widgets}
                 onError={onError}
                 noHtml5Validate
+                liveValidate={validateForm}
+                transformErrors={transformErrors}
             >
-                <div className="text-center mt-5">
-                    <Button variant="contained" type="submit">
-                        Next
-                    </Button>
+                <div className="row">
+                    <div className="col-md-6 d-flex justify-content-center">
+                        <Button onClick={handleBackButtonClick} variant="contained" class="btn btn-outline-success" type="button">
+                            Back
+                        </Button>
+                    </div>
+
+                    <div className="col-md-6 d-flex justify-content-center">
+                        <Button onClick={handleNextButtonClick} variant="contained" class="btn btn-outline-success" type="submit">
+                            Next
+                        </Button>
+                    </div>
                 </div>
             </Form>
         </ThemeProvider>

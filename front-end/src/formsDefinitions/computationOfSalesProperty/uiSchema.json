@@ -1,15 +1,15 @@
 {
-    "desidedSalesValueOfProperty": {
+    "decidedSalesValueOfProperty": {
         "ui:widget": "iconField",
         "icon": "₹",
         "position": "end"
     },
-    "regestrationFeePercentage": {
+    "registrationFeePercentage": {
         "ui:widget": "iconField",
         "icon": "%",
         "position": "end"
     },
-    "regestrationFees": {
+    "registrationFees": {
         "ui:widget": "iconField",
         "icon": "₹",
         "position": "end"
@@ -35,7 +35,7 @@
             "icon": "%",
             "position": "end"
         },
-        "desidedGSTSalesValue": {
+        "decidedGSTSalesValue": {
             "ui:widget": "iconField",
             "icon": "₹",
             "position": "end"

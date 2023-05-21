@@ -60,12 +60,14 @@
             "constructionPropertyLowerFloorCarpet": {
                 "title": "Lower Floor Carpet",
                 "type": "number",
-                "default": 0
+                "minimum": 1,
+                                    "default": 0
             },
             "constructionPropertyUpperFloorCarpet": {
                 "title": "Upper Floor Carpet",
                 "type": "number",
-                "default": 0
+                "minimum": 1,
+                                    "default": 0
             }
         }
     }

@@ -1,7 +1,7 @@
-import { BrowserRouter as Router, Routes, Route, BrowserRouter, HashRouter } from "react-router-dom";
-import Home from "./pages/Home";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import TopNavbar from "./components/TopNavbar";
 import AddProperty from "./pages/AddProperty";
+import Home from "./pages/Home";
 
 const App = () => {
     return (

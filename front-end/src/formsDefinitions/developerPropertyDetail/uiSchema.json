@@ -7,10 +7,10 @@
             "md": 6
         },
         "developerPropertySiteAddress": {
-            "md": 6
+            "md": 5
         },
         "developerPropertyRevenueSurveyNo": {
-            "md": 3
+            "md": 4
         },
         "developerPropertyBlockNumber": {
             "md": 3

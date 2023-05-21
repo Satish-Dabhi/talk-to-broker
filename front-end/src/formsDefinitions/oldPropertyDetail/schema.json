@@ -2,19 +2,29 @@
     "title": "Old Property Details",
     "type": "object",
     "required": [
-        "oldPropertyName"
+        "oldPropertyName",
+        "oldPropertyOwnerName",
+        "oldPropertySocietyAddress",
+        "oldPropertyRoomNo",
+        "oldPropertyAreaName",
+        "oldPropertyLandmark",
+        "oldPropertyVillage",
+        "oldPropertyPinCode",
+        "oldPropertyCity",
+        "oldPropertyState"
     ],
     "properties": {
         "oldPropertyName": {
             "title": "Property/Society Name",
-            "type": "string"
+            "type": "string",
+            "minLength": 1
         },
-        "oldPropertyOwnerName:": {
+        "oldPropertyOwnerName": {
             "title": "Owner Name",
             "type": "string"
         },
-        "oldPropertySocietyAddress:": {
-            "title": "societyAddress",
+        "oldPropertySocietyAddress": {
+            "title": "Society Address",
             "type": "string"
         },
         "oldPropertyRoomNo": {
@@ -23,28 +33,28 @@
         },
         "oldPropertyAreaName": {
             "title": "Road Name/Area Name",
-            "type": "number"
+            "type": "string"
         },
         "oldPropertyLandmark": {
             "title": "Landmark",
-            "type": "number"
+            "type": "string"
         },
         "oldPropertyVillage": {
             "title": "Village",
-            "type": "number"
+            "type": "string"
         },
         "oldPropertyPinCode": {
             "title": "Pin code",
-            "type": "string"
+            "type": "number"
         },
         "oldPropertyCity": {
             "title": "City",
             "type": "string"
         },
-        "oldPropertyState":{
+        "oldPropertyState": {
             "title": "State With GST State Code",
             "type": "string",
-            "enum":[
+            "enum": [
                 "jammu-and-kashmir",
                 "himachal-pradesh",
                 "punjab",
@@ -69,7 +79,6 @@
                 "madhya-pradesh",
                 "gujarat",
                 "maharashtra",
-                "andhra-pradesh",
                 "karnataka",
                 "goa",
                 "lakshwadeep",
@@ -82,7 +91,6 @@
                 "andman-and-nicobar-island",
                 "chandigarh",
                 "dadra-and-nagar-haveli-and-daman-and-diu",
-                "ladakh",
                 "other-territory"
             ],
             "enumNames": [
@@ -110,7 +118,6 @@
                 "MADHYA PRADESH (23)",
                 "GUJARAT (24)",
                 "MAHARASHTRA (27)",
-                "ANDHRA PRADESH (28)",
                 "KARNATAKA (29)",
                 "GOA (30)",
                 "LAKSHWADEEP (31)",
@@ -123,7 +130,6 @@
                 "ANDMAN AND NICOBAR ISLAND (35)",
                 "CHANDIGARH (4)",
                 "DADRA AND NAGAR HAVELI AND DAMAN AND DIU (26)",
-                "LADAKH (38)",
                 "OTHER TERRITORY (97)"
             ]
         }

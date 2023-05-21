@@ -3,7 +3,15 @@
     "type": "object",
     "required": [
         "dateOfEntry",
-        "sellProperty"
+        "sellProperty",
+        "addPropertyType",
+        "rentalProperty",
+        "label",
+        "buildingType",
+        "propertyType",
+        "subPropertyType",
+        "propertyOwnership",
+        "roomTypes"
     ],
     "properties": {
         "dateOfEntry": {

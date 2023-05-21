@@ -3,17 +3,17 @@
         "oldPropertyName": {
             "md": 6
         },
-        "oldPropertyOwnerName:": {
+        "oldPropertyOwnerName": {
             "md": 6
         },
-        "oldPropertySocietyAddress:": {
+        "oldPropertySocietyAddress": {
             "md": 12
         },
         "oldPropertyRoomNo": {
-            "md": 4
+            "md": 5
         },
         "oldPropertyAreaName": {
-            "md": 8
+            "md": 7
         },
         "oldPropertyLandmark": {
             "md": 12

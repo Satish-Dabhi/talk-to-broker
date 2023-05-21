@@ -2,7 +2,15 @@
     "title": "Construction Property Size Details",
     "type": "object",
     "required": [
-        "measurementUnits"
+        "subPropertyType",
+        "addPropertyType",
+        "measurementUnits",
+        "constructionPropertyType",
+        "constructionPropertyBalconyArea",
+        "constructionPropertyTerraceArea",
+        "constructionPropertyTotalCarpet",
+        "constructionPropertyBuiltUp",
+        "constructionPropertySuperBuiltUp"
     ],
     "properties": {
         "subPropertyType": {
@@ -23,7 +31,31 @@
                 "hut",
                 "eco-friendly-house",
                 "residential-plot",
-                "any-other"
+                "any-other",
+                "office",
+                "shops",
+                "showrooms",
+                "commercial-open-plots",
+                "commercial-land",
+                "multifamily-use-land",
+                "multifamily-use-plot",
+                "retails-shops",
+                "storage-warehouse",
+                "hospital",
+                "shopping-centre",
+                "ind-office",
+                "industrial-open-plots",
+                "industrial-land",
+                "special-purpose-land",
+                "mixed-used-land",
+                "mixed-use-plot",
+                "multifamily-land",
+                "warehouse",
+                "factories",
+                "industrial-shed",
+                "cropped-land",
+                "new-condition-land",
+                "old-conditions-land"
             ],
             "hidden": true
         },
@@ -68,14 +100,16 @@
         "constructionPropertyBalconyArea": {
             "title": "Balcony Area If Any",
             "type": "number",
-            "minimum": 0,
-            "default": 0
+            
+            "minimum": 1,
+                                    "default": 0
         },
         "constructionPropertyTerraceArea": {
             "title": "Terrace Area If Any",
             "type": "number",
-            "minimum": 0,
-            "default": 0
+            
+            "minimum": 1,
+                                    "default": 0
         },
         "constructionPropertyTotalCarpet": {
             "title": "Total Carpet",
@@ -85,14 +119,16 @@
         "constructionPropertyBuiltUp": {
             "title": "Built Up",
             "type": "number",
-            "minimum": 0,
-            "default": 0
+            
+            "minimum": 1,
+                                    "default": 0
         },
         "constructionPropertySuperBuiltUp": {
             "title": "Super Built-Up/Total Construction",
             "type": "number",
-            "minimum": 0,
-            "default": 0
+            
+            "minimum": 1,
+                                    "default": 0
         }
     },
     "allOf": [
@@ -107,18 +143,24 @@
                 }
             },
             "then": {
+                "required": [
+                    "constructionPropertyLowerFloorCarpet",
+                    "constructionPropertyUpperFloorCarpet"
+                ],
                 "properties": {
                     "constructionPropertyLowerFloorCarpet": {
                         "title": "Lower Floor Carpet",
                         "type": "number",
-                        "minimum": 0,
-                        "default": 0
+                        
+                        "minimum": 1,
+                                    "default": 0
                     },
                     "constructionPropertyUpperFloorCarpet": {
                         "title": "Upper Floor Carpet",
                         "type": "number",
-                        "minimum": 0,
-                        "default": 0
+                        
+                        "minimum": 1,
+                                    "default": 0
                     }
                 }
             }
@@ -138,12 +180,20 @@
                     "bifurcationOfArea": {
                         "title": "Bifurcation Of Carpet Area As Per RERA Authority",
                         "type": "object",
+                        "required": [
+                            "reraCarpet",
+                            "balcony",
+                            "terrace",
+                            "washArea",
+                            "totalArea"
+                        ],
                         "properties": {
                             "reraCarpet": {
                                 "title": "RERA Carpet",
                                 "type": "number",
-                                "default": 0,
-                                "minimum": 0,
+                                "minimum": 1,
+                                    "default": 0,
+                                
                                 "md": 9
                             },
                             "balcony": {
@@ -167,14 +217,12 @@
                             "totalArea": {
                                 "title": "Total Area",
                                 "type": "number",
-                                "default": 0,
-                                "minimum": 0,
+                                "minimum": 1,
+                                    "default": 0,
+                                
                                 "md": 6
                             }
-                        },
-                        "required": [
-                            "terrace"
-                        ]
+                        }
                     }
                 }
             }

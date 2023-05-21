@@ -12,6 +12,11 @@
         "allotedParkingDetails": {
             "title": "Alloted Parking Details",
             "type": "object",
+            "required": [
+                "parkingType",
+                "parking",
+                "allotedVehicle"
+            ],
             "properties": {
                 "parkingType": {
                     "title": "Parking Details",
@@ -86,6 +91,12 @@
                     "floorsPriceCalculation": {
                         "title": "Floor Price Calculation",
                         "type": "object",
+                        "required": [
+                            "floors",
+                            "otherFloorSelection",
+                            "value",
+                            "otherFloors"
+                        ],
                         "properties": {
                             "floors": {
                                 "type": "string",
@@ -111,7 +122,7 @@
                             "value": {
                                 "title": "Value",
                                 "type": "number",
-                                "minimum": 0,
+                                "minimum": 1,
                                 "default": 0,
                                 "md": 5
                             },

@@ -1,5 +1,4 @@
 {
-    "title": "Property Sell Details",
     "type": "object",
     "properties": {
         "addPropertyType": {
@@ -12,16 +11,24 @@
         "pricePriceValue": {
             "title": "Property Price Structures",
             "type": "object",
+            "required": [
+                "projectedSellsPrice",
+                "finalizedSellsValue"
+            ],
             "properties": {
                 "projectedSellsPrice": {
+                    "title": "Projected Sells Price",
                     "type": "number",
-                    "minimum": 0,
+                    "minimum": 1,
+                    "minimum": 1,
                     "default": 0,
                     "md": 6
                 },
                 "finalizedSellsValue": {
+                    "title": "Finalized Sells Value",
                     "type": "number",
-                    "minimum": 0,
+                    "minimum": 1,
+                    "minimum": 1,
                     "default": 0,
                     "md": 6
                 }
@@ -40,6 +47,11 @@
                 }
             },
             "then": {
+                "required": [
+                    "measurementUnits",
+                    "developerPropertySellUnit",
+                    "totalSellPropertyValue"
+                ],
                 "properties": {
                     "measurementUnits": {
                         "title": "Measurement Unit",
@@ -75,18 +87,23 @@
                     "developerPropertyExtraArea": {
                         "title": "Developer Property Extra Area",
                         "type": "object",
+                        "required": [
+                            "priceRate",
+                            "extraArea",
+                            "totalExtraAreaValue"
+                        ],
                         "properties": {
                             "priceRate": {
                                 "title": "Price Rate",
                                 "type": "number",
-                                "minimum": 0,
+                                "minimum": 1,
                                 "default": 0,
                                 "md": 6
                             },
                             "extraArea": {
                                 "title": "Extra Area",
                                 "type": "number",
-                                "minimum": 0,
+                                "minimum": 1,
                                 "default": 0,
                                 "md": 6
                             },
@@ -115,11 +132,17 @@
                             }
                         },
                         "then": {
+                            "required": [
+                                "developerPropertyPerSqFeetPrice",
+                                "developerPropertyAreaType",
+                                "developerPropertyArea",
+                                "developerPropertyBasicPrice"
+                            ],
                             "properties": {
                                 "developerPropertyPerSqFeetPrice": {
                                     "title": "Per Sq Feet Price",
                                     "type": "number",
-                                    "minimum": 0,
+                                    "minimum": 1,
                                     "default": 0
                                 },
                                 "developerPropertyAreaType": {
@@ -136,13 +159,13 @@
                                 "developerPropertyArea": {
                                     "title": "Area",
                                     "type": "number",
-                                    "minimum": 0,
+                                    "minimum": 1,
                                     "default": 0
                                 },
                                 "developerPropertyBasicPrice": {
                                     "title": "Basic Price",
                                     "type": "number",
-                                    "minimum": 0,
+                                    "minimum": 1,
                                     "default": 0,
                                     "readOnly": true
                                 }
@@ -160,11 +183,14 @@
                             }
                         },
                         "then": {
+                            "required": [
+                                "developerPropertyFixBasicPrice"
+                            ],
                             "properties": {
                                 "developerPropertyFixBasicPrice": {
                                     "title": "Fix Basic Price",
                                     "type": "number",
-                                    "minimum": 0,
+                                    "minimum": 1,
                                     "default": 0
                                 }
                             }

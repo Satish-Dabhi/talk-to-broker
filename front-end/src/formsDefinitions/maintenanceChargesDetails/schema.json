@@ -1,6 +1,9 @@
 {
     "title": "Maintenance Charges Details ",
     "type": "object",
+    "required": [
+        "basicLeasureAmenities"
+    ],
     "properties": {
         "addPropertyType": {
             "enum": [
@@ -19,7 +22,7 @@
                 "available",
                 "not-available"
             ],
-            "default":"available"
+            "default": "available"
         }
     },
     "allOf": [
@@ -34,6 +37,11 @@
                 }
             },
             "then": {
+                "required": [
+                    "maintenancePeriod",
+                    "maintenanceCharges",
+                    "transferFees"
+                ],
                 "properties": {
                     "maintenancePeriod": {
                         "title": "Maintenance Period",
@@ -53,13 +61,13 @@
                     "maintenanceCharges": {
                         "title": "Maintenance Charges",
                         "type": "number",
-                        "minimum": 0,
+                        "minimum": 1,
                         "default": 0
                     },
                     "transferFees": {
                         "title": "Transfer Fees If Any",
                         "type": "number",
-                        "minimum": 0,
+                        "minimum": 1,
                         "default": 0
                     }
                 }
@@ -76,6 +84,11 @@
                 }
             },
             "then": {
+                "required": [
+                    "developerPropertyChargesType",
+                    "maintenanceChargesType",
+                    "fixAmountMaintenanceDevelopmentCharges"
+                ],
                 "properties": {
                     "developerPropertyChargesType": {
                         "title": "Developer Property Charges Type",
@@ -104,32 +117,37 @@
                     "fixAmountMaintenanceDevelopmentCharges": {
                         "title": "Fix amount of Maintenance & Development charges",
                         "type": "number",
-                        "minimum": 0,
+                        "minimum": 1,
                         "default": 0,
                         "md": 8
                     },
                     "recurringMaintenance": {
                         "title": "Recurring Maintenance Post Possession.",
                         "type": "object",
+                        "required": [
+                            "lumpsumAmount",
+                            "carpetSqFt",
+                            "totalValue"
+                        ],
                         "properties": {
                             "lumpsumAmount": {
                                 "title": "Lumpsum Amount",
                                 "type": "number",
-                                "minimum": 0,
+                                "minimum": 1,
                                 "default": 0,
                                 "md": 6
                             },
                             "carpetSqFt": {
                                 "title": "Carpet / SBA Sq.ft.",
                                 "type": "number",
-                                "minimum": 0,
+                                "minimum": 1,
                                 "default": 0,
                                 "md": 6
                             },
                             "totalValue": {
                                 "title": "Total Value",
                                 "type": "number",
-                                "minimum": 0,
+                                "minimum": 1,
                                 "default": 0,
                                 "md": 8
                             }
@@ -148,11 +166,14 @@
                             }
                         },
                         "then": {
+                            "required": [
+                                "fixMaintenanceCharges"
+                            ],
                             "properties": {
                                 "fixMaintenanceCharges": {
                                     "title": "Fix Maintenance Charges",
                                     "type": "number",
-                                    "minimum": 0,
+                                    "minimum": 1,
                                     "default": 0,
                                     "md": 6
                                 }
@@ -170,25 +191,30 @@
                             }
                         },
                         "then": {
+                            "required": [
+                                "maintenanceLumpsumAmount",
+                                "maintenanceCarpetSqFt",
+                                "lumpsumMaintenanceCharges"
+                            ],
                             "properties": {
                                 "maintenanceLumpsumAmount": {
                                     "title": "Lumpsum Amount",
                                     "type": "number",
-                                    "minimum": 0,
+                                    "minimum": 1,
                                     "default": 0,
                                     "md": 6
                                 },
                                 "maintenanceCarpetSqFt": {
                                     "title": "Carpet / SBA Sq.ft.",
                                     "type": "number",
-                                    "minimum": 0,
+                                    "minimum": 1,
                                     "default": 0,
                                     "md": 6
                                 },
                                 "lumpsumMaintenanceCharges": {
                                     "title": "Maintenance Charges",
                                     "type": "number",
-                                    "minimum": 0,
+                                    "minimum": 1,
                                     "default": 0,
                                     "md": 8
                                 }
@@ -209,6 +235,10 @@
                 }
             },
             "then": {
+                "required": [
+                    "leasureAmenities",
+                    "anyOtherLeasureAmenity"
+                ],
                 "properties": {
                     "leasureAmenities": {
                         "type": "array",

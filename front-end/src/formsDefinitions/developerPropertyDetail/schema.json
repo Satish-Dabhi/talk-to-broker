@@ -2,45 +2,58 @@
     "title": "Developer Property Details",
     "type": "object",
     "required": [
-        "developerPropertyGroupName","developerPropertyProjectName"
+        "developerPropertyGroupName",
+        "developerPropertyProjectName",
+        "developerPropertySiteAddress",
+        "developerPropertyRevenueSurveyNo",
+        "developerPropertyBlockNumber",
+        "developerPropertyFPNumber",
+        "developerPropertyPinCode",
+        "developerPropertyCity",
+        "developerPropertyStateWithCode",
+        "developerPropertyContactNumber",
+        "developerPropertyGSTIN",
+        "developerPropertyCGSTIN",
+        "developerPropertyRERA",
+        "developerPropertyTDS"
     ],
     "properties": {
-        "developerPropertyGroupName":{
+        "developerPropertyGroupName": {
             "title": "Group Name",
             "type": "string"
         },
-        "developerPropertyProjectName":{
+        "developerPropertyProjectName": {
             "title": "Project Name",
             "type": "string"
         },
-        "developerPropertySiteAddress":{
+        "developerPropertySiteAddress": {
             "title": "Site Address",
             "type": "string"
         },
-        "developerPropertyRevenueSurveyNo":{
+        "developerPropertyRevenueSurveyNo": {
             "title": "Revenue SurveyNo",
             "type": "number"
         },
-        "developerPropertyBlockNumber":{
+        "developerPropertyBlockNumber": {
             "title": "Block Number",
             "type": "number"
         },
-        "developerPropertyFPNumber":{
-            "title":"FP Number",
+        "developerPropertyFPNumber": {
+            "title": "FP Number",
             "type": "number"
         },
-        "developerPropertyPinCode":{
+        "developerPropertyPinCode": {
             "title": "Pin Code",
             "type": "number"
         },
-        "developerPropertyCity":{
-            "title":"City",
+        "developerPropertyCity": {
+            "title": "City",
             "type": "string"
         },
-        "developerPropertyStateWithCode":{
+        "developerPropertyStateWithCode": {
             "title": "State With GST State Code",
             "type": "string",
-            "enum":[
+            "enum": [
                 "jammu-and-kashmir",
                 "himachal-pradesh",
                 "punjab",
@@ -65,7 +78,6 @@
                 "madhya-pradesh",
                 "gujarat",
                 "maharashtra",
-                "andhra-pradesh",
                 "karnataka",
                 "goa",
                 "lakshwadeep",
@@ -78,7 +90,6 @@
                 "andman-and-nicobar-island",
                 "chandigarh",
                 "dadra-and-nagar-haveli-and-daman-and-diu",
-                "ladakh",
                 "other-territory"
             ],
             "enumNames": [
@@ -106,7 +117,6 @@
                 "MADHYA PRADESH (23)",
                 "GUJARAT (24)",
                 "MAHARASHTRA (27)",
-                "ANDHRA PRADESH (28)",
                 "KARNATAKA (29)",
                 "GOA (30)",
                 "LAKSHWADEEP (31)",
@@ -119,34 +129,39 @@
                 "ANDMAN AND NICOBAR ISLAND (35)",
                 "CHANDIGARH (4)",
                 "DADRA AND NAGAR HAVELI AND DAMAN AND DIU (26)",
-                "LADAKH (38)",
                 "OTHER TERRITORY (97)"
             ]
         },
-        "developerPropertyContactNumber":{
+        "developerPropertyContactNumber": {
             "title": "Contact Number",
             "type": "number"
         },
-        "developerPropertyGSTIN":{
-            "title":"GSTIN Number",
+        "developerPropertyGSTIN": {
+            "title": "GSTIN Number",
             "type": "string"
         },
-        "developerPropertyCGSTIN":{
+        "developerPropertyCGSTIN": {
             "title": "CGSTIN Number",
             "type": "string"
         },
-        "developerPropertyRERA":{
-            "title":"RERA Number",
+        "developerPropertyRERA": {
+            "title": "RERA Number",
             "type": "string"
         },
-        "developerPropertyTDS":{
-            "title":"TDS Number",
+        "developerPropertyTDS": {
+            "title": "TDS Number",
             "type": "string"
         },
-        "marketingDetail":{
-            "title":"Marketed By",
+        "marketingDetail": {
+            "title": "Marketed By",
+            "required": [
+                "marketingPersonality",
+                "name",
+                "contactNumber",
+                "email"
+            ],
             "properties": {
-                "marketingPersonality":{
+                "marketingPersonality": {
                     "title": "Marketing Personality",
                     "enum": [
                         "developer",
@@ -160,29 +175,35 @@
                         "Sole-selling Agency",
                         "Marketing Persons"
                     ],
-                    "md":6
+                    "md": 6
                 },
-                "name":{
-                    "title":"Name",
+                "name": {
+                    "title": "Name",
                     "type": "string",
-                    "md":6
+                    "md": 6
                 },
-                "contactNumber":{
-                    "title":"Contact Number",
+                "contactNumber": {
+                    "title": "Contact Number",
                     "type": "number",
-                    "md":6
+                    "md": 6
                 },
-                "email":{
-                    "title":"Email ID",
+                "email": {
+                    "title": "Email ID",
                     "type": "string",
-                    "md":6
+                    "md": 6
                 }
             }
         },
-        "landStructure":{
-            "title":"Project Land Structure",
+        "landStructure": {
+            "title": "Project Land Structure",
+            "required": [
+                "measurementUnits",
+                "totalLandArea",
+                "usedArea",
+                "openSpace"
+            ],
             "properties": {
-                "measurementUnits":{
+                "measurementUnits": {
                     "title": "Measurement Unit",
                     "enum": [
                         "sq-ft",
@@ -200,24 +221,24 @@
                         "Gutha",
                         "Bigha"
                     ],
-                    "md":6
+                    "md": 6
                 },
-                "totalLandArea":{
-                    "title":"Total Land Area",
+                "totalLandArea": {
+                    "title": "Total Land Area",
                     "type": "string",
-                    "md":6
+                    "md": 6
                 },
-                "usedArea":{
-                    "title":"Used Area",
+                "usedArea": {
+                    "title": "Used Area",
                     "type": "string",
-                    "md":6
+                    "md": 6
                 },
-                "openSpace":{
-                    "title":"Open Space",
+                "openSpace": {
+                    "title": "Open Space",
                     "type": "string",
-                    "md":6
+                    "md": 6
                 }
             }
-        }    
+        }
     }
 }

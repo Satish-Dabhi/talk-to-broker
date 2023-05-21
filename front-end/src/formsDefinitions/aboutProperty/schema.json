@@ -1,9 +1,0 @@
-{
-    "type": "object",
-    "properties": {
-        "number_of_fields": {
-            "type":"string",
-            "title": "Date of Property Entry"
-        }
-    }
-}

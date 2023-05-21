@@ -2,9 +2,8 @@ import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@ma
 import React from "react";
 
 const RadioWidget = (props) => {
-    console.log("props", props);
+    console.log("=-=-==-=",props);
     const { options, value, onChange, schema, id, label } = props;
-console.log("schema",schema);
     return (
         <FormControl>
             <FormLabel id={id}>{label}</FormLabel>

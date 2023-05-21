@@ -28,6 +28,15 @@
                     "propertySizeBifurcationDetail": {
                         "title": "Property Size Bifurcation Details",
                         "type": "object",
+                        "required": [
+                            "measurementUnits",
+                            "kitchen",
+                            "halls",
+                            "bedRooms",
+                            "bathRooms",
+                            "balconies",
+                            "plot"
+                        ],
                         "properties": {
                             "measurementUnits": {
                                 "title": "Measurement Unit",
@@ -97,6 +106,10 @@
                     "propertySizeBifurcationDetail": {
                         "title": "Property Size Bifurcation Details",
                         "type": "object",
+                        "required": [
+                            "measurementUnits",
+                            "land"
+                        ],
                         "properties": {
                             "measurementUnits": {
                                 "title": "Measurement Unit",
@@ -129,23 +142,31 @@
                     "agriculturalSellPropertyDetails": {
                         "title": "Agricultural Sell Property Details",
                         "type": "object",
+                        "required":[
+                            "totalArea",
+                            "unitPrice",
+                            "totalValue"
+                        ],
                         "properties": {
                             "totalArea": {
                                 "type": "number",
-                                "minimum": 0,
-                                "default": 0,
+                                
+                                "minimum": 1,
+                                    "default": 0,
                                 "md": 6
                             },
                             "unitPrice": {
                                 "type": "number",
-                                "minimum": 0,
-                                "default": 0,
+                                
+                                "minimum": 1,
+                                    "default": 0,
                                 "md": 6
                             },
                             "totalValue": {
                                 "type": "number",
-                                "minimum": 0,
-                                "default": 0,
+                                
+                                "minimum": 1,
+                                    "default": 0,
                                 "md": 8,
                                 "readOnly":true
                             }

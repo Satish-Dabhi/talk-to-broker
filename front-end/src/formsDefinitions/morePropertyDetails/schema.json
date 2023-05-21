@@ -2,7 +2,11 @@
     "title": "More About Property Details",
     "type": "object",
     "required": [
-        "propertyStatus"
+        "propertyStatus",
+        "aboutFurnishing",
+        "doorEntryFacing",
+        "propertyAge",
+        "propertyFlooring"
     ],
     "properties": {
         "propertyStatus": {
@@ -92,6 +96,15 @@
         },
         "mortgageDetails": {
             "title": "Mortgage Details",
+            "required": [
+                "bankName",
+                "branchName",
+                "address",
+                "pinCode",
+                "city",
+                "state",
+                "loanAmount"
+            ],
             "properties": {
                 "bankName": {
                     "title": "Bank Name",
@@ -146,7 +159,6 @@
                         "madhya-pradesh",
                         "gujarat",
                         "maharashtra",
-                        "andhra-pradesh",
                         "karnataka",
                         "goa",
                         "lakshwadeep",
@@ -159,7 +171,6 @@
                         "andman-and-nicobar-island",
                         "chandigarh",
                         "dadra-and-nagar-haveli-and-daman-and-diu",
-                        "ladakh",
                         "other-territory"
                     ],
                     "enumNames": [
@@ -187,7 +198,6 @@
                         "MADHYA PRADESH (23)",
                         "GUJARAT (24)",
                         "MAHARASHTRA (27)",
-                        "ANDHRA PRADESH (28)",
                         "KARNATAKA (29)",
                         "GOA (30)",
                         "LAKSHWADEEP (31)",
@@ -200,10 +210,8 @@
                         "ANDMAN AND NICOBAR ISLAND (35)",
                         "CHANDIGARH (4)",
                         "DADRA AND NAGAR HAVELI AND DAMAN AND DIU (26)",
-                        "LADAKH (38)",
                         "OTHER TERRITORY (97)"
-                    ],
-                    "md": 6
+                    ]
                 },
                 "loanAmount": {
                     "title": "Out Standing Loan Amount",
