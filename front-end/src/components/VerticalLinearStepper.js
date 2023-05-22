@@ -15,12 +15,10 @@ const VerticalLinearStepper = (props) => {
     const { activeForm, setActiveForm } = props;
 
     useEffect(() => {
-        console.log("changed", activeForm);
         setActiveStep(activeForm);
     }, [activeForm]);
 
     const onStepClick = (index) => {
-        console.log("step clicked", index);
         setActiveStep(index);
         setActiveForm(index);
     };
