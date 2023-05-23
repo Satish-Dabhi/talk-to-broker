@@ -18,8 +18,8 @@ import DynamicFieldsWidget from "./customWidgets/DynamicFields";
 import WidthLengthFieldWidget from "./customWidgets/WidthLengthField";
 import SliderFieldsWidget from "./customWidgets/SliderRange";
 import InputAdornmentFieldWidget from "./customWidgets/InputAdornmentField";
-// import { useDispatch } from "react-redux";
-// import { createProperty } from "../redux/property/propertySlice";
+import { useDispatch } from "react-redux";
+import { createProperty } from "../redux/property/propertySlice";
 
 
 const theme = createTheme({
@@ -38,6 +38,8 @@ const JsonForm = (props) => {
     const { schema, uiSchema, activeForm, setActiveForm, setPropertyType } = props;
     const [sessionFormData, setSessionFormData] = useState({});
     const [validateForm, setValidateForm] = useState(false);
+  const dispatch = useDispatch();
+
 
 
     useEffect(() => {
@@ -49,6 +51,7 @@ const JsonForm = (props) => {
         formData.addPropertyType && setPropertyType(formData.addPropertyType);
         setSessionStorageObject(constant.SESSION_KEY, JSON.stringify(formData));
         setValidateForm(false);
+        dispatch(createProperty(formData));
         constant.ADD_PROPERTY_FORMS - 1 > activeForm && setActiveForm(activeForm + 1);
     };
 
