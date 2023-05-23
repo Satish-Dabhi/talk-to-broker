@@ -38,7 +38,7 @@ const JsonForm = (props) => {
     const { schema, uiSchema, activeForm, setActiveForm, setPropertyType } = props;
     const [sessionFormData, setSessionFormData] = useState({});
     const [validateForm, setValidateForm] = useState(false);
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
 
 

@@ -1,6 +1,6 @@
 const propertyService = require("../services/propertyService");
 
-const createNewProperty = async(req, res) => {
+const createNewProperty = async (req, res) => {
   try {
     const { body } = req;
     const savedDeveloperProperty = await propertyService.createNewProperty(body);
@@ -10,6 +10,12 @@ const createNewProperty = async(req, res) => {
   }
 };
 
+const getAllProperties = async (req, res) => {
+  const allEmployees = await propertyService.getAllProperties();
+  res.send({ status: "OK", data: allEmployees });
+};
+
 module.exports = {
-  createNewProperty
+  createNewProperty,
+  getAllProperties
 };

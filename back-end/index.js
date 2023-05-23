@@ -13,6 +13,7 @@ app.get("/", (req, res) => {
 }); 
 
 app.use("/employ",  employeesRoutes);
+
 app.use("/property",  propertyRoutes);
 
 app.listen(PORT, () => { 
