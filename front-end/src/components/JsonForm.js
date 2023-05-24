@@ -21,6 +21,8 @@ import InputAdornmentFieldWidget from './customWidgets/InputAdornmentField';
 import RadioWidget from './customWidgets/RadioWidget';
 import SliderFieldsWidget from './customWidgets/SliderRange';
 import WidthLengthFieldWidget from './customWidgets/WidthLengthField';
+import CryptoJS from 'crypto-js';
+const SECRET_KEY = 'mysecretkey';
 
 const theme = createTheme({
   components: {
@@ -43,12 +45,14 @@ const JsonForm = (props) => {
 
   useEffect(() => {
     var session_data = getSessionStorageObject(constant.SESSION_KEY);
-    session_data && setSessionFormData(JSON.parse(session_data));
+    const decrypted = session_data && CryptoJS.AES.decrypt(session_data, SECRET_KEY).toString(CryptoJS.enc.Utf8);
+    session_data && setSessionFormData(JSON.parse(decrypted));
   }, [activeForm]);
 
   const handleSubmit = ({ formData }) => {
     formData.addPropertyType && setPropertyType(formData.addPropertyType);
-    setSessionStorageObject(constant.SESSION_KEY, JSON.stringify(formData));
+    const encrypted = CryptoJS.AES.encrypt(JSON.stringify(formData), SECRET_KEY).toString();
+    setSessionStorageObject(constant.SESSION_KEY, encrypted);
     setValidateForm(false);
     formSubmit && dispatch(createProperty(formData));
     ADD_PROPERTY_FORMS.length - 1 > activeForm && setActiveForm(activeForm + 1);
