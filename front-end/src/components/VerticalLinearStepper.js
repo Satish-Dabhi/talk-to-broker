@@ -5,9 +5,9 @@ import StepLabel from "@mui/material/StepLabel";
 import Stepper from "@mui/material/Stepper";
 import Typography from "@mui/material/Typography";
 import React, { useEffect, useState } from "react";
-import { stepperSteps } from "../services/utils/index";
+import { ADD_PROPERTY_FORMS } from "../services/utils/index";
 
-const steps = stepperSteps;
+// const steps = ADD_PROPERTY_FORMS;
 
 const VerticalLinearStepper = (props) => {
     const [activeStep, setActiveStep] = useState(0);
@@ -26,7 +26,7 @@ const VerticalLinearStepper = (props) => {
     return (
         <Box sx={{ maxWidth: 400, padding: "20%" }}>
             <Stepper activeStep={activeStep} orientation="vertical">
-                {steps.map((step, index) => (
+                {ADD_PROPERTY_FORMS.map((step, index) => (
                     <Step key={step.label}>
                         <StepLabel
                             // onClick={() => onStepClick(index)}

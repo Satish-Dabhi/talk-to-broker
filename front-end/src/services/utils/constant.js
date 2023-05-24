@@ -5,7 +5,6 @@ export const PENTHOUSE = "penthouse"
 export const OUTLINED_FORM_VARIANT = "outlined"
 export const FILLED_FORM_VARIANT = "filled"
 export const STANDARD_FORM_VARIANT = "standard"
-export const ADD_PROPERTY_FORMS = 9
 export const STEP1_FORM_NAME = "Basic Information"
 export const STEP2_FORM_NAME = "About Property"
 export const STEP3_FORM_NAME = "More About Property"

@@ -20,7 +20,7 @@ export function allDefined(...args) {
     return args.every(arg => arg !== undefined);
 }
 
-export const stepperSteps = [
+export const ADD_PROPERTY_FORMS = [
     {
         label: constant.STEP1_FORM_NAME,
     },
