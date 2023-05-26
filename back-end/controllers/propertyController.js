@@ -15,7 +15,19 @@ const getAllProperties = async (req, res) => {
   res.send({ status: "OK", data: allEmployees });
 };
 
+const getPropertyByType = async(req, res) => {
+  const {
+    params: { propertyType },
+  } = req;
+  if (!propertyType) {
+    return;
+  }
+  const properties = await propertyService.getPropertyByType(propertyType);
+  res.send({ status: "OK", data: properties });
+};
+
 module.exports = {
   createNewProperty,
-  getAllProperties
+  getAllProperties,
+  getPropertyByType
 };

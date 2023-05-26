@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/", propertyController.getAllProperties);
 
-// router.get("/:propertyId", propertyController.getPropertyById);
+router.get("/:propertyType", propertyController.getPropertyByType);
 
 router.post("/", propertyController.createNewProperty);
 
