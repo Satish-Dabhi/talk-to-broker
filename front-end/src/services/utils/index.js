@@ -1,4 +1,9 @@
 import * as constant from "./constant";
+import agriculturalPropertyIcon from '../../assets/images/agricultural-property.png';
+import commercialPropertyIcon from '../../assets/images/commercial-property.jpg';
+import industrialPropertyIcon from '../../assets/images/industrial-property.jpg';
+import residentialPropertyIcon from '../../assets/images/residential-property.png';
+
 
 export function setSessionStorageObject(key, value) {
     sessionStorage.setItem(key, value);
@@ -49,5 +54,20 @@ export const ADD_PROPERTY_FORMS = [
         label: constant.STEP9_FORM_NAME,
     }
 ];
+
+export const getCardImageByPropertyType = (propertyType) => {
+    switch (propertyType) {
+      case 'residential':
+        return residentialPropertyIcon;
+      case 'commercial':
+        return commercialPropertyIcon;
+      case 'industrial':
+        return industrialPropertyIcon;
+      case 'agricultural':
+        return agriculturalPropertyIcon;
+      default:
+        return residentialPropertyIcon;
+    }
+  };
 
 

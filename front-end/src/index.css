@@ -1,15 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Ysabeau:wght@500&display=swap');
+
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Ysabeau', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body #root {
+  /* background: #0040ff36; */
 }
 
 .ttb-form {
@@ -17,7 +17,9 @@ code {
 }
 
 .top-navbar {
-  background-color: #14356b;
+  background-color: #06060694;
+  padding: 3px 0 !important;
+  box-shadow: 0 8px 10px 0 rgb(0 0 0 / 50%);
 }
 
 
@@ -43,3 +45,4 @@ code {
     padding: 20px;
   }
 }
+

@@ -245,7 +245,7 @@ const JsonForm = (props) => {
         transformErrors={transformErrors}
       >
         <div className="row">
-          {activeForm && activeForm !== 0 && (
+          {activeForm !== 0 && (
             <div className="col-md-6 d-flex justify-content-center">
               <Button onClick={handleBackButtonClick} variant="contained" class="btn btn-outline-success" type="button">
                 Back
