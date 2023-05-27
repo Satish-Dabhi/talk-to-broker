@@ -1,14 +1,18 @@
 {
   "files": {
-    "main.css": "/talk-to-broker/static/css/main.334c952b.css",
-    "main.js": "/talk-to-broker/static/js/main.322c543c.js",
+    "main.css": "/talk-to-broker/static/css/main.dc2202c1.css",
+    "main.js": "/talk-to-broker/static/js/main.677a74fe.js",
+    "static/media/bg-home3.jpg": "/talk-to-broker/static/media/bg-home3.fd5b6a83f54697f3828d.jpg",
+    "static/media/agricultural-property.png": "/talk-to-broker/static/media/agricultural-property.309df892397e645e6c28.png",
+    "static/media/industrial-property.jpg": "/talk-to-broker/static/media/industrial-property.c16973a9df8154f5c0ae.jpg",
+    "static/media/commercial-property.jpg": "/talk-to-broker/static/media/commercial-property.b06724e91113a03890f1.jpg",
     "static/media/ttb-logo.jpg": "/talk-to-broker/static/media/ttb-logo.25d3fc8680bbc2ca76da.jpg",
     "index.html": "/talk-to-broker/index.html",
-    "main.334c952b.css.map": "/talk-to-broker/static/css/main.334c952b.css.map",
-    "main.322c543c.js.map": "/talk-to-broker/static/js/main.322c543c.js.map"
+    "main.dc2202c1.css.map": "/talk-to-broker/static/css/main.dc2202c1.css.map",
+    "main.677a74fe.js.map": "/talk-to-broker/static/js/main.677a74fe.js.map"
   },
   "entrypoints": [
-    "static/css/main.334c952b.css",
-    "static/js/main.322c543c.js"
+    "static/css/main.dc2202c1.css",
+    "static/js/main.677a74fe.js"
   ]
 }
