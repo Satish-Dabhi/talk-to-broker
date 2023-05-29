@@ -32,7 +32,6 @@ export const getProperties = createAsyncThunk('services/getProperties', async (t
 export const getPropertiesByType = createAsyncThunk('services/getPropertiesByType', async (propertyType, thunkAPI) => {
   try {
     const api = GET_PROPERTIES_BY_TYPE.replace('${type}', propertyType);
-    console.log(".......",api);
     const resp = await GET_API(api);
     return resp;
   } catch (error) {
@@ -59,7 +58,6 @@ const propertySlice = createSlice({
       state.getPropertiesLoader = true;
     },
     [getProperties.fulfilled]: (state, action) => {
-      console.log("payload",action);
       state.getPropertiesLoader = false;
       state.properties = action.payload;
     },
@@ -70,7 +68,6 @@ const propertySlice = createSlice({
       state.getPropertiesByTypeLoader = true;
     },
     [getPropertiesByType.fulfilled]: (state, action) => {
-      console.log("payload",action);
       state.getPropertiesByTypeLoader = false;
       state.propertiesByType = action.payload;
     },

@@ -1,28 +1,29 @@
-// /helpers/email.js
-const nodeMailer = require("nodemailer");
+const nodemailer = require('nodemailer');
 
-exports.sendEmailWithNodemailer = (req, res, emailData) => {
-  const transporter = nodeMailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    requireTLS: true,
-    auth: {
-      user: "satidabhi555@gmail.com", // MAKE SURE THIS EMAIL IS YOUR GMAIL FOR WHICH YOU GENERATED APP PASSWORD
-      pass: "Satish@8690", // MAKE SURE THIS PASSWORD IS YOUR GMAIL APP PASSWORD WHICH YOU GENERATED EARLIER
-    },
-    tls: {
-      ciphers: "SSLv3",
-    },
+const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
+  auth: {
+    user: 'babyboss65166516@gmail.com',
+    pass: 'mjjubklxnqqcrdfo',
+  },
+});
+
+const sendMail = async (mailOptions, req, res) => {
+  await transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      res.status(500).send('Error sending email');
+    } else {
+      console.log('Email sent: ' + info.response);
+      res.send({ status: 'OK', data: 'Email sent successfully' });
+      // res.status(200).send('Email sent successfully');
+    }
   });
+};
 
-  return transporter
-    .sendMail(emailData)
-    .then((info) => {
-      console.log(`Message sent: ${info.response}`);
-      return res.json({
-        success: true,
-      });
-    })
-    .catch((err) => console.log(`Problem sending email: ${err}`));
+module.exports = {
+  transporter,
+  sendMail,
 };

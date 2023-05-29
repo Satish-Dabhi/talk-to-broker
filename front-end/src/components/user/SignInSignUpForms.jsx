@@ -33,7 +33,7 @@ const SignInSignUpForms = ({ handleClose }) => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, overflow: 'hidden' }}>
+    <Box sx={{ flexGrow: 1, overflowX: 'hidden' }}>
       <Grid container>
         <Grid item xs={4}>
           <img src={verticalImage} alt="vertical-building" width={'100%'} height={'100%'} />
