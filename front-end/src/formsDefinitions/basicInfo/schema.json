@@ -10,8 +10,7 @@
         "buildingType",
         "propertyType",
         "subPropertyType",
-        "propertyOwnership",
-        "roomTypes"
+        "propertyOwnership"
     ],
     "properties": {
         "dateOfEntry": {
@@ -199,6 +198,9 @@
                 }
             },
             "then": {
+                "required":[
+                    "roomTypes"
+                ],
                 "properties": {
                     "subPropertyType": {
                         "enum": [

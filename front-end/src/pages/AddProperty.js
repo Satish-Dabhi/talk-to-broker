@@ -19,7 +19,7 @@ function AddProperty() {
             <Grid item xs={4}>
                 <VerticalLinearStepper activeForm={activeForm} setActiveForm={setActiveForm} />
             </Grid>
-            <Grid item xs={8} className="ttb-form">
+            <Grid item xs={8} id="ttb-form">
                 {Object.keys(form).length > 0 && (
                     <JsonForm
                         schema={form.schema}

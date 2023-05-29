@@ -7,10 +7,10 @@ const PropertyTypeCard = ({ propertyDetails }) => {
   let navigate = useNavigate();
 
   return (
-    <Card sx={{ maxWidth: 250 }}>
+    <Card sx={{ maxWidth: 200, color: "#f7f7f7" }}>
       <CardMedia
         sx={{
-          height: 90,
+          height: 120,
           ':hover': {
             boxShadow: 20,
           },

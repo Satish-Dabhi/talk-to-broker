@@ -9,10 +9,10 @@ body {
 }
 
 body #root {
-  /* background: #0040ff36; */
+  background-color: #c3c3c366;
 }
 
-.ttb-form {
+#ttb-form {
   padding: 50px;
 }
 
@@ -22,9 +22,12 @@ body #root {
   box-shadow: 0 8px 10px 0 rgb(0 0 0 / 50%);
 }
 
-
 .rjsf>.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded {
   display: none;
+}
+
+#ttb-form .MuiInputLabel-outlined.MuiInputLabel-shrink {
+  background-color: transparent;
 }
 
 .required::before {
@@ -41,8 +44,7 @@ body #root {
 }
 
 @media only screen and (max-width: 768px) {
-  .ttb-form {
+  #ttb-form {
     padding: 20px;
   }
 }
-

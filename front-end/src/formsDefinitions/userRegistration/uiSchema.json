@@ -1,0 +1,11 @@
+{
+    "iAm": {
+        "ui:widget": "radio"
+    },
+    "email": {
+        "ui:widget": "email"
+    },
+    "password": {
+        "ui:widget": "password"
+    }
+}

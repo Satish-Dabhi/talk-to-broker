@@ -1,0 +1,41 @@
+{
+    "title": "Registration",
+    "type": "object",
+    "required": [
+        "name","email","password"
+    ],
+    "properties": {
+        "iAm": {
+            "title": "I am",
+            "enum": [
+                "buyer",
+                "seller",
+                "broker"
+            ],
+            "enumNames": [
+                "Buyer",
+                "Seller",
+                "Broker"
+            ],
+            "default": "buyer",
+            "md": 12
+        },
+        "name": {
+            "title": "Name",
+            "type": "string",
+            "md": 12
+        },
+        "email": {
+            "title": "Email",
+            "type": "string",
+            "format": "email",
+            "md": 12
+        },
+        "password": {
+            "title": "Password",
+            "type": "string",
+            "format": "password",
+            "md": 12
+        }
+    }
+}

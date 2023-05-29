@@ -10,6 +10,7 @@ import {
   ADD_PROPERTY_FORMS,
   allDefined,
   findPercentageValue,
+  getSchemaFieldTitle,
   getSessionStorageObject,
   getSum,
   setSessionStorageObject,
@@ -198,13 +199,6 @@ const JsonForm = (props) => {
 
   const handleBackButtonClick = () => {
     setActiveForm(activeForm - 1);
-  };
-
-  const getSchemaFieldTitle = (propertyName) => {
-    const newPropertyName = propertyName.replace(/\./g, '');
-    const wordsArray = newPropertyName.split(/(?=[A-Z])/);
-    const updatedString = wordsArray.map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-    return updatedString;
   };
 
   const transformErrors = (errors) => {

@@ -31,6 +31,13 @@ export function convertToTitleCase(string) {
     .join(' ');
 }
 
+export function getSchemaFieldTitle(propertyName) {
+  const newPropertyName = propertyName.replace(/\./g, '');
+  const wordsArray = newPropertyName.split(/(?=[A-Z])/);
+  const updatedString = wordsArray.map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  return updatedString;
+};
+
 export const ADD_PROPERTY_FORMS = [
   {
     label: constant.STEP1_FORM_NAME,
