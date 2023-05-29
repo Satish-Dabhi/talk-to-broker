@@ -1,0 +1,8 @@
+{
+    "email": {
+        "ui:widget": "email"
+    },
+    "password": {
+        "ui:widget": "password"
+    }
+}

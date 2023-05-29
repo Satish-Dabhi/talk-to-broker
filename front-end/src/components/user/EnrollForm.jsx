@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import * as constant from '../../services/utils/constant';
 import ObjectFieldTemplate from '../ObjectFieldTemplate';
 import { getSchemaFieldTitle } from '../../services/utils';
+import RadioWidget from '../customWidgets/RadioWidget';
 
 
 const theme = createTheme({
@@ -52,6 +53,10 @@ const EnrollForm = (props) => {
         setValidateForm(true);
     };
 
+    const widgets = {
+        radio: RadioWidget,
+      };
+
     return (
         <ThemeProvider theme={theme}>
             <Form
@@ -61,7 +66,7 @@ const EnrollForm = (props) => {
                 ObjectFieldTemplate={ObjectFieldTemplate}
                 onSubmit={handleSubmit}
                 onChange={handleChange}
-                // widgets={widgets}
+                widgets={widgets}
                 // onError={onError}
                 noHtml5Validate
                 liveValidate={validateForm}

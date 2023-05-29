@@ -1,5 +1,5 @@
 {
-    "title": "Registration",
+    "title": "",
     "type": "object",
     "required": [
         "name","email","password"
@@ -23,19 +23,19 @@
         "name": {
             "title": "Name",
             "type": "string",
-            "md": 12
+            "md": 9
         },
         "email": {
             "title": "Email",
             "type": "string",
             "format": "email",
-            "md": 12
+            "md": 9
         },
         "password": {
             "title": "Password",
             "type": "string",
             "format": "password",
-            "md": 12
+            "md": 9
         }
     }
 }
