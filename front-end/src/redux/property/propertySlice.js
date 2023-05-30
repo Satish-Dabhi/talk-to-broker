@@ -49,7 +49,7 @@ const propertySlice = createSlice({
     },
     [createProperty.fulfilled]: (state, { payload }) => {
       state.addPropertyLoader = false;
-      state.property = payload;
+      state.addProperty = payload;
     },
     [createProperty.rejected]: (state) => {
       state.addPropertyLoader = false;

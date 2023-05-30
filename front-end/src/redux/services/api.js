@@ -3,10 +3,12 @@ export const ADD_PROPERTY_END_POINT = '/property';
 export const GET_PROPERTIES_END_POINT = '/property';
 export const GET_PROPERTIES_BY_TYPE = '/property/${type}';
 export const SEND_EMAIL_END_POINT = '/send-email';
+export const ADD_USER_END_POINT = '/user';
+
 
 export const POST_API = async (api, data) => {
   const newApi = API_HOSTNAME + api;
-  console.log("dadasydyusdyusadsad",data);
+  console.log('dadasydyusdyusadsad', data);
   return await fetch(newApi, {
     method: 'POST',
     headers: {
@@ -16,8 +18,8 @@ export const POST_API = async (api, data) => {
     body: JSON.stringify(data),
   })
     .then((data) => {
-      return data;
       console.log('data', data);
+      return data;
     })
     .catch((error) => {
       console.error('error', error);

@@ -36,7 +36,22 @@ export function getSchemaFieldTitle(propertyName) {
   const wordsArray = newPropertyName.split(/(?=[A-Z])/);
   const updatedString = wordsArray.map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   return updatedString;
-};
+}
+
+export function isWithinFiveMinutes(time, differenceToCheck) {
+  const currentTime = new Date();
+  const compareTime = new Date(time);
+
+  const differenceInMilliseconds = currentTime - compareTime;
+  const differenceInMinutes = Math.abs(differenceInMilliseconds / (1000 * 60));
+
+  return differenceInMinutes <= differenceToCheck;
+}
+
+export function generateOTP() {
+  const otp = Math.floor(100000 + Math.random() * 900000);
+  return otp.toString();
+}
 
 export const ADD_PROPERTY_FORMS = [
   {

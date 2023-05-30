@@ -1,5 +1,5 @@
 const db = require('../database/dbConnect');
-const schema = require('../database/propertySchema');
+const schema = require('../database/schema');
 
 
 const createNewProperty = async(data) => {

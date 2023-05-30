@@ -50,10 +50,10 @@ const SignInSignUpForms = ({ handleClose }) => {
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-              <EnrollForm schema={loginSchema} uiSchema={loginUiSchema} />
+              <EnrollForm schema={loginSchema} uiSchema={loginUiSchema} form="login"/>
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <EnrollForm schema={registrationSchema} uiSchema={registrationUiSchema} />
+              <EnrollForm schema={registrationSchema} uiSchema={registrationUiSchema} form="registration"/>
             </TabPanel>
           </Box>
         </Grid>

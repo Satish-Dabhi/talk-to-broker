@@ -1,6 +1,7 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-let schema = new mongoose.Schema({
+let p_schema = new mongoose.Schema(
+  {
     // _id: mongoose.Schema.Types.ObjectId,
     decidedSalesValueOfProperty: Number,
     registrationFeePercentage: Number,
@@ -9,45 +10,45 @@ let schema = new mongoose.Schema({
     stampsDutyFees: Number,
     grossAmount: Number,
     GSTDetails: {
-        decidedGSTSalesValue: Number,
-        GSTPercentage: Number,
-        GSTTax: Number,
-        MGVCL: Number,
-        advocateFees: Number,
-        othersFees: Number
+      decidedGSTSalesValue: Number,
+      GSTPercentage: Number,
+      GSTTax: Number,
+      MGVCL: Number,
+      advocateFees: Number,
+      othersFees: Number,
     },
     mortgageDetails: {
-        bankName: String,
-        branchName: String,
-        address: String,
-        pinCode: Number,
-        city: String,
-        state: String,
-        loanAmount: Number
+      bankName: String,
+      branchName: String,
+      address: String,
+      pinCode: Number,
+      city: String,
+      state: String,
+      loanAmount: Number,
     },
     allotedParkingDetails: {
-        parkingType: String,
-        parking: String,
-        allotedVehicle: String
+      parkingType: String,
+      parking: String,
+      allotedVehicle: String,
     },
     pricePriceValue: {
-        projectedSellsPrice: Number,
-        finalizedSellsValue: Number
+      projectedSellsPrice: Number,
+      finalizedSellsValue: Number,
     },
     propertySizeBifurcationDetail: {
-        measurementUnits: String,
-        kitchen: String,
-        halls: String,
-        bathRooms: String,
-        bedRooms: String,
-        balconies: String,
-        plot: String,
-        land: String
+      measurementUnits: String,
+      kitchen: String,
+      halls: String,
+      bathRooms: String,
+      bedRooms: String,
+      balconies: String,
+      plot: String,
+      land: String,
     },
     agriculturalSellPropertyDetails: {
-        totalArea: Number,
-        unitPrice: Number,
-        totalValue: Number
+      totalArea: Number,
+      unitPrice: Number,
+      totalValue: Number,
     },
     constructionPropertyBalconyArea: Number,
     constructionPropertyTerraceArea: Number,
@@ -62,48 +63,48 @@ let schema = new mongoose.Schema({
     leasureAmenities: [String],
     fixAmountMaintenanceDevelopmentCharges: Number,
     recurringMaintenance: {
-        lumpsumAmount: Number,
-        carpetSqFt: Number,
-        totalValue: Number
+      lumpsumAmount: Number,
+      carpetSqFt: Number,
+      totalValue: Number,
     },
     fixMaintenanceCharges: Number,
     maintenanceLumpsumAmount: Number,
     maintenanceCarpetSqFt: Number,
     lumpsumMaintenanceCharges: Number,
     floorsPriceCalculation: {
-        value: Number,
-        floors: String,
-        otherFloorSelection: String,
-        otherFloors: String
+      value: Number,
+      floors: String,
+      otherFloorSelection: String,
+      otherFloors: String,
     },
     developerPropertySellUnit: String,
     developerPropertyExtraArea: {
-        priceRate: Number,
-        extraArea: Number,
-        totalExtraAreaValue: Number
+      priceRate: Number,
+      extraArea: Number,
+      totalExtraAreaValue: Number,
     },
     developerPropertyPerSqFeetPrice: Number,
     developerPropertyArea: Number,
     developerPropertyBasicPrice: Number,
     developerPropertyFixBasicPrice: Number,
     bifurcationOfArea: {
-        reraCarpet: Number,
-        totalArea: Number,
-        balcony: String,
-        terrace: String,
-        washArea: String
+      reraCarpet: Number,
+      totalArea: Number,
+      balcony: String,
+      terrace: String,
+      washArea: String,
     },
     marketingDetail: {
-        marketingPersonality: String,
-        name: String,
-        contactNumber: Number,
-        email: String
+      marketingPersonality: String,
+      name: String,
+      contactNumber: Number,
+      email: String,
     },
     landStructure: {
-        measurementUnits: String,
-        totalLandArea: String,
-        usedArea: String,
-        openSpace: String
+      measurementUnits: String,
+      totalLandArea: String,
+      usedArea: String,
+      openSpace: String,
     },
     constructionPropertyTotalCarpet: Number,
     totalSellPropertyValue: Number,
@@ -151,13 +152,32 @@ let schema = new mongoose.Schema({
     oldPropertyPinCode: Number,
     oldPropertyState: String,
     maintenancePeriod: String,
-    developerPropertyProjectName: String
-}, {
+    developerPropertyProjectName: String,
+  },
+  {
     versionKey: false,
-});
+  }
+);
 
-const propertySchema = mongoose.model("property", schema);
+let u_schema = new mongoose.Schema(
+  {
+    // _id: mongoose.Schema.Types.ObjectId,
+    email: String,
+    name: String,
+    iAm: String,
+    password: String,
+    createTime: Date,
+    otp: String,
+  },
+  {
+    versionKey: false,
+  }
+);
+
+const propertySchema = mongoose.model('property', p_schema);
+const userSchema = mongoose.model('user', u_schema);
 
 module.exports = {
-    propertySchema: propertySchema
+  propertySchema: propertySchema,
+  userSchema: userSchema,
 };

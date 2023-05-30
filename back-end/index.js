@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const employeesRoutes = require('./routes/employ');
 const propertyRoutes = require('./routes/property');
+const userRoutes = require('./routes/user');
 const { sendMail } = require('./helper/email');
 
 const app = express();
@@ -31,6 +32,8 @@ app.get('/', (req, res) => {
 app.use('/employ', employeesRoutes);
 
 app.use('/property', propertyRoutes);
+
+app.use('/user', userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
