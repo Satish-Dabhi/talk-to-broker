@@ -4,6 +4,8 @@ export const GET_PROPERTIES_END_POINT = '/property';
 export const GET_PROPERTIES_BY_TYPE = '/property/${type}';
 export const SEND_EMAIL_END_POINT = '/send-email';
 export const ADD_USER_END_POINT = '/user';
+export const GET_USER_BY_EMAIL = '/user/${email}';
+
 
 
 export const POST_API = async (api, data) => {

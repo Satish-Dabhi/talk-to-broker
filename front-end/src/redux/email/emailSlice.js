@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { POST_API, SEND_EMAIL_END_POINT } from '../services/api';
+import { GET_API, GET_USER_BY_EMAIL, POST_API, SEND_EMAIL_END_POINT } from '../services/api';
 
 const initialState = {
   sendEmailStatus: {},
@@ -15,6 +15,7 @@ export const sendEmail = createAsyncThunk('services/sendEmail', async (mailOptio
     return thunkAPI.rejectWithValue('something went wrong');
   }
 });
+
 
 const emailSlice = createSlice({
   name: 'email',

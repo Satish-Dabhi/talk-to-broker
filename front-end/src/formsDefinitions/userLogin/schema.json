@@ -9,13 +9,13 @@
             "title": "Email",
             "type": "string",
             "format": "email",
-            "md": 9
+            "md": 12
         },
         "password": {
             "title": "Password",
             "type": "string",
             "format": "password",
-            "md": 9
+            "md": 12
         }
     }
 }

@@ -12,6 +12,23 @@ body #root {
   background-color: #c3c3c366;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  height: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: #3f51b5;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f51b5;
+  border-radius: 10px;
+  border: 4px solid transparent;
+  background-clip: content-box;
+}
+
 #ttb-form {
   padding: 50px;
 }

@@ -8,6 +8,7 @@ import loginSchema from '../../formsDefinitions/userLogin/schema.json';
 import loginUiSchema from '../../formsDefinitions/userLogin/uiSchema.json';
 import verticalImage from '../../assets/images/banner-images/vertical-building.jpg';
 import CloseIcon from '@mui/icons-material/Close';
+import './style.css';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -35,16 +36,16 @@ const SignInSignUpForms = ({ handleClose }) => {
   return (
     <Box sx={{ flexGrow: 1, overflowX: 'hidden' }}>
       <Grid container>
-        <Grid item xs={4}>
+        <Grid item xs={5}>
           <img src={verticalImage} alt="vertical-building" width={'100%'} height={'100%'} />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={7}>
           <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                <Tab label="Login" />
-                <Tab label="Registration" />
-                <IconButton edge="end" color="inherit" onClick={handleClose} aria-label="close">
+              <Tabs value={value} onChange={handleChange} className='tab-container'>
+                <Tab label="Login" sx={{ width: '40%' }}/>
+                <Tab label="Registration" sx={{ width: '40%' }}/>
+                <IconButton edge="end" color="inherit" onClick={handleClose} aria-label="close" sx={{ width: '20%' }}>
                   <CloseIcon />
                 </IconButton>
               </Tabs>

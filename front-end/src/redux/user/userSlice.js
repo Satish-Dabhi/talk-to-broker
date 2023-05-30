@@ -5,6 +5,7 @@ import {
   GET_API,
   GET_PROPERTIES_BY_TYPE,
   GET_PROPERTIES_END_POINT,
+  GET_USER_BY_EMAIL,
   POST_API,
 } from '../services/api';
 
@@ -13,8 +14,8 @@ const initialState = {
   addUserLoader: false,
   properties: {},
   getPropertiesLoader: false,
-  propertiesByType: {},
-  getPropertiesByTypeLoader: false,
+  userByEmail: {},
+  userByEmailLoader: false,
 };
 
 export const createUser = createAsyncThunk('services/createUser', async (userData, thunkAPI) => {
@@ -35,15 +36,15 @@ export const createUser = createAsyncThunk('services/createUser', async (userDat
 //   }
 // });
 
-// export const getPropertiesByType = createAsyncThunk('services/getPropertiesByType', async (propertyType, thunkAPI) => {
-//   try {
-//     const api = GET_PROPERTIES_BY_TYPE.replace('${type}', propertyType);
-//     const resp = await GET_API(api);
-//     return resp;
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue('something went wrong');
-//   }
-// });
+export const getUserByEmail = createAsyncThunk('services/getPropertiesByType', async (email, thunkAPI) => {
+  try {
+    const api = GET_USER_BY_EMAIL.replace('${email}', email);
+    const resp = await GET_API(api);
+    return resp;
+  } catch (error) {
+    return thunkAPI.rejectWithValue('something went wrong');
+  }
+});
 
 const userSlice = createSlice({
   name: 'user',
@@ -71,16 +72,16 @@ const userSlice = createSlice({
     // [getProperties.rejected]: (state) => {
     //   state.getPropertiesLoader = false;
     // },
-    // [getPropertiesByType.pending]: (state) => {
-    //   state.getPropertiesByTypeLoader = true;
-    // },
-    // [getPropertiesByType.fulfilled]: (state, action) => {
-    //   state.getPropertiesByTypeLoader = false;
-    //   state.propertiesByType = action.payload;
-    // },
-    // [getPropertiesByType.rejected]: (state) => {
-    //   state.getPropertiesByTypeLoader = false;
-    // },
+    [getUserByEmail.pending]: (state) => {
+      state.userByEmailLoader = true;
+    },
+    [getUserByEmail.fulfilled]: (state, action) => {
+      state.userByEmailLoader = false;
+      state.userByEmail = action.payload;
+    },
+    [getUserByEmail.rejected]: (state) => {
+      state.userByEmailLoader = false;
+    },
   },
 });
 

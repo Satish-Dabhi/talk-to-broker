@@ -18,7 +18,7 @@ const MyModal = ({ showModal, handleCloseModal, body }) => {
         maxWidth={'md'}
         TransitionComponent={Transition}
         keepMounted
-        onClose={handleClose}
+        // onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
         <SignInSignUpForms handleClose={handleClose}/>

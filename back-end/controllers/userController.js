@@ -15,19 +15,20 @@ const createNewUser = async (req, res) => {
 //   res.send({ status: "OK", data: allEmployees });
 // };
 
-// const getPropertyByType = async(req, res) => {
-//   const {
-//     params: { propertyType },
-//   } = req;
-//   if (!propertyType) {
-//     return;
-//   }
-//   const properties = await userService.getPropertyByType(propertyType);
-//   res.send({ status: "OK", data: properties });
-// };
+const getUserByEmail = async(req, res) => {
+  const {
+    params: { email },
+  } = req;
+  if (!email) {
+    return;
+  }
+  const user = await userService.getUserByEmail(email);
+  res.send({ status: "OK", data: user });
+};
 
 module.exports = {
   createNewUser,
+  getUserByEmail,
   // getAllProperties,
   // getPropertyByType
 };
