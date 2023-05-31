@@ -38,7 +38,7 @@ export function getSchemaFieldTitle(propertyName) {
   return updatedString;
 }
 
-export function isWithinFiveMinutes(time, differenceToCheck) {
+export function isWithinMinutes(time, differenceToCheck) {
   const currentTime = new Date();
   const compareTime = new Date(time);
 

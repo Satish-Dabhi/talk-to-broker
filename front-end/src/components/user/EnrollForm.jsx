@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as constant from '../../services/utils/constant';
 import ObjectFieldTemplate from '../ObjectFieldTemplate';
-import { generateOTP, getSchemaFieldTitle } from '../../services/utils';
+import { generateOTP, getSchemaFieldTitle, isWithinMinutes } from '../../services/utils';
 import RadioWidget from '../customWidgets/RadioWidget';
 import { sendEmail } from '../../redux/email/emailSlice';
 import { createUser, getUserByEmail } from '../../redux/user/userSlice';
@@ -31,16 +31,36 @@ const EnrollForm = (props) => {
   const { schema, uiSchema, form } = props;
   const [formData, setFormData] = useState({});
   const [showOTP, setShowOTP] = useState(false);
-  const [otp, setOtp] = useState('');
+  const [verifiedOtp, setVerifiedOtp] = useState('');
+  const [generatedOtp, setGeneratedOtp] = useState('');
   const [snackbar, setSnackbar] = React.useState({
     open: false,
-    message: ''
+    message: '',
+    severity: 'success',
   });
   const [validateForm, setValidateForm] = useState(false);
   const { addUser, userByEmail, userByEmailLoader } = useSelector((store) => store.userHandler);
   const dispatch = useDispatch();
 
-  console.log('userByEmail', userByEmail);
+  useEffect(() => {
+    if (form === 'registration' && addUser?.code === 'created') {
+      const mailOptions = {
+        from: 'babyboss65166516@gmail.com',
+        to: formData.email,
+        subject: 'Welcome',
+        emailBody: `Your Otp is ${generatedOtp}`,
+      };
+      setShowOTP(true);
+    } else if (form === 'registration' && addUser?.code === 'exist') {
+      setSnackbar({
+        open: true,
+        message: 'This email address is already exist',
+        severity: 'error',
+      });
+    }
+  }, [addUser]);
+
+  console.log('useraddUserByEmail', addUser);
   console.log('userByEmailLoader', userByEmailLoader);
 
   const transformErrors = (errors) => {
@@ -57,37 +77,18 @@ const EnrollForm = (props) => {
   };
 
   const handleSubmit = ({ formData }) => {
-    console.log('formData...............', formData);
     if (form === 'registration') {
-      dispatch(getUserByEmail(formData.email));
-      if (!userByEmailLoader && userByEmail?.data?.length === 0) {
-        const otp = generateOTP();
-        const userData = {
-          email: formData.email,
-          iAm: formData.iAm,
-          name: formData.name,
-          password: formData.password,
-          createTime: new Date(),
-          otp: otp,
-        };
-        console.log('userData...............userData', userData);
-
-        // dispatch(createUser(userData));
-
-        const mailOptions = {
-          from: 'babyboss65166516@gmail.com',
-          to: formData.email,
-          subject: 'Welcome',
-          emailBody: `Your Otp is ${otp}`,
-        };
-        // dispatch(sendEmail(mailOptions));
-        setShowOTP(true);
-      } else {
-        setSnackbar({
-          open: true,
-          message: "This email address is already exist"
-        })
-      }
+      const otp = generateOTP();
+      setGeneratedOtp(otp);
+      const userData = {
+        email: formData.email,
+        iAm: formData.iAm,
+        name: formData.name,
+        password: formData.password,
+        createTime: new Date(),
+        otp: otp,
+      };
+      dispatch(createUser(userData));
     }
   };
 
@@ -106,12 +107,50 @@ const EnrollForm = (props) => {
     setFormData(formData);
   };
 
+  useEffect(() => {
+    if (userByEmail?.data && userByEmail?.data.length > 0) {
+      const { createTime, otp } = userByEmail?.data[0];
+      console.log('createTime', createTime);
+      console.log('otp', otp);
+      if (isWithinMinutes(createTime, 1)) {
+        verifiedOtp === otp
+          ? setSnackbar({
+              open: true,
+              message: 'Verified',
+              severity: 'success',
+            })
+          : setSnackbar({
+              open: true,
+              message: 'Please Enter valid verification code',
+              severity: 'error',
+            });
+      } else {
+        setSnackbar({
+          open: true,
+          message: 'Your verification code is not valid',
+          severity: 'error',
+        });
+      }
+    }
+
+    // if (otp === userByEmail?.data[0].otp) {
+    //   setSnackbar({
+    //     open: true,
+    //     message: 'Verified',
+    //     severity: 'success',
+    //   });
+    // } else {
+    //   setSnackbar({
+    //     open: true,
+    //     message: 'please verify again and try again',
+    //     severity: 'error',
+    //   });
+    // }
+  }, [userByEmail]);
+
   const verifyCode = (email) => {
     dispatch(getUserByEmail(email));
-    if(otp === userByEmail?.data[0].otp){
-      
-    }
-  }
+  };
 
   const handleSnackbarClose = () => {
     setSnackbar({ ...snackbar, open: false });
@@ -120,6 +159,10 @@ const EnrollForm = (props) => {
   const widgets = {
     radio: RadioWidget,
   };
+
+  const resendVerificationCode = (email) => {
+
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -133,7 +176,16 @@ const EnrollForm = (props) => {
               Enter 6 digit Verification code sent on {formData?.email} mail
             </Typography>
             <br />
-            <TextField name="otp" style={{ "width": '80%' }} label="Enter Verification Code" type="text" variant="outlined" onChange={(event) => setOtp(event.target.value)} />
+            <TextField
+              name="otp"
+              style={{ width: '80%' }}
+              label="Enter Verification Code"
+              type="text"
+              variant="outlined"
+              onChange={(event) => setVerifiedOtp(event.target.value)}
+            />
+            <br />
+            <a onClick={() => resendVerificationCode(formData?.email)}></a>
             <div className="row">
               <div className="d-flex justify-content-center">
                 <Button
@@ -141,7 +193,7 @@ const EnrollForm = (props) => {
                   variant="contained"
                   class="btn btn-outline-success"
                   // type="submit"
-                  style={{ 'width': '50%', 'margin': '5%' }}
+                  style={{ width: '50%', margin: '5%' }}
                 >
                   Submit
                 </Button>
@@ -170,7 +222,7 @@ const EnrollForm = (props) => {
                   variant="contained"
                   class="btn btn-outline-success"
                   type="submit"
-                  style={{ 'width': '50%', 'margin': '5%' }}
+                  style={{ width: '50%', margin: '5%' }}
                 >
                   {form === 'registration' ? 'Register' : 'Login'}
                 </Button>
@@ -179,9 +231,13 @@ const EnrollForm = (props) => {
           </Form>
         )}
       </div>
-      <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        open={snackbar.open} autoHideDuration={6000} onClose={handleSnackbarClose}>
-        <Alert onClose={handleSnackbarClose} severity="error" sx={{ width: '100%' }}>
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+      >
+        <Alert onClose={handleSnackbarClose} severity={snackbar.severity} sx={{ width: '100%' }}>
           {snackbar.message}
         </Alert>
       </Snackbar>

@@ -11,21 +11,25 @@ export const GET_USER_BY_EMAIL = '/user/${email}';
 export const POST_API = async (api, data) => {
   const newApi = API_HOSTNAME + api;
   console.log('dadasydyusdyusadsad', data);
-  return await fetch(newApi, {
+  const response = await fetch(newApi, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     },
     body: JSON.stringify(data),
-  })
-    .then((data) => {
-      console.log('data', data);
-      return data;
-    })
-    .catch((error) => {
-      console.error('error', error);
-    });
+  });
+
+  console.log("response",response);
+  return response.json();
+
+    // .then((data) => {
+    //   console.log('data', data);
+    //   // return data;
+    // })
+    // .catch((error) => {
+    //   console.error('error', error);
+    // });
 };
 
 export const GET_API = async (api) => {

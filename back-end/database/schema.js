@@ -162,6 +162,7 @@ let p_schema = new mongoose.Schema(
 let u_schema = new mongoose.Schema(
   {
     // _id: mongoose.Schema.Types.ObjectId,
+    token: String,
     email: String,
     name: String,
     iAm: String,

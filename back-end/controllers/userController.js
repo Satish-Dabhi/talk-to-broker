@@ -1,8 +1,9 @@
-const userService = require("../services/userService");
+const userService = require('../services/userService');
 
 const createNewUser = async (req, res) => {
   try {
     const { body } = req;
+    console.log('datadatadata', body);
     const savedUser = await userService.createNewUser(body);
     res.status(201).json(savedUser);
   } catch (error) {
