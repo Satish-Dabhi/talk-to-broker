@@ -7,6 +7,7 @@ import {
   GET_PROPERTIES_END_POINT,
   GET_USER_BY_EMAIL,
   POST_API,
+  UPDATE_USER_BY_EMAIL,
 } from '../services/api';
 
 const initialState = {
@@ -16,6 +17,8 @@ const initialState = {
   getPropertiesLoader: false,
   userByEmail: {},
   userByEmailLoader: false,
+  updatedUser: {},
+  updatedUserLoader: false,
 };
 
 export const createUser = createAsyncThunk('services/createUser', async (userData, thunkAPI) => {
@@ -46,6 +49,15 @@ export const getUserByEmail = createAsyncThunk('services/getPropertiesByType', a
   }
 });
 
+export const updateUser = createAsyncThunk('services/updateUser', async (userData, thunkAPI) => {
+  try {
+    const resp = await POST_API(UPDATE_USER_BY_EMAIL, userData);
+    return resp;
+  } catch (error) {
+    return thunkAPI.rejectWithValue('something went wrong');
+  }
+});
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -61,17 +73,16 @@ const userSlice = createSlice({
     [createUser.rejected]: (state) => {
       state.addUserLoader = false;
     },
-    // },
-    // [getProperties.pending]: (state) => {
-    //   state.getPropertiesLoader = true;
-    // },
-    // [getProperties.fulfilled]: (state, action) => {
-    //   state.getPropertiesLoader = false;
-    //   state.properties = action.payload;
-    // },
-    // [getProperties.rejected]: (state) => {
-    //   state.getPropertiesLoader = false;
-    // },
+    [updateUser.pending]: (state) => {
+      state.updateUserLoader = true;
+    },
+    [updateUser.fulfilled]: (state, { payload }) => {
+      state.updateUserLoader = false;
+      state.updateUser = payload;
+    },
+    [updateUser.rejected]: (state) => {
+      state.updateUserLoader = false;
+    },
     [getUserByEmail.pending]: (state) => {
       state.userByEmailLoader = true;
     },

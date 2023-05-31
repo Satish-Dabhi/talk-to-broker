@@ -1,6 +1,6 @@
 import { Grid, IconButton, Tab, Tabs, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
+import React, { useState } from 'react';
 import EnrollForm from './EnrollForm';
 import registrationSchema from '../../formsDefinitions/userRegistration/schema.json';
 import registrationUiSchema from '../../formsDefinitions/userRegistration/uiSchema.json';
@@ -28,6 +28,7 @@ function TabPanel(props) {
 
 const SignInSignUpForms = ({ handleClose }) => {
   const [value, setValue] = React.useState(0);
+  const [showVerifyForm, setShowVerifyForm] = useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -41,20 +42,33 @@ const SignInSignUpForms = ({ handleClose }) => {
         </Grid>
         <Grid item xs={7}>
           <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <Tabs value={value} onChange={handleChange} className='tab-container'>
-                <Tab label="Login" sx={{ width: '40%' }}/>
-                <Tab label="Registration" sx={{ width: '40%' }}/>
-                <IconButton edge="end" color="inherit" onClick={handleClose} aria-label="close" sx={{ width: '20%' }}>
+            {!showVerifyForm ? (
+              <Box sx={{ borderBottom: 1 }}>
+                <Tabs value={value} onChange={handleChange} className="tab-container">
+                  <Tab label="Login" sx={{ width: '40%' }} />
+                  <Tab label="Registration" sx={{ width: '40%' }} />
+                  <IconButton edge="end" color="inherit" onClick={handleClose} aria-label="close" sx={{ width: '20%' }}>
+                    <CloseIcon />
+                  </IconButton>
+                </Tabs>
+              </Box>
+            ) : (
+              <Box sx={{ borderBottom: 1, float: 'right' }}>
+                <IconButton edge="end" color="inherit" onClick={handleClose} aria-label="close" sx={{ width: '100%' }}>
                   <CloseIcon />
                 </IconButton>
-              </Tabs>
-            </Box>
+              </Box>
+            )}
             <TabPanel value={value} index={0}>
-              <EnrollForm schema={loginSchema} uiSchema={loginUiSchema} form="login"/>
+              <EnrollForm schema={loginSchema} uiSchema={loginUiSchema} form="login" />
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <EnrollForm schema={registrationSchema} uiSchema={registrationUiSchema} form="registration"/>
+              <EnrollForm
+                schema={registrationSchema}
+                uiSchema={registrationUiSchema}
+                form="registration"
+                verifyForm={(flag) => setShowVerifyForm(flag)}
+              />
             </TabPanel>
           </Box>
         </Grid>

@@ -10,7 +10,7 @@ import ObjectFieldTemplate from '../ObjectFieldTemplate';
 import { generateOTP, getSchemaFieldTitle, isWithinMinutes } from '../../services/utils';
 import RadioWidget from '../customWidgets/RadioWidget';
 import { sendEmail } from '../../redux/email/emailSlice';
-import { createUser, getUserByEmail } from '../../redux/user/userSlice';
+import { createUser, getUserByEmail, updateUser } from '../../redux/user/userSlice';
 import { Alert } from '@mui/material';
 
 const theme = createTheme({
@@ -28,7 +28,7 @@ const Form = withTheme(Mui5Theme);
 console.log('new Date()', new Date());
 
 const EnrollForm = (props) => {
-  const { schema, uiSchema, form } = props;
+  const { schema, uiSchema, form, verifyForm } = props;
   const [formData, setFormData] = useState({});
   const [showOTP, setShowOTP] = useState(false);
   const [verifiedOtp, setVerifiedOtp] = useState('');
@@ -39,26 +39,66 @@ const EnrollForm = (props) => {
     severity: 'success',
   });
   const [validateForm, setValidateForm] = useState(false);
-  const { addUser, userByEmail, userByEmailLoader } = useSelector((store) => store.userHandler);
+  const { addUser, userByEmail, userByEmailLoader, updatedUser } = useSelector((store) => store.userHandler);
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   console.log('foformformformformrm', form);
+  //   setVerifiedOtp('');
+  //   setGeneratedOtp('');
+  // }, [form]);
+
   useEffect(() => {
-    if (form === 'registration' && addUser?.code === 'created') {
+    if (form === 'registration' && Object.keys(formData).length !== 0) {
+      if (addUser?.status === 'created') {
+        const mailOptions = {
+          from: 'babyboss65166516@gmail.com',
+          to: formData.email,
+          subject: 'Welcome',
+          emailBody: `Your Otp is ${generatedOtp}`,
+        };
+        dispatch(sendEmail(mailOptions));
+        verifyForm(true);
+        setShowOTP(true);
+        setSnackbar({
+          open: true,
+          message: 'Verification code sent',
+          severity: 'success',
+        });
+      } else if (addUser?.status === 'exist') {
+        setSnackbar({
+          open: true,
+          message: 'This email address is already exist',
+          severity: 'error',
+        });
+      }
+    }
+    // else{
+    //   setSnackbar({
+    //     open: true,
+    //     message: 'Something went wrong, Please try again after some time',
+    //     severity: 'error',
+    //   });
+    // }
+  }, [addUser]);
+
+  useEffect(() => {
+    console.log("gfj@mail.com",updatedUser);
+    if (form === 'registration' && Object.keys(formData).length !== 0 && updatedUser?.status === 'done') {
       const mailOptions = {
         from: 'babyboss65166516@gmail.com',
         to: formData.email,
         subject: 'Welcome',
         emailBody: `Your Otp is ${generatedOtp}`,
       };
-      setShowOTP(true);
-    } else if (form === 'registration' && addUser?.code === 'exist') {
+      dispatch(sendEmail(mailOptions));
       setSnackbar({
         open: true,
-        message: 'This email address is already exist',
-        severity: 'error',
+        message: 'Verification code sent',
+        severity: 'success',
       });
     }
-  }, [addUser]);
+  }, [updatedUser]);
 
   console.log('useraddUserByEmail', addUser);
   console.log('userByEmailLoader', userByEmailLoader);
@@ -85,7 +125,7 @@ const EnrollForm = (props) => {
         iAm: formData.iAm,
         name: formData.name,
         password: formData.password,
-        createTime: new Date(),
+        otpCreateTime: new Date(),
         otp: otp,
       };
       dispatch(createUser(userData));
@@ -109,10 +149,10 @@ const EnrollForm = (props) => {
 
   useEffect(() => {
     if (userByEmail?.data && userByEmail?.data.length > 0) {
-      const { createTime, otp } = userByEmail?.data[0];
-      console.log('createTime', createTime);
+      const { otpCreateTime, otp } = userByEmail?.data[0];
+      console.log('otpCreateTime', otpCreateTime);
       console.log('otp', otp);
-      if (isWithinMinutes(createTime, 1)) {
+      if (isWithinMinutes(otpCreateTime, 1)) {
         verifiedOtp === otp
           ? setSnackbar({
               open: true,
@@ -161,8 +201,15 @@ const EnrollForm = (props) => {
   };
 
   const resendVerificationCode = (email) => {
-
-  }
+    const otp = generateOTP();
+    setGeneratedOtp(otp);
+    const userData = {
+      email: formData.email,
+      otpCreateTime: new Date(),
+      otp: otp,
+    };
+    dispatch(updateUser(userData));
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -185,7 +232,9 @@ const EnrollForm = (props) => {
               onChange={(event) => setVerifiedOtp(event.target.value)}
             />
             <br />
-            <a onClick={() => resendVerificationCode(formData?.email)}></a>
+            <a href="#" onClick={() => resendVerificationCode(formData?.email)}>
+              Resend Verification code
+            </a>
             <div className="row">
               <div className="d-flex justify-content-center">
                 <Button
