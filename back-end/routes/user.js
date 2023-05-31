@@ -8,4 +8,7 @@ router.get("/:email", userController.getUserByEmail);
 
 router.post("/", userController.createNewUser);
 
+router.post("/updateUser", userController.updateUserByEmail);
+
+
 module.exports = router;

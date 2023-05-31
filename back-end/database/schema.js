@@ -167,7 +167,7 @@ let u_schema = new mongoose.Schema(
     name: String,
     iAm: String,
     password: String,
-    createTime: Date,
+    otpCreateTime: Date,
     otp: String,
   },
   {

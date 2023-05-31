@@ -7,7 +7,7 @@ const createNewUser = async (data) => {
     console.log('data', data);
     const doesExist = await schema.userSchema.findOne({ email: data.email });
     if (doesExist) {
-      return { message: 'Email is already been registered', code: 'exist' };
+      return { message: 'Email is already been registered', status: 'exist' };
     }
     const tokendata = {
       name: data.email,
@@ -19,8 +19,8 @@ const createNewUser = async (data) => {
     console.log('userData', userData);
     const user = new schema.userSchema(userData);
     const savedUser = await user.save();
-    if(savedUser){
-      return { message: 'User Created successfully', code: 'created' };
+    if (savedUser) {
+      return { message: 'User Created successfully', status: 'created' };
     }
     // return savedUser;
   } catch (error) {
@@ -55,9 +55,21 @@ const getUserByEmail = async (email) => {
     });
 };
 
+const updateUserByEmail = async (data) => {
+  return await schema.userSchema
+    .updateOne({ email: data.email }, { $set: data })
+    .then((result) => {
+      if (result) {
+      return { message: 'User Updated successfully', status: 'done' };
+      } else {
+        return { message: 'User not Updated', status: 'unDone' };
+      }
+    })
+    .catch((err) => console.warn(err));
+};
+
 module.exports = {
   createNewUser,
   getUserByEmail,
-  // getAllProperties,
-  // getPropertyByType
+  updateUserByEmail
 };

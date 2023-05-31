@@ -27,9 +27,18 @@ const getUserByEmail = async(req, res) => {
   res.send({ status: "OK", data: user });
 };
 
+const updateUserByEmail = async (req, res) => {
+  try {
+    const { body } = req;
+    const updatedUser = await userService.updateUserByEmail(body);
+    res.status(201).json(updatedUser);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   createNewUser,
   getUserByEmail,
-  // getAllProperties,
-  // getPropertyByType
+  updateUserByEmail
 };
