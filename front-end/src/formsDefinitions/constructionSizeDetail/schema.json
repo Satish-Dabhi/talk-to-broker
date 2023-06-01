@@ -100,16 +100,14 @@
         "constructionPropertyBalconyArea": {
             "title": "Balcony Area If Any",
             "type": "number",
-            
             "minimum": 1,
-                                    "default": 0
+            "default": 0
         },
         "constructionPropertyTerraceArea": {
             "title": "Terrace Area If Any",
             "type": "number",
-            
             "minimum": 1,
-                                    "default": 0
+            "default": 0
         },
         "constructionPropertyTotalCarpet": {
             "title": "Total Carpet",
@@ -119,16 +117,14 @@
         "constructionPropertyBuiltUp": {
             "title": "Built Up",
             "type": "number",
-            
             "minimum": 1,
-                                    "default": 0
+            "default": 0
         },
         "constructionPropertySuperBuiltUp": {
             "title": "Super Built-Up/Total Construction",
             "type": "number",
-            
             "minimum": 1,
-                                    "default": 0
+            "default": 0
         }
     },
     "allOf": [
@@ -151,16 +147,14 @@
                     "constructionPropertyLowerFloorCarpet": {
                         "title": "Lower Floor Carpet",
                         "type": "number",
-                        
                         "minimum": 1,
-                                    "default": 0
+                        "default": 0
                     },
                     "constructionPropertyUpperFloorCarpet": {
                         "title": "Upper Floor Carpet",
                         "type": "number",
-                        
                         "minimum": 1,
-                                    "default": 0
+                        "default": 0
                     }
                 }
             }
@@ -192,8 +186,7 @@
                                 "title": "RERA Carpet",
                                 "type": "number",
                                 "minimum": 1,
-                                    "default": 0,
-                                
+                                "default": 0,
                                 "md": 9
                             },
                             "balcony": {
@@ -218,8 +211,7 @@
                                 "title": "Total Area",
                                 "type": "number",
                                 "minimum": 1,
-                                    "default": 0,
-                                
+                                "default": 0,
                                 "md": 6
                             }
                         }

@@ -169,6 +169,7 @@ let u_schema = new mongoose.Schema(
     password: String,
     otpCreateTime: Date,
     otp: String,
+    verified: Boolean
   },
   {
     versionKey: false,

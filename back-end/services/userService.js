@@ -1,28 +1,48 @@
 const schema = require('../database/schema');
 const jwt = require('jsonwebtoken');
 const JWT_SECRET_KEY = 'my_secret_key';
+const utils = require('../helper/util');
 
 const createNewUser = async (data) => {
   try {
     console.log('data', data);
-    const doesExist = await schema.userSchema.findOne({ email: data.email });
-    if (doesExist) {
+    const verifiedUser = await schema.userSchema.findOne({ email: data.email, verified: true });
+    console.log("verifiedUser",verifiedUser);
+  
+    if (verifiedUser) {
       return { message: 'Email is already been registered', status: 'exist' };
     }
-    const tokendata = {
-      name: data.email,
-      role: data.password,
-    };
+    const doesExist = await schema.userSchema.findOne({ email: data.email });
+    console.log("doesExist",doesExist);
+    if (doesExist) {
+      return await schema.userSchema
+        .updateOne({ email: data.email }, { $set: data })
+        .then((result) => {
+          if (result) {
+            return { message: 'User Created successfully', status: 'created' };
+          } else {
+            return { message: 'Something went wrong', status: 'unDone' };
+          }
+        })
+        .catch((err) => console.warn(err));
+    } else {
+      const tokendata = {
+        name: data.email,
+        role: data.password,
+      };
+      const token = jwt.sign(tokendata, JWT_SECRET_KEY);
+      console.log("else.........",token);
+      const otp = utils.generateOTP();
+      console.log("else.........",otp);
 
-    const token = jwt.sign(tokendata, JWT_SECRET_KEY);
-    const userData = { ...data, token: token };
-    console.log('userData', userData);
-    const user = new schema.userSchema(userData);
-    const savedUser = await user.save();
-    if (savedUser) {
-      return { message: 'User Created successfully', status: 'created' };
+      const userData = { ...data, token: token, otp: otp, otpCreateTime: new Date() };
+      console.log('userData', userData);
+      const user = new schema.userSchema(userData);
+      const savedUser = await user.save();
+      if (savedUser) {
+        return { message: 'User Created successfully', status: 'created' };
+      }
     }
-    // return savedUser;
   } catch (error) {
     throw new Error('Failed to create a user', error);
   }
@@ -60,7 +80,7 @@ const updateUserByEmail = async (data) => {
     .updateOne({ email: data.email }, { $set: data })
     .then((result) => {
       if (result) {
-      return { message: 'User Updated successfully', status: 'done' };
+        return { message: 'User Updated successfully', status: 'done' };
       } else {
         return { message: 'User not Updated', status: 'unDone' };
       }
@@ -71,5 +91,5 @@ const updateUserByEmail = async (data) => {
 module.exports = {
   createNewUser,
   getUserByEmail,
-  updateUserByEmail
+  updateUserByEmail,
 };

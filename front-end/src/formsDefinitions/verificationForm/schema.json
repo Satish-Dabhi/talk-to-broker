@@ -1,0 +1,16 @@
+{
+    "title": "Enter 6 digit Verification code sent on your mail",
+    "type": "object",
+    "required": [
+        "otp"
+    ],
+    "properties": {
+        "otp": {
+            "title": "Enter Verification code",
+            "type": "string",
+            "format": "number",
+            "md": 12,
+            "minLength": 6
+        }
+    }
+}

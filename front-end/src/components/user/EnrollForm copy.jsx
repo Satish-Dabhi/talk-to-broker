@@ -12,8 +12,6 @@ import RadioWidget from '../customWidgets/RadioWidget';
 import { sendEmail } from '../../redux/email/emailSlice';
 import { createUser, getUserByEmail, updateUser } from '../../redux/user/userSlice';
 import { Alert } from '@mui/material';
-import verificationFormSchema from '../../formsDefinitions/verificationForm/schema.json';
-import verificationFormUiSchema from '../../formsDefinitions/verificationForm/uiSchema.json';
 
 const theme = createTheme({
   components: {
@@ -32,11 +30,9 @@ const EnrollForm = (props) => {
   const [currentForm, setCurrentForm] = useState({
     schema: schema,
     uiSchema: uiSchema,
-    formType: form,
   });
-  const [userEmail, setUserEmail] = useState('');
   const [formData, setFormData] = useState({});
-  // const [showOTP, setShowOTP] = useState(false);
+  const [showOTP, setShowOTP] = useState(false);
   const [verifiedOtp, setVerifiedOtp] = useState('');
   const [generatedOtp, setGeneratedOtp] = useState('');
   const [snackbar, setSnackbar] = React.useState({
@@ -55,18 +51,21 @@ const EnrollForm = (props) => {
   // }, [form]);
 
   useEffect(() => {
-    console.log('addUser', currentForm);
-    console.log('addUser', addUser);
-    if (currentForm.formType === 'registration') {
+    if (form === 'registration' && Object.keys(formData).length !== 0) {
       if (addUser?.status === 'created') {
-        console.log('userEmail', userEmail);
-        // dispatch(getUserByEmail(userEmail));
+        const mailOptions = {
+          from: 'babyboss65166516@gmail.com',
+          to: formData.email,
+          subject: 'Welcome',
+          emailBody: `Your Otp is ${generatedOtp}`,
+        };
+        // dispatch(sendEmail(mailOptions));
         verifyForm(true);
-        // setShowOTP(true);
-        setCurrentForm({
-          schema: verificationFormSchema,
-          uiSchema: verificationFormUiSchema,
-          formType: 'verification',
+        setShowOTP(true);
+        setSnackbar({
+          open: true,
+          message: 'Verification code sent',
+          severity: 'success',
         });
       } else if (addUser?.status === 'exist') {
         setSnackbar({
@@ -79,15 +78,13 @@ const EnrollForm = (props) => {
   }, [addUser]);
 
   useEffect(() => {
-    if (userByEmail?.data && userByEmail?.data.length > 0) {
-      const { otpCreateTime, otp } = userByEmail?.data[0];
-      console.log('otpCreateTime', otpCreateTime);
-      console.log('otp', otp);
+    console.log('gfj@mail.com..................................', updatedUser);
+    if (form === 'registration' && Object.keys(formData).length !== 0 && updatedUser?.status === 'done') {
       const mailOptions = {
         from: 'babyboss65166516@gmail.com',
         to: formData.email,
         subject: 'Welcome',
-        emailBody: `Your Otp is ${otp}`,
+        emailBody: `Your Otp is ${generatedOtp}`,
       };
       dispatch(sendEmail(mailOptions));
       setSnackbar({
@@ -95,8 +92,64 @@ const EnrollForm = (props) => {
         message: 'Verification code sent',
         severity: 'success',
       });
+    }
+  }, [updatedUser]);
+
+  console.log('useraddUserByEmail', addUser);
+  console.log('userByEmailLoader', userByEmailLoader);
+
+  const transformErrors = (errors) => {
+    return errors.map((error) => {
+      if (error.name === 'required') {
+        const fieldTitle = getSchemaFieldTitle(error.property);
+        return {
+          ...error,
+          message: `${fieldTitle} is required`,
+        };
+      }
+      return error;
+    });
+  };
+
+  const handleSubmit = ({ formData }) => {
+    if (form === 'registration') {
+      const otp = generateOTP();
+      setGeneratedOtp(otp);
+      const userData = {
+        email: formData.email,
+        iAm: formData.iAm,
+        name: formData.name,
+        password: formData.password,
+        otpCreateTime: new Date(),
+        otp: otp,
+      };
+      dispatch(createUser(userData));
+    }
+  };
+
+  const validatePasswordMatch = (formData, errors) => {
+    if (form === 'registration') {
+      const { password, rePassword } = formData;
+      if (password !== rePassword) {
+        errors.rePassword.addError('Password and Re-Password should be same');
+      }
+    }
+    return errors;
+  };
+
+  const handleChange = ({ formData }) => {
+    console.log('formData', formData);
+    setFormData(formData);
+  };
+
+  useEffect(() => {
+    console.log('userByEmail65656565656', userByEmail);
+    if (userByEmail?.data && userByEmail?.data.length > 0) {
+      const { otpCreateTime, otp } = userByEmail?.data[0];
+      console.log('otpCreateTime', otpCreateTime);
+      console.log('otp', otp);
       if (isWithinMinutes(otpCreateTime, 1)) {
-        if (formData.otp === otp) {
+        if (verifiedOtp === otp) {
           setSnackbar({
             open: true,
             message: 'Verified',
@@ -124,77 +177,6 @@ const EnrollForm = (props) => {
     }
   }, [userByEmail]);
 
-  useEffect(() => {
-    console.log('gfj@mail.com..................................', updatedUser);
-    if (
-      currentForm.formType === 'registration' &&
-      Object.keys(formData).length !== 0 &&
-      updatedUser?.status === 'done'
-    ) {
-      const mailOptions = {
-        from: 'babyboss65166516@gmail.com',
-        to: formData.email,
-        subject: 'Welcome',
-        emailBody: `Your Otp is ${generatedOtp}`,
-      };
-      dispatch(sendEmail(mailOptions));
-      setSnackbar({
-        open: true,
-        message: 'Verification code sent',
-        severity: 'success',
-      });
-    }
-  }, [updatedUser]);
-
-  const transformErrors = (errors) => {
-    return errors.map((error) => {
-      if (error.name === 'required') {
-        const fieldTitle = getSchemaFieldTitle(error.property);
-        return {
-          ...error,
-          message: `${fieldTitle} is required`,
-        };
-      }
-      return error;
-    });
-  };
-
-  const handleSubmit = ({ formData }) => {
-    if (currentForm.formType === 'registration') {
-      const otp = generateOTP();
-      setGeneratedOtp(otp);
-      setUserEmail(formData.email);
-      const userData = {
-        email: formData.email,
-        iAm: formData.iAm,
-        name: formData.name,
-        password: formData.password,
-        // otpCreateTime: new Date(),
-        // otp: otp,
-      };
-      dispatch(createUser(userData));
-    } else {
-      console.log('.//./././././././.', formData);
-      console.log('.//././currentForm./././././.', currentForm);
-      dispatch(getUserByEmail(userEmail));
-    }
-  };
-
-  const validatePasswordMatch = (formData, errors) => {
-    if (currentForm.formType === 'registration') {
-      const { password, rePassword } = formData;
-      if (password !== rePassword) {
-        errors.rePassword.addError('Password and Re-Password should be same');
-      }
-    }
-    return errors;
-  };
-
-  const handleChange = ({ formData }) => {
-    console.log('formData', formData);
-    setFormData(formData);
-  };
-
   const verifyCode = (email) => {
     dispatch(getUserByEmail(email));
   };
@@ -207,11 +189,11 @@ const EnrollForm = (props) => {
     radio: RadioWidget,
   };
 
-  const resendVerificationCode = () => {
+  const resendVerificationCode = (email) => {
     const otp = generateOTP();
     setGeneratedOtp(otp);
     const userData = {
-      email: userEmail,
+      email: formData.email,
       otpCreateTime: new Date(),
       otp: otp,
     };
@@ -221,44 +203,71 @@ const EnrollForm = (props) => {
   return (
     <ThemeProvider theme={theme}>
       <div className="enroll-modal">
-        <Form
-          formData={formData}
-          schema={currentForm.schema}
-          uiSchema={currentForm.uiSchema}
-          ObjectFieldTemplate={ObjectFieldTemplate}
-          onSubmit={handleSubmit}
-          onChange={handleChange}
-          widgets={widgets}
-          // onError={onError}
-          validate={validatePasswordMatch}
-          noHtml5Validate
-          liveValidate={validateForm}
-          transformErrors={transformErrors}
-        >
-          {currentForm.formType === 'verification' && (
-            <a href="#" onClick={() => resendVerificationCode()}>
+        {showOTP ? (
+          <>
+            <Typography variant="h5" gutterBottom>
+              Verify
+            </Typography>
+            <Typography variant="h6" gutterBottom>
+              Enter 6 digit Verification code sent on {formData?.email} mail
+            </Typography>
+            <br />
+            <TextField
+              name="otp"
+              style={{ width: '80%' }}
+              label="Enter Verification Code"
+              type="text"
+              variant="outlined"
+              onChange={(event) => setVerifiedOtp(event.target.value)}
+            />
+            <br />
+            <a href="#" onClick={() => resendVerificationCode(formData?.email)}>
               Resend Verification code
             </a>
-          )}
-          <div className="row">
-            <div className="d-flex justify-content-center">
-              <Button
-                onClick={() => setValidateForm(true)}
-                variant="contained"
-                class="btn btn-outline-success"
-                type="submit"
-                style={{ width: '50%', margin: '5%' }}
-              >
-                {currentForm.formType === 'registration'
-                  ? 'Register'
-                  : currentForm.formType === 'login'
-                  ? 'Login'
-                  : 'Verify'}
-              </Button>
+            <div className="row">
+              <div className="d-flex justify-content-center">
+                <Button
+                  onClick={() => verifyCode(formData?.email)}
+                  variant="contained"
+                  class="btn btn-outline-success"
+                  // type="submit"
+                  style={{ width: '50%', margin: '5%' }}
+                >
+                  Submit
+                </Button>
+              </div>
             </div>
-          </div>
-        </Form>
-        {/* )} */}
+          </>
+        ) : (
+          <Form
+            formData={formData}
+            schema={currentForm.schema}
+            uiSchema={currentForm.uiSchema}
+            ObjectFieldTemplate={ObjectFieldTemplate}
+            onSubmit={handleSubmit}
+            onChange={handleChange}
+            widgets={widgets}
+            // onError={onError}
+            validate={validatePasswordMatch}
+            noHtml5Validate
+            liveValidate={validateForm}
+            transformErrors={transformErrors}
+          >
+            <div className="row">
+              <div className="d-flex justify-content-center">
+                <Button
+                  onClick={() => setValidateForm(true)}
+                  variant="contained"
+                  class="btn btn-outline-success"
+                  type="submit"
+                  style={{ width: '50%', margin: '5%' }}
+                >
+                  {form === 'registration' ? 'Register' : 'Login'}
+                </Button>
+              </div>
+            </div>
+          </Form>
+        )}
       </div>
       <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}

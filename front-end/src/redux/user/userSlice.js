@@ -74,14 +74,14 @@ const userSlice = createSlice({
       state.addUserLoader = false;
     },
     [updateUser.pending]: (state) => {
-      state.updateUserLoader = true;
+      state.updatedUserLoader = true;
     },
     [updateUser.fulfilled]: (state, { payload }) => {
-      state.updateUserLoader = false;
-      state.updateUser = payload;
+      state.updatedUserLoader = false;
+      state.updatedUser = payload;
     },
     [updateUser.rejected]: (state) => {
-      state.updateUserLoader = false;
+      state.updatedUserLoader = false;
     },
     [getUserByEmail.pending]: (state) => {
       state.userByEmailLoader = true;
