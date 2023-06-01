@@ -4,8 +4,9 @@ export const GET_PROPERTIES_END_POINT = '/property';
 export const GET_PROPERTIES_BY_TYPE = '/property/${type}';
 export const SEND_EMAIL_END_POINT = '/send-email';
 export const ADD_USER_END_POINT = '/user';
-export const GET_USER_BY_EMAIL = '/user/${email}';
-export const UPDATE_USER_BY_EMAIL = '/user/updateUser';
+export const GET_USER_BY_EMAIL_END_POINT = '/user/${email}';
+export const UPDATE_USER_BY_EMAIL_END_POINT = '/user/updateUser';
+export const VERIFY_VERIFICATION_CODE_END_POINT = '/user/verifyOtp';
 
 
 

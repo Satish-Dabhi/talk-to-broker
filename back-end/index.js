@@ -4,6 +4,10 @@ const employeesRoutes = require('./routes/employ');
 const propertyRoutes = require('./routes/property');
 const userRoutes = require('./routes/user');
 const { sendMail } = require('./helper/email');
+require("dotenv").config();
+
+console.log("VERIFICATION_MAIL_SUBJECT", process.env.VERIFICATION_MAIL_SUBJECT);
+
 
 const app = express();
 app.use(express.json());

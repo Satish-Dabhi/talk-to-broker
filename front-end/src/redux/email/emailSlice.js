@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { GET_API, GET_USER_BY_EMAIL, POST_API, SEND_EMAIL_END_POINT } from '../services/api';
+import { GET_API, GET_USER_BY_EMAIL_END_POINT, POST_API, SEND_EMAIL_END_POINT } from '../services/api';
 
 const initialState = {
   sendEmailStatus: {},

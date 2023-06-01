@@ -68,6 +68,7 @@ const SignInSignUpForms = ({ handleClose }) => {
                 uiSchema={registrationUiSchema}
                 form="registration"
                 verifyForm={(flag) => setShowVerifyForm(flag)}
+                handleClose={handleClose}
               />
             </TabPanel>
           </Box>

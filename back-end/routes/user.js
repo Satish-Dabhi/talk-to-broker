@@ -10,5 +10,7 @@ router.post("/", userController.createNewUser);
 
 router.post("/updateUser", userController.updateUserByEmail);
 
+router.post("/verifyOtp", userController.verifyOtp);
+
 
 module.exports = router;

@@ -3,7 +3,6 @@ const userService = require('../services/userService');
 const createNewUser = async (req, res) => {
   try {
     const { body } = req;
-    console.log('datadatadata', body);
     const savedUser = await userService.createNewUser(body);
     res.status(201).json(savedUser);
   } catch (error) {
@@ -16,7 +15,7 @@ const createNewUser = async (req, res) => {
 //   res.send({ status: "OK", data: allEmployees });
 // };
 
-const getUserByEmail = async(req, res) => {
+const getUserByEmail = async (req, res) => {
   const {
     params: { email },
   } = req;
@@ -37,8 +36,24 @@ const updateUserByEmail = async (req, res) => {
   }
 };
 
+const verifyOtp = async (req, res) => {
+  try {
+    const { body } = req;
+    const updatedUser = await userService.verifyOtp(body);
+    console.log("updatedUser", updatedUser.length);
+    if (updatedUser.length == 0) {
+      res.send({ status: "OK", verify: false });
+    } else {
+      res.send({ status: "OK", verify: true });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   createNewUser,
   getUserByEmail,
-  updateUserByEmail
+  updateUserByEmail,
+  verifyOtp
 };
