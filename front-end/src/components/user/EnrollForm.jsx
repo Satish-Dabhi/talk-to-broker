@@ -1,20 +1,18 @@
-import { Button, Snackbar, TextField, Typography } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/system';
 import { withTheme } from '@rjsf/core';
 import { Theme5 as Mui5Theme } from '@rjsf/material-ui';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import * as constant from '../../services/utils/constant';
-import ObjectFieldTemplate from '../ObjectFieldTemplate';
-import { generateOTP, getSchemaFieldTitle, isWithinMinutes } from '../../services/utils';
-import RadioWidget from '../customWidgets/RadioWidget';
-import { sendEmail } from '../../redux/email/emailSlice';
-import { createUser, getUserByEmail, updateUser, verifyCode, verifyOtp } from '../../redux/user/userSlice';
-import { Alert } from '@mui/material';
 import verificationFormSchema from '../../formsDefinitions/verificationForm/schema.json';
 import verificationFormUiSchema from '../../formsDefinitions/verificationForm/uiSchema.json';
 import { updateSnackBar } from '../../redux/common/snackBarSlice';
+import { createUser, loginUser, verifyCode } from '../../redux/user/userSlice';
+import { getSchemaFieldTitle } from '../../services/utils';
+import * as constant from '../../services/utils/constant';
+import ObjectFieldTemplate from '../ObjectFieldTemplate';
+import RadioWidget from '../customWidgets/RadioWidget';
 
 const theme = createTheme({
   components: {
@@ -37,126 +35,94 @@ const EnrollForm = (props) => {
   });
   const [userEmail, setUserEmail] = useState('');
   const [formData, setFormData] = useState({});
-  // const [showOTP, setShowOTP] = useState(false);
-  const [verifiedOtp, setVerifiedOtp] = useState('');
-  const [generatedOtp, setGeneratedOtp] = useState('');
-  const [snackbar, setSnackbar] = React.useState({
-    open: false,
-    message: '',
-    severity: 'success',
-  });
   const [validateForm, setValidateForm] = useState(false);
-  const { addUser, userByEmail, verifyOtp, updatedUser } = useSelector((store) => store.userHandler);
+  const { addUser, loginUserData, verifyOtp, updatedUser } = useSelector((store) => store.userHandler);
   const dispatch = useDispatch();
 
+  console.log('loginUserData', loginUserData);
+
   useEffect(() => {
-    console.log("verifyOtp", verifyOtp?.verify);
+    if (currentForm.formType === 'login') {
+      if (loginUserData.validUser) {
+        dispatch(
+          updateSnackBar({
+            open: true,
+            message: 'Login Successful',
+            severity: 'success',
+          })
+        );
+        handleClose();
+      } else {
+        dispatch(
+          updateSnackBar({
+            open: true,
+            message: 'Invalid Credential',
+            severity: 'error',
+          })
+        );
+      }
+    }
+  }, [loginUserData]);
+
+  useEffect(() => {
     if (verifyOtp?.verify === true) {
-      setSnackbar({
-        open: true,
-        message: 'Your account created successfully',
-        severity: 'success',
-      });
+      dispatch(
+        updateSnackBar({
+          open: true,
+          message: 'Your account created successfully',
+          severity: 'success',
+        })
+      );
       handleClose();
     } else if (verifyOtp?.verify === false) {
-      setSnackbar({
-        open: true,
-        message: 'This verification code is not valid',
-        severity: 'error',
-      });
+      dispatch(
+        updateSnackBar({
+          open: true,
+          message: 'This verification code is not valid',
+          severity: 'error',
+        })
+      );
     }
   }, [verifyOtp]);
 
   useEffect(() => {
     if (currentForm.formType === 'registration') {
       if (addUser?.status === 'created') {
+        setValidateForm(false);
         verifyForm(true);
         setCurrentForm({
           schema: verificationFormSchema,
           uiSchema: verificationFormUiSchema,
           formType: 'verification',
         });
-        setSnackbar({
-          open: true,
-          message: 'Verification code sent',
-          severity: 'success',
-        });
+        dispatch(
+          updateSnackBar({
+            open: true,
+            message: 'Verification code sent',
+            severity: 'success',
+          })
+        );
       } else if (addUser?.status === 'exist') {
-        setSnackbar({
-          open: true,
-          message: 'This email address is already exist',
-          severity: 'error',
-        });
+        dispatch(
+          updateSnackBar({
+            open: true,
+            message: 'This email address is already exist',
+            severity: 'error',
+          })
+        );
+      }
+    } else if (currentForm.formType === 'verification') {
+      if (addUser?.status === 'created') {
+        dispatch(
+          updateSnackBar({
+            open: true,
+            message: 'Verification code sent',
+            severity: 'success',
+          })
+        );
       }
     }
   }, [addUser]);
-
-  // useEffect(() => {
-  //   if (userByEmail?.data && userByEmail?.data.length > 0) {
-  //     const { otpCreateTime, otp } = userByEmail?.data[0];
-  //     console.log('otpCreateTime', otpCreateTime);
-  //     console.log('otp', otp);
-  //     const mailOptions = {
-  //       from: 'babyboss65166516@gmail.com',
-  //       to: formData.email,
-  //       subject: 'Welcome',
-  //       emailBody: `Your Otp is ${otp}`,
-  //     };
-  //     dispatch(sendEmail(mailOptions));
-  //     setSnackbar({
-  //       open: true,
-  //       message: 'Verification code sent',
-  //       severity: 'success',
-  //     });
-  //     if (isWithinMinutes(otpCreateTime, 1)) {
-  //       if (formData.otp === otp) {
-  //         setSnackbar({
-  //           open: true,
-  //           message: 'Verified',
-  //           severity: 'success',
-  //         });
-  //         const updateUserData = {
-  //           verified: true,
-  //           email: formData.email,
-  //         };
-  //         dispatch(updateUser(updateUserData));
-  //       } else {
-  //         setSnackbar({
-  //           open: true,
-  //           message: 'Please Enter valid verification code',
-  //           severity: 'error',
-  //         });
-  //       }
-  //     } else {
-  //       setSnackbar({
-  //         open: true,
-  //         message: 'Your verification code is not valid',
-  //         severity: 'error',
-  //       });
-  //     }
-  //   }
-  // }, [userByEmail]);
-
-  // useEffect(() => {
-  //   if (
-  //     currentForm.formType === 'registration' &&
-  //     Object.keys(formData).length !== 0 &&
-  //     updatedUser?.status === 'done'
-  //   ) {
-  //     const mailOptions = {
-  //       from: 'babyboss65166516@gmail.com',
-  //       to: formData.email,
-  //       subject: 'Welcome',
-  //       emailBody: `Your Otp is ${generatedOtp}`,
-  //     };
-  //     dispatch(sendEmail(mailOptions));
-  //     setSnackbar({
-  //       open: true,
-  //       message: 'Verification code sent',
-  //       severity: 'success',
-  //     });
-  //   }
-  // }, [updatedUser]);
 
   const transformErrors = (errors) => {
     return errors.map((error) => {
@@ -173,8 +139,6 @@ const EnrollForm = (props) => {
 
   const handleSubmit = ({ formData }) => {
     if (currentForm.formType === 'registration') {
-      const otp = generateOTP();
-      setGeneratedOtp(otp);
       setUserEmail(formData.email);
       const userData = {
         email: formData.email,
@@ -184,18 +148,16 @@ const EnrollForm = (props) => {
       };
       dispatch(createUser(userData));
     } else if (currentForm.formType === 'login') {
-      dispatch(
-        updateSnackBar({
-          open: true,
-          message: 'it works',
-          severity: 'error',
-        })
-      )
+      const loginUserData = {
+        email: formData.email,
+        password: formData.password,
+      };
+      dispatch(loginUser(loginUserData));
     } else {
       const verifiedData = {
         email: userEmail,
-        otp: formData.otp
-      }
+        otp: formData.otp,
+      };
       dispatch(verifyCode(verifiedData));
     }
   };
@@ -214,23 +176,15 @@ const EnrollForm = (props) => {
     setFormData(formData);
   };
 
-  const handleSnackbarClose = () => {
-    setSnackbar({ ...snackbar, open: false });
-  };
-
   const widgets = {
     radio: RadioWidget,
   };
 
   const resendVerificationCode = () => {
-    // const otp = generateOTP();
-    // setGeneratedOtp(otp);
-    // const userData = {
-    //   email: userEmail,
-    //   otpCreateTime: new Date(),
-    //   otp: otp,
-    // };
-    // dispatch(updateUser(userData));
+    const resendData = {
+      email: userEmail,
+    };
+    dispatch(createUser(resendData));
   };
 
   return (
@@ -267,24 +221,14 @@ const EnrollForm = (props) => {
                 {currentForm.formType === 'registration'
                   ? 'Register'
                   : currentForm.formType === 'login'
-                    ? 'Login'
-                    : 'Verify'}
+                  ? 'Login'
+                  : 'Verify'}
               </Button>
             </div>
           </div>
         </Form>
         {/* )} */}
       </div>
-      <Snackbar
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        open={snackbar.open}
-        autoHideDuration={6000}
-        onClose={handleSnackbarClose}
-      >
-        <Alert onClose={handleSnackbarClose} severity={snackbar.severity} sx={{ width: '100%' }}>
-          {snackbar.message}
-        </Alert>
-      </Snackbar>
     </ThemeProvider>
   );
 };

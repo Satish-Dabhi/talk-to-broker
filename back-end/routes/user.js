@@ -4,7 +4,7 @@ const router = express.Router();
 
 // router.get("/", userController.getAllProperties);
 
-router.get("/:email", userController.getUserByEmail);
+router.post("/login", userController.userLogin);
 
 router.post("/", userController.createNewUser);
 

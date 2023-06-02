@@ -2,13 +2,12 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProperties } from '../redux/property/propertySlice';
 import PropertyCard from '../components/property/PropertyCard';
-import { Container, Grid, Typography } from '@mui/material';
+import { Alert, Container, Grid, Snackbar, Typography } from '@mui/material';
 import bannerImage3 from '../assets/images/banner-images/bg-home3.jpg';
 import BannerImage from '../components/BannerImage';
 import PropertyTypeCard from '../components/property/PropertyTypeCard';
 
 const Home = () => {
-  
   const propertyTypeArray = [
     {
       propertyType: 'residential',

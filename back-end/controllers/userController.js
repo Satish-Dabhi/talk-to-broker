@@ -10,20 +10,18 @@ const createNewUser = async (req, res) => {
   }
 };
 
-// const getAllProperties = async (req, res) => {
-//   const allEmployees = await userService.getAllProperties();
-//   res.send({ status: "OK", data: allEmployees });
-// };
-
-const getUserByEmail = async (req, res) => {
-  const {
-    params: { email },
-  } = req;
-  if (!email) {
-    return;
+const userLogin = async (req, res) => {
+  try {
+    const { body } = req;
+    const user = await userService.userLogin(body);
+    if (user) {
+      res.status(201).json({ validUser: true, token: user });
+    } else {
+      res.status(201).json({ validUser: false, error: 'Invalid Credential' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
-  const user = await userService.getUserByEmail(email);
-  res.send({ status: "OK", data: user });
 };
 
 const updateUserByEmail = async (req, res) => {
@@ -40,11 +38,10 @@ const verifyOtp = async (req, res) => {
   try {
     const { body } = req;
     const updatedUser = await userService.verifyOtp(body);
-    console.log("updatedUser", updatedUser.length);
     if (updatedUser.length == 0) {
-      res.send({ status: "OK", verify: false });
+      res.send({ status: 'OK', verify: false });
     } else {
-      res.send({ status: "OK", verify: true });
+      res.send({ status: 'OK', verify: true });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -53,7 +50,7 @@ const verifyOtp = async (req, res) => {
 
 module.exports = {
   createNewUser,
-  getUserByEmail,
+  userLogin,
   updateUserByEmail,
-  verifyOtp
+  verifyOtp,
 };

@@ -8,13 +8,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Snackbar } from '@material-ui/core';
 import { Alert } from '@mui/material';
 import { updateSnackBar } from './redux/common/snackBarSlice';
+import { useEffect, useState } from 'react';
 
 const App = () => {
   const dispatch = useDispatch();
-  const snackBar = useSelector(state => state.snackbar);
-  console.log("snackBar",snackBar);
-  const { open, severity, message } = snackBar;
-  console.log("........................", snackBar);
+  const snackBar = useSelector((state) => state.snackbar);
+  const [mainSnackBar, setMainSnackBar] = useState(snackBar);
+  useEffect(() => {
+    setMainSnackBar(snackBar);
+  }, [snackBar]);
+
   const handleSnackbarClose = () => {
     dispatch(
       updateSnackBar({
@@ -22,30 +25,32 @@ const App = () => {
         message: '',
         severity: 'success',
       })
-    )
+    );
   };
 
   return (
-    <HashRouter>
-      <TopNavbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/add-property" element={<AddProperty />} />
-        <Route path="/property/:propertyType" element={<Properties />} />
-        <Route path="/property-details/:id" element={<PropertyDetails />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-      <Snackbar
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleSnackbarClose}
-      >
-        <Alert onClose={handleSnackbarClose} severity={severity} sx={{ width: '100%' }}>
-          {message}
-        </Alert>
-      </Snackbar>
-    </HashRouter>
+    <>
+      <HashRouter>
+        <TopNavbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/add-property" element={<AddProperty />} />
+          <Route path="/property/:propertyType" element={<Properties />} />
+          <Route path="/property-details/:id" element={<PropertyDetails />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+        <Snackbar
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          open={mainSnackBar[0].open}
+          autoHideDuration={6000}
+          onClose={handleSnackbarClose}
+        >
+          <Alert onClose={handleSnackbarClose} severity={mainSnackBar[0].severity} sx={{ width: '100%' }}>
+            {mainSnackBar[0].message}
+          </Alert>
+        </Snackbar>
+      </HashRouter>
+    </>
   );
 };
 

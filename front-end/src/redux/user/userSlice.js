@@ -6,6 +6,7 @@ import {
   GET_PROPERTIES_BY_TYPE,
   GET_PROPERTIES_END_POINT,
   GET_USER_BY_EMAIL_END_POINT,
+  LOGIN_USER__END_POINT,
   POST_API,
   UPDATE_USER_BY_EMAIL_END_POINT,
   VERIFY_VERIFICATION_CODE_END_POINT,
@@ -16,8 +17,8 @@ const initialState = {
   addUserLoader: false,
   properties: {},
   getPropertiesLoader: false,
-  userByEmail: {},
-  userByEmailLoader: false,
+  loginUserData: {},
+  loginUserLoader: false,
   updatedUser: {},
   updatedUserLoader: false,
   verifyOtp: {},
@@ -42,10 +43,9 @@ export const createUser = createAsyncThunk('services/createUser', async (userDat
 //   }
 // });
 
-export const getUserByEmail = createAsyncThunk('services/getPropertiesByType', async (email, thunkAPI) => {
+export const loginUser = createAsyncThunk('services/loginUser', async (userData, thunkAPI) => {
   try {
-    const api = GET_USER_BY_EMAIL_END_POINT.replace('${email}', email);
-    const resp = await GET_API(api);
+    const resp = await POST_API(LOGIN_USER__END_POINT, userData);
     return resp;
   } catch (error) {
     return thunkAPI.rejectWithValue('something went wrong');
@@ -95,15 +95,15 @@ const userSlice = createSlice({
     [updateUser.rejected]: (state) => {
       state.updatedUserLoader = false;
     },
-    [getUserByEmail.pending]: (state) => {
-      state.userByEmailLoader = true;
+    [loginUser.pending]: (state) => {
+      state.loginUserLoader = true;
     },
-    [getUserByEmail.fulfilled]: (state, action) => {
-      state.userByEmailLoader = false;
-      state.userByEmail = action.payload;
+    [loginUser.fulfilled]: (state, action) => {
+      state.loginUserLoader = false;
+      state.loginUserData = action.payload;
     },
-    [getUserByEmail.rejected]: (state) => {
-      state.userByEmailLoader = false;
+    [loginUser.rejected]: (state) => {
+      state.loginUserLoader = false;
     },
     [verifyCode.pending]: (state) => {
       state.verifyOtpLoader = true;
