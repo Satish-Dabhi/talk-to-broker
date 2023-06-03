@@ -13,7 +13,9 @@ const createNewUser = async (req, res) => {
 const userLogin = async (req, res) => {
   try {
     const { body } = req;
+    console.log("body",body);
     const user = await userService.userLogin(body);
+    console.log("user",user);
     if (user) {
       res.status(201).json({ validUser: true, token: user });
     } else {

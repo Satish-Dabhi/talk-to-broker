@@ -60,7 +60,7 @@ const SignInSignUpForms = ({ handleClose }) => {
               </Box>
             )}
             <TabPanel value={value} index={0}>
-              <EnrollForm schema={loginSchema} uiSchema={loginUiSchema} form="login" />
+              <EnrollForm schema={loginSchema} uiSchema={loginUiSchema} form="login" handleClose={handleClose}/>
             </TabPanel>
             <TabPanel value={value} index={1}>
               <EnrollForm

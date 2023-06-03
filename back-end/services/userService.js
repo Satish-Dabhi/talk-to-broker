@@ -60,7 +60,13 @@ const createNewUser = async (data) => {
 // };
 
 const userLogin = async (data) => {
-  const { email, password } = data;
+  console.log("data...",data);
+  const decoded = jwt.verify(data, JWT_SECRET_KEY);
+  console.log("dadecodedta...",decoded);
+
+  const { email, password } = decoded;
+  console.log("email...",email);
+  console.log("password...",password);
   const findUser = await schema.userSchema.findOne({ email: email, password: password });
   if (findUser) {
     return findUser.token;

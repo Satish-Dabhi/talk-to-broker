@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = [{
-  open: true,
-  message: 'test bar',
-  severity: 'success',
+  open: false,
+  message: '',
+  severity: '',
 }]
 
 const snackBarSlice = createSlice({

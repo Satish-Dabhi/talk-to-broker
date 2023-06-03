@@ -14,6 +14,7 @@ import * as constant from '../../services/utils/constant';
 import ObjectFieldTemplate from '../ObjectFieldTemplate';
 import RadioWidget from '../customWidgets/RadioWidget';
 
+
 const theme = createTheme({
   components: {
     MuiTextField: {
@@ -39,27 +40,29 @@ const EnrollForm = (props) => {
   const { addUser, loginUserData, verifyOtp, updatedUser } = useSelector((store) => store.userHandler);
   const dispatch = useDispatch();
 
-  console.log('loginUserData', loginUserData);
+  console.log('loginUserData', Object.keys(loginUserData).length);
 
   useEffect(() => {
     if (currentForm.formType === 'login') {
-      if (loginUserData.validUser) {
-        dispatch(
-          updateSnackBar({
-            open: true,
-            message: 'Login Successful',
-            severity: 'success',
-          })
-        );
-        handleClose();
-      } else {
-        dispatch(
-          updateSnackBar({
-            open: true,
-            message: 'Invalid Credential',
-            severity: 'error',
-          })
-        );
+      if (Object.keys(loginUserData).length > 0) {
+        if (loginUserData.validUser) {
+          dispatch(
+            updateSnackBar({
+              open: true,
+              message: 'Login Successful',
+              severity: 'success',
+            })
+          );
+          handleClose();
+        } else {
+          dispatch(
+            updateSnackBar({
+              open: true,
+              message: 'Invalid Credential',
+              severity: 'error',
+            })
+          );
+        }
       }
     }
   }, [loginUserData]);
@@ -221,8 +224,8 @@ const EnrollForm = (props) => {
                 {currentForm.formType === 'registration'
                   ? 'Register'
                   : currentForm.formType === 'login'
-                  ? 'Login'
-                  : 'Verify'}
+                    ? 'Login'
+                    : 'Verify'}
               </Button>
             </div>
           </div>
