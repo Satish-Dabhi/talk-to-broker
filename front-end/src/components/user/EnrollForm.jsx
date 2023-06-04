@@ -9,10 +9,11 @@ import verificationFormSchema from '../../formsDefinitions/verificationForm/sche
 import verificationFormUiSchema from '../../formsDefinitions/verificationForm/uiSchema.json';
 import { updateSnackBar } from '../../redux/common/snackBarSlice';
 import { createUser, loginUser, verifyCode } from '../../redux/user/userSlice';
-import { getSchemaFieldTitle } from '../../services/utils';
+import { getSchemaFieldTitle, setCookie, setLocalStorageObject } from '../../services/utils';
 import * as constant from '../../services/utils/constant';
 import ObjectFieldTemplate from '../ObjectFieldTemplate';
 import RadioWidget from '../customWidgets/RadioWidget';
+import { updateLocalStorage } from '../../redux/common/trackLocalStorageSlice';
 
 
 const theme = createTheme({
@@ -40,12 +41,11 @@ const EnrollForm = (props) => {
   const { addUser, loginUserData, verifyOtp, updatedUser } = useSelector((store) => store.userHandler);
   const dispatch = useDispatch();
 
-  console.log('loginUserData', Object.keys(loginUserData).length);
 
   useEffect(() => {
     if (currentForm.formType === 'login') {
       if (Object.keys(loginUserData).length > 0) {
-        if (loginUserData.validUser) {
+        if (loginUserData?.validUser) {
           dispatch(
             updateSnackBar({
               open: true,
@@ -53,7 +53,15 @@ const EnrollForm = (props) => {
               severity: 'success',
             })
           );
-          handleClose();
+          dispatch(
+            updateLocalStorage({
+              key: 'user_token',
+              value: loginUserData?.token
+            })
+          );
+          setLocalStorageObject('user_token', loginUserData?.token);
+          // setCookie('user_token', loginUserData?.token, 7);
+          // handleClose();
         } else {
           dispatch(
             updateSnackBar({
@@ -76,7 +84,7 @@ const EnrollForm = (props) => {
           severity: 'success',
         })
       );
-      handleClose();
+      // handleClose();
     } else if (verifyOtp?.verify === false) {
       dispatch(
         updateSnackBar({

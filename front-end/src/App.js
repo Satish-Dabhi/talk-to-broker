@@ -9,6 +9,8 @@ import { Snackbar } from '@material-ui/core';
 import { Alert } from '@mui/material';
 import { updateSnackBar } from './redux/common/snackBarSlice';
 import { useEffect, useState } from 'react';
+import Login from './components/user/Login';
+import Registration from './components/user/Registration';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -37,6 +39,8 @@ const App = () => {
           <Route path="/add-property" element={<AddProperty />} />
           <Route path="/property/:propertyType" element={<Properties />} />
           <Route path="/property-details/:id" element={<PropertyDetails />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Snackbar

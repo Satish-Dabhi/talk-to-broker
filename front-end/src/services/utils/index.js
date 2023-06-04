@@ -12,6 +12,36 @@ export function getSessionStorageObject(key) {
   return sessionStorage.getItem(key);
 }
 
+export function setLocalStorageObject(key, value) {
+  localStorage.setItem(key, value);
+}
+
+export function getLocalStorageObject(key) {
+  return localStorage.getItem(key);
+}
+
+export function removeLocalStorageObject(key) {
+  return localStorage.removeItem(key);
+}
+
+export function setCookie(name, value, daysToExpire) {
+  const date = new Date();
+  date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
+  const expires = "expires=" + date.toUTCString();
+  document.cookie = name + "=" + value + ";" + expires + ";path=/";
+};
+
+export function getCookie(name) {
+  const cookies = document.cookie.split("; ");
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].split("=");
+    if (cookie[0] === name) {
+      return cookie[1];
+    }
+  }
+  return "";
+};
+
 export function getSum(...numbers) {
   return numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 }

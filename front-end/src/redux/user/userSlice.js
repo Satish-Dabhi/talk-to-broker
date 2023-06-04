@@ -1,14 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import {
-  ADD_PROPERTY_END_POINT,
   ADD_USER_END_POINT,
-  GET_API,
-  GET_PROPERTIES_BY_TYPE,
-  GET_PROPERTIES_END_POINT,
-  GET_USER_BY_EMAIL_END_POINT,
   LOGIN_USER__END_POINT,
   POST_API,
   UPDATE_USER_BY_EMAIL_END_POINT,
+  VERIFY_TOKEN_END_POINT,
   VERIFY_VERIFICATION_CODE_END_POINT,
 } from '../services/api';
 
@@ -23,6 +19,8 @@ const initialState = {
   updatedUserLoader: false,
   verifyOtp: {},
   verifyOtpLoader: false,
+  verifyTokenResponse: {},
+  verifyTokenLoader: false,
 };
 
 export const createUser = createAsyncThunk('services/createUser', async (userData, thunkAPI) => {
@@ -64,6 +62,15 @@ export const updateUser = createAsyncThunk('services/updateUser', async (userDat
 export const verifyCode = createAsyncThunk('services/verifyCode', async (userData, thunkAPI) => {
   try {
     const resp = await POST_API(VERIFY_VERIFICATION_CODE_END_POINT, userData);
+    return resp;
+  } catch (error) {
+    return thunkAPI.rejectWithValue('something went wrong');
+  }
+});
+
+export const verifyToken = createAsyncThunk('services/verifyToken', async (userData, thunkAPI) => {
+  try {
+    const resp = await POST_API(VERIFY_TOKEN_END_POINT, userData);
     return resp;
   } catch (error) {
     return thunkAPI.rejectWithValue('something went wrong');
@@ -114,6 +121,16 @@ const userSlice = createSlice({
     },
     [verifyCode.rejected]: (state) => {
       state.verifyOtpLoader = false;
+    },
+    [verifyToken.pending]: (state) => {
+      state.verifyTokenLoader = true;
+    },
+    [verifyToken.fulfilled]: (state, action) => {
+      state.verifyTokenLoader = false;
+      state.verifyTokenResponse = action.payload;
+    },
+    [verifyToken.rejected]: (state) => {
+      state.verifyTokenLoader = false;
     },
   },
 });

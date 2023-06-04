@@ -13,9 +13,7 @@ const createNewUser = async (req, res) => {
 const userLogin = async (req, res) => {
   try {
     const { body } = req;
-    console.log("body",body);
     const user = await userService.userLogin(body);
-    console.log("user",user);
     if (user) {
       res.status(201).json({ validUser: true, token: user });
     } else {
@@ -40,11 +38,21 @@ const verifyOtp = async (req, res) => {
   try {
     const { body } = req;
     const updatedUser = await userService.verifyOtp(body);
-    if (updatedUser.length == 0) {
-      res.send({ status: 'OK', verify: false });
-    } else {
+    if (updatedUser) {
       res.send({ status: 'OK', verify: true });
+    } else {
+      res.send({ status: 'OK', verify: false });
     }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const verifyToken = async (req, res) => {
+  try {
+    const { body } = req;
+    const updatedUser = await userService.verifyToken(body);
+    res.status(201).json(updatedUser);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -55,4 +63,5 @@ module.exports = {
   userLogin,
   updateUserByEmail,
   verifyOtp,
+  verifyToken
 };

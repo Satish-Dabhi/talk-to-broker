@@ -12,5 +12,8 @@ router.post("/updateUser", userController.updateUserByEmail);
 
 router.post("/verifyOtp", userController.verifyOtp);
 
+router.post("/verifyToken", userController.verifyToken);
+
+
 
 module.exports = router;

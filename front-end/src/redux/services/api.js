@@ -7,12 +7,12 @@ export const ADD_USER_END_POINT = '/user';
 export const LOGIN_USER__END_POINT = '/user/login';
 export const UPDATE_USER_BY_EMAIL_END_POINT = '/user/updateUser';
 export const VERIFY_VERIFICATION_CODE_END_POINT = '/user/verifyOtp';
+export const VERIFY_TOKEN_END_POINT = '/user/verifyToken';
 
 
 
 export const POST_API = async (api, data) => {
   const newApi = API_HOSTNAME + api;
-  console.log('dadasydyusdyusadsad', data);
   const response = await fetch(newApi, {
     method: 'POST',
     headers: {
@@ -22,16 +22,7 @@ export const POST_API = async (api, data) => {
     body: JSON.stringify(data),
   });
 
-  console.log("response",response);
   return response.json();
-
-    // .then((data) => {
-    //   console.log('data', data);
-    //   // return data;
-    // })
-    // .catch((error) => {
-    //   console.error('error', error);
-    // });
 };
 
 export const GET_API = async (api) => {

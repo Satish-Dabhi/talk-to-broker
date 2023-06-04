@@ -8,7 +8,7 @@ const createNewUser = async (data) => {
   try {
     const verifiedUser = await schema.userSchema.findOne({ email: data.email, verified: true });
     if (verifiedUser) {
-      return { message: 'Email is already been registered', status: 'exist' };
+      return { status: 'exist' };
     } else {
       const otp = utils.generateOTP();
       const doesExist = await schema.userSchema.findOne({ email: data.email });
@@ -19,7 +19,7 @@ const createNewUser = async (data) => {
           .updateOne({ email: data.email }, { $set: newData })
           .then((result) => {
             if (result) {
-              // sendVerificationMail(data.email, otp);
+              sendVerificationMail(data.email, otp);
               return { message: 'User Created successfully', status: 'created' };
             } else {
               return { message: 'Something went wrong', status: 'unDone' };
@@ -37,7 +37,7 @@ const createNewUser = async (data) => {
         const user = new schema.userSchema(userData);
         const savedUser = await user.save();
         if (savedUser) {
-          // sendVerificationMail(data.email, otp);
+          sendVerificationMail(data.email, otp);
           return { message: 'User Created successfully', status: 'created' };
         }
       }
@@ -47,43 +47,16 @@ const createNewUser = async (data) => {
   }
 };
 
-// const getAllProperties = async() => {
-//   return await schema.propertySchema.find({}, function(err, result) {
-//     if (err) {
-//       throw err;
-//     } else {
-//       return result;
-//     }
-//   })
-//   .clone()
-//   .catch(function(err){ console.log(err)});
-// };
 
 const userLogin = async (data) => {
-  console.log("data...",data);
-  const decoded = jwt.verify(data, JWT_SECRET_KEY);
-  console.log("dadecodedta...",decoded);
-
-  const { email, password } = decoded;
-  console.log("email...",email);
-  console.log("password...",password);
+  // const decoded = jwt.verify(data, JWT_SECRET_KEY);
+  const { email, password } = data;
   const findUser = await schema.userSchema.findOne({ email: email, password: password });
-  if (findUser) {
+  if (findUser) { 
     return findUser.token;
   } else {
     return null;
   }
-  //   , function (err, result) {
-  //   if (err) {
-  //     throw err;
-  //   } else {
-  //     return result;
-  //   }
-  // })
-  // .clone()
-  // .catch(function (err) {
-  //   console.log(err);
-  // });
 };
 
 const updateUserByEmail = async (data) => {
@@ -91,9 +64,9 @@ const updateUserByEmail = async (data) => {
     .updateOne({ email: data.email }, { $set: data })
     .then((result) => {
       if (result) {
-        return { message: 'User Updated successfully', status: 'done' };
+        return { status: 'done' };
       } else {
-        return { message: 'User not Updated', status: 'unDone' };
+        return { status: 'unDone' };
       }
     })
     .catch((err) => console.warn(err));
@@ -101,10 +74,9 @@ const updateUserByEmail = async (data) => {
 
 const verifyOtp = async (data) => {
   const { email, otp } = data;
-  const existUser = await schema.userSchema.find({ email: email, otp: otp });
-  if (existUser.length == 0) {
-  } else {
-    if (utils.isWithinMinutes(existUser[0].otpCreateTime, 5)) {
+  const existUser = await schema.userSchema.findOne({ email: email, otp: otp });
+  if (existUser) {
+    if (utils.isWithinMinutes(existUser.otpCreateTime, 5)) {
       const virifiedUserData = {
         email: email,
         verified: true,
@@ -112,8 +84,24 @@ const verifyOtp = async (data) => {
       updateUserByEmail(virifiedUserData);
       return existUser;
     } else {
-      return [];
+      return null;
     }
+  } else {
+    return null;
+  }
+};
+
+const verifyToken = async (data) => {
+  console.log("..................", data);
+  const decoded = jwt.verify(data.token, JWT_SECRET_KEY);
+  const { token } = decoded;
+  console.log("token", token);
+  console.log("decoded", decoded);
+  const findUser = await schema.userSchema.findOne({ token: token });
+  if (findUser) {
+    return { valid: true, userData: findUser };
+  } else {
+    return { valid: false };
   }
 };
 
@@ -122,4 +110,5 @@ module.exports = {
   userLogin,
   updateUserByEmail,
   verifyOtp,
+  verifyToken
 };
