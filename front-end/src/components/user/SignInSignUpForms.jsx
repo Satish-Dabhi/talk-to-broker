@@ -1,14 +1,15 @@
-import { Grid, IconButton, Tab, Tabs, Typography } from '@mui/material';
+import { Grid, Tab, Tabs } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useState } from 'react';
-import EnrollForm from './EnrollForm';
-import registrationSchema from '../../formsDefinitions/userRegistration/schema.json';
-import registrationUiSchema from '../../formsDefinitions/userRegistration/uiSchema.json';
+import React, { useEffect, useState } from 'react';
 import loginSchema from '../../formsDefinitions/userLogin/schema.json';
 import loginUiSchema from '../../formsDefinitions/userLogin/uiSchema.json';
-import verticalImage from '../../assets/images/banner-images/vertical-building.jpg';
-import CloseIcon from '@mui/icons-material/Close';
+import registrationSchema from '../../formsDefinitions/userRegistration/schema.json';
+import registrationUiSchema from '../../formsDefinitions/userRegistration/uiSchema.json';
+import EnrollForm from './EnrollForm';
 import './style.css';
+import { getLocalStorageObject } from '../../services/utils';
+import { POST_API, VERIFY_TOKEN_END_POINT } from '../../redux/services/api';
+import { useNavigate } from 'react-router-dom';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -26,41 +27,58 @@ function TabPanel(props) {
   );
 }
 
+
 const SignInSignUpForms = ({ handleClose }) => {
   const [value, setValue] = React.useState(0);
   const [showVerifyForm, setShowVerifyForm] = useState(false);
+  const userToken = getLocalStorageObject('user_token');
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  let navigate = useNavigate();
+
+
+  useEffect(() => {
+    async function validToken() {
+      const resp = await POST_API(VERIFY_TOKEN_END_POINT, { token: userToken });
+      console.log(",,.,..,.,.,..,,.,.,,", resp?.valid);
+
+      if (resp?.valid) {
+        // navigate("/user/profile");
+        setUserLoggedIn(true);
+      } else {
+        setUserLoggedIn(false);
+      }
+    }
+    userToken && validToken();
+  });
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <Box sx={{ flexGrow: 1, overflowX: 'hidden' }}>
-      <Grid container>
-        <Grid item xs={5}>
-          <img src={verticalImage} alt="vertical-building" width={'100%'} height={'100%'} />
-        </Grid>
-        <Grid item xs={7}>
-          <Box sx={{ width: '100%' }}>
+    <Box sx={{ flexGrow: 1, overflowX: 'hidden' }} >
+      <Grid container sx={{ justifyContent: "center", height: "100vh" }}>
+        <Grid item xs={8}>
+          <Box sx={{ width: '100%', padding: '13% 0 0' }}>
             {!showVerifyForm ? (
               <Box sx={{ borderBottom: 1 }}>
                 <Tabs value={value} onChange={handleChange} className="tab-container">
                   <Tab label="Login" sx={{ width: '40%' }} />
                   <Tab label="Registration" sx={{ width: '40%' }} />
-                  <IconButton edge="end" color="inherit" onClick={handleClose} aria-label="close" sx={{ width: '20%' }}>
-                    <CloseIcon />
-                  </IconButton>
                 </Tabs>
               </Box>
             ) : (
-              <Box sx={{ borderBottom: 1, float: 'right' }}>
-                <IconButton edge="end" color="inherit" onClick={handleClose} aria-label="close" sx={{ width: '100%' }}>
-                  <CloseIcon />
-                </IconButton>
+              <Box sx={{ borderBottom: 1 }}>
+                <Tabs className="tab-container">
+                  <Tab label="Registration" sx={{ width: '100%' }} />
+                </Tabs>
               </Box>
+
             )}
             <TabPanel value={value} index={0}>
-              <EnrollForm schema={loginSchema} uiSchema={loginUiSchema} form="login" handleClose={handleClose}/>
+              <EnrollForm schema={loginSchema} uiSchema={loginUiSchema} form="login"
+              />
             </TabPanel>
             <TabPanel value={value} index={1}>
               <EnrollForm
@@ -68,7 +86,6 @@ const SignInSignUpForms = ({ handleClose }) => {
                 uiSchema={registrationUiSchema}
                 form="registration"
                 verifyForm={(flag) => setShowVerifyForm(flag)}
-                handleClose={handleClose}
               />
             </TabPanel>
           </Box>

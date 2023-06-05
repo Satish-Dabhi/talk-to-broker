@@ -6,21 +6,23 @@ import registrationSchema from '../../formsDefinitions/userRegistration/schema.j
 import registrationUiSchema from '../../formsDefinitions/userRegistration/uiSchema.json';
 import EnrollForm from './EnrollForm';
 import './style.css';
+import SignInSignUpForms from './SignInSignUpForms';
 
 function Registration() {
     return (
-        <Box sx={{ flexGrow: 1, overflowX: 'hidden' }}>
-            <Grid container spacing={4}>
-                <Grid item xs={5}>
-                    <img src={verticalImage} alt="vertical-building" width={'100%'} height={'100%'} />
-                </Grid>
-                <Grid item xs={7}>
-                    <Box sx={{ width: '100%' }} className="p-5">
-                        <EnrollForm schema={registrationSchema} uiSchema={registrationUiSchema} form="registration" />
-                    </Box>
-                </Grid>
-            </Grid>
-        </Box>
+        // <Box sx={{ flexGrow: 1, overflowX: 'hidden' }}>
+        //     <Grid container spacing={4}>
+        //         <Grid item xs={5}>
+        //             <img src={verticalImage} alt="vertical-building" width={'100%'} height={'100%'} />
+        //         </Grid>
+        //         <Grid item xs={7}>
+        //             <Box sx={{ width: '100%' }} className="p-5">
+        //                 <EnrollForm schema={registrationSchema} uiSchema={registrationUiSchema} form="registration" />
+        //             </Box>
+        //         </Grid>
+        //     </Grid>
+        // </Box>
+        <SignInSignUpForms />
     )
 }
 

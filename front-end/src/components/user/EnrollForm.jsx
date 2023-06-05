@@ -9,11 +9,13 @@ import verificationFormSchema from '../../formsDefinitions/verificationForm/sche
 import verificationFormUiSchema from '../../formsDefinitions/verificationForm/uiSchema.json';
 import { updateSnackBar } from '../../redux/common/snackBarSlice';
 import { createUser, loginUser, verifyCode } from '../../redux/user/userSlice';
-import { getSchemaFieldTitle, setCookie, setLocalStorageObject } from '../../services/utils';
+import { getLocalStorageObject, getSchemaFieldTitle, setCookie, setLocalStorageObject } from '../../services/utils';
 import * as constant from '../../services/utils/constant';
 import ObjectFieldTemplate from '../ObjectFieldTemplate';
 import RadioWidget from '../customWidgets/RadioWidget';
 import { updateLocalStorage } from '../../redux/common/trackLocalStorageSlice';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { POST_API, VERIFY_TOKEN_END_POINT } from '../../redux/services/api';
 
 
 const theme = createTheme({
@@ -30,6 +32,8 @@ const Form = withTheme(Mui5Theme);
 
 const EnrollForm = (props) => {
   const { schema, uiSchema, form, verifyForm, handleClose } = props;
+  const userToken = getLocalStorageObject('user_token');
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [currentForm, setCurrentForm] = useState({
     schema: schema,
     uiSchema: uiSchema,
@@ -40,10 +44,28 @@ const EnrollForm = (props) => {
   const [validateForm, setValidateForm] = useState(false);
   const { addUser, loginUserData, verifyOtp, updatedUser } = useSelector((store) => store.userHandler);
   const dispatch = useDispatch();
+  let navigate = useNavigate();
+
+//   useEffect(() => {
+//     async function validToken() {
+//       const resp = await POST_API(VERIFY_TOKEN_END_POINT, { token: userToken });
+// console.log(",,.,..,.,.,..,,.,.,,",resp?.valid);
+
+//       if (resp?.valid) {
+//         // navigate("/user/profile");
+//         setUserLoggedIn(true);
+//       } else {
+//         setUserLoggedIn(false);
+//       }
+//     }
+//     userToken && validToken();
+// });
+
+console.log("userLoggedIn",userLoggedIn);
 
 
   useEffect(() => {
-    if (currentForm.formType === 'login') {
+    if (!userLoggedIn && currentForm.formType === 'login') {
       if (Object.keys(loginUserData).length > 0) {
         if (loginUserData?.validUser) {
           dispatch(
@@ -60,8 +82,8 @@ const EnrollForm = (props) => {
             })
           );
           setLocalStorageObject('user_token', loginUserData?.token);
-          // setCookie('user_token', loginUserData?.token, 7);
-          // handleClose();
+      navigate("/");
+
         } else {
           dispatch(
             updateSnackBar({
@@ -76,7 +98,7 @@ const EnrollForm = (props) => {
   }, [loginUserData]);
 
   useEffect(() => {
-    if (verifyOtp?.verify === true) {
+    if (!userLoggedIn && verifyOtp?.verify === true) {
       dispatch(
         updateSnackBar({
           open: true,
@@ -84,6 +106,7 @@ const EnrollForm = (props) => {
           severity: 'success',
         })
       );
+      navigate("/");
       // handleClose();
     } else if (verifyOtp?.verify === false) {
       dispatch(
@@ -97,7 +120,7 @@ const EnrollForm = (props) => {
   }, [verifyOtp]);
 
   useEffect(() => {
-    if (currentForm.formType === 'registration') {
+    if (!userLoggedIn && currentForm.formType === 'registration') {
       if (addUser?.status === 'created') {
         setValidateForm(false);
         verifyForm(true);

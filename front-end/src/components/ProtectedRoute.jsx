@@ -8,6 +8,7 @@ const ProtectedRoute = () => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   useEffect(() => {
+    console.log("called");
     async function validToken() {
       const resp = await POST_API(VERIFY_TOKEN_END_POINT, { token: userToken });
       if (resp?.valid) {
@@ -17,7 +18,10 @@ const ProtectedRoute = () => {
       }
     }
     userToken && validToken();
-  }, []);
+  },[]);
+
+console.log(",,.,..,.,.,userLoggedInuserLoggedIn..,,.,.,,",userLoggedIn);
+
 
   if (userLoggedIn) {
     return <Outlet />;

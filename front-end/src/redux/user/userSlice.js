@@ -128,7 +128,6 @@ const userSlice = createSlice({
     },
     [verifyToken.fulfilled]: (state, action) => {
       state.verifyTokenLoader = false;
-      console.log("................",action.payload);
       state.verifyTokenResponse = action.payload;
     },
     [verifyToken.rejected]: (state) => {

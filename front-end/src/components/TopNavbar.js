@@ -65,7 +65,7 @@ const TopNavbar = () => {
     <>
       <Navbar fixed="top" className="top-navbar" variant="dark" expand="lg">
         <Container>
-          <Navbar.Brand href="/#/">
+          <Navbar.Brand href="/">
             <img src={logo} width="90" height="30" className="d-inline-block align-top" alt="Talk To Broker" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -78,22 +78,14 @@ const TopNavbar = () => {
 
               {isUserLogin ?
                 <>
-                  <Nav.Link className="text-white" href="/#/add-property">
-                    Add Property
-                  </Nav.Link>
+                  <Nav.Link className="text-white" href="/user/profile">
                   <Avatar>{userData?.name}</Avatar>
+                  </Nav.Link>
                 </> :
-                <Nav.Link className="text-white" onClick={() => setRegistrationModal(true)}>
-                  Registration
+                <Nav.Link className="text-white" href="/userAuth">
+                  SignIn / SignUp
                 </Nav.Link>
               }
-              <Nav.Link className="text-white" href="/#/login">
-                Login
-              </Nav.Link>
-
-              <Nav.Link className="text-white" href="/#/registration">
-                Registration
-              </Nav.Link>
 
 
               {/* <NavDropdown

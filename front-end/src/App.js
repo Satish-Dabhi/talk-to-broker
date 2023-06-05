@@ -12,6 +12,8 @@ import { useEffect, useState } from 'react';
 import Login from './components/user/Login';
 import Registration from './components/user/Registration';
 import ProtectedRoute from './components/ProtectedRoute';
+import SignInSignUpForms from './components/user/SignInSignUpForms';
+import UserProfile from './components/user/UserProfile';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,8 +46,9 @@ const App = () => {
           <Route path="/userAuth" element={<Registration />} />
           <Route path="*" element={<Navigate to="/" replace />} />
 
-          <Route path="/property" element={<ProtectedRoute />}>
-            <Route path="/property/add-property" element={<AddProperty />} />
+          <Route path="/user" element={<ProtectedRoute />}>
+            <Route path="/user/add-property" element={<SignInSignUpForms />} />
+            <Route path="/user/profile" element={<UserProfile />} />
           </Route>
         </Routes>
         <Snackbar
