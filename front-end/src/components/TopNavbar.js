@@ -35,7 +35,7 @@ const TopNavbar = () => {
       if (event.storageArea === localStorage) {
         if (event.key === 'user_token') {
           const userToken = getLocalStorageObject('user_token');
-          userToken && setIsUserLogin(false);
+          userToken && setIsUserLogin(true);
         }
       }
     };

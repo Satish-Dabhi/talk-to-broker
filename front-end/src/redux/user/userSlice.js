@@ -71,6 +71,7 @@ export const verifyCode = createAsyncThunk('services/verifyCode', async (userDat
 export const verifyToken = createAsyncThunk('services/verifyToken', async (userData, thunkAPI) => {
   try {
     const resp = await POST_API(VERIFY_TOKEN_END_POINT, userData);
+    console.log("userAuth",resp);
     return resp;
   } catch (error) {
     return thunkAPI.rejectWithValue('something went wrong');
@@ -127,6 +128,7 @@ const userSlice = createSlice({
     },
     [verifyToken.fulfilled]: (state, action) => {
       state.verifyTokenLoader = false;
+      console.log("................",action.payload);
       state.verifyTokenResponse = action.payload;
     },
     [verifyToken.rejected]: (state) => {

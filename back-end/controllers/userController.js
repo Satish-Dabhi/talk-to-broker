@@ -13,12 +13,15 @@ const createNewUser = async (req, res) => {
 const userLogin = async (req, res) => {
   try {
     const { body } = req;
-    const user = await userService.userLogin(body);
-    if (user) {
-      res.status(201).json({ validUser: true, token: user });
-    } else {
-      res.status(201).json({ validUser: false, error: 'Invalid Credential' });
+    const { email, password } = body;
+    if (!email) {
+      res.status(401).json({ validUser: false, message: 'Invalid email' });
     }
+    if (!password) {
+      res.status(401).json({ validUser: false, message: 'Invalid password' });
+    }
+    const user = await userService.userLogin(body);
+    res.status(201).json(user);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -63,5 +66,5 @@ module.exports = {
   userLogin,
   updateUserByEmail,
   verifyOtp,
-  verifyToken
+  verifyToken,
 };

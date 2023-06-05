@@ -14,7 +14,6 @@ const createNewUser = async (data) => {
       const doesExist = await schema.userSchema.findOne({ email: data.email });
       if (doesExist) {
         const newData = { ...data, otp: otp };
-        console.log('doesExist-newData', newData);
         return await schema.userSchema
           .updateOne({ email: data.email }, { $set: newData })
           .then((result) => {
@@ -27,18 +26,30 @@ const createNewUser = async (data) => {
           })
           .catch((err) => console.warn(err));
       } else {
-        const tokenData = {
-          name: data.email,
-          role: data.password,
-        };
-        const token = jwt.sign(tokenData, JWT_SECRET_KEY);
-        const userData = { ...data, token: token, otp: otp, otpCreateTime: new Date() };
-        console.log('userData-userData', userData);
+        const userData = { ...data, otp: otp, otpCreateTime: new Date() };
         const user = new schema.userSchema(userData);
         const savedUser = await user.save();
         if (savedUser) {
           sendVerificationMail(data.email, otp);
-          return { message: 'User Created successfully', status: 'created' };
+          const secretKey = JWT_SECRET_KEY;
+          const options = { expiresIn: '2d' };
+          const payload = {
+            name: data.name,
+            email: data.email,
+          };
+          const token = jwt.sign(payload, secretKey, options);
+          return {
+            message: 'User Created successfully',
+            status: 'created',
+            token: token,
+            user: {
+              id: savedUser._id,
+              name: savedUser.name,
+              email: savedUser.email,
+            },
+          };
+        } else {
+          return { message: 'Something went wrong', status: 'unDone' };
         }
       }
     }
@@ -47,15 +58,33 @@ const createNewUser = async (data) => {
   }
 };
 
-
 const userLogin = async (data) => {
-  // const decoded = jwt.verify(data, JWT_SECRET_KEY);
-  const { email, password } = data;
-  const findUser = await schema.userSchema.findOne({ email: email, password: password });
-  if (findUser) { 
-    return findUser.token;
+  const findUser = await schema.userSchema.findOne(data);
+
+  if (findUser) {
+    const secretKey = JWT_SECRET_KEY;
+    const options = { expiresIn: '2d' };
+    const payload = {
+      name: findUser.name,
+      email: findUser.email,
+    };
+    const token = jwt.sign(payload, secretKey, options);
+    return {
+      validUser: true,
+      message: 'Login successfully',
+      token: token,
+      user: {
+        id: findUser._id,
+        name: findUser.name,
+        email: findUser.email,
+      },
+    };
+    // return findUser;
   } else {
-    return null;
+    return {
+      validUser: false,
+      message: 'Invalid Credential',
+    };
   }
 };
 
@@ -92,16 +121,22 @@ const verifyOtp = async (data) => {
 };
 
 const verifyToken = async (data) => {
-  console.log("..................", data);
-  const decoded = jwt.verify(data.token, JWT_SECRET_KEY);
-  const { token } = decoded;
-  console.log("token", token);
-  console.log("decoded", decoded);
-  const findUser = await schema.userSchema.findOne({ token: token });
-  if (findUser) {
-    return { valid: true, userData: findUser };
-  } else {
-    return { valid: false };
+  console.log('..................', data);
+  const { token } = data;
+  console.log('token', token);
+
+  if (!token) {
+    return { valid: false, message: 'Unable To Authenticate !' };
+  }
+
+  try {
+    const isValidToken = jwt.verify(token, JWT_SECRET_KEY);
+    if (isValidToken) {
+      return { valid: true };
+    }
+  } catch (error) {
+    console.error(error);
+    return { valid: false, message: 'Unable To Authenticate !' };
   }
 };
 
@@ -110,5 +145,5 @@ module.exports = {
   userLogin,
   updateUserByEmail,
   verifyOtp,
-  verifyToken
+  verifyToken,
 };
