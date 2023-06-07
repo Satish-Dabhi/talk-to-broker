@@ -1,8 +1,6 @@
+import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import TextField from "@material-ui/core/TextField";
 import * as constant from "../../services/utils/constant";
-import { FormHelperText, InputLabel, MenuItem, Select } from "@material-ui/core";
-import { FormControl, Box } from "@mui/material";
 
 const DynamicFields = (props) => {
     const { id, value, onChange, label, schema, uiSchema, required } = props;

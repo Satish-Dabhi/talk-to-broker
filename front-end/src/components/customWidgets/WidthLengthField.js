@@ -1,9 +1,6 @@
+import { Box, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import TextField from "@material-ui/core/TextField";
 import * as constant from "../../services/utils/constant";
-// import { FormHelperText, InputLabel, MenuItem, Select } from "@material-ui/core";
-import { FormControl, Box, Grid, InputLabel, MenuItem, Select } from "@mui/material";
-import { Typography } from "@material-ui/core";
 
 const WidthLengthField = (props) => {
     const { id, value, onChange, label, schema, uiSchema, required } = props;
@@ -20,9 +17,9 @@ const WidthLengthField = (props) => {
 
     const updateFieldValues = () => {
         setNumFields(JSON.parse(value).length);
-            setVal(JSON.parse(value));
-            const options = JSON.parse(value).length >= 0 && [...Array(JSON.parse(value).length).keys()].map((i) => `${id}_${i}`);
-            setFieldIds(options);
+        setVal(JSON.parse(value));
+        const options = JSON.parse(value).length >= 0 && [...Array(JSON.parse(value).length).keys()].map((i) => `${id}_${i}`);
+        setFieldIds(options);
     }
 
     useEffect(() => {
@@ -85,7 +82,7 @@ const WidthLengthField = (props) => {
                     </Select>
                 </FormControl>
             </Box>
-            {console.log("fieldIds",fieldIds)}
+            {console.log("fieldIds", fieldIds)}
             {fieldIds.length > 0 &&
                 fieldIds.map((fieldId, index) => {
                     return (
@@ -135,15 +132,6 @@ const WidthLengthField = (props) => {
                         </>
                     );
                 })}
-            {/* <TextField
-                key={`total-${id}`}
-                className="p-1"
-                id={`total-${id}`}
-                label={"Total"}
-                variant={"filled"}
-                // value={}
-                // onChange={(e) => newHandleChange(e, index)}
-            /> */}
         </div>
     );
 };

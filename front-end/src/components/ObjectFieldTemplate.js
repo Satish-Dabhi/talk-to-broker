@@ -1,13 +1,6 @@
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/styles";
+import { Grid } from "@mui/material";
 import React from "react";
 import * as constant from "../services/utils/constant";
-
-const useStyles = makeStyles({
-    root: {
-        marginTop: 10,
-    },
-});
 
 const ObjectFieldTemplate = ({
     DescriptionField,

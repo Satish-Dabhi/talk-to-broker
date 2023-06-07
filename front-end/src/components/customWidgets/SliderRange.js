@@ -1,5 +1,4 @@
-import { Box, Button, FormControl, FormLabel, Slider, TextField } from "@material-ui/core";
-import { Grid } from "@mui/material";
+import { Button, FormControl, FormLabel, Grid, Slider, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import * as constant from "../../services/utils/constant";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -117,7 +116,7 @@ const SliderRangeField = ({
                     </div>
                 ))}
                 <Button variant="contained" color="primary" onClick={addSlider}>
-                   {`Add ${schema.subTitle} Slider`}
+                    {`Add ${schema.subTitle} Slider`}
                 </Button>
             </FormControl>
         </>

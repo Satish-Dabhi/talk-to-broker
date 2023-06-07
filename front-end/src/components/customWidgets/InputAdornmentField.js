@@ -1,4 +1,4 @@
-import { InputAdornment, OutlinedInput, TextField } from '@material-ui/core';
+import { InputAdornment, TextField } from '@mui/material';
 import React from 'react';
 import * as constant from '../../services/utils/constant';
 

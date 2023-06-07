@@ -1,8 +1,7 @@
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@material-ui/core";
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import React from "react";
 
 const RadioWidget = (props) => {
-    console.log("=-=-==-=",props);
     const { options, value, onChange, schema, id, label } = props;
     return (
         <FormControl>

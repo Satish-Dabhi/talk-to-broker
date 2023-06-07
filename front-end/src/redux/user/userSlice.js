@@ -108,6 +108,7 @@ const userSlice = createSlice({
     },
     [loginUser.fulfilled]: (state, action) => {
       state.loginUserLoader = false;
+      console.log(".............",action.payload);
       state.loginUserData = action.payload;
     },
     [loginUser.rejected]: (state) => {

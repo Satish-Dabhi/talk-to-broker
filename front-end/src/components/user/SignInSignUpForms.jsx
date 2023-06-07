@@ -9,7 +9,7 @@ import registrationUiSchema from '../../formsDefinitions/userRegistration/uiSche
 import { POST_API, VERIFY_TOKEN_END_POINT } from '../../redux/services/api';
 import { getLocalStorageObject } from '../../services/utils';
 import EnrollForm from './EnrollForm';
-import './style.css';
+import './user.css';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -41,7 +41,7 @@ const SignInSignUpForms = ({ handleClose }) => {
       }
     }
     userToken && validToken();
-  });
+  },[]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

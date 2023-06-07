@@ -121,9 +121,7 @@ const verifyOtp = async (data) => {
 };
 
 const verifyToken = async (data) => {
-  console.log('..................', data);
   const { token } = data;
-  console.log('token', token);
 
   if (!token) {
     return { valid: false, message: 'Unable To Authenticate !' };
