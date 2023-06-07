@@ -61,7 +61,7 @@ const EnrollForm = (props) => {
 //     userToken && validToken();
 // });
 
-console.log("userLoggedIn",userLoggedIn);
+// console.log("userLoggedIn",userLoggedIn);
 
 
   useEffect(() => {
@@ -82,8 +82,7 @@ console.log("userLoggedIn",userLoggedIn);
             })
           );
           setLocalStorageObject('user_token', loginUserData?.token);
-      navigate("/");
-
+          navigate("/");
         } else {
           dispatch(
             updateSnackBar({

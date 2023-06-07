@@ -1,15 +1,15 @@
 import { Grid, Tab, Tabs } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import loginSchema from '../../formsDefinitions/userLogin/schema.json';
 import loginUiSchema from '../../formsDefinitions/userLogin/uiSchema.json';
 import registrationSchema from '../../formsDefinitions/userRegistration/schema.json';
 import registrationUiSchema from '../../formsDefinitions/userRegistration/uiSchema.json';
+import { POST_API, VERIFY_TOKEN_END_POINT } from '../../redux/services/api';
+import { getLocalStorageObject } from '../../services/utils';
 import EnrollForm from './EnrollForm';
 import './style.css';
-import { getLocalStorageObject } from '../../services/utils';
-import { POST_API, VERIFY_TOKEN_END_POINT } from '../../redux/services/api';
-import { useNavigate } from 'react-router-dom';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -27,38 +27,29 @@ function TabPanel(props) {
   );
 }
 
-
 const SignInSignUpForms = ({ handleClose }) => {
   const [value, setValue] = React.useState(0);
   const [showVerifyForm, setShowVerifyForm] = useState(false);
   const userToken = getLocalStorageObject('user_token');
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
   let navigate = useNavigate();
-
 
   useEffect(() => {
     async function validToken() {
       const resp = await POST_API(VERIFY_TOKEN_END_POINT, { token: userToken });
-      console.log(",,.,..,.,.,..,,.,.,,", resp?.valid);
-
       if (resp?.valid) {
-        // navigate("/user/profile");
-        setUserLoggedIn(true);
-      } else {
-        setUserLoggedIn(false);
+        navigate('/user/profile');
       }
     }
     userToken && validToken();
   });
-
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <Box sx={{ flexGrow: 1, overflowX: 'hidden' }} >
-      <Grid container sx={{ justifyContent: "center", height: "100vh" }}>
+    <Box sx={{ flexGrow: 1, overflowX: 'hidden' }}>
+      <Grid container sx={{ justifyContent: 'center', height: '100vh' }}>
         <Grid item xs={8}>
           <Box sx={{ width: '100%', padding: '13% 0 0' }}>
             {!showVerifyForm ? (
@@ -74,11 +65,9 @@ const SignInSignUpForms = ({ handleClose }) => {
                   <Tab label="Registration" sx={{ width: '100%' }} />
                 </Tabs>
               </Box>
-
             )}
             <TabPanel value={value} index={0}>
-              <EnrollForm schema={loginSchema} uiSchema={loginUiSchema} form="login"
-              />
+              <EnrollForm schema={loginSchema} uiSchema={loginUiSchema} form="login" />
             </TabPanel>
             <TabPanel value={value} index={1}>
               <EnrollForm

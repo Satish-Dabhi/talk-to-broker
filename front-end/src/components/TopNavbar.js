@@ -1,15 +1,13 @@
-import { useState, useEffect } from 'react';
+import { Avatar } from '@mui/material';
+import { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { useDispatch, useSelector } from 'react-redux';
 import logo from '../assets/images/ttb-logo.jpg';
+import { getLocalStorageObject } from '../services/utils';
 import './index.css';
 import MyModal from './user/MyModal';
-import { getCookie, getLocalStorageObject } from '../services/utils';
-import { verifyToken } from '../redux/user/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import BackgroundLetterAvatars from './BackgroundLetterAvatars';
-import { Avatar } from '@mui/material';
 
 const TopNavbar = () => {
   const [registrationModal, setRegistrationModal] = useState(false);
@@ -20,15 +18,14 @@ const TopNavbar = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("verifyTokenResponse", trackLocalStorage.length);
+    console.log('verifyTokenResponse', trackLocalStorage);
     trackLocalStorage.length > 0 && setIsUserLogin(true);
-  }, [trackLocalStorage])
-
+  }, [trackLocalStorage]);
 
   useEffect(() => {
     verifyTokenResponse?.valid && console.log(verifyTokenResponse.userData);
     verifyTokenResponse?.valid && setUserData(verifyTokenResponse.userData);
-  }, [verifyTokenResponse])
+  }, [verifyTokenResponse]);
 
   useEffect(() => {
     const handleStorageChange = (event) => {
@@ -51,7 +48,6 @@ const TopNavbar = () => {
   //   console.log("localStorage=-----------", localStorage);
   // }, [localStorage])
 
-
   // useEffect(() => {
   //   // const userToken = getCookie('user_token');
   //   console.log("=--------");
@@ -59,7 +55,6 @@ const TopNavbar = () => {
   //   console.log("userToken", userToken);
   //   dispatch(verifyToken({ token: userToken }));
   // }, [])
-
 
   return (
     <>
@@ -75,18 +70,17 @@ const TopNavbar = () => {
               {/* <Nav.Link href="#link">Link</Nav.Link>  */}
             </Nav>
             <Nav>
-
-              {isUserLogin ?
+              {isUserLogin ? (
                 <>
                   <Nav.Link className="text-white" href="/user/profile">
-                  <Avatar>{userData?.name}</Avatar>
+                    <Avatar>{userData?.name}</Avatar>
                   </Nav.Link>
-                </> :
+                </>
+              ) : (
                 <Nav.Link className="text-white" href="/userAuth">
                   SignIn / SignUp
                 </Nav.Link>
-              }
-
+              )}
 
               {/* <NavDropdown
         className="text-white"

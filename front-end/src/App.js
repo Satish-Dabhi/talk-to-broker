@@ -43,11 +43,11 @@ const App = () => {
           <Route path="/property/:propertyType" element={<Properties />} />
           <Route path="/property-details/:id" element={<PropertyDetails />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/userAuth" element={<Registration />} />
+          <Route path="/userAuth" element={<SignInSignUpForms />} />
           <Route path="*" element={<Navigate to="/" replace />} />
 
           <Route path="/user" element={<ProtectedRoute />}>
-            <Route path="/user/add-property" element={<SignInSignUpForms />} />
+            {/* <Route path="/user/add-property" element={<SignInSignUpForms />} /> */}
             <Route path="/user/profile" element={<UserProfile />} />
           </Route>
         </Routes>

@@ -6,9 +6,9 @@ import { getLocalStorageObject } from '../services/utils';
 const ProtectedRoute = () => {
   const userToken = getLocalStorageObject('user_token');
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true); // Add a loading state
 
   useEffect(() => {
-    console.log("called");
     async function validToken() {
       const resp = await POST_API(VERIFY_TOKEN_END_POINT, { token: userToken });
       if (resp?.valid) {
@@ -16,18 +16,21 @@ const ProtectedRoute = () => {
       } else {
         setUserLoggedIn(false);
       }
+      setLoading(false); // Set loading to false after useEffect completes
     }
-    userToken && validToken();
-  },[]);
 
-console.log(",,.,..,.,.,userLoggedInuserLoggedIn..,,.,.,,",userLoggedIn);
+    if (userToken) {
+      validToken();
+    } else {
+      setLoading(false); // Set loading to false after useEffect completes
+    }
+  }, []);
 
-
-  if (userLoggedIn) {
-    return <Outlet />;
-  } else {
-    return <Navigate to="/userAuth" />;
+  if (loading) {
+    return <div>Loading...</div>;
   }
+
+  return userLoggedIn ? <Outlet /> : <Navigate to="/userAuth" />;
 };
 
 export default ProtectedRoute;
