@@ -9,7 +9,9 @@ import registrationUiSchema from '../../formsDefinitions/userRegistration/uiSche
 import { POST_API, VERIFY_TOKEN_END_POINT } from '../../redux/services/api';
 import { getLocalStorageObject } from '../../services/utils';
 import EnrollForm from './EnrollForm';
+import CryptoJS from 'crypto-js';
 import './user.css';
+import { LOCAL_OBJECT_SECRET_KEY } from '../../services/utils/constant';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -30,7 +32,8 @@ function TabPanel(props) {
 const SignInSignUpForms = ({ handleClose }) => {
   const [value, setValue] = React.useState(0);
   const [showVerifyForm, setShowVerifyForm] = useState(false);
-  const userToken = getLocalStorageObject('user_token');
+  const token = getLocalStorageObject('token');
+  const userToken = token && CryptoJS.AES.decrypt(token, LOCAL_OBJECT_SECRET_KEY).toString(CryptoJS.enc.Utf8);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -41,7 +44,7 @@ const SignInSignUpForms = ({ handleClose }) => {
       }
     }
     userToken && validToken();
-  },[]);
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

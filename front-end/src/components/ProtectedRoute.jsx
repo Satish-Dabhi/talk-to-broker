@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { POST_API, VERIFY_TOKEN_END_POINT } from '../redux/services/api';
 import { getLocalStorageObject } from '../services/utils';
+import CryptoJS from 'crypto-js';
+import { LOCAL_OBJECT_SECRET_KEY } from '../services/utils/constant';
 
 const ProtectedRoute = () => {
-  const userToken = getLocalStorageObject('user_token');
+  const token = getLocalStorageObject('token');
+  const userToken = token && CryptoJS.AES.decrypt(token, LOCAL_OBJECT_SECRET_KEY).toString(CryptoJS.enc.Utf8);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true); // Add a loading state
 

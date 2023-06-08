@@ -9,13 +9,12 @@ import { useNavigate } from 'react-router-dom';
 import verificationFormSchema from '../../formsDefinitions/verificationForm/schema.json';
 import verificationFormUiSchema from '../../formsDefinitions/verificationForm/uiSchema.json';
 import { updateSnackBar } from '../../redux/common/snackBarSlice';
-import { updateLocalStorage } from '../../redux/common/trackLocalStorageSlice';
 import { createUser, loginUser, verifyCode } from '../../redux/user/userSlice';
-import { getLocalStorageObject, getSchemaFieldTitle, setLocalStorageObject } from '../../services/utils';
+import { getSchemaFieldTitle, setLocalStorageObject } from '../../services/utils';
 import * as constant from '../../services/utils/constant';
 import ObjectFieldTemplate from '../ObjectFieldTemplate';
 import RadioWidget from '../customWidgets/RadioWidget';
-
+import CryptoJS from 'crypto-js';
 
 const theme = createTheme({
   components: {
@@ -43,9 +42,6 @@ const EnrollForm = (props) => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-  console.log(".............loginUserDataloginUserData",loginUserData);
-
-
   useEffect(() => {
     if (currentForm.formType === 'login') {
       if (Object.keys(loginUserData).length > 0) {
@@ -57,14 +53,14 @@ const EnrollForm = (props) => {
               severity: 'success',
             })
           );
-          dispatch(
-            updateLocalStorage({
-              key: 'user_token',
-              value: loginUserData?.token
-            })
-          );
-          setLocalStorageObject('user_token', loginUserData?.token);
-          navigate("/");
+          const userToken = CryptoJS.AES.encrypt(loginUserData?.token, constant.LOCAL_OBJECT_SECRET_KEY).toString();
+          const userData = CryptoJS.AES.encrypt(
+            JSON.stringify(loginUserData?.user),
+            constant.LOCAL_OBJECT_SECRET_KEY
+          ).toString();
+          setLocalStorageObject('token', userToken);
+          setLocalStorageObject('user', userData);
+          navigate('/');
         } else {
           dispatch(
             updateSnackBar({
@@ -87,7 +83,7 @@ const EnrollForm = (props) => {
           severity: 'success',
         })
       );
-      navigate("/");
+      navigate('/');
       // handleClose();
     } else if (verifyOtp?.verify === false) {
       dispatch(
@@ -236,8 +232,8 @@ const EnrollForm = (props) => {
                 {currentForm.formType === 'registration'
                   ? 'Register'
                   : currentForm.formType === 'login'
-                    ? 'Login'
-                    : 'Verify'}
+                  ? 'Login'
+                  : 'Verify'}
               </Button>
             </div>
           </div>

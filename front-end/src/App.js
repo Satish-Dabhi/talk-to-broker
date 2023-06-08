@@ -15,10 +15,14 @@ import { updateSnackBar } from './redux/common/snackBarSlice';
 const App = () => {
   const dispatch = useDispatch();
   const snackBar = useSelector((state) => state.snackbar);
+  const { verifyTokenLoader, loginUserData } = useSelector((store) => store.userHandler);
   const [mainSnackBar, setMainSnackBar] = useState(snackBar);
   useEffect(() => {
     setMainSnackBar(snackBar);
   }, [snackBar]);
+
+  console.log("verifyTokenLoader",verifyTokenLoader);
+  console.log("App->loginUserData",loginUserData);
 
   const handleSnackbarClose = () => {
     dispatch(
