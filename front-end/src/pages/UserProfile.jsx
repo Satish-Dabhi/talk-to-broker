@@ -8,7 +8,7 @@ function UserProfile() {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    const user = getLocalStorageObject('user');
+    const user = getLocalStorageObject('token');
     const loggedInUser = user && CryptoJS.AES.decrypt(user, LOCAL_OBJECT_SECRET_KEY).toString(CryptoJS.enc.Utf8);
     user && setUserData(JSON.parse(loggedInUser));
   }, []);

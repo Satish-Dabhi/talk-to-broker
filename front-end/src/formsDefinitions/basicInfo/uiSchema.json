@@ -1,18 +1,22 @@
 {
     "ui:order": [
         "dateOfEntry",
+        "images",
         "addPropertyType",
         "sellProperty",
         "rentalProperty",
         "label",
         "buildingType",
         "propertyType",
-        "subPropertyType",        
+        "subPropertyType",
         "otherProperty",
         "roomTypes",
         "propertyOwnership"
     ],
-    "addPropertyType":{
+    "images": {
+        "ui:widget": "FileWidget"
+    },
+    "addPropertyType": {
         "ui:widget": "radio"
     },
     "ui:layout": {
@@ -34,11 +38,11 @@
         "buildingType": {
             "md": 6
         },
-        "propertyType":{
-            "md":4
+        "propertyType": {
+            "md": 4
         },
-        "subPropertyType":{
-            "md":8
+        "subPropertyType": {
+            "md": 8
         }
     }
 }

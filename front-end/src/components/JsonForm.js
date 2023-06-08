@@ -23,6 +23,7 @@ import InputAdornmentFieldWidget from './customWidgets/InputAdornmentField';
 import RadioWidget from './customWidgets/RadioWidget';
 import SliderFieldsWidget from './customWidgets/SliderRange';
 import WidthLengthFieldWidget from './customWidgets/WidthLengthField';
+import FileWidget from './customWidgets/FileWidget';
 
 
 const theme = createTheme({
@@ -51,6 +52,7 @@ const JsonForm = (props) => {
   }, [activeForm]);
 
   const handleSubmit = ({ formData }) => {
+    console.log("formData",formData);
     formData.addPropertyType && setPropertyType(formData.addPropertyType);
     const encrypted = CryptoJS.AES.encrypt(JSON.stringify(formData), constant.SESSION_OBJECT_SECRET_KEY).toString();
     setSessionStorageObject(constant.SESSION_KEY, encrypted);
@@ -191,6 +193,7 @@ const JsonForm = (props) => {
     WidthLengthField: WidthLengthFieldWidget,
     sliderField: SliderFieldsWidget,
     iconField: InputAdornmentFieldWidget,
+    FileWidget: FileWidget,
   };
 
   const onError = (errors) => {

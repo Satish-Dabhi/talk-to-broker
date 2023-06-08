@@ -7,12 +7,14 @@ import { LOCAL_OBJECT_SECRET_KEY } from '../services/utils/constant';
 
 const ProtectedRoute = () => {
   const token = getLocalStorageObject('token');
-  const userToken = token && CryptoJS.AES.decrypt(token, LOCAL_OBJECT_SECRET_KEY).toString(CryptoJS.enc.Utf8);
+  const decryptedToken = token && CryptoJS.AES.decrypt(token, LOCAL_OBJECT_SECRET_KEY).toString(CryptoJS.enc.Utf8);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true); // Add a loading state
+  const userToken = JSON.parse(decryptedToken);
 
   useEffect(() => {
     async function validToken() {
+      console.log("userToken", userToken);
       const resp = await POST_API(VERIFY_TOKEN_END_POINT, { token: userToken?.token });
       if (resp?.valid) {
         setUserLoggedIn(true);

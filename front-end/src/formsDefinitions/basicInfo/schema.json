@@ -18,6 +18,10 @@
             "type": "string",
             "format": "date"
         },
+        "images": {
+            "type": "string",
+            "title": "Images"
+        },
         "addPropertyType": {
             "title": "Property Type",
             "enum": [
@@ -198,7 +202,7 @@
                 }
             },
             "then": {
-                "required":[
+                "required": [
                     "roomTypes"
                 ],
                 "properties": {

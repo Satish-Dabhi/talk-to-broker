@@ -33,7 +33,8 @@ const SignInSignUpForms = ({ handleClose }) => {
   const [value, setValue] = React.useState(0);
   const [showVerifyForm, setShowVerifyForm] = useState(false);
   const token = getLocalStorageObject('token');
-  const userToken = token && CryptoJS.AES.decrypt(token, LOCAL_OBJECT_SECRET_KEY).toString(CryptoJS.enc.Utf8);
+  const decryptedToken = token && CryptoJS.AES.decrypt(token, LOCAL_OBJECT_SECRET_KEY).toString(CryptoJS.enc.Utf8);
+  const userToken = JSON.parse(decryptedToken);
   let navigate = useNavigate();
 
   useEffect(() => {
