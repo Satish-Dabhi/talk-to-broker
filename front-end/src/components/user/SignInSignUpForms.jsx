@@ -38,7 +38,7 @@ const SignInSignUpForms = ({ handleClose }) => {
 
   useEffect(() => {
     async function validToken() {
-      const resp = await POST_API(VERIFY_TOKEN_END_POINT, { token: userToken });
+      const resp = await POST_API(VERIFY_TOKEN_END_POINT, { token: userToken?.token });
       if (resp?.valid) {
         navigate('/user/profile');
       }
