@@ -111,6 +111,9 @@ export const ADD_PROPERTY_FORMS = [
   {
     label: constant.STEP9_FORM_NAME,
   },
+  {
+    label: constant.STEP10_FORM_NAME,
+  },
 ];
 
 export const getCardImageByPropertyType = (propertyType) => {

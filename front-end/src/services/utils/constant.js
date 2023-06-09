@@ -14,6 +14,7 @@ export const STEP6_FORM_NAME = "Floor And Parking Details"
 export const STEP7_FORM_NAME = "More Property Details"
 export const STEP8_FORM_NAME = "Computation Of Sales Property"
 export const STEP9_FORM_NAME = "Maintenance Charges Details"
+export const STEP10_FORM_NAME = "Property Images"
 export const DYNAMIC_FIELD_MAX_OPTIONS = 10
 export const SESSION_OBJECT_SECRET_KEY = 'mysecretkey';
 export const LOCAL_OBJECT_SECRET_KEY = 'local_secret_key';

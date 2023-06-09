@@ -1,0 +1,13 @@
+{
+    "title": "Property Images",
+    "type": "object",
+    "required": [
+        "images"
+    ],
+    "properties": {
+        "images": {
+            "type": "string",
+            "title": "Images"
+        }
+    }
+}

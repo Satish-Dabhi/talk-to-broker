@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DataTable from './DataTable';
 
-const VerticalTabs = ({ userData }) => {
+const Dashboard = ({ userData }) => {
   console.log('..............', userData);
   const [selectedTab, setSelectedTab] = useState(1);
   let navigate = useNavigate();
@@ -27,7 +27,7 @@ const VerticalTabs = ({ userData }) => {
           <h6>{userData && userData?.name}</h6>
         </>
         <Tab label="About Yourself" />
-        <Tab label="Your Property" />
+        <Tab label="Your Events" />
         <Tab label="Tab 3" />
       </Tabs>
       <Box sx={{ flexGrow: 1, p: 2 }}>
@@ -51,4 +51,4 @@ const VerticalTabs = ({ userData }) => {
   );
 };
 
-export default VerticalTabs;
+export default Dashboard;

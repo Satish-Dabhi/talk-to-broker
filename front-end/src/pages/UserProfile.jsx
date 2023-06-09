@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import VerticalTabs from '../components/dashboard/VerticalTabs';
+import Dashboard from '../components/dashboard/Dashboard';
 import { getLocalStorageObject } from '../services/utils';
 import { LOCAL_OBJECT_SECRET_KEY } from '../services/utils/constant';
 import CryptoJS from 'crypto-js';
@@ -13,7 +13,7 @@ function UserProfile() {
     user && setUserData(JSON.parse(loggedInUser));
   }, []);
 
-  return <VerticalTabs userData={userData?.user} />;
+  return <Dashboard userData={userData?.user} />;
 }
 
 export default UserProfile;
