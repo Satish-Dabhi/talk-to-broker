@@ -11,6 +11,7 @@ import {
   ADD_PROPERTY_FORMS,
   allDefined,
   findPercentageValue,
+  getLocalStorageObject,
   getSchemaFieldTitle,
   getSessionStorageObject,
   getSum,
@@ -24,7 +25,6 @@ import RadioWidget from './customWidgets/RadioWidget';
 import SliderFieldsWidget from './customWidgets/SliderRange';
 import WidthLengthFieldWidget from './customWidgets/WidthLengthField';
 import FileWidget from './customWidgets/FileWidget';
-
 
 const theme = createTheme({
   components: {
@@ -43,16 +43,30 @@ const JsonForm = (props) => {
   const [sessionFormData, setSessionFormData] = useState({});
   const [validateForm, setValidateForm] = useState(false);
   const [formSubmit, setFormSubmit] = useState(false);
+  const [userId, setUserId] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const user = getLocalStorageObject('token');
+    const loggedInUser = user && CryptoJS.AES.decrypt(user, constant.LOCAL_OBJECT_SECRET_KEY).toString(CryptoJS.enc.Utf8);
+  console.log("loggedInUser",loggedInUser);
+  
+    const userData = JSON.parse(loggedInUser);
+    userData && setUserId(userData?.user?.id);
+  }, []);
+
+  console.log("userId",userId);
+
+  useEffect(() => {
     var session_data = getSessionStorageObject(constant.SESSION_KEY);
-    const decrypted = session_data && CryptoJS.AES.decrypt(session_data, constant.SESSION_OBJECT_SECRET_KEY).toString(CryptoJS.enc.Utf8);
+    const decrypted =
+      session_data &&
+      CryptoJS.AES.decrypt(session_data, constant.SESSION_OBJECT_SECRET_KEY).toString(CryptoJS.enc.Utf8);
     session_data && setSessionFormData(JSON.parse(decrypted));
   }, [activeForm]);
 
   const handleSubmit = ({ formData }) => {
-    console.log("formData",formData);
+    console.log('formData', formData);
     formData.addPropertyType && setPropertyType(formData.addPropertyType);
     const encrypted = CryptoJS.AES.encrypt(JSON.stringify(formData), constant.SESSION_OBJECT_SECRET_KEY).toString();
     setSessionStorageObject(constant.SESSION_KEY, encrypted);
