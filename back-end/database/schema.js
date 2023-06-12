@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 let p_schema = new mongoose.Schema(
   {
     // _id: mongoose.Schema.Types.ObjectId,
+    u_id: String,
     decidedSalesValueOfProperty: Number,
     registrationFeePercentage: Number,
     registrationFees: Number,

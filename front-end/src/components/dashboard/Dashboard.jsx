@@ -1,12 +1,27 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Box, Button, Tab, Tabs } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DataTable from './DataTable';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPropertiesByUser } from '../../redux/property/propertySlice';
 
 const Dashboard = ({ userData }) => {
-  console.log('..............', userData);
+  const { propertiesByUser } = useSelector((store) => store.propertyHandler);
   const [selectedTab, setSelectedTab] = useState(1);
+  const [properties, setProperties] = useState({});
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    userData?.id && dispatch(getPropertiesByUser(userData?.id));
+  }, [userData?.id])
+
+  React.useEffect(() => {
+    const { status, data } = propertiesByUser;
+    status === 'OK' && setProperties(data);
+  }, [propertiesByUser]);
+
   let navigate = useNavigate();
 
   const handleChange = (event, newValue) => {
@@ -42,7 +57,7 @@ const Dashboard = ({ userData }) => {
               </div>
             </div>
             <br />
-            <DataTable />
+            <DataTable data={properties} />
           </>
         )}
         {selectedTab === 3 && <div>Tab 3 Content</div>}

@@ -37,8 +37,22 @@ const getPropertyByType = async(propertyType) => {
   .catch(function(err){ console.log(err)});
 };
 
+const getPropertiesByUserId = async(userId) => {
+
+  return await schema.propertySchema.find({u_id : userId}, function(err, result) {
+    if (err) {
+      throw err;
+    } else {
+      return result;
+    }
+  })
+  .clone()
+  .catch(function(err){ console.log(err)});
+};
+
 module.exports = {
   createNewProperty,
   getAllProperties,
-  getPropertyByType
+  getPropertyByType,
+  getPropertiesByUserId
 };

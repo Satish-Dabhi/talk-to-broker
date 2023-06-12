@@ -49,14 +49,11 @@ const JsonForm = (props) => {
   useEffect(() => {
     const user = getLocalStorageObject('token');
     const loggedInUser = user && CryptoJS.AES.decrypt(user, constant.LOCAL_OBJECT_SECRET_KEY).toString(CryptoJS.enc.Utf8);
-  console.log("loggedInUser",loggedInUser);
-  
     const userData = JSON.parse(loggedInUser);
     userData && setUserId(userData?.user?.id);
   }, []);
 
-  console.log("userId",userId);
-
+  console.log(".-.-.-.-.-",userId);
   useEffect(() => {
     var session_data = getSessionStorageObject(constant.SESSION_KEY);
     const decrypted =
@@ -71,7 +68,10 @@ const JsonForm = (props) => {
     const encrypted = CryptoJS.AES.encrypt(JSON.stringify(formData), constant.SESSION_OBJECT_SECRET_KEY).toString();
     setSessionStorageObject(constant.SESSION_KEY, encrypted);
     setValidateForm(false);
-    formSubmit && dispatch(createProperty(formData));
+    if (userId !== '' && formSubmit) {
+      const finalFormData = { ...formData, u_id: userId }
+      dispatch(createProperty(finalFormData));
+    }
     ADD_PROPERTY_FORMS.length - 1 > activeForm && setActiveForm(activeForm + 1);
     setFormSubmit(false);
   };

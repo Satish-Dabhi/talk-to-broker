@@ -37,9 +37,10 @@ const rows = [
   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
 
-export default function DataTable() {
-const { loginUserData } = useSelector((store) => store.userHandler);
-console.log("loginUserr",loginUserData);
+export default function DataTable({ data }) {
+  console.log("datadata", data);
+
+
 
 
   return (
@@ -53,7 +54,7 @@ console.log("loginUserr",loginUserData);
           },
         }}
         pageSizeOptions={[5, 10]}
-        // checkboxSelection
+      // checkboxSelection
       />
     </div>
   );

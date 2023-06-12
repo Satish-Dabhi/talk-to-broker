@@ -14,11 +14,9 @@ const Properties = () => {
 
   React.useEffect(() => {
     dispatch(getPropertiesByType(propertyType));
-    console.log('propertyType', propertyType);
   }, [propertyType]);
 
   React.useEffect(() => {
-    console.log('propertiesproperties-----------', propertiesByType);
     const { status, data } = propertiesByType;
     status === 'OK' && setProperties(data);
   }, [propertiesByType]);
