@@ -7,7 +7,7 @@
     "properties": {
         "images": {
             "type": "string",
-            "title": "Images"
+            "title": ""
         }
     }
 }

@@ -16,7 +16,7 @@
             "type": "number",
             "minimum": 1,
             "default": 0,
-            "md": 4
+            "md": 8
         },
         "gender": {
             "enum": [
@@ -27,7 +27,7 @@
                 "Male",
                 "Female"
             ],
-            "md": 8
+            "md": 4
         },
         "registrationFeePercentage": {
             "title": "Regestration Fee Percentage",
@@ -35,14 +35,14 @@
             "maximum": 100,
             "minimum": 1,
             "default": 0,
-            "md": 3
+            "md": 6
         },
         "registrationFees": {
             "title": "Regestration Fees",
             "type": "number",
             "minimum": 1,
             "default": 0,
-            "md": 7,
+            "md": 6,
             "readOnly": true
         },
         "stampsDutyFeePercentage": {
@@ -51,14 +51,14 @@
             "maximum": 100,
             "minimum": 1,
             "default": 0,
-            "md": 3
+            "md": 6
         },
         "stampsDutyFees": {
             "title": "Stamps Duty Fees",
             "type": "number",
             "minimum": 1,
             "default": 0,
-            "md": 7,
+            "md": 6,
             "readOnly": true
         },
         "grossAmount": {

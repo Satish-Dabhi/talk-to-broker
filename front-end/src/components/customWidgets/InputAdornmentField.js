@@ -17,7 +17,7 @@ const InputAdornmentField = ({
       <TextField
         label={required ? `${label}*` : label}
         id={id}
-        sx={{ m: 1, width: '25ch' }}
+        // sx={{ m: 1}}
         InputProps={{
           endAdornment: <InputAdornment position={position}>{icon}</InputAdornment>,
         }}

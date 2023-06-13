@@ -1,62 +1,84 @@
+import { useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import * as React from 'react';
 import './dashboard.css';
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
+import { convertToTitleCase, setSessionStorageObject } from '../../services/utils';
+import CryptoJS from 'crypto-js';
+import * as constant from '../../services/utils/constant';
+import { useNavigate } from 'react-router-dom';
 
-const columns = [
-  { field: 'id', headerName: 'No.', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90,
-  },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params) => `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-  },
-  { field: 'edit', headerName: 'Edit', width: 70, renderCell: renderEditCell },
-];
 
-function renderEditCell(params) {
-  const handleEditClick = () => {
-    // Handle the edit button click event
-    console.log('Edit clicked for row:', params.row);
-  };
 
-  return (
-    <IconButton onClick={handleEditClick}>
-      <EditIcon />
-    </IconButton>
-  );
-}
 
 const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+  { id: 1, propertyStatus: 'Snow', propertyType: 'Jon', propertyOwnership: 35 },
+  { id: 2, propertyStatus: 'Lannister', propertyType: 'Cersei', propertyOwnership: 42 },
+  { id: 3, propertyStatus: 'Lannister', propertyType: 'Jaime', propertyOwnership: 45 },
+  { id: 4, propertyStatus: 'Stark', propertyType: 'Arya', propertyOwnership: 16 },
+  { id: 5, propertyStatus: 'Targaryen', propertyType: 'Daenerys', propertyOwnership: null },
+  { id: 6, propertyStatus: 'Melisandre', propertyType: null, propertyOwnership: 150 },
+  { id: 7, propertyStatus: 'Clifford', propertyType: 'Ferrara', propertyOwnership: 44 },
+  { id: 8, propertyStatus: 'Frances', propertyType: 'Rossini', propertyOwnership: 36 },
+  { id: 9, propertyStatus: 'Roxie', propertyType: 'Harvey', propertyOwnership: 65 },
 ];
 
 export default function DataTable({ data }) {
-  console.log('datadata', data);
+  const [tableData, setTableData] = React.useState({});
+  let navigate = useNavigate();
+
+  console.log('datadata', tableData);
+
+  useEffect(() => {
+    const t_data = Object.keys(data).length > 0 && data.map((item, index) => {
+      return {
+        id: index + 1,
+        ...item
+        // propertyType: convertToTitleCase(item.propertyType),
+        // propertyStatus: convertToTitleCase(item.propertyStatus),
+        // propertyOwnership: convertToTitleCase(item.propertyOwnership),
+        // p_id: item._id
+      }
+    });
+    setTableData(t_data);
+
+  }, [data]);
+
+  const columns = [
+    { field: 'id', headerName: 'No.', width: 70 },
+    { field: 'propertyType', headerName: 'Property Type', width: 200 },
+    { field: 'propertyStatus', headerName: 'Property Status', width: 200 },
+    {
+      field: 'propertyOwnership',
+      headerName: 'Property Ownership',
+      width: 200,
+    },
+    { field: 'edit', headerName: 'Edit', width: 70, renderCell: renderEditCell },
+  ];
+
+  function renderEditCell(params) {
+    const handleEditClick = () => {
+      // Handle the edit button click event
+      console.log('Edit clicked for row:', params.row);
+      const selectedFormData = params.row;
+      const encrypted = CryptoJS.AES.encrypt(JSON.stringify(selectedFormData), constant.SESSION_OBJECT_SECRET_KEY).toString();
+      setSessionStorageObject(constant.SESSION_KEY, encrypted);
+      navigate(`/user/add-property`)
+    };
+
+    return (
+      <IconButton onClick={handleEditClick}>
+        <EditIcon />
+      </IconButton>
+    );
+  }
+
 
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
-        rows={rows}
+        rows={tableData}
         columns={columns}
         initialState={{
           pagination: {
@@ -64,7 +86,7 @@ export default function DataTable({ data }) {
           },
         }}
         pageSizeOptions={[5, 10]}
-        // checkboxSelection
+      // checkboxSelection
       />
     </div>
   );

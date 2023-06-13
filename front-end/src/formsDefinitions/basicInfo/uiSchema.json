@@ -1,7 +1,6 @@
 {
     "ui:order": [
         "dateOfEntry",
-        "images",
         "addPropertyType",
         "sellProperty",
         "rentalProperty",
@@ -13,9 +12,6 @@
         "roomTypes",
         "propertyOwnership"
     ],
-    "images": {
-        "ui:widget": "FileWidget"
-    },
     "addPropertyType": {
         "ui:widget": "radio"
     },

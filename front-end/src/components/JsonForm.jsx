@@ -53,7 +53,6 @@ const JsonForm = (props) => {
     userData && setUserId(userData?.user?.id);
   }, []);
 
-  console.log(".-.-.-.-.-",userId);
   useEffect(() => {
     var session_data = getSessionStorageObject(constant.SESSION_KEY);
     const decrypted =
