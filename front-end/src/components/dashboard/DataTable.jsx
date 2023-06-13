@@ -1,8 +1,8 @@
-import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import * as React from 'react';
 import './dashboard.css';
-import { useSelector } from 'react-redux';
-
+import { IconButton } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
 
 const columns = [
   { field: 'id', headerName: 'No.', width: 70 },
@@ -20,10 +20,23 @@ const columns = [
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     width: 160,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    valueGetter: (params) => `${params.row.firstName || ''} ${params.row.lastName || ''}`,
   },
+  { field: 'edit', headerName: 'Edit', width: 70, renderCell: renderEditCell },
 ];
+
+function renderEditCell(params) {
+  const handleEditClick = () => {
+    // Handle the edit button click event
+    console.log('Edit clicked for row:', params.row);
+  };
+
+  return (
+    <IconButton onClick={handleEditClick}>
+      <EditIcon />
+    </IconButton>
+  );
+}
 
 const rows = [
   { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
@@ -38,10 +51,7 @@ const rows = [
 ];
 
 export default function DataTable({ data }) {
-  console.log("datadata", data);
-
-
-
+  console.log('datadata', data);
 
   return (
     <div style={{ height: 400, width: '100%' }}>
@@ -54,7 +64,7 @@ export default function DataTable({ data }) {
           },
         }}
         pageSizeOptions={[5, 10]}
-      // checkboxSelection
+        // checkboxSelection
       />
     </div>
   );
