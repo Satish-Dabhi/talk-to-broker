@@ -10,4 +10,7 @@ router.get("/user/:userId", propertyController.getPropertiesByUserId);
 
 router.post("/", propertyController.createNewProperty);
 
+router.post("/uploadImages", propertyController.uploadImages);
+
+
 module.exports = router;

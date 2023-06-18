@@ -69,7 +69,8 @@ const JsonForm = (props) => {
     setValidateForm(false);
     if (userId !== '' && formSubmit) {
       const finalFormData = { ...formData, u_id: userId }
-      dispatch(createProperty(finalFormData));
+      console.log("finalFormData",finalFormData);
+      // dispatch(createProperty(finalFormData));
     }
     ADD_PROPERTY_FORMS.length - 1 > activeForm && setActiveForm(activeForm + 1);
     setFormSubmit(false);

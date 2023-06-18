@@ -3,6 +3,10 @@ import * as React from 'react';
 import bannerImage3 from '../assets/images/banner-images/bg-home3.jpg';
 import BannerImage from '../components/BannerImage';
 import PropertyTypeCard from '../components/property/PropertyTypeCard';
+import { Parallax } from "react-parallax";
+import Typewriter from 'typewriter-effect';
+
+
 
 const Home = () => {
   const propertyTypeArray = [
@@ -23,9 +27,35 @@ const Home = () => {
       label: 'Agricultural Property',
     },
   ];
+
+  const insideStyles = {
+    background: "white",
+    padding: 20,
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%,-50%)"
+  };
+
+  const image1 =
+    "https://images.pexels.com/photos/830891/pexels-photo-830891.jpeg";
+
   return (
     <>
-      <BannerImage image={bannerImage3} />
+      {/* <BannerImage image={bannerImage3} /> */}
+      <Parallax bgImage={image1} strength={500}>
+        <div style={{ height: 500 }}>
+          <div style={insideStyles}>
+          <Typewriter
+              options={{
+                strings: ['TALK TO BROKER', 'Your Gateway to Buying and Selling Properties'],
+                autoStart: true,
+                loop: true,
+              }}
+            />
+            </div>
+        </div>
+      </Parallax>
       <Container maxWidth="lg" sx={{ paddingTop: '70px' }}>
         <Typography variant="h4" gutterBottom>
           Property Type:

@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import DataTable from './DataTable';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPropertiesByUser } from '../../redux/property/propertySlice';
+import AboutUser from './AboutUser';
 
 const Dashboard = ({ userData }) => {
   const { propertiesByUser } = useSelector((store) => store.propertyHandler);
-  const [selectedTab, setSelectedTab] = useState(1);
+  const [selectedTab, setSelectedTab] = useState(0);
   const [properties, setProperties] = useState({});
   const dispatch = useDispatch();
 
@@ -37,17 +38,13 @@ const Dashboard = ({ userData }) => {
         onChange={handleChange}
         sx={{ borderRight: 1, borderColor: 'divider', height: '100vh' }}
       >
-        <>
-          <AccountCircleIcon sx={{ fontSize: '10rem' }} />
-          <h6>{userData && userData?.name}</h6>
-        </>
         <Tab label="About Yourself" />
         <Tab label="Your Events" />
         <Tab label="Tab 3" />
       </Tabs>
       <Box sx={{ flexGrow: 1, p: 2 }}>
-        {selectedTab === 1 && <div>Tab 1 Content</div>}
-        {selectedTab === 2 && (
+        {selectedTab === 0 && <AboutUser userData={userData} />}
+        {selectedTab === 1 && (
           <>
             <div className="row">
               <div className="d-flex justify-content-end">
@@ -60,7 +57,7 @@ const Dashboard = ({ userData }) => {
             <DataTable data={properties} />
           </>
         )}
-        {selectedTab === 3 && <div>Tab 3 Content</div>}
+        {selectedTab === 2 && <div>Tab 3 Content</div>}
       </Box>
     </Box>
   );

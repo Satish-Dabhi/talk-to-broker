@@ -9,6 +9,7 @@ export const LOGIN_USER__END_POINT = '/user/login';
 export const UPDATE_USER_BY_EMAIL_END_POINT = '/user/updateUser';
 export const VERIFY_VERIFICATION_CODE_END_POINT = '/user/verifyOtp';
 export const VERIFY_TOKEN_END_POINT = '/user/verifyToken';
+export const UPLOAD_IMAGE_END_POINT = '/property/uploadImages';
 
 
 

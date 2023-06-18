@@ -1,6 +1,5 @@
 {
     "ui:order": [
-        "dateOfEntry",
         "addPropertyType",
         "sellProperty",
         "rentalProperty",

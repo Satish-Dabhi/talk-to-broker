@@ -35,6 +35,7 @@ const App = () => {
       {/* <HashRouter> */}
       <BrowserRouter>
         <TopNavbar />
+        <div className='top-div'></div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/property/:propertyType" element={<Properties />} />
