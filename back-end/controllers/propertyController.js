@@ -29,9 +29,10 @@ const upload = (bucketName) =>
   });
 
 
-const uploadImages2 = async (req, res) => {
+const uploadImages = async (req, res) => {
+
   const maxCount = 5; // Set the maximum number of files allowed here
-  const uploadArray = upload('talk-to-broker').array('image-upload', maxCount);
+  const uploadArray = upload('talk-to-broker').array('file', maxCount);
 
   uploadArray(req, res, (err) => {
     if (err) {
@@ -48,17 +49,20 @@ const uploadImages2 = async (req, res) => {
 };
 
 
-const uploadImages = async (req, res) => {
-  console.log("........", req);
-  const uploadSingle = upload('talk-to-broker').single('image-upload');
-  uploadSingle(req, res, (err) => {
-    if (err) {
-      return res.status(400).json({ success: false, message: err.message });
+  const uploadImages2 = async (req, res) => {
+    console.log("........", req.file);
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: 'No file uploaded.' });
     }
-    console.log("ok :)", req.file)
-    res.status(200).json({ data: req.file });
-  })
-}
+    const uploadSingle = upload('talk-to-broker').single('image-upload');
+    uploadSingle(req, res, (err) => {
+      if (err) {
+        return res.status(400).json({ success: false, message: err.message });
+      }
+      console.log("ok :)", req.file)
+      res.status(200).json({ data: req.file });
+    })
+  }
 
 const createNewProperty = async (req, res) => {
   try {

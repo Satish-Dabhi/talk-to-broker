@@ -32,11 +32,12 @@ const FileWidget = (props) => {
 
 
     const handleFileChange = async (event) => {
-        const selectedFile = event.target.files;
+        const selectedFile = event.target.files[0];
 
         console.log("...........", selectedFile);
-        const newSelectedFiles = Array.from(selectedFile);
-        const formData = new FormData(selectedFile);
+        // const newSelectedFiles = Array.from(selectedFile);
+        const formData = new FormData();
+        formData.append('file', selectedFile);
         // newSelectedFiles.forEach((file, index) => {
         //     console.log("formData =>", file);
         //     formData.append(id, file);
@@ -50,7 +51,7 @@ const FileWidget = (props) => {
 
         const resp = await POST_API(UPLOAD_IMAGE_END_POINT, formData);
 
-        console.log("resp....", resp);
+        // console.log("resp....", resp);
 
         setFinalFiles(oldArray => [...oldArray, selectedFile]);
 
@@ -82,9 +83,10 @@ const FileWidget = (props) => {
     return (
         <FormControl>
             <InputLabel htmlFor={id}>{label}</InputLabel>
-            <OutlinedInput
+            <input
                 id={id}
                 type="file"
+                name="file"
                 multiple={multiple}
                 onChange={handleFileChange}
                 style={{ display: 'none' }}
