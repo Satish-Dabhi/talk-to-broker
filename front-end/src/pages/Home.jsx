@@ -1,12 +1,8 @@
 import { Container, Grid, Typography } from '@mui/material';
 import * as React from 'react';
-import bannerImage3 from '../assets/images/banner-images/bg-home3.jpg';
-import BannerImage from '../components/BannerImage';
-import PropertyTypeCard from '../components/property/PropertyTypeCard';
 import { Parallax } from "react-parallax";
 import Typewriter from 'typewriter-effect';
-
-
+import PropertyTypeCard from '../components/property/PropertyTypeCard';
 
 const Home = () => {
   const propertyTypeArray = [
@@ -42,18 +38,17 @@ const Home = () => {
 
   return (
     <>
-      {/* <BannerImage image={bannerImage3} /> */}
       <Parallax bgImage={image1} strength={500}>
         <div style={{ height: 500 }}>
           <div style={insideStyles}>
-          <Typewriter
+            <Typewriter
               options={{
                 strings: ['TALK TO BROKER', 'Your Gateway to Buying and Selling Properties'],
                 autoStart: true,
                 loop: true,
               }}
             />
-            </div>
+          </div>
         </div>
       </Parallax>
       <Container maxWidth="lg" sx={{ paddingTop: '70px' }}>

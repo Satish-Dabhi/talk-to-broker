@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 let p_schema = new mongoose.Schema(
   {
-    // _id: mongoose.Schema.Types.ObjectId,
+    _id: mongoose.Schema.Types.ObjectId,
     u_id: String,
     decidedSalesValueOfProperty: Number,
     registrationFeePercentage: Number,
@@ -154,6 +154,7 @@ let p_schema = new mongoose.Schema(
     oldPropertyState: String,
     maintenancePeriod: String,
     developerPropertyProjectName: String,
+    images: String,
   },
   {
     versionKey: false,

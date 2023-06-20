@@ -1,77 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import ClearIcon from '@mui/icons-material/Clear';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { CircularProgress } from '@mui/material';
+import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputAdornment from '@mui/material/InputAdornment';
-import Button from '@mui/material/Button';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import ClearIcon from '@mui/icons-material/Clear';
-import { POST_API, UPLOAD_IMAGE_END_POINT } from '../../redux/services/api';
+import { Box } from '@mui/system';
+import React, { useEffect, useState } from 'react';
+import { STORE_IMAGE_API } from '../../redux/services/api';
 
 const FileWidget = (props) => {
     const { id, label, multiple, onChange, value } = props;
-    const [selectedFiles, setSelectedFiles] = useState([]);
     const [finalFiles, setFinalFiles] = useState([]);
+    const [saveImageLoader, setSaveImageLoader] = useState(false);
 
     useEffect(() => {
         if (value) {
             const arrayValue = JSON.parse(value);
-            // console.log("arrayValue-=", arrayValue);
             arrayValue.length > 0 && setFinalFiles(arrayValue);
         }
-    }, [value])
-
-    console.log("....finalFiles.......", finalFiles);
-
+    }, [value]);
 
     useEffect(() => {
-        // onChange(JSON.stringify(finalFiles));
-        console.log("JSON.stringify(finalFiles)", JSON.stringify(finalFiles));
-        // onChange(JSON.stringify(finalFiles));
+        onChange(JSON.stringify(finalFiles));
     }, [finalFiles]);
 
 
     const handleFileChange = async (event) => {
+        setSaveImageLoader(true);
         const selectedFile = event.target.files[0];
 
-        console.log("...........", selectedFile);
-        // const newSelectedFiles = Array.from(selectedFile);
         const formData = new FormData();
         formData.append('file', selectedFile);
-        // newSelectedFiles.forEach((file, index) => {
-        //     console.log("formData =>", file);
-        //     formData.append(id, file);
-        // });
-        console.log("formData formData=>", formData);
 
-        // const formData = new FormData();
-        // formData.append('image', selectedFile);
-        // console.log("image-formData", formData);
-
-
-        const resp = await POST_API(UPLOAD_IMAGE_END_POINT, formData);
-
-        // console.log("resp....", resp);
-
-        setFinalFiles(oldArray => [...oldArray, selectedFile]);
-
-        // const fileArray = Array.from(files);
-        // setSelectedFiles((prevFiles) => [...prevFiles, ...fileArray]);
-
-        // const fileURLs = fileArray.map((file) => {
-        //     const reader = new FileReader();
-        //     reader.readAsDataURL(file);
-        //     reader.onloadend = () => {
-        //         const base64Data = reader.result;
-        //         setFinalFiles(oldArray => [...oldArray, base64Data]);
-        //     };
-        //     return URL.createObjectURL(file);
-        // });
-        // console.log("fileURLs",fileURLs);
+        const SaveImageResponse = await STORE_IMAGE_API('/property/uploadImages', formData);
+        setSaveImageLoader(false);
+        setFinalFiles(oldArray => [...oldArray, SaveImageResponse]);
     };
 
     const removeFile = (file) => {
-        // setSelectedFiles((prevFiles) => prevFiles.filter((f) => f !== file));
         setFinalFiles((prevBase64) => prevBase64.filter((base64, index) => finalFiles[index] !== file));
     };
 
@@ -99,16 +65,18 @@ const FileWidget = (props) => {
             >
                 Add Images
             </Button>
+            {saveImageLoader && <>
+                <Box sx={{ display: 'flex' }}>
+                    <CircularProgress />
+                </Box></>
+            }
             {finalFiles.length > 0 && (
                 <div>
                     <h4>Selected Images:</h4>
                     {finalFiles.map((file, index) => {
-                        // console.log("}/././.",file);
-                        <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                        return <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
                             <img
-                                // src={URL.createObjectURL(file)}
-                                // src={`data:image/jpeg;base64,${file}`}
-                                // src={file}
+                                src={file?.url}
                                 alt={file.name}
                                 style={{ width: '100px', height: '100px', objectFit: 'cover', marginRight: '10px' }}
                             />

@@ -32,3 +32,13 @@ export const GET_API = async (api) => {
   const response = await fetch(newApi);
   return response.json();
 };
+
+export const STORE_IMAGE_API = async (api, data) => {
+  const newApi = API_HOSTNAME + api;
+  const response = await fetch(newApi, {
+    method: 'POST',
+    body: data,
+  });
+
+  return response.json();
+};

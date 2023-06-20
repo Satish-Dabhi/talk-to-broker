@@ -5,7 +5,9 @@ import { withTheme } from '@rjsf/core';
 import { Theme5 as Mui5Theme } from '@rjsf/material-ui';
 import CryptoJS from 'crypto-js';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { updateSnackBar } from '../redux/common/snackBarSlice';
 import { createProperty } from '../redux/property/propertySlice';
 import {
   ADD_PROPERTY_FORMS,
@@ -20,11 +22,11 @@ import {
 import * as constant from '../services/utils/constant';
 import ObjectFieldTemplate from './ObjectFieldTemplate';
 import DynamicFieldsWidget from './customWidgets/DynamicFields';
+import FileWidget from './customWidgets/FileWidget';
 import InputAdornmentFieldWidget from './customWidgets/InputAdornmentField';
 import RadioWidget from './customWidgets/RadioWidget';
 import SliderFieldsWidget from './customWidgets/SliderRange';
 import WidthLengthFieldWidget from './customWidgets/WidthLengthField';
-import FileWidget from './customWidgets/FileWidget';
 
 const theme = createTheme({
   components: {
@@ -40,11 +42,18 @@ const Form = withTheme(Mui5Theme);
 
 const JsonForm = (props) => {
   const { schema, uiSchema, activeForm, setActiveForm, setPropertyType } = props;
+  const { addProperty } = useSelector((state) => state.propertyHandler);
   const [sessionFormData, setSessionFormData] = useState({});
   const [validateForm, setValidateForm] = useState(false);
   const [formSubmit, setFormSubmit] = useState(false);
   const [userId, setUserId] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("addProperty", addProperty);
+  }, [addProperty])
+
 
   useEffect(() => {
     const user = getLocalStorageObject('token');
@@ -69,8 +78,16 @@ const JsonForm = (props) => {
     setValidateForm(false);
     if (userId !== '' && formSubmit) {
       const finalFormData = { ...formData, u_id: userId }
-      console.log("finalFormData",finalFormData);
-      // dispatch(createProperty(finalFormData));
+      console.log("finalFormData", finalFormData);
+      // dispatch(
+      //   updateSnackBar({
+      //     open: true,
+      //     message: 'Your Data Saved Successfully',
+      //     severity: 'success',
+      //   })
+      // );
+      // navigate('/user/profile');
+      dispatch(createProperty(finalFormData));
     }
     ADD_PROPERTY_FORMS.length - 1 > activeForm && setActiveForm(activeForm + 1);
     setFormSubmit(false);
