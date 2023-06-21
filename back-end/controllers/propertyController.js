@@ -21,6 +21,8 @@ const uploadImages2 = async (req, res) => {
 
 
 const uploadImages = async (req, res) => {
+  const userId = req.body.userId;
+  console.log("userId=-=-=-=-=-=-=-",userId);
   const uploadSingle = upload(process.env.S3_BUCKET_NAME).single('file');
   uploadSingle(req, res, (err) => {
     if (err) {
@@ -36,7 +38,7 @@ const createNewProperty = async (req, res) => {
     const savedDeveloperProperty = await propertyService.createNewProperty(body);
     res.status(201).json(savedDeveloperProperty);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message, status: false });
   }
 };
 

@@ -31,6 +31,7 @@ const FileWidget = (props) => {
 
         const formData = new FormData();
         formData.append('file', selectedFile);
+        formData.append('u_id', 12345);
 
         const SaveImageResponse = await STORE_IMAGE_API('/property/uploadImages', formData);
         setSaveImageLoader(false);

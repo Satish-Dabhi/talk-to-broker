@@ -46,18 +46,31 @@ const JsonForm = (props) => {
   const [sessionFormData, setSessionFormData] = useState({});
   const [validateForm, setValidateForm] = useState(false);
   const [formSubmit, setFormSubmit] = useState(false);
+  const [formSaved, setFormSaved] = useState(false);
   const [userId, setUserId] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("addProperty", addProperty);
-  }, [addProperty])
-
+    console.log('addProperty?.status', addProperty?.status);
+    console.log('formSaved', formSaved);
+    if (addProperty?.status && formSaved) {
+      dispatch(
+        updateSnackBar({
+          open: true,
+          message: 'Your Data Saved Successfully',
+          severity: 'success',
+        })
+      );
+      setFormSaved(false);
+      navigate('/user/profile');
+    }
+  }, [addProperty]);
 
   useEffect(() => {
     const user = getLocalStorageObject('token');
-    const loggedInUser = user && CryptoJS.AES.decrypt(user, constant.LOCAL_OBJECT_SECRET_KEY).toString(CryptoJS.enc.Utf8);
+    const loggedInUser =
+      user && CryptoJS.AES.decrypt(user, constant.LOCAL_OBJECT_SECRET_KEY).toString(CryptoJS.enc.Utf8);
     const userData = JSON.parse(loggedInUser);
     userData && setUserId(userData?.user?.id);
   }, []);
@@ -77,17 +90,10 @@ const JsonForm = (props) => {
     setSessionStorageObject(constant.SESSION_KEY, encrypted);
     setValidateForm(false);
     if (userId !== '' && formSubmit) {
-      const finalFormData = { ...formData, u_id: userId }
-      console.log("finalFormData", finalFormData);
-      // dispatch(
-      //   updateSnackBar({
-      //     open: true,
-      //     message: 'Your Data Saved Successfully',
-      //     severity: 'success',
-      //   })
-      // );
-      // navigate('/user/profile');
+      const finalFormData = { ...formData, u_id: userId };
+      console.log('finalFormData', finalFormData);
       dispatch(createProperty(finalFormData));
+      setFormSaved(true);
     }
     ADD_PROPERTY_FORMS.length - 1 > activeForm && setActiveForm(activeForm + 1);
     setFormSubmit(false);
