@@ -64,7 +64,7 @@ export default function DataTable({ data }) {
       const selectedFormData = params.row;
       const encrypted = CryptoJS.AES.encrypt(JSON.stringify(selectedFormData), constant.SESSION_OBJECT_SECRET_KEY).toString();
       setSessionStorageObject(constant.SESSION_KEY, encrypted);
-      navigate(`/user/add-property`)
+      navigate(`/user/add-property`);
     };
 
     return (

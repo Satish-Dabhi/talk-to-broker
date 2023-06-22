@@ -2,6 +2,7 @@ export const API_HOSTNAME = 'http://localhost:3005';
 export const ADD_PROPERTY_END_POINT = '/property';
 export const GET_PROPERTIES_END_POINT = '/property';
 export const GET_PROPERTIES_BY_TYPE = '/property/type/${type}';
+export const GET_PROPERTY_BY_ID = '/property/id/${p_id}';
 export const GET_PROPERTIES_BY_USER = '/property/user/${u_id}';
 export const SEND_EMAIL_END_POINT = '/send-email';
 export const ADD_USER_END_POINT = '/user';
@@ -35,6 +36,7 @@ export const GET_API = async (api) => {
 
 export const STORE_IMAGE_API = async (api, data) => {
   const newApi = API_HOSTNAME + api;
+  console.log("req.body",data);
   const response = await fetch(newApi, {
     method: 'POST',
     body: data,

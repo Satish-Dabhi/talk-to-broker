@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { ADD_PROPERTY_END_POINT, GET_API, GET_PROPERTIES_BY_TYPE, GET_PROPERTIES_BY_USER, GET_PROPERTIES_END_POINT, POST_API } from '../services/api';
+import { ADD_PROPERTY_END_POINT, GET_API, GET_PROPERTIES_BY_TYPE, GET_PROPERTIES_BY_USER, GET_PROPERTIES_END_POINT, GET_PROPERTY_BY_ID, POST_API } from '../services/api';
 
 const initialState = {
   addProperty: {},
@@ -8,6 +8,8 @@ const initialState = {
   getPropertiesLoader: false,
   propertiesByType: {},
   getPropertiesByTypeLoader: false,
+  propertyById: {},
+  getPropertyByIdLoader: false,
   propertiesByUser: {},
   getPropertiesByUserLoader: false,
 };
@@ -34,6 +36,19 @@ export const getProperties = createAsyncThunk('services/getProperties', async (t
 export const getPropertiesByType = createAsyncThunk('services/getPropertiesByType', async (propertyType, thunkAPI) => {
   try {
     const api = GET_PROPERTIES_BY_TYPE.replace('${type}', propertyType);
+    const resp = await GET_API(api);
+    return resp;
+  } catch (error) {
+    return thunkAPI.rejectWithValue('something went wrong');
+  }
+});
+
+export const getPropertyById = createAsyncThunk('services/getPropertyById', async (propertyId, thunkAPI) => {
+  try {
+    console.log("propertyId",propertyId);
+    const api = GET_PROPERTY_BY_ID.replace('${p_id}', propertyId);
+    console.log("api",api);
+
     const resp = await GET_API(api);
     return resp;
   } catch (error) {
@@ -85,6 +100,16 @@ const propertySlice = createSlice({
     },
     [getPropertiesByType.rejected]: (state) => {
       state.getPropertiesByTypeLoader = false;
+    },
+    [getPropertyById.pending]: (state) => {
+      state.getPropertyByIdLoader = true;
+    },
+    [getPropertyById.fulfilled]: (state, action) => {
+      state.getPropertyByIdLoader = false;
+      state.propertyById = action.payload;
+    },
+    [getPropertyById.rejected]: (state) => {
+      state.getPropertyByIdLoader = false;
     },
     [getPropertiesByUser.pending]: (state) => {
       state.getPropertiesByUserLoader = true;

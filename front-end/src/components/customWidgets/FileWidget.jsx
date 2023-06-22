@@ -7,11 +7,15 @@ import InputLabel from '@mui/material/InputLabel';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { STORE_IMAGE_API } from '../../redux/services/api';
+import { updateSnackBar } from '../../redux/common/snackBarSlice';
+import { useDispatch } from 'react-redux';
 
 const FileWidget = (props) => {
     const { id, label, multiple, onChange, value } = props;
     const [finalFiles, setFinalFiles] = useState([]);
     const [saveImageLoader, setSaveImageLoader] = useState(false);
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
         if (value) {
@@ -31,11 +35,21 @@ const FileWidget = (props) => {
 
         const formData = new FormData();
         formData.append('file', selectedFile);
-        formData.append('u_id', 12345);
 
         const SaveImageResponse = await STORE_IMAGE_API('/property/uploadImages', formData);
-        setSaveImageLoader(false);
-        setFinalFiles(oldArray => [...oldArray, SaveImageResponse]);
+        if (SaveImageResponse.success) {
+            setSaveImageLoader(false);
+            setFinalFiles(oldArray => [...oldArray, SaveImageResponse]);
+        } else {
+            dispatch(
+                updateSnackBar({
+                    open: true,
+                    message: 'Something went wrong',
+                    severity: 'error',
+                })
+            );
+            setSaveImageLoader(false);
+        }
     };
 
     const removeFile = (file) => {

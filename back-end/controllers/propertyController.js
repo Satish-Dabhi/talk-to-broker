@@ -21,14 +21,15 @@ const uploadImages2 = async (req, res) => {
 
 
 const uploadImages = async (req, res) => {
-  const userId = req.body.userId;
+  const userId = req.body.u_id;
+  console.log("req.body=-=-=-=-=-=-=-",req.body);
   console.log("userId=-=-=-=-=-=-=-",userId);
   const uploadSingle = upload(process.env.S3_BUCKET_NAME).single('file');
   uploadSingle(req, res, (err) => {
     if (err) {
       return res.status(400).json({ success: false, message: err.message });
     }
-    res.status(200).json({ url: req?.file?.location });
+    res.status(200).json({ success: true, url: req?.file?.location });
   })
 }
 
@@ -69,11 +70,23 @@ const getPropertiesByUserId = async (req, res) => {
   res.send({ status: "OK", data: properties });
 };
 
+const getPropertyById = async (req, res) => {
+  const {
+    params: { propertyId },
+  } = req;
+  if (!propertyId) {
+    return;
+  }
+  const properties = await propertyService.getPropertyById(propertyId);
+  res.send({ status: "OK", data: properties });
+};
+
 
 module.exports = {
   createNewProperty,
   getAllProperties,
   getPropertyByType,
   getPropertiesByUserId,
+  getPropertyById,
   uploadImages
 };

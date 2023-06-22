@@ -17,6 +17,7 @@ import {
   getSchemaFieldTitle,
   getSessionStorageObject,
   getSum,
+  removeSessionStorageObject,
   setSessionStorageObject,
 } from '../services/utils';
 import * as constant from '../services/utils/constant';
@@ -93,6 +94,7 @@ const JsonForm = (props) => {
       const finalFormData = { ...formData, u_id: userId };
       console.log('finalFormData', finalFormData);
       dispatch(createProperty(finalFormData));
+      removeSessionStorageObject(constant.SESSION_KEY);
       setFormSaved(true);
     }
     ADD_PROPERTY_FORMS.length - 1 > activeForm && setActiveForm(activeForm + 1);

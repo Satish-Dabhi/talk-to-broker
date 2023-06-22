@@ -6,6 +6,8 @@ router.get("/", propertyController.getAllProperties);
 
 router.get("/type/:propertyType", propertyController.getPropertyByType);
 
+router.get("/id/:propertyId", propertyController.getPropertyById);
+
 router.get("/user/:userId", propertyController.getPropertiesByUserId);
 
 router.post("/", propertyController.createNewProperty);

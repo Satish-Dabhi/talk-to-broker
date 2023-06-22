@@ -21,8 +21,6 @@ const Properties = () => {
     status === 'OK' && setProperties(data);
   }, [propertiesByType]);
 
-  console.log('properties', properties);
-
   return (
     <>
       <Container maxWidth="lg" sx={{ paddingTop: '70px' }}>
