@@ -59,7 +59,7 @@ const getPropertyByType = async (propertyType) => {
 
 const getPropertyById = async (propertyId) => {
   return await schema.propertySchema
-    .find({ _id: propertyId }, function (err, result) {
+    .findOne({ _id: propertyId }, function (err, result) {
       if (err) {
         throw err;
       } else {
