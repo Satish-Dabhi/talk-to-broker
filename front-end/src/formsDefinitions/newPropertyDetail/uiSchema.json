@@ -1,0 +1,49 @@
+{
+    "ui:layout": {
+        "newPropertyGroupName": {
+            "md": 6
+        },
+        "newPropertyProjectName": {
+            "md": 6
+        },
+        "newPropertySiteAddress": {
+            "md": 5
+        },
+        "newPropertyRevenueSurveyNo": {
+            "md": 4
+        },
+        "newPropertyBlockNumber": {
+            "md": 3
+        },
+        "newPropertyFPNumber": {
+            "md": 4
+        },
+        "newPropertyPinCode": {
+            "md": 4
+        },
+        "newPropertyCity": {
+            "md": 4
+        },
+        "newPropertyState": {
+            "md": 4
+        },
+        "newPropertyStateCode": {
+            "md": 3
+        },
+        "newPropertyContactNumber": {
+            "md": 5
+        },
+        "newPropertyGSTIN": {
+            "md": 6
+        },
+        "newPropertyCGSTIN": {
+            "md": 6
+        },
+        "newPropertyRERA": {
+            "md": 6
+        },
+        "newPropertyTDS": {
+            "md": 6
+        }
+    }
+}

@@ -7,7 +7,7 @@
     "properties": {
         "addPropertyType": {
             "enum": [
-                "developer-property",
+                "new-property",
                 "old-property"
             ],
             "hidden": true
@@ -78,20 +78,20 @@
                 "properties": {
                     "addPropertyType": {
                         "enum": [
-                            "developer-property"
+                            "new-property"
                         ]
                     }
                 }
             },
             "then": {
                 "required": [
-                    "developerPropertyChargesType",
+                    "newPropertyChargesType",
                     "maintenanceChargesType",
                     "fixAmountMaintenanceDevelopmentCharges"
                 ],
                 "properties": {
-                    "developerPropertyChargesType": {
-                        "title": "Developer Property Charges Type",
+                    "newPropertyChargesType": {
+                        "title": "New Property Charges Type",
                         "enum": [
                             "maintenance-charges",
                             "development-charges"

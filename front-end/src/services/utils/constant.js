@@ -1,4 +1,4 @@
-export const DEVELOPER_PROPERTY = "developer-property"
+export const DEVELOPER_PROPERTY = "new-property"
 export const OLD_PROPERTY = "old-property"
 export const SESSION_KEY = "formData"
 export const PENTHOUSE = "penthouse"

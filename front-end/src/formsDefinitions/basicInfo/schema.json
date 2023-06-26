@@ -15,14 +15,14 @@
         "addPropertyType": {
             "title": "Property Type",
             "enum": [
-                "developer-property",
+                "new-property",
                 "old-property"
             ],
             "enumNames": [
-                "Developer Property",
+                "New Property",
                 "Old Property"
             ],
-            "default": "developer-property"
+            "default": "new-property"
         },
         "sellProperty": {
             "title": "Sells Property",
@@ -62,6 +62,25 @@
                 "high-rise"
             ]
         },
+        "propertyOwnership": {
+            "title": "Property Ownership",
+            "enumNames": [
+                "Individual  Ownership",
+                "Joint ownership",
+                "Nomination Ownership",
+                "Co-ownership",
+                "Company",
+                "Partnership Firm"
+            ],
+            "enum": [
+                "individual-ownership",
+                "joint-ownership",
+                "nomination-ownership",
+                "co-ownership",
+                "company",
+                "partnership-firm"
+            ]
+        },
         "propertyType": {
             "title": "Property Type",
             "enumNames": [
@@ -81,29 +100,6 @@
         "subPropertyType": {
             "title": "Sub Property Type",
             "type": "string"
-        },
-        "propertyOwnership": {
-            "title": "Property Occupied By",
-            "enumNames": [
-                "Sole Proprietorship",
-                "Corporation",
-                "Company CEO",
-                "Director",
-                "Power Of Attorney Holder(POA)",
-                "Partnership Firm",
-                "Third Party Agreement Owner",
-                "Property Owner"
-            ],
-            "enum": [
-                "sole-proprietorship",
-                "corporation",
-                "company-ceo",
-                "director",
-                "power-of-attorney",
-                "partnership-firm",
-                "third-party-agreement-owner",
-                "property-owner"
-            ]
         }
     },
     "allOf": [
@@ -112,7 +108,7 @@
                 "properties": {
                     "addPropertyType": {
                         "enum": [
-                            "developer-property"
+                            "new-property"
                         ]
                     }
                 }
@@ -122,22 +118,22 @@
                     "sellProperty": {
                         "enumNames": [
                             "Unit Sells",
-                            "Pre Lease Sell"
+                            "Pree Lease Sell"
                         ],
                         "enum": [
                             "unit-sells",
-                            "pre-lease-sells"
+                            "pree-lease-sells"
                         ]
                     },
                     "rentalProperty": {
                         "enumNames": [
                             "Rent",
-                            "Pre Lease Rent",
+                            "Pree Lease Rent",
                             "Lease"
                         ],
                         "enum": [
                             "rent",
-                            "pre-lease-rent",
+                            "pree-lease-rent",
                             "lease"
                         ]
                     }
@@ -159,22 +155,22 @@
                     "sellProperty": {
                         "enumNames": [
                             "Re Sells",
-                            "Pre Lease Re Sells"
+                            "Pree Lease Re Sells"
                         ],
                         "enum": [
                             "re-sells",
-                            "pre-lease-re-sells"
+                            "pree-lease-re-sells"
                         ]
                     },
                     "rentalProperty": {
                         "enumNames": [
                             "Rent",
-                            "Pre Lease Rent",
+                            "Pree Lease Rent",
                             "Lease"
                         ],
                         "enum": [
                             "rent",
-                            "pre-lease-rent",
+                            "pree-lease-rent",
                             "lease"
                         ]
                     }
@@ -198,9 +194,6 @@
                 "properties": {
                     "subPropertyType": {
                         "enum": [
-                            "apartment",
-                            "penthouse",
-                            "terrace-flat",
                             "bungalow",
                             "villa",
                             "condominium",
@@ -213,13 +206,9 @@
                             "tree-house",
                             "hut",
                             "eco-friendly-house",
-                            "residential-plot",
                             "any-other"
                         ],
                         "enumNames": [
-                            "Apartment(Flat)",
-                            "Penthouse",
-                            "Terrace Flat",
                             "Bungalow",
                             "Villa",
                             "Condominium",
@@ -232,10 +221,26 @@
                             "Tree House",
                             "Hut",
                             "Eco Friendly House",
-                            "Residential Plot",
                             "Other If Any"
                         ],
                         "default": "apartment"
+                    },
+                    "apartments": {
+                        "title": "Apartments",
+                        "enumNames": [
+                            "Flat",
+                            "Penthouse",
+                            "Terrace Flat",
+                            "Filament",
+                            "Studio Apartment"
+                        ],
+                        "enum": [
+                            "flat",
+                            "penthouse",
+                            "terrace-flat",
+                            "filament",
+                            "studio-apartment"
+                        ]
                     },
                     "roomTypes": {
                         "title": "Rooms Type",
@@ -283,6 +288,19 @@
             },
             "then": {
                 "properties": {
+                    "typesOfHouse": {
+                        "title": "Types of House",
+                        "enumNames": [
+                            "Complex",
+                            "Plaza",
+                            "Hub"
+                        ],
+                        "enum": [
+                            "complex",
+                            "plaza",
+                            "hub"
+                        ] 
+                    },
                     "subPropertyType": {
                         "enumNames": [
                             "Office",

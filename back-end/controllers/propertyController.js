@@ -22,13 +22,12 @@ const uploadImages2 = async (req, res) => {
 
 const uploadImages = async (req, res) => {
   const userId = req.body.u_id;
-  console.log("req.body=-=-=-=-=-=-=-",req.body);
-  console.log("userId=-=-=-=-=-=-=-",userId);
   const uploadSingle = upload(process.env.S3_BUCKET_NAME).single('file');
   uploadSingle(req, res, (err) => {
     if (err) {
       return res.status(400).json({ success: false, message: err.message });
     }
+    console.log(".....req?.file",req?.file);
     res.status(200).json({ success: true, url: req?.file?.location });
   })
 }

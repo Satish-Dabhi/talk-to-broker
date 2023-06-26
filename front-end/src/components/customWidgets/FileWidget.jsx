@@ -14,10 +14,11 @@ const FileWidget = (props) => {
     const { id, label, multiple, onChange, value } = props;
     const [finalFiles, setFinalFiles] = useState([]);
     const [saveImageLoader, setSaveImageLoader] = useState(false);
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
 
     useEffect(() => {
+        console.log("vslue...",value);
         if (value) {
             const arrayValue = JSON.parse(value);
             arrayValue.length > 0 && setFinalFiles(arrayValue);
@@ -37,18 +38,18 @@ const FileWidget = (props) => {
         formData.append('file', selectedFile);
 
         const SaveImageResponse = await STORE_IMAGE_API('/property/uploadImages', formData);
-        if (SaveImageResponse.success) {
+        if(SaveImageResponse.success){
             setSaveImageLoader(false);
             setFinalFiles(oldArray => [...oldArray, SaveImageResponse]);
-        } else {
+        }else{
             dispatch(
                 updateSnackBar({
-                    open: true,
-                    message: 'Something went wrong',
-                    severity: 'error',
+                  open: true,
+                  message: 'Something went wrong',
+                  severity: 'error',
                 })
-            );
-            setSaveImageLoader(false);
+              );
+        setSaveImageLoader(false);
         }
     };
 

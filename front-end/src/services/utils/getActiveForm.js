@@ -4,8 +4,8 @@ import computationOfSalesPropertySchema from '../../formsDefinitions/computation
 import computationOfSalesPropertyUiSchema from '../../formsDefinitions/computationOfSalesProperty/uiSchema.json';
 import constructionSizeDetailSchema from '../../formsDefinitions/constructionSizeDetail/schema.json';
 import constructionSizeDetailUiSchema from '../../formsDefinitions/constructionSizeDetail/uiSchema.json';
-import developerPropertyDetailSchema from '../../formsDefinitions/developerPropertyDetail/schema.json';
-import developerPropertyDetailUiSchema from '../../formsDefinitions/developerPropertyDetail/uiSchema.json';
+import newPropertyDetailSchema from '../../formsDefinitions/newPropertyDetail/schema.json';
+import newPropertyDetailUiSchema from '../../formsDefinitions/newPropertyDetail/uiSchema.json';
 import floorPriceCalculationAndParkingDetailsSchema from '../../formsDefinitions/floorPriceCalculationAndParkingDetails/schema.json';
 import floorPriceCalculationAndParkingDetailsUiSchema from '../../formsDefinitions/floorPriceCalculationAndParkingDetails/uiSchema.json';
 import maintenanceChargesDetailsSchema from '../../formsDefinitions/maintenanceChargesDetails/schema.json';
@@ -32,8 +32,8 @@ export function getActiveForm(activeForm, propertyType) {
     case 1:
       if (propertyType === constant.DEVELOPER_PROPERTY) {
         return {
-          schema: developerPropertyDetailSchema,
-          uiSchema: developerPropertyDetailUiSchema,
+          schema: newPropertyDetailSchema,
+          uiSchema: newPropertyDetailUiSchema,
         };
       } else {
         return {

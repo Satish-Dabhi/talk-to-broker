@@ -4,6 +4,7 @@ const schema = require('../database/schema');
 const createNewProperty = async (data) => {
   try {
     console.log('data=---=-=', data._id);
+    console.log('data=---=-=....', data);
     const doesExist = await schema.propertySchema.findOne({ _id: data._id });
     if (doesExist) {
       return await schema.propertySchema

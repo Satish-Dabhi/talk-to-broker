@@ -2,13 +2,13 @@
     "ui:order": [
         "addPropertyType",
         "measurementUnits",
-        "developerPropertySellUnit",
-        "developerPropertyAreaType",
-        "developerPropertyPerSqFeetPrice",
-        "developerPropertyArea",
-        "developerPropertyBasicPrice",
-        "developerPropertyFixBasicPrice",
-        "developerPropertyExtraArea",
+        "newPropertySellUnit",
+        "newPropertyAreaType",
+        "newPropertyPerSqFeetPrice",
+        "newPropertyArea",
+        "newPropertyBasicPrice",
+        "newPropertyFixBasicPrice",
+        "newPropertyExtraArea",
         "totalSellPropertyValue",
         "pricePriceValue"
     ],
@@ -16,22 +16,22 @@
         "measurementUnits": {
             "md": 6
         },
-        "developerPropertySellUnit": {
+        "newPropertySellUnit": {
             "md": 6
         },
-        "developerPropertyPerSqFeetPrice": {
+        "newPropertyPerSqFeetPrice": {
             "md": 4
         },
-        "developerPropertyAreaType": {
+        "newPropertyAreaType": {
             "md": 4
         },
-        "developerPropertyArea": {
+        "newPropertyArea": {
             "md": 4
         },
-        "developerPropertyBasicPrice": {
+        "newPropertyBasicPrice": {
             "md": 8
         },
-        "developerPropertyFixBasicPrice": {
+        "newPropertyFixBasicPrice": {
             "md": 8
         }
     }

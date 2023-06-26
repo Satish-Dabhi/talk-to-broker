@@ -5,11 +5,13 @@
         "rentalProperty",
         "label",
         "buildingType",
+        "propertyOwnership",
         "propertyType",
         "subPropertyType",
+        "typesOfHouse",
+        "apartments",
         "otherProperty",
-        "roomTypes",
-        "propertyOwnership"
+        "roomTypes"
     ],
     "addPropertyType": {
         "ui:widget": "radio"

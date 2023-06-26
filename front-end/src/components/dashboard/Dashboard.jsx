@@ -6,6 +6,8 @@ import DataTable from './DataTable';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPropertiesByUser } from '../../redux/property/propertySlice';
 import AboutUser from './AboutUser';
+import { removeSessionStorageObject } from '../../services/utils';
+import * as constant from '../../services/utils/constant';
 
 const Dashboard = ({ userData }) => {
   const { propertiesByUser } = useSelector((store) => store.propertyHandler);
@@ -39,7 +41,7 @@ const Dashboard = ({ userData }) => {
         sx={{ borderRight: 1, borderColor: 'divider', height: '100vh' }}
       >
         <Tab label="About Yourself" />
-        <Tab label="Your Events" />
+        <Tab label="Your Properties" />
         <Tab label="Tab 3" />
       </Tabs>
       <Box sx={{ flexGrow: 1, p: 2 }}>
@@ -48,7 +50,10 @@ const Dashboard = ({ userData }) => {
           <>
             <div className="row">
               <div className="d-flex justify-content-end">
-                <Button variant="contained" size="small" onClick={() => navigate(`/user/add-property`)}>
+                <Button variant="contained" size="small" onClick={() => {
+                  removeSessionStorageObject(constant.SESSION_KEY);
+                  navigate(`/user/add-property`);
+                }}>
                   Add Property
                 </Button>
               </div>

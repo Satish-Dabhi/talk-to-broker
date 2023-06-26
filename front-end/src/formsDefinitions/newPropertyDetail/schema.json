@@ -1,56 +1,56 @@
 {
-    "title": "Developer Property Details",
+    "title": "New Property Details",
     "type": "object",
     "required": [
-        "developerPropertyGroupName",
-        "developerPropertyProjectName",
-        "developerPropertySiteAddress",
-        "developerPropertyRevenueSurveyNo",
-        "developerPropertyBlockNumber",
-        "developerPropertyFPNumber",
-        "developerPropertyPinCode",
-        "developerPropertyCity",
-        "developerPropertyStateWithCode",
-        "developerPropertyContactNumber",
-        "developerPropertyGSTIN",
-        "developerPropertyCGSTIN",
-        "developerPropertyRERA",
-        "developerPropertyTDS"
+        "newPropertyGroupName",
+        "newPropertyProjectName",
+        "newPropertySiteAddress",
+        "newPropertyRevenueSurveyNo",
+        "newPropertyBlockNumber",
+        "newPropertyFPNumber",
+        "newPropertyPinCode",
+        "newPropertyCity",
+        "newPropertyStateWithCode",
+        "newPropertyContactNumber",
+        "newPropertyGSTIN",
+        "newPropertyCGSTIN",
+        "newPropertyRERA",
+        "newPropertyTDS"
     ],
     "properties": {
-        "developerPropertyGroupName": {
-            "title": "Group Name",
-            "type": "string"
-        },
-        "developerPropertyProjectName": {
+        "newPropertyProjectName": {
             "title": "Project Name",
             "type": "string"
         },
-        "developerPropertySiteAddress": {
+        "newPropertySiteAddress": {
             "title": "Site Address",
             "type": "string"
         },
-        "developerPropertyRevenueSurveyNo": {
+        "newPropertyGroupName": {
+            "title": "Group Name",
+            "type": "string"
+        },
+        "newPropertyRevenueSurveyNo": {
             "title": "Revenue SurveyNo",
             "type": "number"
         },
-        "developerPropertyBlockNumber": {
+        "newPropertyBlockNumber": {
             "title": "Block Number",
             "type": "number"
         },
-        "developerPropertyFPNumber": {
+        "newPropertyFPNumber": {
             "title": "FP Number",
             "type": "number"
         },
-        "developerPropertyPinCode": {
+        "newPropertyPinCode": {
             "title": "Pin Code",
             "type": "number"
         },
-        "developerPropertyCity": {
+        "newPropertyCity": {
             "title": "City",
             "type": "string"
         },
-        "developerPropertyStateWithCode": {
+        "newPropertyStateWithCode": {
             "title": "State With GST State Code",
             "type": "string",
             "enum": [
@@ -132,23 +132,23 @@
                 "OTHER TERRITORY (97)"
             ]
         },
-        "developerPropertyContactNumber": {
+        "newPropertyContactNumber": {
             "title": "Contact Number",
             "type": "number"
         },
-        "developerPropertyGSTIN": {
+        "newPropertyGSTIN": {
             "title": "GSTIN Number",
             "type": "string"
         },
-        "developerPropertyCGSTIN": {
+        "newPropertyCGSTIN": {
             "title": "CGSTIN Number",
             "type": "string"
         },
-        "developerPropertyRERA": {
+        "newPropertyRERA": {
             "title": "RERA Number",
             "type": "string"
         },
-        "developerPropertyTDS": {
+        "newPropertyTDS": {
             "title": "TDS Number",
             "type": "string"
         },

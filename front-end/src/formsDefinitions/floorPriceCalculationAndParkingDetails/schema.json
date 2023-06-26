@@ -4,7 +4,7 @@
     "properties": {
         "addPropertyType": {
             "enum": [
-                "developer-property",
+                "new-property",
                 "old-property"
             ],
             "hidden": true
@@ -81,7 +81,7 @@
                 "properties": {
                     "addPropertyType": {
                         "enum": [
-                            "developer-property"
+                            "new-property"
                         ]
                     }
                 }

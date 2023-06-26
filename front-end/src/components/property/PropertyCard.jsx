@@ -25,6 +25,9 @@ const PropertyCard = ({ propertyDetails }) => {
             {convertToTitleCase(propertyDetails?.subPropertyType)}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" component="div">
+            {propertyDetails?._id}
+          </Typography>
+          <Typography variant="subtitle2" color="text.secondary" component="div">
             {propertyDetails?.dateOfEntry}
           </Typography>
           <CardActions>

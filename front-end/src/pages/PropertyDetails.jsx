@@ -23,7 +23,7 @@ const PropertyDetails = () => {
     console.log("status....", status);
     console.log("dat....", data);
 
-    status === 'OK' && data.length > 0 && setProperty(data[0]);
+    status === 'OK' && setProperty(data);
   }, [propertyById])
 
 
@@ -31,15 +31,15 @@ const PropertyDetails = () => {
     dispatch(getPropertyById(id));
   }, [])
 
-
+console.log("property=-=--==-",property);
   return (
     <>
       <Container maxWidth="lg" sx={{ paddingTop: '70px' }}>
         <h1>Property Detail</h1>
         {id}
         <br />
-        {property}
-        {/* <PropertyDetail property={property} /> */}
+        {/* {property} */}
+        <PropertyDetail property={property} />
       </Container>
     </>
   );

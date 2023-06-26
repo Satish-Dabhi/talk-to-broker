@@ -28,6 +28,8 @@ import InputAdornmentFieldWidget from './customWidgets/InputAdornmentField';
 import RadioWidget from './customWidgets/RadioWidget';
 import SliderFieldsWidget from './customWidgets/SliderRange';
 import WidthLengthFieldWidget from './customWidgets/WidthLengthField';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
 
 const theme = createTheme({
   components: {
@@ -59,7 +61,7 @@ const JsonForm = (props) => {
       dispatch(
         updateSnackBar({
           open: true,
-          message: 'Your Data Saved Successfully',
+          message: addProperty?.message,
           severity: 'success',
         })
       );
@@ -107,9 +109,9 @@ const JsonForm = (props) => {
       constructionPropertyBalconyArea,
       constructionPropertyLowerFloorCarpet,
       constructionPropertyUpperFloorCarpet,
-      developerPropertyPerSqFeetPrice,
-      developerPropertyArea,
-      developerPropertyExtraArea,
+      newPropertyPerSqFeetPrice,
+      newPropertyArea,
+      newPropertyExtraArea,
       agriculturalSellPropertyDetails,
       decidedSalesValueOfProperty,
       registrationFeePercentage,
@@ -118,7 +120,7 @@ const JsonForm = (props) => {
     } = newFormData;
 
     let sumOfFields = 0;
-    let developerPropertyBasicPrice = 0;
+    let newPropertyBasicPrice = 0;
     let newTotalExtraAreaValue = 0;
     let totalValue = 0;
     let totalSellPropertyValue = 0;
@@ -144,23 +146,23 @@ const JsonForm = (props) => {
       );
     }
 
-    //update developer extra property value
+    //update new extra property value
     if (
-      developerPropertyExtraArea &&
+      newPropertyExtraArea &&
       allDefined(
-        developerPropertyExtraArea.extraArea,
-        developerPropertyExtraArea.priceRate,
-        developerPropertyPerSqFeetPrice,
-        developerPropertyArea
+        newPropertyExtraArea.extraArea,
+        newPropertyExtraArea.priceRate,
+        newPropertyPerSqFeetPrice,
+        newPropertyArea
       )
     ) {
       // update total extra property price
-      if (developerPropertyExtraArea) {
-        newTotalExtraAreaValue = developerPropertyExtraArea.extraArea * developerPropertyExtraArea.priceRate;
+      if (newPropertyExtraArea) {
+        newTotalExtraAreaValue = newPropertyExtraArea.extraArea * newPropertyExtraArea.priceRate;
       }
 
-      //update developer basic price
-      developerPropertyBasicPrice = developerPropertyPerSqFeetPrice * developerPropertyArea;
+      //update new basic price
+      newPropertyBasicPrice = newPropertyPerSqFeetPrice * newPropertyArea;
     }
 
     //update agricultural sell property value
@@ -196,17 +198,17 @@ const JsonForm = (props) => {
 
     //update total sell property value
     if (
-      developerPropertyExtraArea &&
-      allDefined(developerPropertyExtraArea.totalExtraAreaValue, developerPropertyBasicPrice)
+      newPropertyExtraArea &&
+      allDefined(newPropertyExtraArea.totalExtraAreaValue, newPropertyBasicPrice)
     ) {
-      totalSellPropertyValue = developerPropertyBasicPrice + newTotalExtraAreaValue;
+      totalSellPropertyValue = newPropertyBasicPrice + newTotalExtraAreaValue;
     }
     const updatedFormData = {
       ...newFormData,
       constructionPropertyTotalCarpet: sumOfFields,
-      developerPropertyBasicPrice: developerPropertyBasicPrice,
-      developerPropertyExtraArea: {
-        ...developerPropertyExtraArea,
+      newPropertyBasicPrice: newPropertyBasicPrice,
+      newPropertyExtraArea: {
+        ...newPropertyExtraArea,
         totalExtraAreaValue: newTotalExtraAreaValue,
       },
       agriculturalSellPropertyDetails: {
@@ -283,7 +285,7 @@ const JsonForm = (props) => {
         <div className="row">
           {activeForm !== 0 && (
             <div className="col-md-6 d-flex justify-content-center">
-              <Button onClick={handleBackButtonClick} variant="contained" class="btn btn-outline-success" type="button">
+              <Button variant="outlined" color="warning" startIcon={<SkipPreviousIcon />} type="button" onClick={handleBackButtonClick} className='w-100'>
                 Back
               </Button>
             </div>
@@ -301,7 +303,7 @@ const JsonForm = (props) => {
             </div>
           ) : (
             <div className="col-md-6 d-flex justify-content-center">
-              <Button onClick={handleNextButtonClick} variant="contained" class="btn btn-outline-success" type="submit">
+              <Button variant="outlined" endIcon={<SkipNextIcon />} type="submit" onClick={handleNextButtonClick} className='w-100 btn btn-outline-success'>
                 Next
               </Button>
             </div>

@@ -3,7 +3,7 @@
     "properties": {
         "addPropertyType": {
             "enum": [
-                "developer-property",
+                "new-property",
                 "old-property"
             ],
             "hidden": true
@@ -41,7 +41,7 @@
                 "properties": {
                     "addPropertyType": {
                         "enum": [
-                            "developer-property"
+                            "new-property"
                         ]
                     }
                 }
@@ -49,7 +49,7 @@
             "then": {
                 "required": [
                     "measurementUnits",
-                    "developerPropertySellUnit",
+                    "newPropertySellUnit",
                     "totalSellPropertyValue"
                 ],
                 "properties": {
@@ -72,7 +72,7 @@
                             "Bigha"
                         ]
                     },
-                    "developerPropertySellUnit": {
+                    "newPropertySellUnit": {
                         "title": "Property Sell Unit",
                         "enum": [
                             "per-sq-ft",
@@ -84,8 +84,8 @@
                         ],
                         "default": "per-sq-ft"
                     },
-                    "developerPropertyExtraArea": {
-                        "title": "Developer Property Extra Area",
+                    "newPropertyExtraArea": {
+                        "title": "New Property Extra Area",
                         "type": "object",
                         "required": [
                             "priceRate",
@@ -124,7 +124,7 @@
                     {
                         "if": {
                             "properties": {
-                                "developerPropertySellUnit": {
+                                "newPropertySellUnit": {
                                     "enum": [
                                         "per-sq-ft"
                                     ]
@@ -133,19 +133,19 @@
                         },
                         "then": {
                             "required": [
-                                "developerPropertyPerSqFeetPrice",
-                                "developerPropertyAreaType",
-                                "developerPropertyArea",
-                                "developerPropertyBasicPrice"
+                                "newPropertyPerSqFeetPrice",
+                                "newPropertyAreaType",
+                                "newPropertyArea",
+                                "newPropertyBasicPrice"
                             ],
                             "properties": {
-                                "developerPropertyPerSqFeetPrice": {
+                                "newPropertyPerSqFeetPrice": {
                                     "title": "Per Sq Feet Price",
                                     "type": "number",
                                     "minimum": 1,
                                     "default": 0
                                 },
-                                "developerPropertyAreaType": {
+                                "newPropertyAreaType": {
                                     "title": "Area Type",
                                     "enum": [
                                         "carpet",
@@ -156,13 +156,13 @@
                                         "Super Built Up"
                                     ]
                                 },
-                                "developerPropertyArea": {
+                                "newPropertyArea": {
                                     "title": "Area",
                                     "type": "number",
                                     "minimum": 1,
                                     "default": 0
                                 },
-                                "developerPropertyBasicPrice": {
+                                "newPropertyBasicPrice": {
                                     "title": "Basic Price",
                                     "type": "number",
                                     "minimum": 1,
@@ -175,7 +175,7 @@
                     {
                         "if": {
                             "properties": {
-                                "developerPropertySellUnit": {
+                                "newPropertySellUnit": {
                                     "enum": [
                                         "fix"
                                     ]
@@ -184,10 +184,10 @@
                         },
                         "then": {
                             "required": [
-                                "developerPropertyFixBasicPrice"
+                                "newPropertyFixBasicPrice"
                             ],
                             "properties": {
-                                "developerPropertyFixBasicPrice": {
+                                "newPropertyFixBasicPrice": {
                                     "title": "Fix Basic Price",
                                     "type": "number",
                                     "minimum": 1,
