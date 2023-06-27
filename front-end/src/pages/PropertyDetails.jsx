@@ -35,10 +35,6 @@ console.log("property=-=--==-",property);
   return (
     <>
       <Container maxWidth="lg" sx={{ paddingTop: '70px' }}>
-        <h1>Property Detail</h1>
-        {id}
-        <br />
-        {/* {property} */}
         <PropertyDetail property={property} />
       </Container>
     </>
