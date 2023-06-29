@@ -28,17 +28,11 @@ export default function DataTable({ data }) {
   const [tableData, setTableData] = React.useState({});
   let navigate = useNavigate();
 
-  console.log('datadata', tableData);
-
   useEffect(() => {
     const t_data = Object.keys(data).length > 0 && data.map((item, index) => {
       return {
         id: index + 1,
         ...item
-        // propertyType: convertToTitleCase(item.propertyType),
-        // propertyStatus: convertToTitleCase(item.propertyStatus),
-        // propertyOwnership: convertToTitleCase(item.propertyOwnership),
-        // p_id: item._id
       }
     });
     setTableData(t_data);
@@ -60,7 +54,6 @@ export default function DataTable({ data }) {
   function renderEditCell(params) {
     const handleEditClick = () => {
       // Handle the edit button click event
-      console.log('Edit clicked for row:', params.row);
       const selectedFormData = params.row;
       const encrypted = CryptoJS.AES.encrypt(JSON.stringify(selectedFormData), constant.SESSION_OBJECT_SECRET_KEY).toString();
       setSessionStorageObject(constant.SESSION_KEY, encrypted);

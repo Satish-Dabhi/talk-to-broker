@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 
 const PropertyDetail = ({ property }) => {
-    console.log("property", property);
     const [propertyImages, setPropertyImages] = useState([]);
     const [propertyDetail, setPropertyDetail] = useState();
 
@@ -15,8 +14,6 @@ const PropertyDetail = ({ property }) => {
             arrayValue.length > 0 && setPropertyImages(arrayValue);
         }
     }, [property]);
-
-    console.log("propertyImages", propertyImages);
 
     return (
         <Grid container className="mt-5">

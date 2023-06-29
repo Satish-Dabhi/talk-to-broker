@@ -82,7 +82,6 @@ const WidthLengthField = (props) => {
                     </Select>
                 </FormControl>
             </Box>
-            {console.log("fieldIds", fieldIds)}
             {fieldIds.length > 0 &&
                 fieldIds.map((fieldId, index) => {
                     return (

@@ -18,7 +18,6 @@ const FileWidget = (props) => {
 
 
     useEffect(() => {
-        console.log("vslue...",value);
         if (value) {
             const arrayValue = JSON.parse(value);
             arrayValue.length > 0 && setFinalFiles(arrayValue);

@@ -45,7 +45,6 @@ const SliderRangeField = ({
     }, [sliderValues, sliderItemValues]);
 
     const addSlider = () => {
-        console.log([...sliderValues, [defaultMinimum, defaultMaximum]]);
         setSliderValues([...sliderValues, [defaultMinimum, defaultMaximum]]);
         setSliderItemValues([...sliderItemValues, 0]);
     };

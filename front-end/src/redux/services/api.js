@@ -36,7 +36,6 @@ export const GET_API = async (api) => {
 
 export const STORE_IMAGE_API = async (api, data) => {
   const newApi = API_HOSTNAME + api;
-  console.log("req.body",data);
   const response = await fetch(newApi, {
     method: 'POST',
     body: data,

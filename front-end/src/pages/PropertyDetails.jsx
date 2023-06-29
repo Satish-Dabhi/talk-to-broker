@@ -13,16 +13,8 @@ const PropertyDetails = () => {
   const { propertyById } = useSelector((state) => state.propertyHandler);
   const [property, setProperty] = useState();
 
-
-  console.log('properties=--=-=--=-=-=-', id);
-
   useEffect(() => {
-    console.log("propertyById....", propertyById);
-
     const { status, data } = propertyById;
-    console.log("status....", status);
-    console.log("dat....", data);
-
     status === 'OK' && setProperty(data);
   }, [propertyById])
 
@@ -31,7 +23,6 @@ const PropertyDetails = () => {
     dispatch(getPropertyById(id));
   }, [])
 
-console.log("property=-=--==-",property);
   return (
     <>
       <Container maxWidth="lg" sx={{ paddingTop: '70px' }}>

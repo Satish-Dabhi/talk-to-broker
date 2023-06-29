@@ -13,13 +13,9 @@ const transporter = nodemailer.createTransport({
 const sendMail = async (mailOptions) => {
   await transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.log(error);
       return error;
-      // res.status(500).send('Error sending email');
     } else {
-      console.log('Email sent: ' + info.response);
       return ({ status: 'OK', data: 'Email sent successfully' });
-      // res.send({ status: 'OK', data: 'Email sent successfully' });
     }
   });
 };

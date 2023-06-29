@@ -3,8 +3,6 @@ const schema = require('../database/schema');
 
 const createNewProperty = async (data) => {
   try {
-    console.log('data=---=-=', data._id);
-    console.log('data=---=-=....', data);
     const doesExist = await schema.propertySchema.findOne({ _id: data._id });
     if (doesExist) {
       return await schema.propertySchema
@@ -23,7 +21,6 @@ const createNewProperty = async (data) => {
       return { message: 'Property Created successfully', status: true };
     }
   } catch (error) {
-    console.log('error', error);
     throw new Error('Failed to add property', error);
   }
 };
@@ -39,7 +36,7 @@ const getAllProperties = async () => {
     })
     .clone()
     .catch(function (err) {
-      console.log(err);
+      return err;
     });
 };
 
@@ -54,7 +51,7 @@ const getPropertyByType = async (propertyType) => {
     })
     .clone()
     .catch(function (err) {
-      console.log(err);
+      return err;
     });
 };
 
@@ -69,7 +66,7 @@ const getPropertyById = async (propertyId) => {
     })
     .clone()
     .catch(function (err) {
-      console.log(err);
+      return err;
     });
 };
 
@@ -84,7 +81,7 @@ const getPropertiesByUserId = async (userId) => {
     })
     .clone()
     .catch(function (err) {
-      console.log(err);
+      return err;
     });
 };
 

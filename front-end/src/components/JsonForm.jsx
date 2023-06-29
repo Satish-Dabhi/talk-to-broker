@@ -55,8 +55,6 @@ const JsonForm = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('addProperty?.status', addProperty?.status);
-    console.log('formSaved', formSaved);
     if (addProperty?.status && formSaved) {
       dispatch(
         updateSnackBar({
@@ -87,14 +85,12 @@ const JsonForm = (props) => {
   }, [activeForm]);
 
   const handleSubmit = ({ formData }) => {
-    console.log('formData', formData);
     formData.addPropertyType && setPropertyType(formData.addPropertyType);
     const encrypted = CryptoJS.AES.encrypt(JSON.stringify(formData), constant.SESSION_OBJECT_SECRET_KEY).toString();
     setSessionStorageObject(constant.SESSION_KEY, encrypted);
     setValidateForm(false);
     if (userId !== '' && formSubmit) {
       const finalFormData = { ...formData, u_id: userId };
-      console.log('finalFormData', finalFormData);
       dispatch(createProperty(finalFormData));
       removeSessionStorageObject(constant.SESSION_KEY);
       setFormSaved(true);
@@ -237,10 +233,6 @@ const JsonForm = (props) => {
     FileWidget: FileWidget,
   };
 
-  const onError = (errors) => {
-    // console.log("Validation errors:", errors);
-  };
-
   const handleBackButtonClick = () => {
     setActiveForm(activeForm - 1);
   };
@@ -277,7 +269,6 @@ const JsonForm = (props) => {
         onSubmit={handleSubmit}
         onChange={handleChange}
         widgets={widgets}
-        onError={onError}
         noHtml5Validate
         liveValidate={validateForm}
         transformErrors={transformErrors}

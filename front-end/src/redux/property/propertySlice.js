@@ -45,10 +45,7 @@ export const getPropertiesByType = createAsyncThunk('services/getPropertiesByTyp
 
 export const getPropertyById = createAsyncThunk('services/getPropertyById', async (propertyId, thunkAPI) => {
   try {
-    console.log("propertyId",propertyId);
     const api = GET_PROPERTY_BY_ID.replace('${p_id}', propertyId);
-    console.log("api",api);
-
     const resp = await GET_API(api);
     return resp;
   } catch (error) {
