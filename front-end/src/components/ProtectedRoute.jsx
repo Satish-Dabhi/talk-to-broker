@@ -14,7 +14,6 @@ const ProtectedRoute = () => {
 
   useEffect(() => {
     async function validToken() {
-      console.log("userToken", userToken);
       const resp = await POST_API(VERIFY_TOKEN_END_POINT, { token: userToken?.token });
       if (resp?.valid) {
         setUserLoggedIn(true);
@@ -34,8 +33,6 @@ const ProtectedRoute = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
-
-  console.log("userLoggedIn",userLoggedIn);
 
   return userLoggedIn ? <Outlet /> : <Navigate to="/userAuth" />;
 };

@@ -60,7 +60,7 @@ const EnrollForm = (props) => {
           ).toString();
           // setLocalStorageObject('token', userToken);
           setLocalStorageObject('token', userData);
-          navigate('/');
+          navigate('/user/profile');
         } else {
           dispatch(
             updateSnackBar({
