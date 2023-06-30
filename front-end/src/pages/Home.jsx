@@ -51,11 +51,11 @@ const Home = () => {
           </div>
         </div>
       </Parallax>
-      <Container maxWidth="lg" sx={{ paddingTop: '70px' }}>
-        <Typography variant="h4" gutterBottom>
-          Property Type:
+      <Container maxWidth="lg" sx={{ paddingTop: '70px' }} className='text-center'>
+        <Typography variant="h2" gutterBottom sx={{ fontSize: '45px', fontWeight: '700' }}>
+          Visit Properties
         </Typography>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} className='text-center'>
           {propertyTypeArray &&
             propertyTypeArray.length > 0 &&
             propertyTypeArray.map((property) => {

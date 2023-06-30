@@ -38,8 +38,8 @@ body {
 }
 
 .top-navbar {
-  background-color: #06060694;
-  padding: 3px 0 !important;
+  background-color: #fff;
+  padding: 8px 0 !important;
   box-shadow: 0 8px 10px 0 rgb(0 0 0 / 50%);
 }
 

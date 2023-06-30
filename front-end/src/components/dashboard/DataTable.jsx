@@ -67,6 +67,7 @@ export default function DataTable({ data }) {
     );
   }
 
+  console.log("tableDatatableData",tableData);
 
   return (
     <div style={{ height: 400, width: '100%' }}>
