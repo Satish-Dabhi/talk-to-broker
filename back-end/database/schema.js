@@ -154,7 +154,7 @@ let p_schema = new mongoose.Schema(
     oldPropertyState: String,
     maintenancePeriod: String,
     newPropertyProjectName: String,
-    images: String,
+    images: [String],
     typesOfHouse: String,
     apartments: String,
   },
@@ -172,7 +172,7 @@ let u_schema = new mongoose.Schema(
     password: String,
     otpCreateTime: Date,
     otp: String,
-    verified: Boolean
+    verified: Boolean,
   },
   {
     versionKey: false,

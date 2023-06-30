@@ -29,7 +29,7 @@ const VerticalLinearStepper = (props) => {
                 {ADD_PROPERTY_FORMS.map((step, index) => (
                     <Step key={step.label}>
                         <StepLabel
-                            // onClick={() => onStepClick(index)}
+                            onClick={() => onStepClick(index)}
                             className="steps"
                             optional={
                                 index === 2 ? (

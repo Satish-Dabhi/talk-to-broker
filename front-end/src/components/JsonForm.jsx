@@ -30,6 +30,7 @@ import SliderFieldsWidget from './customWidgets/SliderRange';
 import WidthLengthFieldWidget from './customWidgets/WidthLengthField';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
+import MoodIcon from '@mui/icons-material/Mood';
 
 const theme = createTheme({
   components: {
@@ -85,6 +86,7 @@ const JsonForm = (props) => {
   }, [activeForm]);
 
   const handleSubmit = ({ formData }) => {
+    console.log(".............",formData);
     formData.addPropertyType && setPropertyType(formData.addPropertyType);
     const encrypted = CryptoJS.AES.encrypt(JSON.stringify(formData), constant.SESSION_OBJECT_SECRET_KEY).toString();
     setSessionStorageObject(constant.SESSION_KEY, encrypted);
@@ -276,25 +278,20 @@ const JsonForm = (props) => {
         <div className="row">
           {activeForm !== 0 && (
             <div className="col-md-6 d-flex justify-content-center">
-              <Button variant="outlined" color="warning" startIcon={<SkipPreviousIcon />} type="button" onClick={handleBackButtonClick} className='w-100'>
+              <Button variant="contained" color="info" startIcon={<SkipPreviousIcon />} type="button" onClick={handleBackButtonClick} className='w-100'>
                 Back
               </Button>
             </div>
           )}
           {activeForm === ADD_PROPERTY_FORMS.length - 1 ? (
             <div className="col-md-6 d-flex justify-content-center">
-              <Button
-                onClick={handleSubmitButtonClick}
-                variant="contained"
-                class="btn btn-outline-success"
-                type="submit"
-              >
-                Submit
+              <Button color="success" variant="contained" endIcon={<MoodIcon />} type="submit" onClick={handleSubmitButtonClick} className='w-100 btn btn-outline-success'>
+              Submit
               </Button>
             </div>
           ) : (
             <div className="col-md-6 d-flex justify-content-center">
-              <Button variant="outlined" endIcon={<SkipNextIcon />} type="submit" onClick={handleNextButtonClick} className='w-100 btn btn-outline-success'>
+              <Button color="success" variant="contained" endIcon={<SkipNextIcon />} type="submit" onClick={handleNextButtonClick} className='w-100 btn btn-outline-success'>
                 Next
               </Button>
             </div>
