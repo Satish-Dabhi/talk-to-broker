@@ -1,28 +1,28 @@
-import basicInfoSchema from '../../formsDefinitions/basicInfo/schema.json';
-import basicInfoUiSchema from '../../formsDefinitions/basicInfo/uiSchema.json';
-import computationOfSalesPropertySchema from '../../formsDefinitions/computationOfSalesProperty/schema.json';
-import computationOfSalesPropertyUiSchema from '../../formsDefinitions/computationOfSalesProperty/uiSchema.json';
-import constructionSizeDetailSchema from '../../formsDefinitions/constructionSizeDetail/schema.json';
-import constructionSizeDetailUiSchema from '../../formsDefinitions/constructionSizeDetail/uiSchema.json';
-import newPropertyDetailSchema from '../../formsDefinitions/newPropertyDetail/schema.json';
-import newPropertyDetailUiSchema from '../../formsDefinitions/newPropertyDetail/uiSchema.json';
-import floorPriceCalculationAndParkingDetailsSchema from '../../formsDefinitions/floorPriceCalculationAndParkingDetails/schema.json';
-import floorPriceCalculationAndParkingDetailsUiSchema from '../../formsDefinitions/floorPriceCalculationAndParkingDetails/uiSchema.json';
-import maintenanceChargesDetailsSchema from '../../formsDefinitions/maintenanceChargesDetails/schema.json';
-import maintenanceChargesDetailsUiSchema from '../../formsDefinitions/maintenanceChargesDetails/uiSchema.json';
-import morePropertyDetailsSchema from '../../formsDefinitions/morePropertyDetails/schema.json';
-import morePropertyDetailsUiSchema from '../../formsDefinitions/morePropertyDetails/uiSchema.json';
-import oldPropertyDetailSchema from '../../formsDefinitions/oldPropertyDetail/schema.json';
-import oldPropertyDetailUiSchema from '../../formsDefinitions/oldPropertyDetail/uiSchema.json';
-import propertySellDetailSchema from '../../formsDefinitions/propertySellDetail/schema.json';
-import propertySellDetailUiSchema from '../../formsDefinitions/propertySellDetail/uiSchema.json';
-import propertySizeBifurcationDetailSchema from '../../formsDefinitions/propertySizeBifurcationDetail/schema.json';
-import propertySizeBifurcationDetailUiSchema from '../../formsDefinitions/propertySizeBifurcationDetail/uiSchema.json';
-import propertyImagesSchema from '../../formsDefinitions/propertyImages/schema.json';
-import propertyImagesUiSchema from '../../formsDefinitions/propertyImages/uiSchema.json';
+import basicInfoSchema from '../../formsDefinitions/property/basicInfo/schema.json';
+import basicInfoUiSchema from '../../formsDefinitions/property/basicInfo/uiSchema.json';
+import computationOfSalesPropertySchema from '../../formsDefinitions/property/computationOfSalesProperty/schema.json';
+import computationOfSalesPropertyUiSchema from '../../formsDefinitions/property/computationOfSalesProperty/uiSchema.json';
+import constructionSizeDetailSchema from '../../formsDefinitions/property/constructionSizeDetail/schema.json';
+import constructionSizeDetailUiSchema from '../../formsDefinitions/property/constructionSizeDetail/uiSchema.json';
+import newPropertyDetailSchema from '../../formsDefinitions/property/newPropertyDetail/schema.json';
+import newPropertyDetailUiSchema from '../../formsDefinitions/property/newPropertyDetail/uiSchema.json';
+import floorPriceCalculationAndParkingDetailsSchema from '../../formsDefinitions/property/floorPriceCalculationAndParkingDetails/schema.json';
+import floorPriceCalculationAndParkingDetailsUiSchema from '../../formsDefinitions/property/floorPriceCalculationAndParkingDetails/uiSchema.json';
+import maintenanceChargesDetailsSchema from '../../formsDefinitions/property/maintenanceChargesDetails/schema.json';
+import maintenanceChargesDetailsUiSchema from '../../formsDefinitions/property/maintenanceChargesDetails/uiSchema.json';
+import morePropertyDetailsSchema from '../../formsDefinitions/property/morePropertyDetails/schema.json';
+import morePropertyDetailsUiSchema from '../../formsDefinitions/property/morePropertyDetails/uiSchema.json';
+import oldPropertyDetailSchema from '../../formsDefinitions/property/oldPropertyDetail/schema.json';
+import oldPropertyDetailUiSchema from '../../formsDefinitions/property/oldPropertyDetail/uiSchema.json';
+import propertySellDetailSchema from '../../formsDefinitions/property/propertySellDetail/schema.json';
+import propertySellDetailUiSchema from '../../formsDefinitions/property/propertySellDetail/uiSchema.json';
+import propertySizeBifurcationDetailSchema from '../../formsDefinitions/property/propertySizeBifurcationDetail/schema.json';
+import propertySizeBifurcationDetailUiSchema from '../../formsDefinitions/property/propertySizeBifurcationDetail/uiSchema.json';
+import propertyImagesSchema from '../../formsDefinitions/property/propertyImages/schema.json';
+import propertyImagesUiSchema from '../../formsDefinitions/property/propertyImages/uiSchema.json';
 import * as constant from './constant';
 
-export function getActiveForm(activeForm, propertyType) {
+export function getActivePropertyForm(activeForm, propertyType) {
   switch (activeForm) {
     case 0:
       return {

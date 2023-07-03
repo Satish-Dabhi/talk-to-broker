@@ -2,16 +2,16 @@ import { Grid, Tab, Tabs } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import loginSchema from '../../formsDefinitions/userLogin/schema.json';
-import loginUiSchema from '../../formsDefinitions/userLogin/uiSchema.json';
-import registrationSchema from '../../formsDefinitions/userRegistration/schema.json';
-import registrationUiSchema from '../../formsDefinitions/userRegistration/uiSchema.json';
+import loginSchema from '../../formsDefinitions/user/userLogin/schema.json';
+import loginUiSchema from '../../formsDefinitions/user/userLogin/uiSchema.json';
+import registrationSchema from '../../formsDefinitions/user/userRegistration/schema.json';
+import registrationUiSchema from '../../formsDefinitions/user/userRegistration/uiSchema.json';
 import { POST_API, VERIFY_TOKEN_END_POINT } from '../../redux/services/api';
 import { getLocalStorageObject } from '../../services/utils';
-import EnrollForm from './EnrollForm';
 import CryptoJS from 'crypto-js';
 import './user.css';
 import { LOCAL_OBJECT_SECRET_KEY } from '../../services/utils/constant';
+import UserEnrollForm from '../jsonForm/UserEnrollForm';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -71,10 +71,10 @@ const SignInSignUpForms = ({ handleClose }) => {
               </Box>
             )}
             <TabPanel value={value} index={0}>
-              <EnrollForm schema={loginSchema} uiSchema={loginUiSchema} form="login" />
+              <userEnrollForm schema={loginSchema} uiSchema={loginUiSchema} form="login" />
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <EnrollForm
+              <UserEnrollForm
                 schema={registrationSchema}
                 uiSchema={registrationUiSchema}
                 form="registration"

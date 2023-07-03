@@ -13,7 +13,7 @@ export function getSessionStorageObject(key) {
 }
 
 export function removeSessionStorageObject(key) {
-sessionStorage.removeItem(key)
+  sessionStorage.removeItem(key)
 }
 
 export function setLocalStorageObject(key, value) {
@@ -75,35 +75,41 @@ export function getSchemaFieldTitle(propertyName) {
 
 export const ADD_PROPERTY_FORMS = [
   {
-    label: constant.STEP1_FORM_NAME,
+    label: constant.STEP1_PROPERTY_FORM_NAME,
   },
   {
-    label: constant.STEP2_FORM_NAME,
+    label: constant.STEP2_PROPERTY_FORM_NAME,
   },
   {
-    label: constant.STEP3_FORM_NAME,
+    label: constant.STEP3_PROPERTY_FORM_NAME,
   },
   {
-    label: constant.STEP4_FORM_NAME,
+    label: constant.STEP4_PROPERTY_FORM_NAME,
   },
   {
-    label: constant.STEP5_FORM_NAME,
+    label: constant.STEP5_PROPERTY_FORM_NAME,
   },
   {
-    label: constant.STEP6_FORM_NAME,
+    label: constant.STEP6_PROPERTY_FORM_NAME,
   },
   {
-    label: constant.STEP7_FORM_NAME,
+    label: constant.STEP7_PROPERTY_FORM_NAME,
   },
   {
-    label: constant.STEP8_FORM_NAME,
+    label: constant.STEP8_PROPERTY_FORM_NAME,
   },
   {
-    label: constant.STEP9_FORM_NAME,
+    label: constant.STEP9_PROPERTY_FORM_NAME,
   },
   {
-    label: constant.STEP10_FORM_NAME,
+    label: constant.STEP10_PROPERTY_FORM_NAME,
   },
+];
+
+export const ADD_BUYER_INQUIRY_FORMS = [
+  {
+    label: constant.STEP1_BUYER_INQUIRY_FORM_NAME,
+  }
 ];
 
 export const getCardImageByPropertyType = (propertyType) => {

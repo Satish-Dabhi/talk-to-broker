@@ -11,6 +11,7 @@ import Properties from './pages/Properties';
 import PropertyDetails from './pages/PropertyDetails';
 import UserProfile from './pages/UserProfile';
 import { updateSnackBar } from './redux/common/snackBarSlice';
+import AddBuyerInquiry from './pages/AddBuyerInquiry';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/user" element={<ProtectedRoute />}>
             <Route path="/user/profile" element={<UserProfile />} />
             <Route path="/user/add-property" element={<AddProperty />} />
+            <Route path="/user/add-buyer" element={<AddBuyerInquiry />} />
           </Route>
         </Routes>
         <Snackbar

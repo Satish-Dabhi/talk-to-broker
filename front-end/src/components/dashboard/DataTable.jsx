@@ -56,7 +56,7 @@ export default function DataTable({ data }) {
       // Handle the edit button click event
       const selectedFormData = params.row;
       const encrypted = CryptoJS.AES.encrypt(JSON.stringify(selectedFormData), constant.SESSION_OBJECT_SECRET_KEY).toString();
-      setSessionStorageObject(constant.SESSION_KEY, encrypted);
+      setSessionStorageObject(constant.PROPERTY_SESSION_KEY, encrypted);
       navigate(`/user/add-property`);
     };
 

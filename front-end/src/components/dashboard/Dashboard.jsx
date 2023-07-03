@@ -42,7 +42,7 @@ const Dashboard = ({ userData }) => {
       >
         <Tab label="About Yourself" />
         <Tab label="Your Properties" />
-        <Tab label="Tab 3" />
+        <Tab label="Buyers" />
       </Tabs>
       <Box sx={{ flexGrow: 1, p: 2 }}>
         {selectedTab === 0 && <AboutUser userData={userData} />}
@@ -51,7 +51,7 @@ const Dashboard = ({ userData }) => {
             <div className="row">
               <div className="d-flex justify-content-end">
                 <Button variant="contained" size="small" onClick={() => {
-                  removeSessionStorageObject(constant.SESSION_KEY);
+                  removeSessionStorageObject(constant.PROPERTY_SESSION_KEY);
                   navigate(`/user/add-property`);
                 }}>
                   Add Property
@@ -62,7 +62,22 @@ const Dashboard = ({ userData }) => {
             <DataTable data={properties} />
           </>
         )}
-        {selectedTab === 2 && <div>Tab 3 Content</div>}
+        {selectedTab === 2 && (
+          <>
+            <div className="row">
+              <div className="d-flex justify-content-end">
+                <Button variant="contained" size="small" onClick={() => {
+                  // removeSessionStorageObject(constant.PROPERTY_SESSION_KEY);
+                  navigate(`/user/add-buyer`);
+                }}>
+                  Add Buyer Inquiry
+                </Button>
+              </div>
+            </div>
+            <br />
+            {/* <DataTable data={properties} /> */}
+          </>
+        )}
       </Box>
     </Box>
   );

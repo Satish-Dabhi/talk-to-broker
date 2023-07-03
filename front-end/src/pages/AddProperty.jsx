@@ -1,33 +1,35 @@
 import { Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import JsonForm from "../components/JsonForm";
+import PropertyForm from "../components/jsonForm/PropertyForm";
 import VerticalLinearStepper from "../components/VerticalLinearStepper";
 import * as constant from "../services/utils/constant";
-import { getActiveForm } from "../services/utils/getActiveForm";
+import { getActivePropertyForm } from "../services/utils/getActiveForm";
+import { ADD_PROPERTY_FORMS } from "../services/utils";
 
 function AddProperty() {
     const [activeForm, setActiveForm] = useState(0);
     const [propertyType, setPropertyType] = useState(constant.DEVELOPER_PROPERTY);
     const [form, setForm] = useState({});
 
+
     useEffect(() => {
-        setForm(getActiveForm(activeForm, propertyType));
+        setForm(getActivePropertyForm(activeForm, propertyType));
     }, [activeForm]);
 
     return (
         <Grid container className="mt-5">
             <Grid item xs={4}>
-                <VerticalLinearStepper activeForm={activeForm} setActiveForm={setActiveForm} />
+                <VerticalLinearStepper activeForm={activeForm} setActiveForm={setActiveForm} stepperData={ADD_PROPERTY_FORMS}/>
             </Grid>
             <Grid item xs={8} id="ttb-form">
                 {Object.keys(form).length > 0 && (
-                    <JsonForm
+                    <PropertyForm
                         schema={form.schema}
                         uiSchema={form.uiSchema}
                         activeForm={activeForm}
                         setActiveForm={setActiveForm}
                         setPropertyType={setPropertyType}
-                    ></JsonForm>
+                    ></PropertyForm>
                 )}
             </Grid>
         </Grid>

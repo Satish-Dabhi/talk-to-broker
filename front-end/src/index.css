@@ -8,9 +8,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* .top-div {
-  height: 80px;
-} */
+.top-div {
+  height: 65px;
+}
 
 /* body #root {
   background-color: #c3c3c366;
@@ -35,6 +35,17 @@ body {
 
 #ttb-form {
   padding: 50px;
+}
+
+#ttb-form .form-title {
+  padding: 1% 2%;
+  margin-bottom: 15px;
+  color: #fff;
+  max-width: fit-content;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 20px;
+  background-color: #1976d2;
 }
 
 .top-navbar {

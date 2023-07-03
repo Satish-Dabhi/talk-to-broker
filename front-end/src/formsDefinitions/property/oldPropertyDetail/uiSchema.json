@@ -7,24 +7,21 @@
             "md": 6
         },
         "oldPropertySocietyAddress": {
-            "md": 12
+            "md": 7
         },
         "oldPropertyRoomNo": {
             "md": 5
         },
         "oldPropertyAreaName": {
-            "md": 7
-        },
-        "oldPropertyLandmark": {
             "md": 12
         },
-        "oldPropertyVillage": {
-            "md": 6
-        },
-        "oldPropertyPinCode": {
+        "oldPropertyLandmark": {
             "md": 6
         },
         "oldPropertyCity": {
+            "md": 6
+        },
+        "oldPropertyPinCode": {
             "md": 6
         },
         "oldPropertyState": {

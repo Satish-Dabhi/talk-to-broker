@@ -8,7 +8,7 @@ import './index.css';
 const TopNavbar = () => {
   return (
     <>
-      <Navbar fixed="top" className="top-navbar" variant="dark" expand="lg">
+      <Navbar fixed="top" className="top-navbar" expand="lg">
         <Container>
           <Navbar.Brand href="/">
             <img src={logo} width="90" height="30" className="d-inline-block align-top" alt="Talk To Broker" />

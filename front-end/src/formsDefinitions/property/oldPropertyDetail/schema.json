@@ -8,7 +8,6 @@
         "oldPropertyRoomNo",
         "oldPropertyAreaName",
         "oldPropertyLandmark",
-        "oldPropertyVillage",
         "oldPropertyPinCode",
         "oldPropertyCity",
         "oldPropertyState"
@@ -23,33 +22,29 @@
             "title": "Owner Name",
             "type": "string"
         },
-        "oldPropertySocietyAddress": {
-            "title": "Society Address",
-            "type": "string"
-        },
         "oldPropertyRoomNo": {
             "title": "Room No./Block No./House No./Flat No.",
             "type": "number"
         },
+        "oldPropertySocietyAddress": {
+            "title": "Society Address",
+            "type": "string"
+        },
         "oldPropertyAreaName": {
             "title": "Road Name/Area Name",
+            "type": "string"
+        },
+        "oldPropertyCity": {
+            "title": "City",
             "type": "string"
         },
         "oldPropertyLandmark": {
             "title": "Landmark",
             "type": "string"
         },
-        "oldPropertyVillage": {
-            "title": "Village",
-            "type": "string"
-        },
         "oldPropertyPinCode": {
             "title": "Pin code",
             "type": "number"
-        },
-        "oldPropertyCity": {
-            "title": "City",
-            "type": "string"
         },
         "oldPropertyState": {
             "title": "State With GST State Code",
