@@ -29,7 +29,7 @@ const theme = createTheme({
 const Form = withTheme(Mui5Theme);
 
 const UserEnrollForm = (props) => {
-  const { schema, uiSchema, form, verifyForm, handleClose } = props;
+  const { schema, uiSchema, form, verifyForm } = props;
   const [currentForm, setCurrentForm] = useState({
     schema: schema,
     uiSchema: uiSchema,

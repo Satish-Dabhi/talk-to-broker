@@ -2,7 +2,7 @@
     "title": "",
     "type": "object",
     "properties": {
-        "marketingDetail": {
+        "basicDetails": {
             "title": "Basic Details",
             "required": [
                 "plateForm",

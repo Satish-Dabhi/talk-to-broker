@@ -1,30 +1,16 @@
-import { useEffect } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
-import * as React from 'react';
-import './dashboard.css';
-import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { convertToTitleCase, setSessionStorageObject } from '../../services/utils';
+import { IconButton } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
 import CryptoJS from 'crypto-js';
-import * as constant from '../../services/utils/constant';
+import * as React from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { setSessionStorageObject } from '../../services/utils';
+import * as constant from '../../services/utils/constant';
+import './dashboard.css';
 
 
-
-
-const rows = [
-  { id: 1, propertyStatus: 'Snow', propertyType: 'Jon', propertyOwnership: 35 },
-  { id: 2, propertyStatus: 'Lannister', propertyType: 'Cersei', propertyOwnership: 42 },
-  { id: 3, propertyStatus: 'Lannister', propertyType: 'Jaime', propertyOwnership: 45 },
-  { id: 4, propertyStatus: 'Stark', propertyType: 'Arya', propertyOwnership: 16 },
-  { id: 5, propertyStatus: 'Targaryen', propertyType: 'Daenerys', propertyOwnership: null },
-  { id: 6, propertyStatus: 'Melisandre', propertyType: null, propertyOwnership: 150 },
-  { id: 7, propertyStatus: 'Clifford', propertyType: 'Ferrara', propertyOwnership: 44 },
-  { id: 8, propertyStatus: 'Frances', propertyType: 'Rossini', propertyOwnership: 36 },
-  { id: 9, propertyStatus: 'Roxie', propertyType: 'Harvey', propertyOwnership: 65 },
-];
-
-export default function DataTable({ data }) {
+export default function BuyerInquiriesDataTable({ data }) {
   const [tableData, setTableData] = React.useState({});
   let navigate = useNavigate();
 
@@ -66,8 +52,6 @@ export default function DataTable({ data }) {
       </IconButton>
     );
   }
-
-  console.log("tableDatatableData",tableData);
 
   return (
     <div style={{ height: 400, width: '100%' }}>

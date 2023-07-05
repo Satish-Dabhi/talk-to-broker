@@ -17,7 +17,7 @@ function AddProperty() {
     }, [activeForm]);
 
     return (
-        <Grid container className="mt-5">
+        <Grid container>
             <Grid item xs={4}>
                 <VerticalLinearStepper activeForm={activeForm} setActiveForm={setActiveForm} stepperData={ADD_PROPERTY_FORMS}/>
             </Grid>

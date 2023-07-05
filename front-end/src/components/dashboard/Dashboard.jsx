@@ -2,12 +2,13 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Box, Button, Tab, Tabs } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DataTable from './DataTable';
+import PropertiesDataTable from './PropertiesDataTable';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPropertiesByUser } from '../../redux/property/propertySlice';
 import AboutUser from './AboutUser';
 import { removeSessionStorageObject } from '../../services/utils';
 import * as constant from '../../services/utils/constant';
+import BuyerInquiriesDataTable from './BuyerInquiriesDataTable';
 
 const Dashboard = ({ userData }) => {
   const { propertiesByUser } = useSelector((store) => store.propertyHandler);
@@ -59,7 +60,7 @@ const Dashboard = ({ userData }) => {
               </div>
             </div>
             <br />
-            <DataTable data={properties} />
+            <PropertiesDataTable data={properties} />
           </>
         )}
         {selectedTab === 2 && (
@@ -67,7 +68,7 @@ const Dashboard = ({ userData }) => {
             <div className="row">
               <div className="d-flex justify-content-end">
                 <Button variant="contained" size="small" onClick={() => {
-                  // removeSessionStorageObject(constant.PROPERTY_SESSION_KEY);
+                  removeSessionStorageObject(constant.BUYER_INQUIRY_SESSION_KEY);
                   navigate(`/user/add-buyer`);
                 }}>
                   Add Buyer Inquiry
@@ -75,7 +76,7 @@ const Dashboard = ({ userData }) => {
               </div>
             </div>
             <br />
-            {/* <DataTable data={properties} /> */}
+            <BuyerInquiriesDataTable data={properties} />
           </>
         )}
       </Box>

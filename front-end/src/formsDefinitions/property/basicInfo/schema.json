@@ -299,7 +299,7 @@
                             "complex",
                             "plaza",
                             "hub"
-                        ] 
+                        ]
                     },
                     "subPropertyType": {
                         "enumNames": [
@@ -396,12 +396,24 @@
                             "Cropped Land",
                             "New Condition Land",
                             "Old Conditions Land",
+                            "Dry Land",
+                            "Non-agricultural land",
+                            "Barren & wastelands",
+                            "Permanent Pastures and grazing Land",
+                            "Miscellaneous tree crops & groves land",
+                            "Culturable waste land",
                             "Other If Any"
                         ],
                         "enum": [
                             "cropped-land",
                             "new-condition-land",
                             "old-conditions-land",
+                            "dry-land",
+                            "non-agricultural-land",
+                            "barren-wastelands",
+                            "permanent-pastures-and-grazing-land",
+                            "miscellaneous-tree-crops-groves-land",
+                            "culturable-waste-land",
                             "any-other"
                         ],
                         "default": "cropped-land"

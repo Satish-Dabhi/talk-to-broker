@@ -20,6 +20,8 @@ import propertySizeBifurcationDetailSchema from '../../formsDefinitions/property
 import propertySizeBifurcationDetailUiSchema from '../../formsDefinitions/property/propertySizeBifurcationDetail/uiSchema.json';
 import propertyImagesSchema from '../../formsDefinitions/property/propertyImages/schema.json';
 import propertyImagesUiSchema from '../../formsDefinitions/property/propertyImages/uiSchema.json';
+import basicDetailsSchema from '../../formsDefinitions/buyerInquiry/basicDetails/schema.json';
+import basicDetailsUiSchema from '../../formsDefinitions/buyerInquiry/basicDetails/uiSchema.json';
 import * as constant from './constant';
 
 export function getActivePropertyForm(activeForm, propertyType) {
@@ -85,6 +87,26 @@ export function getActivePropertyForm(activeForm, propertyType) {
       return {
         schema: basicInfoSchema,
         uiSchema: basicInfoUiSchema,
+      };
+  }
+}
+
+export function getActiveBuyerInquiryForm(activeForm) {
+  switch (activeForm) {
+    case 0:
+      return {
+        schema: basicDetailsSchema,
+        uiSchema: basicDetailsUiSchema,
+      };
+    case 1:
+      return {
+        schema: oldPropertyDetailSchema,
+        uiSchema: oldPropertyDetailUiSchema,
+      };
+    default:
+      return {
+        schema: basicDetailsSchema,
+        uiSchema: basicDetailsUiSchema,
       };
   }
 }

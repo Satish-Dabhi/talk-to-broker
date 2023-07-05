@@ -7,13 +7,13 @@
             "md": 6
         },
         "newPropertySiteAddress": {
-            "md": 5
+            "md": 6
         },
         "newPropertyRevenueSurveyNo": {
-            "md": 4
+            "md": 6
         },
         "newPropertyBlockNumber": {
-            "md": 3
+            "md": 4
         },
         "newPropertyFPNumber": {
             "md": 4
@@ -22,16 +22,13 @@
             "md": 4
         },
         "newPropertyCity": {
-            "md": 4
+            "md": 5
         },
-        "newPropertyState": {
-            "md": 4
-        },
-        "newPropertyStateCode": {
-            "md": 3
+        "newPropertyStateWithCode": {
+            "md": 7
         },
         "newPropertyContactNumber": {
-            "md": 5
+            "md": 6
         },
         "newPropertyGSTIN": {
             "md": 6
