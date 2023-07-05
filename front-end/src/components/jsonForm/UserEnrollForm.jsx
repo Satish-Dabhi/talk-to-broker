@@ -6,8 +6,8 @@ import { Theme5 as Mui5Theme } from '@rjsf/material-ui';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import verificationFormSchema from '../../formsDefinitions/verificationForm/schema.json';
-import verificationFormUiSchema from '../../formsDefinitions/verificationForm/uiSchema.json';
+import verificationFormSchema from '../../formsDefinitions/user/verificationForm/schema.json';
+import verificationFormUiSchema from '../../formsDefinitions/user/verificationForm/uiSchema.json';
 import { updateSnackBar } from '../../redux/common/snackBarSlice';
 import { createUser, loginUser, verifyCode } from '../../redux/user/userSlice';
 import { getSchemaFieldTitle, setLocalStorageObject } from '../../services/utils';
@@ -28,7 +28,7 @@ const theme = createTheme({
 
 const Form = withTheme(Mui5Theme);
 
-const EnrollForm = (props) => {
+const UserEnrollForm = (props) => {
   const { schema, uiSchema, form, verifyForm, handleClose } = props;
   const [currentForm, setCurrentForm] = useState({
     schema: schema,
@@ -244,4 +244,4 @@ const EnrollForm = (props) => {
   );
 };
 
-export default EnrollForm;
+export default UserEnrollForm;

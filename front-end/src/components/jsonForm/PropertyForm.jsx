@@ -7,8 +7,8 @@ import CryptoJS from 'crypto-js';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { updateSnackBar } from '../redux/common/snackBarSlice';
-import { createProperty } from '../redux/property/propertySlice';
+import { updateSnackBar } from '../../redux/common/snackBarSlice';
+import { createProperty } from '../../redux/property/propertySlice';
 import {
   ADD_PROPERTY_FORMS,
   allDefined,
@@ -19,15 +19,15 @@ import {
   getSum,
   removeSessionStorageObject,
   setSessionStorageObject,
-} from '../services/utils';
-import * as constant from '../services/utils/constant';
-import ObjectFieldTemplate from './ObjectFieldTemplate';
-import DynamicFieldsWidget from './customWidgets/DynamicFields';
-import FileWidget from './customWidgets/FileWidget';
-import InputAdornmentFieldWidget from './customWidgets/InputAdornmentField';
-import RadioWidget from './customWidgets/RadioWidget';
-import SliderFieldsWidget from './customWidgets/SliderRange';
-import WidthLengthFieldWidget from './customWidgets/WidthLengthField';
+} from '../../services/utils';
+import * as constant from '../../services/utils/constant';
+import ObjectFieldTemplate from '../ObjectFieldTemplate';
+import DynamicFieldsWidget from '../customWidgets/DynamicFields';
+import FileWidget from '../customWidgets/FileWidget';
+import InputAdornmentFieldWidget from '../customWidgets/InputAdornmentField';
+import RadioWidget from '../customWidgets/RadioWidget';
+import SliderFieldsWidget from '../customWidgets/SliderRange';
+import WidthLengthFieldWidget from '../customWidgets/WidthLengthField';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import MoodIcon from '@mui/icons-material/Mood';
@@ -44,7 +44,7 @@ const theme = createTheme({
 
 const Form = withTheme(Mui5Theme);
 
-const JsonForm = (props) => {
+const PropertyForm = (props) => {
   const { schema, uiSchema, activeForm, setActiveForm, setPropertyType } = props;
   const { addProperty } = useSelector((state) => state.propertyHandler);
   const [sessionFormData, setSessionFormData] = useState({});
@@ -78,7 +78,7 @@ const JsonForm = (props) => {
   }, []);
 
   useEffect(() => {
-    var session_data = getSessionStorageObject(constant.SESSION_KEY);
+    var session_data = getSessionStorageObject(constant.PROPERTY_SESSION_KEY);
     const decrypted =
       session_data &&
       CryptoJS.AES.decrypt(session_data, constant.SESSION_OBJECT_SECRET_KEY).toString(CryptoJS.enc.Utf8);
@@ -86,15 +86,15 @@ const JsonForm = (props) => {
   }, [activeForm]);
 
   const handleSubmit = ({ formData }) => {
-    console.log(".............",formData);
+    console.log(".............", formData);
     formData.addPropertyType && setPropertyType(formData.addPropertyType);
     const encrypted = CryptoJS.AES.encrypt(JSON.stringify(formData), constant.SESSION_OBJECT_SECRET_KEY).toString();
-    setSessionStorageObject(constant.SESSION_KEY, encrypted);
+    setSessionStorageObject(constant.PROPERTY_SESSION_KEY, encrypted);
     setValidateForm(false);
     if (userId !== '' && formSubmit) {
       const finalFormData = { ...formData, u_id: userId };
       dispatch(createProperty(finalFormData));
-      removeSessionStorageObject(constant.SESSION_KEY);
+      removeSessionStorageObject(constant.PROPERTY_SESSION_KEY);
       setFormSaved(true);
     }
     ADD_PROPERTY_FORMS.length - 1 > activeForm && setActiveForm(activeForm + 1);
@@ -261,9 +261,16 @@ const JsonForm = (props) => {
     setFormSubmit(true);
   };
 
+  const TitleField = ({ title }) => (
+    <div className="form-title">
+      {title}
+    </div>
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <Form
+        fields={{ TitleField }}
         formData={sessionFormData}
         schema={schema}
         uiSchema={uiSchema}
@@ -286,7 +293,7 @@ const JsonForm = (props) => {
           {activeForm === ADD_PROPERTY_FORMS.length - 1 ? (
             <div className="col-md-6 d-flex justify-content-center">
               <Button color="success" variant="contained" endIcon={<MoodIcon />} type="submit" onClick={handleSubmitButtonClick} className='w-100 btn btn-outline-success'>
-              Submit
+                Submit
               </Button>
             </div>
           ) : (
@@ -302,4 +309,4 @@ const JsonForm = (props) => {
   );
 };
 
-export default JsonForm;
+export default PropertyForm;
