@@ -1,4 +1,5 @@
 export const API_HOSTNAME = 'http://localhost:3005';
+export const VERCEL_API_HOSTNAME = 'https://talk-to-broker.vercel.app';
 export const ADD_PROPERTY_END_POINT = '/property';
 export const GET_PROPERTIES_END_POINT = '/property';
 export const GET_PROPERTIES_BY_TYPE = '/property/type/${type}';
@@ -15,7 +16,7 @@ export const UPLOAD_IMAGE_END_POINT = '/property/uploadImages';
 
 
 export const POST_API = async (api, data) => {
-  const newApi = API_HOSTNAME + api;
+  const newApi = VERCEL_API_HOSTNAME + api;
   const response = await fetch(newApi, {
     method: 'POST',
     headers: {
@@ -29,13 +30,13 @@ export const POST_API = async (api, data) => {
 };
 
 export const GET_API = async (api) => {
-  const newApi = API_HOSTNAME + api;
+  const newApi = VERCEL_API_HOSTNAME + api;
   const response = await fetch(newApi);
   return response.json();
 };
 
 export const STORE_IMAGE_API = async (api, data) => {
-  const newApi = API_HOSTNAME + api;
+  const newApi = VERCEL_API_HOSTNAME + api;
   const response = await fetch(newApi, {
     method: 'POST',
     body: data,
