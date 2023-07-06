@@ -53,12 +53,10 @@ const UserEnrollForm = (props) => {
               severity: 'success',
             })
           );
-          // const userToken = CryptoJS.AES.encrypt(loginUserData?.token, constant.LOCAL_OBJECT_SECRET_KEY).toString();
           const userData = CryptoJS.AES.encrypt(
             JSON.stringify(loginUserData),
             constant.LOCAL_OBJECT_SECRET_KEY
           ).toString();
-          // setLocalStorageObject('token', userToken);
           setLocalStorageObject('token', userData);
           navigate('/user/profile');
         } else {
@@ -84,7 +82,6 @@ const UserEnrollForm = (props) => {
         })
       );
       navigate('/');
-      // handleClose();
     } else if (verifyOtp?.verify === false) {
       dispatch(
         updateSnackBar({
@@ -238,7 +235,6 @@ const UserEnrollForm = (props) => {
             </div>
           </div>
         </Form>
-        {/* )} */}
       </div>
     </ThemeProvider>
   );

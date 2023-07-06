@@ -18,7 +18,7 @@ const TopNavbar = () => {
             <Nav className="me-auto">
             </Nav>
             <Nav>
-              <Nav.Link className="text-black" href="/userAuth">
+              <Nav.Link className="text-black text-center" href="/user/profile">
                 <AccountCircleTwoToneIcon fontSize='large'/>
               </Nav.Link>
             </Nav>

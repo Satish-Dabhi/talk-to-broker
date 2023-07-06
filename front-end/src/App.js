@@ -33,7 +33,6 @@ const App = () => {
 
   return (
     <>
-      {/* <HashRouter> */}
       <BrowserRouter>
         <TopNavbar />
         <div className='top-div'></div>
@@ -61,7 +60,6 @@ const App = () => {
           </Alert>
         </Snackbar>
       </BrowserRouter>
-      {/* </HashRouter> */}
     </>
   );
 };
