@@ -9,20 +9,20 @@ import { setSessionStorageObject } from '../../services/utils';
 import * as constant from '../../services/utils/constant';
 import './dashboard.css';
 
-
 export default function PropertiesDataTable({ data }) {
   const [tableData, setTableData] = React.useState({});
   let navigate = useNavigate();
 
   useEffect(() => {
-    const t_data = Object.keys(data).length > 0 && data.map((item, index) => {
-      return {
-        id: index + 1,
-        ...item
-      }
-    });
+    const t_data =
+      Object.keys(data).length > 0 &&
+      data.map((item, index) => {
+        return {
+          id: index + 1,
+          ...item,
+        };
+      });
     setTableData(t_data);
-
   }, [data]);
 
   const columns = [
@@ -41,7 +41,10 @@ export default function PropertiesDataTable({ data }) {
     const handleEditClick = () => {
       // Handle the edit button click event
       const selectedFormData = params.row;
-      const encrypted = CryptoJS.AES.encrypt(JSON.stringify(selectedFormData), constant.SESSION_OBJECT_SECRET_KEY).toString();
+      const encrypted = CryptoJS.AES.encrypt(
+        JSON.stringify(selectedFormData),
+        constant.SESSION_OBJECT_SECRET_KEY
+      ).toString();
       setSessionStorageObject(constant.PROPERTY_SESSION_KEY, encrypted);
       navigate(`/user/add-property`);
     };
@@ -64,7 +67,8 @@ export default function PropertiesDataTable({ data }) {
           },
         }}
         pageSizeOptions={[5, 10]}
-      // checkboxSelection
+        sx={{ overflowX: 'scroll', width: '100vw' }}
+        // checkboxSelection
       />
     </div>
   );

@@ -7,7 +7,7 @@ const PropertyTypeCard = ({ propertyDetails }) => {
   let navigate = useNavigate();
 
   return (
-    <Card sx={{ maxWidth: 230, color: "#f7f7f7" }}>
+    <Card sx={{ maxWidth: 230, color: '#f7f7f7', margin: 'auto' }}>
       <CardMedia
         sx={{
           height: 200,
