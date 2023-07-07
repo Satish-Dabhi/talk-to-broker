@@ -28,7 +28,6 @@ function TabPanel(props) {
   );
 }
 
-
 const PropertyDetails = () => {
   let { id } = useParams();
   const dispatch = useDispatch();
@@ -38,7 +37,6 @@ const PropertyDetails = () => {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
-
   useEffect(() => {
     const { status, data } = propertyById;
     if (status === 'OK') {
@@ -46,15 +44,11 @@ const PropertyDetails = () => {
       setPropertyImages(data?.images);
     }
     // status === 'OK' && setProperty(data);
-  }, [propertyById])
-
+  }, [propertyById]);
 
   useEffect(() => {
-    console.log("id",id);
     dispatch(getPropertyById(id));
   }, [id]);
-
-
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -63,19 +57,33 @@ const PropertyDetails = () => {
   const handleChangeIndex = (index) => {
     setValue(index);
   };
-  
 
+  const {
+    addPropertyType,
+    newPropertySiteAddress,
+    newPropertyCity,
+    newPropertyPinCode,
+    newPropertyStateWithCode,
+    newPropertyGroupName,
+  } = property || {};
+  const {
+    oldPropertyRoomNo,
+    oldPropertySocietyAddress,
+    oldPropertyName,
+    oldPropertyAreaName,
+    oldPropertyCity,
+    oldPropertyLandmark,
+    oldPropertyPinCode,
+    oldPropertyState,
+    oldPropertyOwnerName,
+  } = property || {};
 
-  console.log("property=-property", property);
+  const propertyAdd =
+    addPropertyType === 'new-property'
+      ? `${newPropertySiteAddress}, ${newPropertyCity} (${newPropertyPinCode}), ${newPropertyStateWithCode}`
+      : `${oldPropertyRoomNo}, ${oldPropertySocietyAddress}, ${oldPropertyAreaName}, ${oldPropertyLandmark}, ${oldPropertyCity} (${oldPropertyPinCode}), ${oldPropertyState}`;
 
-  const { addPropertyType, newPropertySiteAddress, newPropertyCity, newPropertyPinCode, newPropertyStateWithCode, newPropertyGroupName } = property || {};
-  const { oldPropertyRoomNo, oldPropertySocietyAddress, oldPropertyName, oldPropertyAreaName, oldPropertyCity, oldPropertyLandmark, oldPropertyPinCode, oldPropertyState, oldPropertyOwnerName } = property || {};
-
-  const propertyAdd = addPropertyType === "new-property" ?
-    `${newPropertySiteAddress}, ${newPropertyCity} (${newPropertyPinCode}), ${newPropertyStateWithCode}` :
-    `${oldPropertyRoomNo}, ${oldPropertySocietyAddress}, ${oldPropertyAreaName}, ${oldPropertyLandmark}, ${oldPropertyCity} (${oldPropertyPinCode}), ${oldPropertyState}`;
-
-  const propertyName = addPropertyType === "new-property" ? newPropertyGroupName : oldPropertyName;
+  const propertyName = addPropertyType === 'new-property' ? newPropertyGroupName : oldPropertyName;
 
   return (
     <>
@@ -85,11 +93,7 @@ const PropertyDetails = () => {
           <ImageList variant="masonry" cols={2} gap={5}>
             {propertyImages.map((item, index) => (
               <ImageListItem key={item.img}>
-                <img
-                  src={`${item}?w=248&fit=crop&auto=format`}
-                  alt={`img-${index}`}
-                  loading="lazy"
-                />
+                <img src={`${item}?w=248&fit=crop&auto=format`} alt={`img-${index}`} loading="lazy" />
               </ImageListItem>
             ))}
           </ImageList>
@@ -115,14 +119,25 @@ const PropertyDetails = () => {
             onChangeIndex={handleChangeIndex}
           >
             <TabPanel value={value} index={0} dir={theme.direction}>
-              <h4>{property?.propertyType} Property ({property?.subPropertyType})</h4>
+              <h4>
+                {property?.propertyType} Property ({property?.subPropertyType})
+              </h4>
               <h5>Property Status : ({property?.propertyStatus})</h5>
-              <div><b>Name :</b> {propertyName}</div>
-              {addPropertyType === "new-property" ?
-                <div><b>Property Group Name :</b> {newPropertyGroupName}</div> :
-                <div><b>Property Owner Name :</b> {oldPropertyOwnerName}</div>}
-              <div><b>Address :</b> {propertyAdd} </div>
-
+              <div>
+                <b>Name :</b> {propertyName}
+              </div>
+              {addPropertyType === 'new-property' ? (
+                <div>
+                  <b>Property Group Name :</b> {newPropertyGroupName}
+                </div>
+              ) : (
+                <div>
+                  <b>Property Owner Name :</b> {oldPropertyOwnerName}
+                </div>
+              )}
+              <div>
+                <b>Address :</b> {propertyAdd}{' '}
+              </div>
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
               Item Two

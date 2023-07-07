@@ -1,3 +1,6 @@
+import MoodIcon from '@mui/icons-material/Mood';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import { Button } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/system';
@@ -28,9 +31,6 @@ import InputAdornmentFieldWidget from '../customWidgets/InputAdornmentField';
 import RadioWidget from '../customWidgets/RadioWidget';
 import SliderFieldsWidget from '../customWidgets/SliderRange';
 import WidthLengthFieldWidget from '../customWidgets/WidthLengthField';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import MoodIcon from '@mui/icons-material/Mood';
 
 const theme = createTheme({
   components: {
@@ -86,7 +86,6 @@ const PropertyForm = (props) => {
   }, [activeForm]);
 
   const handleSubmit = ({ formData }) => {
-    console.log(".............", formData);
     formData.addPropertyType && setPropertyType(formData.addPropertyType);
     const encrypted = CryptoJS.AES.encrypt(JSON.stringify(formData), constant.SESSION_OBJECT_SECRET_KEY).toString();
     setSessionStorageObject(constant.PROPERTY_SESSION_KEY, encrypted);

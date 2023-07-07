@@ -8,11 +8,13 @@ import * as constant from '../../services/utils/constant';
 import AboutUser from './AboutUser';
 import BuyerInquiriesDataTable from './BuyerInquiriesDataTable';
 import PropertiesDataTable from './PropertiesDataTable';
+import SignOutModal from './SignOutModal';
 
 const Dashboard = ({ userData }) => {
   const { propertiesByUser } = useSelector((store) => store.propertyHandler);
   const [selectedTab, setSelectedTab] = useState(0);
   const [properties, setProperties] = useState({});
+  const [showSignOutModal, setShowSignOutModal] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,8 +34,6 @@ const Dashboard = ({ userData }) => {
 
   const smallScreen = useMediaQuery('(max-width: 768px)');
 
-  console.log("smallScreensmallScreen",smallScreen);
-
   return (
     <>
       {smallScreen && (
@@ -47,6 +47,7 @@ const Dashboard = ({ userData }) => {
           <Tab label="About Yourself" />
           <Tab label="Your Properties" />
           <Tab label="Buyers" />
+          <Tab label="Sign Out" />
         </Tabs>
       )}
       <Box sx={{ display: 'flex', paddingTop: '5%' }}>
@@ -61,6 +62,7 @@ const Dashboard = ({ userData }) => {
             <Tab label="About Yourself" />
             <Tab label="Your Properties" />
             <Tab label="Buyers" />
+            <Tab label="Sign Out" />
           </Tabs>
         )}
         <Box sx={{ flexGrow: 1, p: 2 }}>
@@ -105,6 +107,7 @@ const Dashboard = ({ userData }) => {
               <BuyerInquiriesDataTable data={properties} smallScreen={smallScreen}/>
             </>
           )}
+          {selectedTab === 3 && <SignOutModal open={showSignOutModal} setOpen={setShowSignOutModal} />}
         </Box>
       </Box>
     </>

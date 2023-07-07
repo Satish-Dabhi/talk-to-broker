@@ -102,7 +102,7 @@ const updateUserByEmail = async (data) => {
 };
 
 const verifyOtp = async (data) => {
-  const { email, otp } = data;
+  const { email, otp, name } = data;
   const existUser = await schema.userSchema.findOne({ email: email, otp: otp });
   if (existUser) {
     if (utils.isWithinMinutes(existUser.otpCreateTime, 5)) {
@@ -110,8 +110,26 @@ const verifyOtp = async (data) => {
         email: email,
         verified: true,
       };
-      updateUserByEmail(verifiedUserData);
-      return existUser;
+      const verifiedUser = await updateUserByEmail(verifiedUserData);
+      if (verifiedUser?.status === 'done') {
+        const secretKey = JWT_SECRET_KEY;
+        const options = { expiresIn: '2d' };
+        const payload = {
+          name: name,
+          email: email,
+        };
+        const token = jwt.sign(payload, secretKey, options);
+        return {
+          token: token,
+          user: {
+            id: existUser._id,
+            name: existUser.name,
+            email: existUser.email,
+          },
+        };
+      } else {
+        return null;
+      }
     } else {
       return null;
     }

@@ -42,7 +42,7 @@ const verifyOtp = async (req, res) => {
     const { body } = req;
     const updatedUser = await userService.verifyOtp(body);
     if (updatedUser) {
-      res.send({ status: 'OK', verify: true });
+      res.send({ status: 'OK', verify: true, token: updatedUser?.token, user: updatedUser?.user });
     } else {
       res.send({ status: 'OK', verify: false });
     }

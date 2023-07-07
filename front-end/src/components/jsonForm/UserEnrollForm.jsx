@@ -81,7 +81,12 @@ const UserEnrollForm = (props) => {
           severity: 'success',
         })
       );
-      navigate('/');
+      const userData = CryptoJS.AES.encrypt(
+        JSON.stringify(verifyOtp),
+        constant.LOCAL_OBJECT_SECRET_KEY
+      ).toString();
+      setLocalStorageObject('token', userData);
+      navigate('/user/profile');
     } else if (verifyOtp?.verify === false) {
       dispatch(
         updateSnackBar({
