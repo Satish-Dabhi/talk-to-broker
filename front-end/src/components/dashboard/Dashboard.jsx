@@ -32,6 +32,8 @@ const Dashboard = ({ userData }) => {
 
   const smallScreen = useMediaQuery('(max-width: 768px)');
 
+  console.log("smallScreensmallScreen",smallScreen);
+
   return (
     <>
       {smallScreen && (
@@ -80,7 +82,7 @@ const Dashboard = ({ userData }) => {
                 </div>
               </div>
               <br />
-              <PropertiesDataTable data={properties} />
+              <PropertiesDataTable data={properties} smallScreen={smallScreen}/>
             </>
           )}
           {selectedTab === 2 && (
@@ -100,7 +102,7 @@ const Dashboard = ({ userData }) => {
                 </div>
               </div>
               <br />
-              <BuyerInquiriesDataTable data={properties} />
+              <BuyerInquiriesDataTable data={properties} smallScreen={smallScreen}/>
             </>
           )}
         </Box>

@@ -8,7 +8,7 @@ require("dotenv").config();
 const app = express();
 app.use(express.json());
 app.use(cors());
-const PORT = process.env.PORT || 3005;
+const PORT = process.env.PORT || 3007;
 
 app.get('/', (req, res) => {
   res.send('Working ...:)');

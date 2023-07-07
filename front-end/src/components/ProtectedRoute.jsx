@@ -1,8 +1,9 @@
+import { CircularProgress } from '@mui/material';
+import CryptoJS from 'crypto-js';
 import React, { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { POST_API, VERIFY_TOKEN_END_POINT } from '../redux/services/api';
 import { getLocalStorageObject } from '../services/utils';
-import CryptoJS from 'crypto-js';
 import { LOCAL_OBJECT_SECRET_KEY } from '../services/utils/constant';
 
 const ProtectedRoute = () => {
@@ -31,7 +32,9 @@ const ProtectedRoute = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div style={{ alignItems: "center", display: "flex", justifyContent: "center", height: "100vh" }}>
+      <CircularProgress />
+    </div>
   }
 
   return userLoggedIn ? <Outlet /> : <Navigate to="/userAuth" />;

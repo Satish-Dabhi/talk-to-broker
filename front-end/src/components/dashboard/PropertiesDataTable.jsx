@@ -9,7 +9,7 @@ import { setSessionStorageObject } from '../../services/utils';
 import * as constant from '../../services/utils/constant';
 import './dashboard.css';
 
-export default function PropertiesDataTable({ data }) {
+export default function PropertiesDataTable({ data, smallScreen }) {
   const [tableData, setTableData] = React.useState({});
   let navigate = useNavigate();
 
@@ -67,7 +67,7 @@ export default function PropertiesDataTable({ data }) {
           },
         }}
         pageSizeOptions={[5, 10]}
-        sx={{ overflowX: 'scroll', width: '100vw' }}
+        sx={{ overflowX: 'scroll', width: `${smallScreen ? '100vw' : ''}` }}
         // checkboxSelection
       />
     </div>

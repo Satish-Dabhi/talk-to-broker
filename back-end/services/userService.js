@@ -13,7 +13,7 @@ const createNewUser = async (data) => {
       const otp = utils.generateOTP();
       const doesExist = await schema.userSchema.findOne({ email: data.email });
       if (doesExist) {
-        const newData = { ...data, otp: otp };
+        const newData = { ...data, otp: otp, otpCreateTime: new Date() };
         return await schema.userSchema
           .updateOne({ email: data.email }, { $set: newData })
           .then((result) => {
@@ -106,11 +106,11 @@ const verifyOtp = async (data) => {
   const existUser = await schema.userSchema.findOne({ email: email, otp: otp });
   if (existUser) {
     if (utils.isWithinMinutes(existUser.otpCreateTime, 5)) {
-      const virifiedUserData = {
+      const verifiedUserData = {
         email: email,
         verified: true,
       };
-      updateUserByEmail(virifiedUserData);
+      updateUserByEmail(verifiedUserData);
       return existUser;
     } else {
       return null;

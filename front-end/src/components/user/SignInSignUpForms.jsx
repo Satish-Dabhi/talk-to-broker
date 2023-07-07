@@ -50,7 +50,7 @@ const SignInSignUpForms = ({ handleClose }) => {
         dispatch(
           updateSnackBar({
             open: true,
-            message: 'Something went wrong',
+            message: 'Your Token is Expired Please Login Again to continue',
             severity: 'error',
           })
         );
