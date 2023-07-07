@@ -80,6 +80,7 @@ let p_schema = new mongoose.Schema(
     },
     newPropertySellUnit: String,
     newPropertyExtraArea: {
+      areaType: String,
       priceRate: Number,
       extraArea: Number,
       totalExtraAreaValue: Number,

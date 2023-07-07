@@ -88,11 +88,27 @@
                         "title": "New Property Extra Area",
                         "type": "object",
                         "required": [
+                            "areaType",
                             "priceRate",
                             "extraArea",
                             "totalExtraAreaValue"
                         ],
                         "properties": {
+                            "areaType": {
+                                "title": "Area Type",
+                                "enum": [
+                                    "carpet",
+                                    "built-up",
+                                    "super-built-up",
+                                    "land"
+                                ],
+                                "enumNames": [
+                                    "Carpet",
+                                    "Built Up",
+                                    "Super Built Up",
+                                    "Land"
+                                ]
+                            },
                             "priceRate": {
                                 "title": "Price Rate",
                                 "type": "number",
@@ -108,7 +124,7 @@
                                 "md": 6
                             },
                             "totalExtraAreaValue": {
-                                "title": "Total Extra Area Value",
+                                "title": "Total Extra Terrace/Plot Price",
                                 "type": "number",
                                 "readOnly": true
                             }
@@ -149,10 +165,12 @@
                                     "title": "Area Type",
                                     "enum": [
                                         "carpet",
+                                        "built-up",
                                         "super-built-up"
                                     ],
                                     "enumNames": [
                                         "Carpet",
+                                        "Built Up",
                                         "Super Built Up"
                                     ]
                                 },
