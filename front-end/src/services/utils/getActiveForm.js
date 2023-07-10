@@ -22,6 +22,8 @@ import propertyImagesSchema from '../../formsDefinitions/property/propertyImages
 import propertyImagesUiSchema from '../../formsDefinitions/property/propertyImages/uiSchema.json';
 import basicDetailsSchema from '../../formsDefinitions/buyerInquiry/basicDetails/schema.json';
 import basicDetailsUiSchema from '../../formsDefinitions/buyerInquiry/basicDetails/uiSchema.json';
+import propertyRequirementsSchema from '../../formsDefinitions/buyerInquiry/propertyRequirements/schema.json';
+import propertyRequirementsUiSchema from '../../formsDefinitions/buyerInquiry/propertyRequirements/uiSchema.json';
 import * as constant from './constant';
 
 export function getActivePropertyForm(activeForm, propertyType) {
@@ -100,8 +102,8 @@ export function getActiveBuyerInquiryForm(activeForm) {
       };
     case 1:
       return {
-        schema: oldPropertyDetailSchema,
-        uiSchema: oldPropertyDetailUiSchema,
+        schema: propertyRequirementsSchema,
+        uiSchema: propertyRequirementsUiSchema,
       };
     default:
       return {

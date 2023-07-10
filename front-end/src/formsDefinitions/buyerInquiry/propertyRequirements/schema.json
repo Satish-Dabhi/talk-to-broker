@@ -1,0 +1,102 @@
+{
+    "title": "Property Requirements",
+    "type": "object",
+    "required": [
+        "timeLineToBuy",
+        "timeLine"
+    ],
+    "properties": {
+        "timeLineToBuy": {
+            "title": "Time Line To Buy",
+            "enum": [
+                "months",
+                "years"
+            ],
+            "enumNames": [
+                "Months",
+                "Years"
+            ],
+            "default": "months"
+        },
+        "timeLine": {
+            "title": "Time Line",
+            "type": "string"
+        }
+    },
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "timeLineToBuy": {
+                        "enum": [
+                            "months"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "timeLine": {
+                        "enumNames": [
+                            "1 Month",
+                            "2 Months",
+                            "3 Months",
+                            "4 Months",
+                            "5 Months",
+                            "6 Months",
+                            "7 Months",
+                            "8 Months",
+                            "9 Months",
+                            "10 Months",
+                            "11 Months"
+                        ],
+                        "enum": [
+                            "1-month",
+                            "2-months",
+                            "3-months",
+                            "4-months",
+                            "5-months",
+                            "6-months",
+                            "7-months",
+                            "8-months",
+                            "9-months",
+                            "10-months",
+                            "11-months"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "timeLineToBuy": {
+                        "enum": [
+                            "years"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "timeLine": {
+                        "enumNames": [
+                            "1 Year",
+                            "2 Years",
+                            "3 Years",
+                            "4 Years",
+                            "5 Years"
+                        ],
+                        "enum": [
+                            "1-year",
+                            "2-years",
+                            "3-years",
+                            "4-years",
+                            "5-years"
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}

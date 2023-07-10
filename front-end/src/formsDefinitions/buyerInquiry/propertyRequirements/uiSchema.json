@@ -1,0 +1,14 @@
+{
+    "ui:order": [
+        "timeLineToBuy",
+        "timeLine"
+    ],
+    "ui:layout": {
+        "timeLineToBuy": {
+            "md": 6
+        },
+        "timeLine": {
+            "md": 6
+        }
+    }
+}

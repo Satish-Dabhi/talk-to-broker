@@ -20,6 +20,7 @@ export const DYNAMIC_FIELD_MAX_OPTIONS = 10
 export const SESSION_OBJECT_SECRET_KEY = 'mysecretkey'
 export const LOCAL_OBJECT_SECRET_KEY = 'local_secret_key'
 export const STEP1_BUYER_INQUIRY_FORM_NAME = "Basic Details"
+export const STEP2_BUYER_INQUIRY_FORM_NAME = "Property Requirements"
 
 
 

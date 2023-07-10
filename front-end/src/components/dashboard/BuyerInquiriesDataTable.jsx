@@ -21,7 +21,7 @@ export default function BuyerInquiriesDataTable({ data, smallScreen }) {
         ...item
       }
     });
-    setTableData(t_data);
+    // setTableData(t_data);
 
   }, [data]);
 
@@ -64,7 +64,7 @@ export default function BuyerInquiriesDataTable({ data, smallScreen }) {
           },
         }}
         pageSizeOptions={[5, 10]}
-        sx={{ overflowX: 'scroll', width: `${smallScreen && '100vw'}` }}
+        sx={{ overflowX: 'scroll', width: `${smallScreen && '100vw'}` }}  
       // checkboxSelection
       />
     </div>

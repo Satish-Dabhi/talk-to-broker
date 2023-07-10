@@ -67,7 +67,7 @@ export default function PropertiesDataTable({ data, smallScreen }) {
           },
         }}
         pageSizeOptions={[5, 10]}
-        sx={{ overflowX: 'scroll', width: `${smallScreen ? '100vw' : ''}` }}
+        sx={{ overflowX: 'scroll', width: `${smallScreen && '100vw'}` }}
         // checkboxSelection
       />
     </div>

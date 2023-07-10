@@ -109,6 +109,9 @@ export const ADD_PROPERTY_FORMS = [
 export const ADD_BUYER_INQUIRY_FORMS = [
   {
     label: constant.STEP1_BUYER_INQUIRY_FORM_NAME,
+  },
+  {
+    label: constant.STEP2_BUYER_INQUIRY_FORM_NAME,
   }
 ];
 

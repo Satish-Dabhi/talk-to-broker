@@ -104,7 +104,9 @@ const Dashboard = ({ userData }) => {
                 </div>
               </div>
               <br />
-              <BuyerInquiriesDataTable data={properties} smallScreen={smallScreen}/>
+              <BuyerInquiriesDataTable 
+              data={properties} 
+              smallScreen={smallScreen}/>
             </>
           )}
           {selectedTab === 3 && <SignOutModal open={showSignOutModal} setOpen={setShowSignOutModal} />}
