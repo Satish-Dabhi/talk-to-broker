@@ -57,6 +57,7 @@ const BuyerInquiryForm = (props) => {
         const decrypted =
             session_data &&
             CryptoJS.AES.decrypt(session_data, constant.SESSION_OBJECT_SECRET_KEY).toString(CryptoJS.enc.Utf8);
+            console.log("decrypteddecrypteddecrypted",decrypted);
         session_data && setSessionFormData(JSON.parse(decrypted));
     }, [activeForm]);
 
@@ -70,7 +71,7 @@ const BuyerInquiryForm = (props) => {
     };
 
     const handleChange = ({ formData: newFormData }) => {
-        console.log("handle-change", newFormData);
+        setSessionFormData(newFormData);
     };
 
     const widgets = {

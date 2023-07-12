@@ -4,8 +4,11 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from '../assets/images/ttb-logo.png';
 import './index.css';
+import { useMediaQuery } from '@mui/material';
 
 const TopNavbar = () => {
+  const smallScreen = useMediaQuery('(max-width: 768px)');
+
   return (
     <>
       <Navbar fixed="top" className="top-navbar" expand="lg">
@@ -19,7 +22,7 @@ const TopNavbar = () => {
             </Nav>
             <Nav>
               <Nav.Link className="text-black text-center" href="/user/profile">
-                <AccountCircleTwoToneIcon fontSize='large'/>
+                <AccountCircleTwoToneIcon fontSize='large' /> {smallScreen && `Profile`}
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

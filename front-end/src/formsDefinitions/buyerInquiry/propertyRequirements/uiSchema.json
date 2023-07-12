@@ -1,13 +1,27 @@
 {
     "ui:order": [
+        "basicDetails",
         "timeLineToBuy",
-        "timeLine"
+        "timeLine",
+        "utilityPurpose",
+        "buildingType",
+        "subPropertyType",
+        "roomTypes",
+        "propertyType",
+        "typesOfHouse",
+        "apartments"
     ],
     "ui:layout": {
         "timeLineToBuy": {
             "md": 6
         },
         "timeLine": {
+            "md": 6
+        },
+        "utilityPurpose":{
+            "md": 6
+        },
+        "buildingType":{
             "md": 6
         }
     }

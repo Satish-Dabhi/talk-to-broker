@@ -3,9 +3,20 @@
     "type": "object",
     "required": [
         "timeLineToBuy",
-        "timeLine"
+        "timeLine",
+        "utilityPurpose",
+        "buildingType"
     ],
     "properties": {
+        "propertyType": {
+            "enum": [
+                "residential",
+                "commercial",
+                "industrial",
+                "agricultural"
+            ],
+            "hidden": true
+        },
         "timeLineToBuy": {
             "title": "Time Line To Buy",
             "enum": [
@@ -20,6 +31,38 @@
         },
         "timeLine": {
             "title": "Time Line",
+            "type": "string"
+        },
+        "utilityPurpose": {
+            "title": "Utility Purpose",
+            "enum": [
+                "personal",
+                "investment",
+                "for-others"
+            ],
+            "enumNames": [
+                "Personal",
+                "Investment",
+                "For Others"
+            ]
+        },
+        "buildingType": {
+            "title": "Building Type",
+            "enum": [
+                "single-unit",
+                "low-rise",
+                "mid-rise",
+                "high-rise"
+            ],
+            "enumNames": [
+                "Single Unit",
+                "Low Rise",
+                "Mid Rise",
+                "High Rise"
+            ]
+        },
+        "subPropertyType": {
+            "title": "Sub Property Type",
             "type": "string"
         }
     },
@@ -94,6 +137,250 @@
                             "4-years",
                             "5-years"
                         ]
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "propertyType": {
+                        "enum": [
+                            "residential"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "required": [
+                    "roomTypes"
+                ],
+                "properties": {
+                    "subPropertyType": {
+                        "enum": [
+                            "bungalow",
+                            "villa",
+                            "condominium",
+                            "cottage",
+                            "row-house",
+                            "duplex-house",
+                            "triplex-house",
+                            "farm-house",
+                            "stilt-house",
+                            "tree-house",
+                            "hut",
+                            "eco-friendly-house",
+                            "any-other"
+                        ],
+                        "enumNames": [
+                            "Bungalow",
+                            "Villa",
+                            "Condominium",
+                            "Cottage",
+                            "Row House",
+                            "Duplex House",
+                            "Triplex House",
+                            "Farm House",
+                            "Stilt House",
+                            "Tree House",
+                            "Hut",
+                            "Eco Friendly House",
+                            "Other If Any"
+                        ],
+                        "default": "apartment"
+                    },
+                    "apartments": {
+                        "title": "Apartments",
+                        "enumNames": [
+                            "Flat",
+                            "Penthouse",
+                            "Terrace Flat",
+                            "Filament",
+                            "Studio Apartment"
+                        ],
+                        "enum": [
+                            "flat",
+                            "penthouse",
+                            "terrace-flat",
+                            "filament",
+                            "studio-apartment"
+                        ]
+                    },
+                    "roomTypes": {
+                        "title": "Rooms Type",
+                        "enumNames": [
+                            "2-BHK",
+                            "3-BHK",
+                            "3.5-BHK",
+                            "4-BHK",
+                            "4.5-BHK",
+                            "5-BHK",
+                            "6-BHK",
+                            "3B_2HK",
+                            "4B_2HK",
+                            "5B_4HK",
+                            "6B_2HK",
+                            "7B_2HK"
+                        ],
+                        "enum": [
+                            "2bhk",
+                            "3-BHK",
+                            "3.5-BHK",
+                            "4-BHK",
+                            "4.5-BHK",
+                            "5-BHK",
+                            "6-BHK",
+                            "3B_2HK",
+                            "4B_2HK",
+                            "5B_4HK",
+                            "6B_2HK",
+                            "7B_2HK"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "propertyType": {
+                        "enum": [
+                            "commercial"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "typesOfHouse": {
+                        "title": "Types of House",
+                        "enumNames": [
+                            "Complex",
+                            "Plaza",
+                            "Hub"
+                        ],
+                        "enum": [
+                            "complex",
+                            "plaza",
+                            "hub"
+                        ]
+                    },
+                    "subPropertyType": {
+                        "enumNames": [
+                            "Office",
+                            "Shops",
+                            "Showrooms",
+                            "Commercial Open Plots",
+                            "Commercial Land",
+                            "Multifamily Use Land",
+                            "Multifamily Use Plot",
+                            "Retails Shops",
+                            "Storage Warehouse",
+                            "Hospital",
+                            "Shopping Centre",
+                            "Other If Any"
+                        ],
+                        "enum": [
+                            "office",
+                            "shops",
+                            "showrooms",
+                            "commercial-open-plots",
+                            "commercial-land",
+                            "multifamily-use-land",
+                            "multifamily-use-plot",
+                            "retails-shops",
+                            "storage-warehouse",
+                            "hospital",
+                            "shopping-centre",
+                            "any-other"
+                        ],
+                        "default": "office"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "propertyType": {
+                        "enum": [
+                            "industrial"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "subPropertyType": {
+                        "enumNames": [
+                            "Ind. Office",
+                            "Industrial Open Plots",
+                            "Industrial Land",
+                            "Special Purpose Land(Economics)",
+                            "Mixed Used Land",
+                            "Mixed Use Plot",
+                            "Multifamily Land",
+                            "Warehouse",
+                            "Factories",
+                            "Industrial Shed",
+                            "Other If Any"
+                        ],
+                        "enum": [
+                            "ind-office",
+                            "industrial-open-plots",
+                            "industrial-land",
+                            "special-purpose-land",
+                            "mixed-used-land",
+                            "mixed-use-plot",
+                            "multifamily-land",
+                            "warehouse",
+                            "factories",
+                            "industrial-shed",
+                            "any-other"
+                        ],
+                        "default": "ind-office"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "propertyType": {
+                        "enum": [
+                            "agricultural"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "subPropertyType": {
+                        "enumNames": [
+                            "Cropped Land",
+                            "New Condition Land",
+                            "Old Conditions Land",
+                            "Dry Land",
+                            "Non-agricultural land",
+                            "Barren & wastelands",
+                            "Permanent Pastures and grazing Land",
+                            "Miscellaneous tree crops & groves land",
+                            "Culturable waste land",
+                            "Other If Any"
+                        ],
+                        "enum": [
+                            "cropped-land",
+                            "new-condition-land",
+                            "old-conditions-land",
+                            "dry-land",
+                            "non-agricultural-land",
+                            "barren-wastelands",
+                            "permanent-pastures-and-grazing-land",
+                            "miscellaneous-tree-crops-groves-land",
+                            "culturable-waste-land",
+                            "any-other"
+                        ],
+                        "default": "cropped-land"
                     }
                 }
             }
