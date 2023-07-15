@@ -24,6 +24,8 @@ import basicDetailsSchema from '../../formsDefinitions/buyerInquiry/basicDetails
 import basicDetailsUiSchema from '../../formsDefinitions/buyerInquiry/basicDetails/uiSchema.json';
 import propertyRequirementsSchema from '../../formsDefinitions/buyerInquiry/propertyRequirements/schema.json';
 import propertyRequirementsUiSchema from '../../formsDefinitions/buyerInquiry/propertyRequirements/uiSchema.json';
+import preferredLocationSchema from '../../formsDefinitions/buyerInquiry/preferredLocation/schema.json';
+import preferredLocationUiSchema from '../../formsDefinitions/buyerInquiry/preferredLocation/uiSchema.json';
 import * as constant from './constant';
 
 export function getActivePropertyForm(activeForm, propertyType) {
@@ -104,6 +106,11 @@ export function getActiveBuyerInquiryForm(activeForm) {
       return {
         schema: propertyRequirementsSchema,
         uiSchema: propertyRequirementsUiSchema,
+      };
+    case 2:
+      return {
+        schema: preferredLocationSchema,
+        uiSchema: preferredLocationUiSchema,
       };
     default:
       return {

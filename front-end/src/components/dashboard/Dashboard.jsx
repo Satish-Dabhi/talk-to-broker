@@ -2,6 +2,7 @@ import { Box, Button, Tab, Tabs, useMediaQuery } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getBuyerInquiriesByUser } from '../../redux/buyerInquiry/buyerInquiry';
 import { getPropertiesByUser } from '../../redux/property/propertySlice';
 import { removeSessionStorageObject } from '../../services/utils';
 import * as constant from '../../services/utils/constant';
@@ -12,19 +13,27 @@ import SignOutModal from './SignOutModal';
 
 const Dashboard = ({ userData }) => {
   const { propertiesByUser } = useSelector((store) => store.propertyHandler);
+  const { buyerInquiriesByUser } = useSelector((store) => store.buyerInquiryHandler);
   const [selectedTab, setSelectedTab] = useState(0);
   const [properties, setProperties] = useState({});
+  const [buyerInquiries, setBuyerInquiries] = useState({});
   const [showSignOutModal, setShowSignOutModal] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
     userData?.id && dispatch(getPropertiesByUser(userData?.id));
+    userData?.id && dispatch(getBuyerInquiriesByUser(userData?.id));
   }, [userData?.id]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const { status, data } = propertiesByUser;
     status === 'OK' && setProperties(data);
   }, [propertiesByUser]);
+
+  useEffect(() => {
+    const { status, data } = buyerInquiriesByUser;
+    status === 'OK' && setBuyerInquiries(data);
+  }, [buyerInquiriesByUser]);
 
   let navigate = useNavigate();
 
@@ -42,7 +51,7 @@ const Dashboard = ({ userData }) => {
           variant="scrollable"
           value={selectedTab}
           onChange={handleChange}
-          sx={{ borderRight: 1, borderColor: 'divider'}}
+          sx={{ borderRight: 1, borderColor: 'divider' }}
         >
           <Tab label="About Yourself" />
           <Tab label="Your Properties" />
@@ -84,7 +93,7 @@ const Dashboard = ({ userData }) => {
                 </div>
               </div>
               <br />
-              <PropertiesDataTable data={properties} smallScreen={smallScreen}/>
+              <PropertiesDataTable data={properties} smallScreen={smallScreen} />
             </>
           )}
           {selectedTab === 2 && (
@@ -104,9 +113,9 @@ const Dashboard = ({ userData }) => {
                 </div>
               </div>
               <br />
-              <BuyerInquiriesDataTable 
-              data={properties} 
-              smallScreen={smallScreen}/>
+              <BuyerInquiriesDataTable
+                data={buyerInquiries}
+                smallScreen={smallScreen} />
             </>
           )}
           {selectedTab === 3 && <SignOutModal open={showSignOutModal} setOpen={setShowSignOutModal} />}

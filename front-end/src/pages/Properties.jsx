@@ -1,4 +1,4 @@
-import { Container } from '@mui/material';
+import { CircularProgress, Container } from '@mui/material';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -8,7 +8,7 @@ import { convertToTitleCase } from '../services/utils';
 
 const Properties = () => {
   let { propertyType } = useParams();
-  const { propertiesByType } = useSelector((store) => store.propertyHandler);
+  const { propertiesByType, getPropertiesByTypeLoader } = useSelector((store) => store.propertyHandler);
   const [properties, setProperties] = React.useState([]);
   const dispatch = useDispatch();
 
@@ -23,14 +23,19 @@ const Properties = () => {
 
   return (
     <>
-      <Container maxWidth="lg" sx={{ paddingTop: '70px' }}>
-        <h1> {convertToTitleCase(propertyType)} Properties</h1>
-        {properties &&
-          properties.length > 0 &&
-          properties.map((property) => {
-            return <PropertyCard propertyDetails={property} />;
-          })}
-      </Container>
+      {
+        getPropertiesByTypeLoader ? <div style={{ alignItems: "center", display: "flex", justifyContent: "center", height: "100vh" }}>
+          <CircularProgress />
+        </div> :
+          <Container maxWidth="lg" sx={{ paddingTop: '70px' }}>
+            <h1> {convertToTitleCase(propertyType)} Properties</h1>
+            {properties &&
+              properties.length > 0 &&
+              properties.map((property) => {
+                return <PropertyCard propertyDetails={property} />;
+              })}
+          </Container>
+      }
     </>
   );
 };

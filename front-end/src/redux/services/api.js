@@ -12,10 +12,15 @@ export const UPDATE_USER_BY_EMAIL_END_POINT = '/user/updateUser';
 export const VERIFY_VERIFICATION_CODE_END_POINT = '/user/verifyOtp';
 export const VERIFY_TOKEN_END_POINT = '/user/verifyToken';
 export const UPLOAD_IMAGE_END_POINT = '/property/uploadImages';
+export const ADD_BUYER_INQUIRY_END_POINT = '/buyer-inquiry';
+export const GET_BUYER_INQUIRIES_END_POINT = '/buyer-inquiry';
+export const GET_BUYER_INQUIRIES_BY_USER = '/buyer-inquiry/user/${u_id}';
+
+
 
 export const POST_API = async (api, data) => {
-  // const newApi = API_HOSTNAME + api;
-  const newApi = VERCEL_API_HOSTNAME + api;
+  const newApi = API_HOSTNAME + api;
+  // const newApi = VERCEL_API_HOSTNAME + api;
   const response = await fetch(newApi, {
     method: 'POST',
     headers: {
@@ -28,15 +33,15 @@ export const POST_API = async (api, data) => {
 };
 
 export const GET_API = async (api) => {
-  // const newApi = API_HOSTNAME + api;
-  const newApi = VERCEL_API_HOSTNAME + api;
+  const newApi = API_HOSTNAME + api;
+  // const newApi = VERCEL_API_HOSTNAME + api;
   const response = await fetch(newApi);
   return response.json();
 };
 
 export const STORE_IMAGE_API = async (api, data) => {
-  // const newApi = API_HOSTNAME + api;
-  const newApi = VERCEL_API_HOSTNAME + api;
+  const newApi = API_HOSTNAME + api;
+  // const newApi = VERCEL_API_HOSTNAME + api;
   const response = await fetch(newApi, {
     method: 'POST',
     body: data,

@@ -9,7 +9,11 @@
         "roomTypes",
         "propertyType",
         "typesOfHouse",
-        "apartments"
+        "apartments",
+        "size",
+        "budget",
+        "floorSelection",
+        "area"
     ],
     "ui:layout": {
         "timeLineToBuy": {
@@ -22,6 +26,12 @@
             "md": 6
         },
         "buildingType":{
+            "md": 6
+        },
+        "size":{
+            "md": 6
+        },
+        "budget":{
             "md": 6
         }
     }

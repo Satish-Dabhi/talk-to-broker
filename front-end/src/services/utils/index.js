@@ -112,6 +112,9 @@ export const ADD_BUYER_INQUIRY_FORMS = [
   },
   {
     label: constant.STEP2_BUYER_INQUIRY_FORM_NAME,
+  },
+  {
+    label: constant.STEP3_BUYER_INQUIRY_FORM_NAME,
   }
 ];
 

@@ -1,0 +1,68 @@
+{
+    "title": "",
+    "type": "object",
+    "properties": {
+        "firstPreference": {
+            "title": "1st Preference",
+            "required": [
+                "locality",
+                "tp",
+                "city",
+                "state"
+            ],
+            "properties": {
+                "locality": {
+                    "title": "Locality",
+                    "type": "string",
+                    "md": 6
+                },
+                "tp": {
+                    "title": "T.P.",
+                    "type": "string",
+                    "md": 6
+                },
+                "city": {
+                    "title": "Village/City",
+                    "type": "string",
+                    "md": 6
+                },
+                "state": {
+                    "title": "State",
+                    "type": "string",
+                    "md": 6
+                }
+            }
+        },
+        "secondPreference": {
+            "title": "2nd Preference",
+            "required": [
+                "locality",
+                "tp",
+                "city",
+                "state"
+            ],
+            "properties": {
+                "locality": {
+                    "title": "Locality",
+                    "type": "string",
+                    "md": 6
+                },
+                "tp": {
+                    "title": "T.P.",
+                    "type": "string",
+                    "md": 6
+                },
+                "city": {
+                    "title": "Village/City",
+                    "type": "string",
+                    "md": 6
+                },
+                "state": {
+                    "title": "State",
+                    "type": "string",
+                    "md": 6
+                }
+            }
+        }
+    }
+}

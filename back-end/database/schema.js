@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-let p_schema = new mongoose.Schema(
+let property_details_schema = new mongoose.Schema(
   {
     // _id: mongoose.Schema.Types.ObjectId,
     u_id: String,
@@ -164,7 +164,7 @@ let p_schema = new mongoose.Schema(
   }
 );
 
-let u_schema = new mongoose.Schema(
+let user_schema = new mongoose.Schema(
   {
     // _id: mongoose.Schema.Types.ObjectId,
     email: String,
@@ -180,10 +180,59 @@ let u_schema = new mongoose.Schema(
   }
 );
 
-const propertySchema = mongoose.model('property', p_schema);
-const userSchema = mongoose.model('user', u_schema);
+let buyer_inquiry_schema = new mongoose.Schema(
+  {
+    timeLineToBuy: String,
+    subPropertyType: String,
+    clientDetails: {
+      name: String,
+      address: String,
+      city: String,
+      state: String,
+      email: String,
+      contactNumber: Number
+    },
+    clientServiceProfile: {
+      serviceProfile: String,
+      companyName: String,
+      city: String,
+      state: String
+    },
+    firstPreference: {
+      locality: String,
+      tp: String,
+      city: String,
+      state: String
+    },
+    secondPreference: {
+      locality: String,
+      tp: String,
+      city: String,
+      state: String
+    },
+    plateForm: String,
+    inquiryIn: String,
+    propertyType: String,
+    inquiryFor: String,
+    timeLine: String,
+    buildingType: String,
+    utilityPurpose: String,
+    typesOfHouse: String,
+    size: String,
+    budget: Number,
+    floorSelection: Number,
+    roomTypes: String,
+    apartments: String,
+    area: Number
+  }  
+)
+
+const propertySchema = mongoose.model('property', property_details_schema);
+const userSchema = mongoose.model('user', user_schema);
+const buyerInquirySchema = mongoose.model('buyerInquiry', buyer_inquiry_schema);
 
 module.exports = {
   propertySchema: propertySchema,
   userSchema: userSchema,
+  buyerInquirySchema: buyerInquirySchema,
 };

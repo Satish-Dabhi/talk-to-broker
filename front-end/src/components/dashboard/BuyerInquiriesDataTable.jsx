@@ -21,19 +21,17 @@ export default function BuyerInquiriesDataTable({ data, smallScreen }) {
         ...item
       }
     });
-    // setTableData(t_data);
+    setTableData(t_data);
 
   }, [data]);
 
   const columns = [
     { field: 'id', headerName: 'No.', width: 70 },
+    { field: 'inquiryFor', headerName: 'Inquiry For', width: 200 },
+    { field: 'inquiryIn', headerName: 'Inquiry In', width: 200 },
     { field: 'propertyType', headerName: 'Property Type', width: 200 },
-    { field: 'propertyStatus', headerName: 'Property Status', width: 200 },
-    {
-      field: 'propertyOwnership',
-      headerName: 'Property Ownership',
-      width: 200,
-    },
+    { field: 'subPropertyType', headerName: 'SubProperty Type', width: 200 },
+    { field: 'budget', headerName: 'Budget', width: 200 },
     { field: 'edit', headerName: 'Edit', width: 70, renderCell: renderEditCell },
   ];
 
@@ -42,8 +40,8 @@ export default function BuyerInquiriesDataTable({ data, smallScreen }) {
       // Handle the edit button click event
       const selectedFormData = params.row;
       const encrypted = CryptoJS.AES.encrypt(JSON.stringify(selectedFormData), constant.SESSION_OBJECT_SECRET_KEY).toString();
-      setSessionStorageObject(constant.PROPERTY_SESSION_KEY, encrypted);
-      navigate(`/user/add-property`);
+      setSessionStorageObject(constant.BUYER_INQUIRY_SESSION_KEY, encrypted);
+      navigate(`/user/add-buyer`);
     };
 
     return (
@@ -64,7 +62,7 @@ export default function BuyerInquiriesDataTable({ data, smallScreen }) {
           },
         }}
         pageSizeOptions={[5, 10]}
-        sx={{ overflowX: 'scroll', width: `${smallScreen && '100vw'}` }}  
+        sx={{ overflowX: 'scroll', width: `${smallScreen && '100vw'}` }}
       // checkboxSelection
       />
     </div>

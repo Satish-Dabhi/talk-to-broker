@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const propertyRoutes = require('./routes/property');
 const userRoutes = require('./routes/user');
+const buyerInquiryRoutes = require('./routes/buyerInquiry');
 require("dotenv").config();
 
 
@@ -17,6 +18,9 @@ app.get('/', (req, res) => {
 app.use('/property', propertyRoutes);
 
 app.use('/user', userRoutes);
+
+app.use('/buyer-inquiry', buyerInquiryRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);

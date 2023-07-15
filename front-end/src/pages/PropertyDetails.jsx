@@ -87,18 +87,9 @@ const PropertyDetails = () => {
 
   return (
     <>
-      <MyCarousel imageList={propertyImages} />
-      <Grid container className="p-5">
-        <Grid item xs={5}>
-          <ImageList variant="masonry" cols={2} gap={5}>
-            {propertyImages.map((item, index) => (
-              <ImageListItem key={item.img}>
-                <img src={`${item}?w=248&fit=crop&auto=format`} alt={`img-${index}`} loading="lazy" />
-              </ImageListItem>
-            ))}
-          </ImageList>
-        </Grid>
-        <Grid item xs={7}>
+      {/* <MyCarousel imageList={propertyImages} /> */}
+      <Grid container className="p-md-5 p-3">
+      <Grid item md={7}>
           <AppBar position="static">
             <Tabs
               value={value}
@@ -147,6 +138,16 @@ const PropertyDetails = () => {
             </TabPanel>
           </SwipeableViews>
         </Grid>
+        <Grid item md={5}>
+          <ImageList variant="masonry" cols={2} gap={5}>
+            {propertyImages.map((item, index) => (
+              <ImageListItem key={item.img}>
+                <img src={`${item}?w=248&fit=crop&auto=format`} alt={`img-${index}`} loading="lazy" />
+              </ImageListItem>
+            ))}
+          </ImageList>
+        </Grid>
+        
       </Grid>
     </>
   );

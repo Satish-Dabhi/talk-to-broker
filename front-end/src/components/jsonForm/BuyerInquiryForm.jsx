@@ -16,10 +16,13 @@ import {
     getLocalStorageObject,
     getSchemaFieldTitle,
     getSessionStorageObject,
+    removeSessionStorageObject,
     setSessionStorageObject
 } from '../../services/utils';
 import * as constant from '../../services/utils/constant';
 import ObjectFieldTemplate from '../ObjectFieldTemplate';
+import { updateSnackBar } from '../../redux/common/snackBarSlice';
+import { createBuyerInquiry } from '../../redux/buyerInquiry/buyerInquiry';
 
 const theme = createTheme({
     components: {
@@ -35,7 +38,7 @@ const Form = withTheme(Mui5Theme);
 
 const BuyerInquiryForm = (props) => {
     const { schema, uiSchema, activeForm, setActiveForm, setPropertyType } = props;
-    const { addProperty } = useSelector((state) => state.propertyHandler);
+    const { buyerInquiry } = useSelector((state) => state.buyerInquiryHandler);
     const [sessionFormData, setSessionFormData] = useState({});
     const [validateForm, setValidateForm] = useState(false);
     const [formSubmit, setFormSubmit] = useState(false);
@@ -53,6 +56,20 @@ const BuyerInquiryForm = (props) => {
     }, []);
 
     useEffect(() => {
+        if (buyerInquiry?.status && formSaved) {
+          dispatch(
+            updateSnackBar({
+              open: true,
+              message: buyerInquiry?.message,
+              severity: 'success',
+            })
+          );
+          setFormSaved(false);
+          navigate('/user/profile');
+        }
+      }, [buyerInquiry]);
+
+    useEffect(() => {
         var session_data = getSessionStorageObject(constant.BUYER_INQUIRY_SESSION_KEY);
         const decrypted =
             session_data &&
@@ -66,6 +83,12 @@ const BuyerInquiryForm = (props) => {
         const encrypted = CryptoJS.AES.encrypt(JSON.stringify(formData), constant.SESSION_OBJECT_SECRET_KEY).toString();
         setSessionStorageObject(constant.BUYER_INQUIRY_SESSION_KEY, encrypted);
         setValidateForm(false);
+        if (userId !== '' && formSubmit) {
+            const finalFormData = { ...formData, u_id: userId };
+            dispatch(createBuyerInquiry(finalFormData));
+            removeSessionStorageObject(constant.BUYER_INQUIRY_SESSION_KEY);
+            setFormSaved(true);
+          }
         ADD_PROPERTY_FORMS.length - 1 > activeForm && setActiveForm(activeForm + 1);
         setFormSubmit(false);
     };
