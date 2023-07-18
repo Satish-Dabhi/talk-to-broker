@@ -182,16 +182,19 @@ let user_schema = new mongoose.Schema(
 
 let buyer_inquiry_schema = new mongoose.Schema(
   {
+    u_id: String,
     timeLineToBuy: String,
     subPropertyType: String,
-    clientDetails: {
-      name: String,
-      address: String,
-      city: String,
-      state: String,
-      email: String,
-      contactNumber: Number
-    },
+    name: String,
+    address: String,
+    city: String,
+    state: String,
+    email: String,
+    contactNumber: Number,
+    plateForm: String,
+    inquiryIn: String,
+    propertyType: String,
+    inquiryFor: String,
     clientServiceProfile: {
       serviceProfile: String,
       companyName: String,
@@ -210,10 +213,6 @@ let buyer_inquiry_schema = new mongoose.Schema(
       city: String,
       state: String
     },
-    plateForm: String,
-    inquiryIn: String,
-    propertyType: String,
-    inquiryFor: String,
     timeLine: String,
     buildingType: String,
     utilityPurpose: String,
@@ -224,7 +223,7 @@ let buyer_inquiry_schema = new mongoose.Schema(
     roomTypes: String,
     apartments: String,
     area: Number
-  }  
+  }
 )
 
 const propertySchema = mongoose.model('property', property_details_schema);
