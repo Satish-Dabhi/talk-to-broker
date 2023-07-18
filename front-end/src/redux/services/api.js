@@ -19,8 +19,8 @@ export const GET_BUYER_INQUIRIES_BY_USER = '/buyer-inquiry/user/${u_id}';
 
 
 export const POST_API = async (api, data) => {
-  // const newApi = API_HOSTNAME + api;
-  const newApi = VERCEL_API_HOSTNAME + api;
+  const newApi = API_HOSTNAME + api;
+  // const newApi = VERCEL_API_HOSTNAME + api;
   const response = await fetch(newApi, {
     method: 'POST',
     headers: {
@@ -33,15 +33,15 @@ export const POST_API = async (api, data) => {
 };
 
 export const GET_API = async (api) => {
-  // const newApi = API_HOSTNAME + api;
-  const newApi = VERCEL_API_HOSTNAME + api;
+  const newApi = API_HOSTNAME + api;
+  // const newApi = VERCEL_API_HOSTNAME + api;
   const response = await fetch(newApi);
   return response.json();
 };
 
 export const STORE_IMAGE_API = async (api, data) => {
-  // const newApi = API_HOSTNAME + api;
-  const newApi = VERCEL_API_HOSTNAME + api;
+  const newApi = API_HOSTNAME + api;
+  // const newApi = VERCEL_API_HOSTNAME + api;
   const response = await fetch(newApi, {
     method: 'POST',
     body: data,

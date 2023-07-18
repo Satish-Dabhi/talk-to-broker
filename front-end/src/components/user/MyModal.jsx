@@ -1,7 +1,6 @@
-import { Dialog, DialogTitle, IconButton, Slide } from '@mui/material';
+import { Dialog, Slide } from '@mui/material';
 import * as React from 'react';
 import SignInSignUpForms from './SignInSignUpForms';
-import CloseIcon from '@mui/icons-material/Close';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -21,7 +20,7 @@ const MyModal = ({ showModal, handleCloseModal, body }) => {
         // onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <SignInSignUpForms handleClose={handleClose}/>
+        <SignInSignUpForms handleClose={handleClose} />
       </Dialog>
     </div>
   );

@@ -66,7 +66,7 @@ const SignInSignUpForms = ({ handleClose }) => {
   return (
     <Box sx={{ flexGrow: 1, overflowX: 'hidden' }}>
       <Grid container sx={{ justifyContent: 'center', height: '100vh' }}>
-        <Grid item xs={8}>
+        <Grid item md={8} xs={11}>
           <Box sx={{ width: '100%', padding: '13% 0 0' }}>
             {!showVerifyForm ? (
               <Box sx={{ borderBottom: 1 }}>

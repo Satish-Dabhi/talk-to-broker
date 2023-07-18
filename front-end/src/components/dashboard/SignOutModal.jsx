@@ -6,10 +6,11 @@ import * as React from 'react';
 import { removeLocalStorageObject } from '../../services/utils';
 import { useNavigate } from 'react-router-dom';
 
-const SignOutModal = ({ open, setOpen }) => {
+const SignOutModal = ({ open, setOpen, setSelectedTab }) => {
   let navigate = useNavigate();
 
   const handleClose = () => {
+    setSelectedTab(0);
     setOpen(false);
   };
 

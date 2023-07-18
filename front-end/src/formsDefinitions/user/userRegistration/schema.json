@@ -9,18 +9,20 @@
     ],
     "properties": {
         "iAm": {
-            "title": "I am",
+            "title": "I am : Real Estate",
             "enum": [
-                "buyer",
-                "seller",
-                "broker"
+                "agent",
+                "developer",
+                "marketing-firm",
+                "marketing-company"
             ],
             "enumNames": [
-                "Buyer",
-                "Seller",
-                "Broker"
+                "Agent",
+                "Developer",
+                "Marketing Firm",
+                "Marketing Company"
             ],
-            "default": "buyer",
+            "default": "agent",
             "md": 12
         },
         "name": {

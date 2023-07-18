@@ -25,6 +25,10 @@ const Dashboard = ({ userData }) => {
     userData?.id && dispatch(getBuyerInquiriesByUser(userData?.id));
   }, [userData?.id]);
 
+  useEffect(()=> {
+    selectedTab === 3 && setShowSignOutModal(true);
+  },[selectedTab])
+
   useEffect(() => {
     const { status, data } = propertiesByUser;
     status === 'OK' && setProperties(data);
@@ -115,10 +119,13 @@ const Dashboard = ({ userData }) => {
               <br />
               <BuyerInquiriesDataTable
                 data={buyerInquiries}
-                smallScreen={smallScreen} />
+                smallScreen={smallScreen} 
+                propertiesData={properties} />
             </>
           )}
-          {selectedTab === 3 && <SignOutModal open={showSignOutModal} setOpen={setShowSignOutModal} />}
+          {selectedTab === 3 &&  
+          <SignOutModal open={showSignOutModal} setOpen={setShowSignOutModal} setSelectedTab={setSelectedTab}/>
+          }
         </Box>
       </Box>
     </>

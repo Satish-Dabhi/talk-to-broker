@@ -1,5 +1,5 @@
 import EditIcon from '@mui/icons-material/Edit';
-import { IconButton } from '@mui/material';
+import { CircularProgress, IconButton } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import CryptoJS from 'crypto-js';
 import * as React from 'react';
@@ -8,9 +8,12 @@ import { useNavigate } from 'react-router-dom';
 import { setSessionStorageObject } from '../../services/utils';
 import * as constant from '../../services/utils/constant';
 import './dashboard.css';
+import { useSelector } from 'react-redux';
 
-export default function PropertiesDataTable({ data, smallScreen }) {
+export default function PropertiesDataTable({ data, smallScreen, checkboxSelection }) {
+  const { getPropertiesByUserLoader } = useSelector((store) => store.propertyHandler);
   const [tableData, setTableData] = React.useState({});
+  const [selection, setSelection] = React.useState([]);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -58,18 +61,25 @@ export default function PropertiesDataTable({ data, smallScreen }) {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={tableData}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        sx={{ overflowX: 'scroll', width: `${smallScreen && '100vw'}` }}
-        // checkboxSelection
-      />
+      {
+        getPropertiesByUserLoader ? <div style={{ alignItems: "center", display: "flex", justifyContent: "center", height: "100vh" }}>
+          <CircularProgress />
+        </div> :
+          <DataGrid
+            rows={tableData}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 5 },
+              },
+            }}
+            pageSizeOptions={[5, 10]}
+            sx={{ overflowX: 'scroll', width: `${smallScreen && '100vw'}` }}
+            checkboxSelection={checkboxSelection}
+            onSelectionChange={e => console.log(":::::::::::",e.rows)}
+          />
+      }
+      {JSON.stringify(selection, null, 4)}
     </div>
   );
 }

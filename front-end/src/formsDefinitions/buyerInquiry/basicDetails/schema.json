@@ -2,12 +2,19 @@
     "title": "Basic Details",
     "type": "object",
     "required": [
+        "name",
+        "address",
+        "city",
+        "state",
+        "contactNumber",
+        "email",
         "plateForm",
-        "inquiryIn",
-        "propertyType",
-        "inquiryFor"
+                "inquiryIn",
+                "propertyType",
+                "inquiryFor"
     ],
     "properties": {
+
         "plateForm": {
             "title": "Inquiry Received Through Which Platform?",
             "enum": [
@@ -74,49 +81,36 @@
             ],
             "md": 6
         },
-        "clientDetails": {
-            "title": "Client Details",
-            "required": [
-                "name",
-                "address",
-                "city",
-                "state",
-                "contactNumber",
-                "email"
-            ],
-            "properties": {
-                "name": {
-                    "title": "Client's Name",
-                    "type": "string",
-                    "md": 6
-                },
-                "address": {
-                    "title": "Address",
-                    "type": "string",
-                    "md": 6
-                },
-                "city": {
-                    "title": "City",
-                    "type": "string",
-                    "md": 6
-                },
-                "state": {
-                    "title": "State",
-                    "type": "string",
-                    "md": 6
-                },
-                "contactNumber": {
-                    "title": "Contact Number",
-                    "type": "number",
-                    "md": 6
-                },
-                "email": {
-                    "title": "Email ID",
-                    "type": "string",
-                    "format": "email",
-                    "md": 6
-                }
-            }
+        "name": {
+            "title": "Client's Name",
+            "type": "string",
+            "md": 6
+        },
+        "address": {
+            "title": "Address",
+            "type": "string",
+            "md": 6
+        },
+        "city": {
+            "title": "City",
+            "type": "string",
+            "md": 6
+        },
+        "state": {
+            "title": "State",
+            "type": "string",
+            "md": 6
+        },
+        "contactNumber": {
+            "title": "Contact Number",
+            "type": "number",
+            "md": 6
+        },
+        "email": {
+            "title": "Email ID",
+            "type": "string",
+            "format": "email",
+            "md": 6
         },
         "clientServiceProfile": {
             "title": "Client Service Profile",
