@@ -72,6 +72,20 @@ export function getSchemaFieldTitle(propertyName) {
   return updatedString;
 }
 
+export function sendToWhatsApp(number, message) {
+  // const phoneNumber = 7572802581; // Replace with the recipient's phone number (including country code)
+  // const message = 'Hello from my website! Visit: https://www.example.com'; // Custom message with hyperlink
+  
+  // Encode the message to be sent in the URL
+  const encodedMessage = encodeURIComponent(message);
+
+  // Generate the WhatsApp API URL
+  const whatsappUrl = `https://wa.me/${number}?text=${encodedMessage}`;
+
+  // Open WhatsApp Web in a new tab
+  window.open(whatsappUrl, '_blank');
+}
+
 
 export const ADD_PROPERTY_FORMS = [
   {

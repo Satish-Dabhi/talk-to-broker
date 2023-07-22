@@ -11,15 +11,10 @@
         "pricePriceValue": {
             "title": "Property Price Structures",
             "type": "object",
-            "required": [
-                "projectedSellsPrice",
-                "finalizedSellsValue"
-            ],
             "properties": {
                 "projectedSellsPrice": {
                     "title": "Projected Sells Price",
                     "type": "number",
-                    "minimum": 1,
                     "minimum": 1,
                     "default": 0,
                     "md": 6
@@ -27,7 +22,6 @@
                 "finalizedSellsValue": {
                     "title": "Finalized Sells Value",
                     "type": "number",
-                    "minimum": 1,
                     "minimum": 1,
                     "default": 0,
                     "md": 6

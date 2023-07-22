@@ -10,10 +10,9 @@ import * as constant from '../../services/utils/constant';
 import './dashboard.css';
 import { useSelector } from 'react-redux';
 
-export default function PropertiesDataTable({ data, smallScreen, checkboxSelection }) {
+export default function PropertiesDataTable({ data, smallScreen, checkboxSelection, selectedProperties }) {
   const { getPropertiesByUserLoader } = useSelector((store) => store.propertyHandler);
   const [tableData, setTableData] = React.useState({});
-  const [selection, setSelection] = React.useState([]);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -59,6 +58,21 @@ export default function PropertiesDataTable({ data, smallScreen, checkboxSelecti
     );
   }
 
+  function getDataByIndex(array, indices) {
+    const result = [];
+    for (const index of indices) {
+      if (index >= 0 && index < array.length) {
+        result.push(array[index]?._id);
+      }
+    }
+    return result;
+  }
+
+  const handleSelectionChange = (selectedItems) => {
+    const properties = getDataByIndex(tableData, selectedItems);
+    selectedProperties(properties);
+  };
+
   return (
     <div style={{ height: 400, width: '100%' }}>
       {
@@ -76,10 +90,9 @@ export default function PropertiesDataTable({ data, smallScreen, checkboxSelecti
             pageSizeOptions={[5, 10]}
             sx={{ overflowX: 'scroll', width: `${smallScreen && '100vw'}` }}
             checkboxSelection={checkboxSelection}
-            onSelectionChange={e => console.log(":::::::::::",e.rows)}
+            onRowSelectionModelChange={handleSelectionChange}
           />
       }
-      {JSON.stringify(selection, null, 4)}
     </div>
   );
 }

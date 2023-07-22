@@ -9,6 +9,13 @@
         "propertyFlooring"
     ],
     "properties": {
+        "addPropertyType": {
+            "enum": [
+                "new-property",
+                "old-property"
+            ],
+            "hidden": true
+        },
         "propertyStatus": {
             "title": "Property Status",
             "enumNames": [
@@ -93,131 +100,148 @@
                 "ceramic-tiles",
                 "others"
             ]
-        },
-        "mortgageDetails": {
-            "title": "Mortgage Details",
-            "required": [
-                "bankName",
-                "branchName",
-                "address",
-                "pinCode",
-                "city",
-                "state",
-                "loanAmount"
-            ],
-            "properties": {
-                "bankName": {
-                    "title": "Bank Name",
-                    "type": "string",
-                    "md": 7
-                },
-                "branchName": {
-                    "title": "Branch Name",
-                    "type": "string",
-                    "md": 5
-                },
-                "address": {
-                    "title": "Address",
-                    "type": "string",
-                    "md": 8
-                },
-                "pinCode": {
-                    "title": "Pin Code",
-                    "type": "number",
-                    "md": 4
-                },
-                "city": {
-                    "title": "City",
-                    "type": "string",
-                    "md": 6
-                },
-                "state": {
-                    "title": "State With GST State Code",
-                    "type": "string",
-                    "enum": [
-                        "jammu-and-kashmir",
-                        "himachal-pradesh",
-                        "punjab",
-                        "uttarakhand",
-                        "haryana",
-                        "delhi",
-                        "rajasthan",
-                        "uttar-pradesh",
-                        "bihar",
-                        "sikkim",
-                        "arunachal-pradesh",
-                        "nagaland",
-                        "manipur",
-                        "mizoram",
-                        "tripura",
-                        "meghlaya",
-                        "assam",
-                        "west-bengal",
-                        "jharkhand",
-                        "odisha",
-                        "chattisgarh",
-                        "madhya-pradesh",
-                        "gujarat",
-                        "maharashtra",
-                        "karnataka",
-                        "goa",
-                        "lakshwadeep",
-                        "kerala",
-                        "tamil-nadu",
-                        "puducherry",
-                        "telangana",
-                        "andhra-pradesh",
-                        "ladakh",
-                        "andman-and-nicobar-island",
-                        "chandigarh",
-                        "dadra-and-nagar-haveli-and-daman-and-diu",
-                        "other-territory"
-                    ],
-                    "enumNames": [
-                        "JAMMU AND KASHMIR (1)",
-                        "HIMACHAL PRADESH (2)",
-                        "PUNJAB (3)",
-                        "UTTARAKHAND (5)",
-                        "HARYANA (6)",
-                        "DELHI (7)",
-                        "RAJASTHAN (8)",
-                        "UTTAR PRADESH (9)",
-                        "BIHAR (10)",
-                        "SIKKIM (11)",
-                        "ARUNACHAL PRADESH (12)",
-                        "NAGALAND (13)",
-                        "MANIPUR (14)",
-                        "MIZORAM (15)",
-                        "TRIPURA (16)",
-                        "MEGHLAYA (17)",
-                        "ASSAM (18)",
-                        "WEST BENGAL (19)",
-                        "JHARKHAND (20)",
-                        "ODISHA (21)",
-                        "CHATTISGARH (22)",
-                        "MADHYA PRADESH (23)",
-                        "GUJARAT (24)",
-                        "MAHARASHTRA (27)",
-                        "KARNATAKA (29)",
-                        "GOA (30)",
-                        "LAKSHWADEEP (31)",
-                        "KERALA (32)",
-                        "TAMIL NADU (33)",
-                        "PUDUCHERRY (34)",
-                        "TELANGANA (36)",
-                        "ANDHRA PRADESH (37)",
-                        "LADAKH (38)",
-                        "ANDMAN AND NICOBAR ISLAND (35)",
-                        "CHANDIGARH (4)",
-                        "DADRA AND NAGAR HAVELI AND DAMAN AND DIU (26)",
-                        "OTHER TERRITORY (97)"
-                    ]
-                },
-                "loanAmount": {
-                    "title": "Out Standing Loan Amount",
-                    "type": "number"
+        }
+    },
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "addPropertyType": {
+                        "enum": [
+                            "old-property"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "mortgageDetails": {
+                        "title": "Mortgage Details",
+                        "required": [
+                            "bankName",
+                            "branchName",
+                            "address",
+                            "pinCode",
+                            "city",
+                            "state",
+                            "loanAmount"
+                        ],
+                        "properties": {
+                            "bankName": {
+                                "title": "Bank Name",
+                                "type": "string",
+                                "md": 7
+                            },
+                            "branchName": {
+                                "title": "Branch Name",
+                                "type": "string",
+                                "md": 5
+                            },
+                            "address": {
+                                "title": "Address",
+                                "type": "string",
+                                "md": 8
+                            },
+                            "pinCode": {
+                                "title": "Pin Code",
+                                "type": "number",
+                                "md": 4
+                            },
+                            "city": {
+                                "title": "City",
+                                "type": "string",
+                                "md": 6
+                            },
+                            "state": {
+                                "title": "State With GST State Code",
+                                "type": "string",
+                                "enum": [
+                                    "jammu-and-kashmir",
+                                    "himachal-pradesh",
+                                    "punjab",
+                                    "uttarakhand",
+                                    "haryana",
+                                    "delhi",
+                                    "rajasthan",
+                                    "uttar-pradesh",
+                                    "bihar",
+                                    "sikkim",
+                                    "arunachal-pradesh",
+                                    "nagaland",
+                                    "manipur",
+                                    "mizoram",
+                                    "tripura",
+                                    "meghlaya",
+                                    "assam",
+                                    "west-bengal",
+                                    "jharkhand",
+                                    "odisha",
+                                    "chattisgarh",
+                                    "madhya-pradesh",
+                                    "gujarat",
+                                    "maharashtra",
+                                    "karnataka",
+                                    "goa",
+                                    "lakshwadeep",
+                                    "kerala",
+                                    "tamil-nadu",
+                                    "puducherry",
+                                    "telangana",
+                                    "andhra-pradesh",
+                                    "ladakh",
+                                    "andman-and-nicobar-island",
+                                    "chandigarh",
+                                    "dadra-and-nagar-haveli-and-daman-and-diu",
+                                    "other-territory"
+                                ],
+                                "enumNames": [
+                                    "JAMMU AND KASHMIR (1)",
+                                    "HIMACHAL PRADESH (2)",
+                                    "PUNJAB (3)",
+                                    "UTTARAKHAND (5)",
+                                    "HARYANA (6)",
+                                    "DELHI (7)",
+                                    "RAJASTHAN (8)",
+                                    "UTTAR PRADESH (9)",
+                                    "BIHAR (10)",
+                                    "SIKKIM (11)",
+                                    "ARUNACHAL PRADESH (12)",
+                                    "NAGALAND (13)",
+                                    "MANIPUR (14)",
+                                    "MIZORAM (15)",
+                                    "TRIPURA (16)",
+                                    "MEGHLAYA (17)",
+                                    "ASSAM (18)",
+                                    "WEST BENGAL (19)",
+                                    "JHARKHAND (20)",
+                                    "ODISHA (21)",
+                                    "CHATTISGARH (22)",
+                                    "MADHYA PRADESH (23)",
+                                    "GUJARAT (24)",
+                                    "MAHARASHTRA (27)",
+                                    "KARNATAKA (29)",
+                                    "GOA (30)",
+                                    "LAKSHWADEEP (31)",
+                                    "KERALA (32)",
+                                    "TAMIL NADU (33)",
+                                    "PUDUCHERRY (34)",
+                                    "TELANGANA (36)",
+                                    "ANDHRA PRADESH (37)",
+                                    "LADAKH (38)",
+                                    "ANDMAN AND NICOBAR ISLAND (35)",
+                                    "CHANDIGARH (4)",
+                                    "DADRA AND NAGAR HAVELI AND DAMAN AND DIU (26)",
+                                    "OTHER TERRITORY (97)"
+                                ]
+                            },
+                            "loanAmount": {
+                                "title": "Out Standing Loan Amount",
+                                "type": "number"
+                            }
+                        }
+                    }
                 }
             }
         }
-    }
+    ]
 }

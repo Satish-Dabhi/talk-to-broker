@@ -11,6 +11,13 @@
         "grossAmount"
     ],
     "properties": {
+        "addPropertyType": {
+            "enum": [
+                "new-property",
+                "old-property"
+            ],
+            "hidden": true
+        },
         "decidedSalesValueOfProperty": {
             "title": "Decided Sales Value of the Property",
             "type": "number",
@@ -67,64 +74,78 @@
             "minimum": 1,
             "default": 0,
             "readOnly": true
-        },
-        "GSTDetails": {
-            "title": "Goods And Service Tax Details",
-            "type": "object",
-            "required": [
-                "decidedGSTSalesValue",
-                "GSTPercentage",
-                "GSTTax",
-                "MGVCL",
-                "advocateFees",
-                "othersFees"
-            ],
-            "properties": {
-                "decidedGSTSalesValue": {
-                    "title": "Decided Sales Value",
-                    "type": "number",
-                    "minimum": 1,
-                    "default": 0,
-                    "md": 8
-                },
-                "GSTPercentage": {
-                    "title": "Goods And Service Tax Percentage",
-                    "type": "number",
-                    "maximum": 100,
-                    "minimum": 1,
-                    "default": 0,
-                    "md": 5
-                },
-                "GSTTax": {
-                    "title": "GST Tax",
-                    "type": "number",
-                    "minimum": 1,
-                    "default": 0,
-                    "md": 7,
-                    "readOnly": true
-                },
-                "MGVCL": {
-                    "title": "MGVCL (Lumpsum/Fix)",
-                    "type": "number",
-                    "minimum": 1,
-                    "default": 0,
-                    "md": 4
-                },
-                "advocateFees": {
-                    "title": "Advocate fees",
-                    "type": "number",
-                    "minimum": 1,
-                    "default": 0,
-                    "md": 4
-                },
-                "othersFees": {
-                    "title": "Others fees if any",
-                    "type": "number",
-                    "minimum": 1,
-                    "default": 0,
-                    "md": 4
+        }
+    },
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "addPropertyType": {
+                        "enum": [
+                            "new-property"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "GSTDetails": {
+                        "title": "Goods And Service Tax Details",
+                        "type": "object",
+                        "required": [
+                            "decidedGSTSalesValue",
+                            "GSTPercentage",
+                            "GSTTax"
+                        ],
+                        "properties": {
+                            "decidedGSTSalesValue": {
+                                "title": "Decided Sales Value",
+                                "type": "number",
+                                "minimum": 1,
+                                "default": 0,
+                                "md": 8
+                            },
+                            "GSTPercentage": {
+                                "title": "Goods And Service Tax Percentage",
+                                "type": "number",
+                                "maximum": 100,
+                                "minimum": 1,
+                                "default": 0,
+                                "md": 5
+                            },
+                            "GSTTax": {
+                                "title": "GST Tax",
+                                "type": "number",
+                                "minimum": 1,
+                                "default": 0,
+                                "md": 7,
+                                "readOnly": true
+                            },
+                            "MGVCL": {
+                                "title": "MGVCL (Lumpsum/Fix)",
+                                "type": "number",
+                                "minimum": 1,
+                                "default": 0,
+                                "md": 4
+                            },
+                            "advocateFees": {
+                                "title": "Advocate fees",
+                                "type": "number",
+                                "minimum": 1,
+                                "default": 0,
+                                "md": 4
+                            },
+                            "othersFees": {
+                                "title": "Others fees if any",
+                                "type": "number",
+                                "minimum": 1,
+                                "default": 0,
+                                "md": 4
+                            }
+                        }
+                    }
                 }
             }
         }
-    }
+    ]
 }

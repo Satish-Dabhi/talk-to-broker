@@ -15,6 +15,9 @@
     "properties": {
         "subPropertyType": {
             "enum": [
+                "flat",
+                "filament",
+                "studio-apartment",
                 "apartment",
                 "penthouse",
                 "terrace-flat",
@@ -90,10 +93,12 @@
             "title": "Construction Property Type",
             "enum": [
                 "carpet",
+                "built-up",
                 "plot"
             ],
             "enumNames": [
                 "Carpet",
+                "Built-Up",
                 "Plot"
             ]
         },

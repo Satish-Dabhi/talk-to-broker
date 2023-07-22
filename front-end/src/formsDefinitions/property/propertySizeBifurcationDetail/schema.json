@@ -28,15 +28,6 @@
                     "propertySizeBifurcationDetail": {
                         "title": "Property Size Bifurcation Details",
                         "type": "object",
-                        "required": [
-                            "measurementUnits",
-                            "kitchen",
-                            "halls",
-                            "bedRooms",
-                            "bathRooms",
-                            "balconies",
-                            "plot"
-                        ],
                         "properties": {
                             "measurementUnits": {
                                 "title": "Measurement Unit",

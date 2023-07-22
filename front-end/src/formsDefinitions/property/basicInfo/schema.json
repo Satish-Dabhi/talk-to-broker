@@ -192,39 +192,6 @@
                     "roomTypes"
                 ],
                 "properties": {
-                    "subPropertyType": {
-                        "enum": [
-                            "bungalow",
-                            "villa",
-                            "condominium",
-                            "cottage",
-                            "row-house",
-                            "duplex-house",
-                            "triplex-house",
-                            "farm-house",
-                            "stilt-house",
-                            "tree-house",
-                            "hut",
-                            "eco-friendly-house",
-                            "any-other"
-                        ],
-                        "enumNames": [
-                            "Bungalow",
-                            "Villa",
-                            "Condominium",
-                            "Cottage",
-                            "Row House",
-                            "Duplex House",
-                            "Triplex House",
-                            "Farm House",
-                            "Stilt House",
-                            "Tree House",
-                            "Hut",
-                            "Eco Friendly House",
-                            "Other If Any"
-                        ],
-                        "default": "apartment"
-                    },
                     "roomTypes": {
                         "title": "Rooms Type",
                         "enumNames": [
@@ -433,7 +400,48 @@
                     },
                     "buildingType": {
                         "enum": [
+                            "low-rise",
+                            "mid-rise",
                             "high-rise"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "subPropertyType": {
+                        "enum": [
+                            "flat",
+                            "penthouse",
+                            "terrace-flat",
+                            "filament",
+                            "studio-apartment",
+                            "any-other"
+                        ],
+                        "enumNames": [
+                            "Flat",
+                            "Penthouse",
+                            "Terrace Flat",
+                            "Filament",
+                            "Studio Apartment",
+                            "Other If Any"
+                        ],
+                        "default": "flat"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "propertyType": {
+                        "enum": [
+                            "residential"
+                        ]
+                    },
+                    "buildingType": {
+                        "enum": [
+                            "single-unit"
                         ]
                     }
                 }
@@ -470,48 +478,7 @@
                             "Hut",
                             "Eco Friendly House",
                             "Other If Any"
-                        ],
-                        "default": "apartment"
-                    }
-                }
-            }
-        },
-        {
-            "if": {
-                "properties": {
-                    "propertyType": {
-                        "enum": [
-                            "residential"
                         ]
-                    },
-                    "buildingType": {
-                        "enum": [
-                            "low-rise",
-                            "mid-rise"
-                        ]
-                    }
-                }
-            },
-            "then": {
-                "properties": {
-                    "subPropertyType": {
-                        "enum": [
-                            "flat",
-                            "penthouse",
-                            "terrace-flat",
-                            "filament",
-                            "studio-apartment",
-                            "any-other"
-                        ],
-                        "enumNames": [
-                            "Flat",
-                            "Penthouse",
-                            "Terrace Flat",
-                            "Filament",
-                            "Studio Apartment",
-                            "Other If Any"
-                        ],
-                        "default": "flat"
                     }
                 }
             }

@@ -17,6 +17,7 @@ export default function BuyerInquiriesDataTable({ data, smallScreen, propertiesD
   const { getBuyerInquiriesByUserLoader } = useSelector((store) => store.buyerInquiryHandler);
   const [tableData, setTableData] = React.useState({});
   const [sharePropertiesModal, setSharePropertiesModal] = React.useState(false);
+  const [selectedBuyer, setSelectedBuyer] = React.useState({});
 
   let navigate = useNavigate();
 
@@ -63,11 +64,9 @@ export default function BuyerInquiriesDataTable({ data, smallScreen, propertiesD
     const handleShareClick = () => {
       // Handle the edit button click event
       const selectedFormData = params.row;
-      console.log("selectedFormDataselectedFormData", selectedFormData?.contactNumber);
+      console.log("selectedFormDataselectedFormData", selectedFormData);
+      setSelectedBuyer(selectedFormData);
       setSharePropertiesModal(true);
-      // const encrypted = CryptoJS.AES.encrypt(JSON.stringify(selectedFormData), constant.SESSION_OBJECT_SECRET_KEY).toString();
-      // setSessionStorageObject(constant.BUYER_INQUIRY_SESSION_KEY, encrypted);
-      // navigate(`/user/add-buyer`);
     };
 
     return (
@@ -79,7 +78,7 @@ export default function BuyerInquiriesDataTable({ data, smallScreen, propertiesD
 
   return (
     <>
-      {sharePropertiesModal && <ShareProperties open={sharePropertiesModal} setOpen={setSharePropertiesModal} properties={propertiesData} smallScreen={smallScreen} />}
+      {sharePropertiesModal && <ShareProperties open={sharePropertiesModal} setOpen={setSharePropertiesModal} properties={propertiesData} smallScreen={smallScreen} selectedBuyer={selectedBuyer}/>}
       <div style={{ height: 400, width: '100%' }}>
         {
           getBuyerInquiriesByUserLoader ? <div style={{ alignItems: "center", display: "flex", justifyContent: "center", height: "100vh" }}>

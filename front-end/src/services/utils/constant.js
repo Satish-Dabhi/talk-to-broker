@@ -1,3 +1,4 @@
+export const APP_URL = "https://ttb-zeta.vercel.app"
 export const DEVELOPER_PROPERTY = "new-property"
 export const OLD_PROPERTY = "old-property"
 export const PROPERTY_SESSION_KEY = "p_data"
