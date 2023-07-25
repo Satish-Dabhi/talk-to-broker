@@ -1,8 +1,8 @@
 {
     "ui:order": [
         "addPropertyType",
-        "sellProperty",
-        "rentalProperty",
+        "propertyFor",
+        "selectProperty",
         "label",
         "buildingType",
         "propertyOwnership",
@@ -16,6 +16,9 @@
     "addPropertyType": {
         "ui:widget": "radio"
     },
+    "propertyFor": {
+        "ui:widget": "radio"
+    },
     "ui:layout": {
         "dateOfEntry": {
             "md": 6
@@ -23,10 +26,10 @@
         "addPropertyType": {
             "md": 12
         },
-        "sellProperty": {
+        "propertyFor": {
             "md": 6
         },
-        "rentalProperty": {
+        "selectProperty": {
             "md": 6
         },
         "label": {

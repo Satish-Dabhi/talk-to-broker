@@ -2,9 +2,9 @@
     "title": "Basic Information",
     "type": "object",
     "required": [
-        "sellProperty",
+        "selectProperty",
         "addPropertyType",
-        "rentalProperty",
+        "propertyFor",
         "label",
         "buildingType",
         "propertyType",
@@ -24,12 +24,20 @@
             ],
             "default": "new-property"
         },
-        "sellProperty": {
-            "title": "Sells Property",
-            "type": "string"
+        "propertyFor": {
+            "title": "Property For",
+            "enum": [
+                "sell",
+                "rent"
+            ],
+            "enumNames": [
+                "Sell",
+                "Rent"
+            ],
+            "default": "sell"
         },
-        "rentalProperty": {
-            "title": "Rental Property",
+        "selectProperty": {
+            "title": "Select Property",
             "type": "string"
         },
         "label": {
@@ -106,35 +114,27 @@
         {
             "if": {
                 "properties": {
-                    "addPropertyType": {
+                    "propertyFor": {
                         "enum": [
-                            "new-property"
+                            "sell"
                         ]
                     }
                 }
             },
             "then": {
                 "properties": {
-                    "sellProperty": {
+                    "selectProperty": {
                         "enumNames": [
-                            "Unit Sells",
-                            "Pree Lease Sell"
+                            "Sells",
+                            "Pre lease Sells",
+                            "Resales",
+                            "Pre Lease Resales"
                         ],
                         "enum": [
-                            "unit-sells",
-                            "pree-lease-sells"
-                        ]
-                    },
-                    "rentalProperty": {
-                        "enumNames": [
-                            "Rent",
-                            "Pree Lease Rent",
-                            "Lease"
-                        ],
-                        "enum": [
-                            "rent",
-                            "pree-lease-rent",
-                            "lease"
+                            "sells",
+                            "pre-lease-sells",
+                            "resales",
+                            "pre-lease-resales"
                         ]
                     }
                 }
@@ -143,35 +143,25 @@
         {
             "if": {
                 "properties": {
-                    "addPropertyType": {
+                    "propertyFor": {
                         "enum": [
-                            "old-property"
+                            "rent"
                         ]
                     }
                 }
             },
             "then": {
                 "properties": {
-                    "sellProperty": {
-                        "enumNames": [
-                            "Re Sells",
-                            "Pree Lease Re Sells"
-                        ],
-                        "enum": [
-                            "re-sells",
-                            "pree-lease-re-sells"
-                        ]
-                    },
-                    "rentalProperty": {
+                    "selectProperty": {
                         "enumNames": [
                             "Rent",
-                            "Pree Lease Rent",
-                            "Lease"
+                            "Pre Lease Rent",
+                            "Lease Rent"
                         ],
                         "enum": [
                             "rent",
-                            "pree-lease-rent",
-                            "lease"
+                            "pre-lease-rent",
+                            "lease-rent"
                         ]
                     }
                 }

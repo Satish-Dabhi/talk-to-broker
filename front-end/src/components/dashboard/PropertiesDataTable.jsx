@@ -70,7 +70,7 @@ export default function PropertiesDataTable({ data, smallScreen, checkboxSelecti
 
   const handleSelectionChange = (selectedItems) => {
     const properties = getDataByIndex(tableData, selectedItems);
-    selectedProperties(properties);
+    // selectedProperties(properties);
   };
 
   return (
