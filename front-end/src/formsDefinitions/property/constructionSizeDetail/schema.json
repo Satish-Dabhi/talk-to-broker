@@ -1,165 +1,181 @@
 {
     "title": "Construction Property Size Details",
     "type": "object",
-    "required": [
-        "subPropertyType",
-        "addPropertyType",
-        "measurementUnits",
-        "constructionPropertyType",
-        "constructionPropertyBalconyArea",
-        "constructionPropertyTerraceArea",
-        "constructionPropertyTotalCarpet",
-        "constructionPropertyBuiltUp",
-        "constructionPropertySuperBuiltUp"
-    ],
     "properties": {
-        "subPropertyType": {
+        "buildingType": {
             "enum": [
-                "flat",
-                "filament",
-                "studio-apartment",
-                "apartment",
-                "penthouse",
-                "terrace-flat",
-                "bungalow",
-                "villa",
-                "condominium",
-                "cottage",
-                "row-house",
-                "duplex-house",
-                "triplex-house",
-                "farm-house",
-                "stilt-house",
-                "tree-house",
-                "hut",
-                "eco-friendly-house",
-                "residential-plot",
-                "any-other",
-                "office",
-                "shops",
-                "showrooms",
-                "commercial-open-plots",
-                "commercial-land",
-                "multifamily-use-land",
-                "multifamily-use-plot",
-                "retails-shops",
-                "storage-warehouse",
-                "hospital",
-                "shopping-centre",
-                "ind-office",
-                "industrial-open-plots",
-                "industrial-land",
-                "special-purpose-land",
-                "mixed-used-land",
-                "mixed-use-plot",
-                "multifamily-land",
-                "warehouse",
-                "factories",
-                "industrial-shed",
-                "cropped-land",
-                "new-condition-land",
-                "old-conditions-land"
+                "single-unit",
+                "low-rise",
+                "mid-rise",
+                "high-rise"
             ],
             "hidden": true
         },
-        "addPropertyType": {
+        "propertyType": {
             "enum": [
-                "new-property",
-                "old-property"
+                "residential",
+                "commercial",
+                "industrial",
+                "agricultural"
             ],
             "hidden": true
         },
         "measurementUnits": {
             "title": "Measurement Unit",
             "enum": [
-                "sq-ft",
-                "sq-mtr",
+                "square_feet",
+                "square_meters",
+                "square_yards",
                 "acres",
                 "hector",
-                "gutha",
                 "bigha"
             ],
             "enumNames": [
                 "Sq. ft.",
                 "Sq. mtr.",
+                "Sq. Yard",
                 "Acres",
                 "Hector",
-                "Gutha",
                 "Bigha"
             ],
+            "default": "square_feet",
             "md": 6
-        },
-        "constructionPropertyType": {
-            "title": "Construction Property Type",
-            "enum": [
-                "carpet",
-                "built-up",
-                "plot"
-            ],
-            "enumNames": [
-                "Carpet",
-                "Built-Up",
-                "Plot"
-            ]
-        },
-        "constructionPropertyBalconyArea": {
-            "title": "Balcony Area If Any",
-            "type": "number",
-            "minimum": 1,
-            "default": 0
-        },
-        "constructionPropertyTerraceArea": {
-            "title": "Terrace Area If Any",
-            "type": "number",
-            "minimum": 1,
-            "default": 0
-        },
-        "constructionPropertyTotalCarpet": {
-            "title": "Total Carpet",
-            "type": "number",
-            "readOnly": true
-        },
-        "constructionPropertyBuiltUp": {
-            "title": "Built Up",
-            "type": "number",
-            "minimum": 1,
-            "default": 0
-        },
-        "constructionPropertySuperBuiltUp": {
-            "title": "Super Built-Up/Total Construction",
-            "type": "number",
-            "minimum": 1,
-            "default": 0
         }
     },
     "allOf": [
         {
             "if": {
                 "properties": {
-                    "subPropertyType": {
+                    "buildingType": {
                         "enum": [
-                            "penthouse"
+                            "single-unit"
+                        ]
+                    },
+                    "propertyType": {
+                        "enum": [
+                            "residential",
+                            "commercial",
+                            "industrial"
                         ]
                     }
                 }
             },
             "then": {
-                "required": [
-                    "constructionPropertyLowerFloorCarpet",
-                    "constructionPropertyUpperFloorCarpet"
-                ],
                 "properties": {
-                    "constructionPropertyLowerFloorCarpet": {
-                        "title": "Lower Floor Carpet",
+                    "constructionPropertyType": {
+                        "title": "Construction Property Type",
+                        "enum": [
+                            "carpet",
+                            "built-up",
+                            "super-built-up",
+                            "plot"
+                        ],
+                        "enumNames": [
+                            "Carpet",
+                            "Built-Up",
+                            "Super BuiltUp",
+                            "Plot"
+                        ]
+                    },
+                    "plotSize": {
+                        "title": "Plot Size",
                         "type": "number",
                         "minimum": 1,
                         "default": 0
                     },
-                    "constructionPropertyUpperFloorCarpet": {
-                        "title": "Upper Floor Carpet",
+                    "extraPlot": {
+                        "title": "Extra Plot",
                         "type": "number",
                         "minimum": 1,
                         "default": 0
+                    },
+                    "totalPlotSize": {
+                        "title": "Total Plot Size",
+                        "type": "number",
+                        "minimum": 1,
+                        "default": 0
+                    },
+                    "constructionSanctionedByRERAAuthority": {
+                        "title": "Construction Sanctioned By RERA Authority",
+                        "type": "number",
+                        "minimum": 1,
+                        "default": 0
+                    },
+                    "constructionDetails": {
+                        "title": "Construction Details",
+                        "type": "object",
+                        "properties": {
+                            "groundFloor": {
+                                "title": "Ground Floor",
+                                "type": "number",
+                                "minimum": 1,
+                                "default": 0,
+                                "md": 3
+                            },
+                            "firstFloor": {
+                                "title": "1st Floor",
+                                "type": "number",
+                                "minimum": 1,
+                                "default": 0,
+                                "md": 3
+                            },
+                            "secondFloor": {
+                                "title": "2nd Floor",
+                                "type": "number",
+                                "minimum": 1,
+                                "default": 0,
+                                "md": 3
+                            },
+                            "thirdFloor": {
+                                "title": "3rd Floor",
+                                "type": "number",
+                                "minimum": 1,
+                                "default": 0,
+                                "md": 3
+                            },
+                            "fourthFloor": {
+                                "title": "4th Floor",
+                                "type": "number",
+                                "minimum": 1,
+                                "default": 0,
+                                "md": 3
+                            },
+                            "totalConstruction": {
+                                "title": "Total Construction",
+                                "type": "number",
+                                "minimum": 1,
+                                "default": 0,
+                                "md": 9,
+                                "readOnly": true
+                            }
+                        }
+                    },
+                    "independentHouse": {
+                        "title": "Unit Type or Independent House",
+                        "type": "object",
+                        "properties": {
+                            "plinthConstruction": {
+                                "title": "Plinth Construction",
+                                "type": "number",
+                                "minimum": 1,
+                                "default": 0,
+                                "md": 4
+                            },
+                            "builtUpArea": {
+                                "title": "BuiltUp Area",
+                                "type": "number",
+                                "minimum": 1,
+                                "default": 0,
+                                "md": 4
+                            },
+                            "superBuiltUpArea": {
+                                "title": "Super BuiltUp Area",
+                                "type": "number",
+                                "minimum": 1,
+                                "default": 0,
+                                "md": 4
+                            }
+                        }
                     }
                 }
             }
@@ -167,25 +183,42 @@
         {
             "if": {
                 "properties": {
-                    "addPropertyType": {
+                    "buildingType": {
                         "enum": [
-                            "new-property"
+                            "low-rise",
+                            "mid-rise",
+                            "high-rise"
+                        ]
+                    },
+                    "propertyType": {
+                        "enum": [
+                            "residential",
+                            "commercial",
+                            "industrial"
                         ]
                     }
                 }
             },
             "then": {
                 "properties": {
+                    "constructionPropertyType": {
+                        "title": "Construction Property Type",
+                        "enum": [
+                            "carpet",
+                            "built-up",
+                            "super-built-up",
+                            "plot"
+                        ],
+                        "enumNames": [
+                            "Carpet",
+                            "Built-Up",
+                            "Super BuiltUp",
+                            "Plot"
+                        ]
+                    },
                     "bifurcationOfArea": {
                         "title": "Bifurcation Of Carpet Area As Per RERA Authority",
                         "type": "object",
-                        "required": [
-                            "reraCarpet",
-                            "balcony",
-                            "terrace",
-                            "washArea",
-                            "totalArea"
-                        ],
                         "properties": {
                             "reraCarpet": {
                                 "title": "RERA Carpet",
@@ -217,9 +250,97 @@
                                 "type": "number",
                                 "minimum": 1,
                                 "default": 0,
-                                "md": 6
+                                "md": 6,
+                                "readOnly": true
                             }
                         }
+                    },
+                    "totalCarpet": {
+                        "title": "TOTAL CARPET",
+                        "type": "number",
+                        "minimum": 1,
+                        "default": 0,
+                        "md": 4
+                    },
+                    "totalBuiltUp": {
+                        "title": "TOTAL BUILTUP",
+                        "type": "number",
+                        "minimum": 1,
+                        "default": 0,
+                        "md": 4
+                    },
+                    "totalSuperBuiltUp": {
+                        "title": "TOTAL SUPER BUILTUP",
+                        "type": "number",
+                        "minimum": 1,
+                        "default": 0,
+                        "md": 4
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "propertyType": {
+                        "enum": [
+                            "agricultural"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "totalAgriculturalArea": {
+                        "title": "Total Agricultural Area",
+                        "type": "number",
+                        "minimum": 1,
+                        "default": 0,
+                        "md": 8
+                    },
+                    "agriculturalConvertAreaUnits": {
+                        "title": "Convert Total Area into",
+                        "enum": [
+                            "square_feet",
+                            "square_meters",
+                            "square_yards",
+                            "acres",
+                            "bigha",
+                            "hector"
+                        ],
+                        "enumNames": [
+                            "Sq. ft.",
+                            "Sq. mtr.",
+                            "Sq. Yard",
+                            "acres",
+                            "Bigha",
+                            "Hector"
+                        ],
+                        "default": "square_feet",
+                        "md": 6
+                    },
+                    "agriculturalConvertedArea": {
+                        "title": "Area",
+                        "type": "number",
+                        "minimum": 1,
+                        "default": 1,
+                        "md": 6,
+                        "readOnly" : true
+                    },
+                    "salesRatePerUnit": {
+                        "title": "Sales Rate Per Unit",
+                        "type": "number",
+                        "minimum": 1,
+                        "default": 1,
+                        "md": 6
+                    },
+                    "agriculturalTotalPrice": {
+                        "title": "Total Price",
+                        "type": "number",
+                        "minimum": 1,
+                        "default": 1,
+                        "md": 6,
+                        "readOnly" : true
                     }
                 }
             }

@@ -47,7 +47,15 @@ export function getCookie(name) {
 };
 
 export function getSum(...numbers) {
-  return numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+  return numbers.reduce((accumulator, currentValue) => {
+    if (typeof currentValue === "number") {
+      return accumulator + currentValue;
+    } else if (!isNaN(Number(currentValue))) {
+      return accumulator + Number(currentValue);
+    } else {
+      return accumulator;
+    }
+  }, 0);
 }
 
 export function findPercentageValue(value, percentage) {
@@ -73,18 +81,71 @@ export function getSchemaFieldTitle(propertyName) {
 }
 
 export function sendToWhatsApp(number, message) {
-  // const phoneNumber = 7572802581; // Replace with the recipient's phone number (including country code)
-  // const message = 'Hello from my website! Visit: https://www.example.com'; // Custom message with hyperlink
-  
-  // Encode the message to be sent in the URL
   const encodedMessage = encodeURIComponent(message);
-
-  // Generate the WhatsApp API URL
   const whatsappUrl = `https://wa.me/${number}?text=${encodedMessage}`;
-
-  // Open WhatsApp Web in a new tab
   window.open(whatsappUrl, '_blank');
 }
+
+export function convertLandArea(value, fromUnit, toUnit) {
+  
+  const conversions = {
+    acres: {
+      hector: 0.404686,
+      square_feet: 43560,
+      square_meters: 4046.86,
+      square_yards: 4840,
+      acres: 1,
+      bigha: 0.4,
+    },
+    hector: {
+      acres: 2.47105,
+      square_feet: 107639.104,
+      square_meters: 10000,
+      square_yards: 11960.3,
+      hector: 1,
+      bigha: 0.4 / 0.404686,
+    },
+    square_feet: {
+      acres: 0.0000229568,
+      hector: 0.0000092903,
+      square_meters: 0.092903,
+      square_yards: 0.111111,
+      square_feet: 1,
+      bigha: 0.4 / 43560,
+    },
+    square_meters: {
+      acres: 0.000247105,
+      hector: 0.0001,
+      square_feet: 10.7639,
+      square_yards: 1.19599,
+      square_meters: 1,
+      bigha: 0.4 / 43560,
+    },
+    square_yards: {
+      acres: 0.000206612,
+      hector: 0.0000836127,
+      square_feet: 9,
+      square_meters: 0.836127,
+      square_yards: 1,
+      bigha: 0.4 / 4840,
+    },
+    bigha: {
+      acres: 0.5,
+      hector: 0.5 * 0.404686,
+      square_feet: 0.5 * 43560,
+      square_meters: 0.5 * 4046.86,
+      square_yards: 0.5 * 4840,
+      bigha: 1,
+    }
+  };
+
+  if (!conversions[fromUnit] || !conversions[fromUnit][toUnit]) {
+    throw new Error("Invalid conversion units.");
+  }
+
+  return value * conversions[fromUnit][toUnit];
+}
+
 
 
 export const ADD_PROPERTY_FORMS = [

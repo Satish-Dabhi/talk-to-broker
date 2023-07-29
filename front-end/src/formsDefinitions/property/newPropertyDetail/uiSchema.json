@@ -9,6 +9,12 @@
         "newPropertySiteAddress": {
             "md": 6
         },
+        "newPropertyTPName": {
+            "md": 6
+        },
+        "newPropertyTPNo": {
+            "md": 6
+        },
         "newPropertyRevenueSurveyNo": {
             "md": 6
         },

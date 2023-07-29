@@ -15,6 +15,7 @@ import { createProperty } from '../../redux/property/propertySlice';
 import {
   ADD_PROPERTY_FORMS,
   allDefined,
+  convertLandArea,
   findPercentageValue,
   getLocalStorageObject,
   getSchemaFieldTitle,
@@ -101,6 +102,8 @@ const PropertyForm = (props) => {
   };
 
   const handleChange = ({ formData: newFormData }) => {
+
+    console.log("newFormDatanewFormDatanewFormData",newFormData);
     const {
       constructionPropertyTerraceArea,
       constructionPropertyBalconyArea,
@@ -114,9 +117,18 @@ const PropertyForm = (props) => {
       registrationFeePercentage,
       stampsDutyFeePercentage,
       GSTDetails,
+      constructionDetails,
+      bifurcationOfArea,
+      measurementUnits,
+      agriculturalConvertAreaUnits,
+      totalAgriculturalArea,
+      salesRatePerUnit,
+      agriculturalTotalPrice
     } = newFormData;
 
     let sumOfFields = 0;
+    let sumOfConstructionDetails = 0;
+    let sumOfBifurcationOfArea = 0;
     let newPropertyBasicPrice = 0;
     let newTotalExtraAreaValue = 0;
     let totalValue = 0;
@@ -125,6 +137,66 @@ const PropertyForm = (props) => {
     let stampsDutyFees = 0;
     let grossAmount = 0;
     let GSTTax = 0;
+    let agriculturalLandArea = 0;
+    let updatedAgriculturalTotalPrice = 1;
+
+    //update land area by units
+    if (
+      allDefined(
+        totalAgriculturalArea,
+        measurementUnits,
+        agriculturalConvertAreaUnits
+      )
+    ) {
+      agriculturalLandArea = convertLandArea(totalAgriculturalArea, measurementUnits, agriculturalConvertAreaUnits);
+    }
+
+    //update land area by units
+    if (
+      allDefined(
+        salesRatePerUnit,
+        agriculturalLandArea
+      )
+    ) {
+      updatedAgriculturalTotalPrice = salesRatePerUnit * agriculturalLandArea;
+    }
+
+
+    //update sumOfBifurcationOfArea total
+    if (
+      allDefined(
+        bifurcationOfArea?.reraCarpet ?? 0,
+        bifurcationOfArea?.balcony ?? 0,
+        bifurcationOfArea?.terrace ?? 0,
+        bifurcationOfArea?.washArea ?? 0,
+      )
+    ) {
+      sumOfBifurcationOfArea = getSum(
+        bifurcationOfArea?.reraCarpet ?? 0,
+        bifurcationOfArea?.balcony ?? 0,
+        bifurcationOfArea?.terrace ?? 0,
+        bifurcationOfArea?.washArea ?? 0,
+      );
+    }
+
+    //update construction details total
+    if (
+      allDefined(
+        constructionDetails?.groundFloor ?? 0,
+        constructionDetails?.firstFloor ?? 0,
+        constructionDetails?.secondFloor ?? 0,
+        constructionDetails?.thirdFloor ?? 0,
+        constructionDetails?.fourthFloor ?? 0
+      )
+    ) {
+      sumOfConstructionDetails = getSum(
+        constructionDetails?.groundFloor ?? 0,
+        constructionDetails?.firstFloor ?? 0,
+        constructionDetails?.secondFloor ?? 0,
+        constructionDetails?.thirdFloor ?? 0,
+        constructionDetails?.fourthFloor ?? 0
+      );
+    }
 
     //update property sum value
     if (
@@ -200,10 +272,21 @@ const PropertyForm = (props) => {
     ) {
       totalSellPropertyValue = newPropertyBasicPrice + newTotalExtraAreaValue;
     }
+
     const updatedFormData = {
       ...newFormData,
+      agriculturalTotalPrice: updatedAgriculturalTotalPrice,  
+      agriculturalConvertedArea: agriculturalLandArea,
       constructionPropertyTotalCarpet: sumOfFields,
       newPropertyBasicPrice: newPropertyBasicPrice,
+      bifurcationOfArea: {
+        ...bifurcationOfArea,
+        totalArea: sumOfBifurcationOfArea
+      },
+      constructionDetails: {
+        ...constructionDetails,
+        totalConstruction: sumOfConstructionDetails
+      },
       newPropertyExtraArea: {
         ...newPropertyExtraArea,
         totalExtraAreaValue: newTotalExtraAreaValue,

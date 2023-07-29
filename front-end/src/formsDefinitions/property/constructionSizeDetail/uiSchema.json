@@ -1,19 +1,4 @@
 {
-    "ui:order": [
-        "subPropertyType",
-        "addPropertyType",
-        "measurementUnits",
-        "constructionPropertyType",
-        "constructionPropertyArea",
-        "constructionPropertyLowerFloorCarpet",
-        "constructionPropertyUpperFloorCarpet",
-        "constructionPropertyBalconyArea",
-        "constructionPropertyTerraceArea",
-        "constructionPropertyTotalCarpet",
-        "constructionPropertyBuiltUp",
-        "constructionPropertySuperBuiltUp",
-        "bifurcationOfArea"
-    ],
     "bifurcationOfArea": {
         "balcony": {
             "ui:widget": "dynamicFields",
@@ -34,6 +19,18 @@
         },
         "constructionPropertyType": {
             "md": 4
+        },
+        "plotSize": {
+            "md": 6
+        },
+        "extraPlot": {
+            "md": 6
+        },
+        "totalPlotSize": {
+            "md": 6
+        },
+        "constructionSanctionedByRERAAuthority": {
+            "md": 6
         },
         "constructionPropertyArea": {
             "md": 3

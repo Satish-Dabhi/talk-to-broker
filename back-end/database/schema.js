@@ -120,6 +120,8 @@ let property_details_schema = new mongoose.Schema(
     newPropertyGroupName: String,
     newPropertyProjectName: String,
     newPropertySiteAddress: String,
+    newPropertyTPName: String,
+    newPropertyTPNo: Number,
     newPropertyBlockNumber: Number,
     newPropertyFPNumber: Number,
     newPropertyRevenueSurveyNo: Number,
@@ -133,6 +135,23 @@ let property_details_schema = new mongoose.Schema(
     newPropertyTDS: String,
     measurementUnits: String,
     constructionPropertyType: String,
+    plotSize: Number,
+    extraPlot: Number,
+    totalPlotSize: Number,
+    constructionSanctionedByRERAAuthority: Number,
+    constructionDetails: {
+      groundFloor: Number,
+      firstFloor: Number,
+      secondFloor: Number,
+      thirdFloor: Number,
+      fourthFloor: Number,
+      totalConstruction: Number
+    },
+    independentHouse: {
+      plinthConstruction: Number,
+      builtUpArea: Number,
+      superBuiltUpArea: Number
+    },
     newPropertyAreaType: String,
     propertyStatus: String,
     aboutFurnishing: String,
@@ -158,6 +177,14 @@ let property_details_schema = new mongoose.Schema(
     images: [String],
     typesOfHouse: String,
     apartments: String,
+    totalCarpet: Number,
+    totalBuiltUp: Number,
+    totalSuperBuiltUp: Number,
+    totalAgriculturalArea: Number,
+    agriculturalConvertAreaUnits: String,
+    agriculturalConvertedArea: Number,
+    salesRatePerUnit: Number,
+    agriculturalTotalPrice: Number
   },
   {
     versionKey: false,

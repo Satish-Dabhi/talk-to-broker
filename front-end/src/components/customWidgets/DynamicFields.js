@@ -44,7 +44,7 @@ const DynamicFields = (props) => {
                         onChange={(e) => setNumFields(parseInt(e.target.value))}
                     >
                         {[...Array(maxOptions).keys()].map((i) => {
-                            return <MenuItem value={i + 1}>{i + 1}</MenuItem>;
+                            return <MenuItem value={i}>{i}</MenuItem>;
                         })}
                     </Select>
                 </FormControl>

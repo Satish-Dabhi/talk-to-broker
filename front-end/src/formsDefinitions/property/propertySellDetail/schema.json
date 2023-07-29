@@ -50,8 +50,8 @@
                     "measurementUnits": {
                         "title": "Measurement Unit",
                         "enum": [
-                            "sq-ft",
-                            "sq-mtr",
+                            "square_feet",
+                            "square_meters",
                             "acres",
                             "hector",
                             "gutha",
@@ -69,14 +69,14 @@
                     "newPropertySellUnit": {
                         "title": "Property Sell Unit",
                         "enum": [
-                            "per-sq-ft",
+                            "per-square_feet",
                             "fix"
                         ],
                         "enumNames": [
                             "Per Sq Feet",
                             "Fix"
                         ],
-                        "default": "per-sq-ft"
+                        "default": "per-square_feet"
                     },
                     "newPropertyExtraArea": {
                         "title": "New Property Extra Area",
@@ -136,7 +136,7 @@
                             "properties": {
                                 "newPropertySellUnit": {
                                     "enum": [
-                                        "per-sq-ft"
+                                        "per-square_feet"
                                     ]
                                 }
                             }

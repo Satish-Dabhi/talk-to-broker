@@ -411,8 +411,8 @@
                     "size": {
                         "title": "Size",
                         "enum": [
-                            "sq-ft",
-                            "sq-mtr",
+                            "square_feet",
+                            "square_meters",
                             "acres",
                             "hector",
                             "yard",

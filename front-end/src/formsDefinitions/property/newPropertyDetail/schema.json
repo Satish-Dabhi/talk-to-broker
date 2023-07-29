@@ -15,7 +15,9 @@
         "newPropertyGSTIN",
         "newPropertyCGSTIN",
         "newPropertyRERA",
-        "newPropertyTDS"
+        "newPropertyTDS",
+        "newPropertyTPName",
+        "newPropertyTPNo"
     ],
     "properties": {
         "newPropertyProjectName": {
@@ -25,6 +27,14 @@
         "newPropertySiteAddress": {
             "title": "Site Address",
             "type": "string"
+        },
+        "newPropertyTPName": {
+            "title": "T.P. Name",
+            "type": "string"
+        },
+        "newPropertyTPNo": {
+            "title": "T.P. No.",
+            "type": "number"
         },
         "newPropertyGroupName": {
             "title": "Group Name",
@@ -196,18 +206,12 @@
         },
         "landStructure": {
             "title": "Project Land Structure",
-            "required": [
-                "measurementUnits",
-                "totalLandArea",
-                "usedArea",
-                "openSpace"
-            ],
             "properties": {
                 "measurementUnits": {
                     "title": "Measurement Unit",
                     "enum": [
-                        "sq-ft",
-                        "sq-mtr",
+                        "square_feet",
+                        "square_meters",
                         "acres",
                         "hector",
                         "gutha",

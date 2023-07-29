@@ -68,7 +68,8 @@
                 "low-rise",
                 "mid-rise",
                 "high-rise"
-            ]
+            ],
+            "default": "single-unit"
         },
         "propertyOwnership": {
             "title": "Property Ownership",
